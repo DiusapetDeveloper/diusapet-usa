@@ -1,0 +1,137 @@
+[
+  {
+    "id": 1,
+    "name": "Hoboken Pet Market",
+    "type": "pet_store",
+    "city": "Hoboken",
+    "state": "NJ",
+    "status": "confermato",
+    "hook": "Selezione premium EU già richiesta dai clienti italo-americani."
+  },
+  {
+    "id": 2,
+    "name": "Eataly Flatiron",
+    "type": "italian_market",
+    "city": "New York",
+    "state": "NY",
+    "status": "interessato",
+    "hook": "Cross-sell corner pet nel reparto gastronomia italiana."
+  },
+  {
+    "id": 3,
+    "name": "Lucca's Italian Deli",
+    "type": "italian_market",
+    "city": "Newark",
+    "state": "NJ",
+    "status": "contattato",
+    "hook": "Pubblico heritage italiano di seconda generazione."
+  },
+  {
+    "id": 4,
+    "name": "Brooklyn Barker",
+    "type": "pet_store",
+    "city": "Brooklyn",
+    "state": "NY",
+    "status": "interessato",
+    "hook": "Store boutique con focus su food premium grain-free."
+  },
+  {
+    "id": 5,
+    "name": "Montclair Paws & Co.",
+    "type": "pet_store",
+    "city": "Montclair",
+    "state": "NJ",
+    "status": "lead",
+    "hook": "Zona affluente con forte domanda prodotti funzionali."
+  },
+  {
+    "id": 6,
+    "name": "Buon Italia Chelsea",
+    "type": "italian_market",
+    "city": "New York",
+    "state": "NY",
+    "status": "confermato",
+    "hook": "Catena retail con buyer dedicato a Made in Italy."
+  },
+  {
+    "id": 7,
+    "name": "Jersey City Cane",
+    "type": "breeder",
+    "city": "Jersey City",
+    "state": "NJ",
+    "status": "contattato",
+    "hook": "Allevamento di razze italiane, necessità alimenti specifici."
+  },
+  {
+    "id": 8,
+    "name": "Williamsburg Wag",
+    "type": "pet_store",
+    "city": "Brooklyn",
+    "state": "NY",
+    "status": "interessato",
+    "hook": "Clientela giovane, alta sensibilità al branding."
+  },
+  {
+    "id": 9,
+    "name": "Princeton Kennel Club",
+    "type": "breeder",
+    "city": "Princeton",
+    "state": "NJ",
+    "status": "lead",
+    "hook": "Network di allevatori certificati AKC."
+  },
+  {
+    "id": 10,
+    "name": "Di Palo's Fine Foods",
+    "type": "italian_market",
+    "city": "New York",
+    "state": "NY",
+    "status": "contattato",
+    "hook": "Storico fine food italiano, pubblico fedele."
+  },
+  {
+    "id": 11,
+    "name": "Hoboken Hound House",
+    "type": "pet_store",
+    "city": "Hoboken",
+    "state": "NJ",
+    "status": "lead",
+    "hook": "Retail indipendente, cerca assortimento differenziante."
+  },
+  {
+    "id": 12,
+    "name": "Upper East Tails",
+    "type": "pet_store",
+    "city": "New York",
+    "state": "NY",
+    "status": "interessato",
+    "hook": "Affluenza alta, disponibilità a premium pricing."
+  },
+  {
+    "id": 13,
+    "name": "Bergen Italian Breeders Assoc.",
+    "type": "breeder",
+    "city": "Paramus",
+    "state": "NJ",
+    "status": "lead",
+    "hook": "Gruppo di 12 allevatori, volumi ricorrenti."
+  },
+  {
+    "id": 14,
+    "name": "Morris Pet Emporium",
+    "type": "pet_store",
+    "city": "Morristown",
+    "state": "NJ",
+    "status": "contattato",
+    "hook": "Espansione prevista in 3 nuove location entro 18 mesi."
+  },
+  {
+    "id": 15,
+    "name": "Staten Island Pet Deli",
+    "type": "pet_store",
+    "city": "Staten Island",
+    "state": "NY",
+    "status": "interessato",
+    "hook": "Quartiere con forte identità italiana, passaparola attivo."
+  }
+]

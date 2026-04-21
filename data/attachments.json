@@ -1,0 +1,15 @@
+[
+  { "id": "01", "title": "Executive Summary", "format": "PDF", "size": "1.2 MB", "updated": "2026-03-01" },
+  { "id": "02", "title": "Market Study APPA 2025", "format": "PDF", "size": "4.6 MB", "updated": "2026-02-18" },
+  { "id": "03", "title": "Competitor landscape tri-state", "format": "PDF", "size": "2.1 MB", "updated": "2026-02-22" },
+  { "id": "04", "title": "Listino USA — 8 SKU", "format": "XLSX", "size": "340 KB", "updated": "2026-03-05" },
+  { "id": "05", "title": "P&L dettagliato 3 anni", "format": "XLSX", "size": "820 KB", "updated": "2026-03-10" },
+  { "id": "06", "title": "Cash-flow mensile 36m", "format": "XLSX", "size": "610 KB", "updated": "2026-03-10" },
+  { "id": "07", "title": "CRM prospect tri-state", "format": "XLSX", "size": "220 KB", "updated": "2026-03-14" },
+  { "id": "08", "title": "FDA & AAFCO compliance checklist", "format": "PDF", "size": "980 KB", "updated": "2026-02-28" },
+  { "id": "09", "title": "Contratto 3PL NJ (draft)", "format": "PDF", "size": "1.5 MB", "updated": "2026-03-07" },
+  { "id": "10", "title": "Business plan completo", "format": "PDF", "size": "3.4 MB", "updated": "2026-03-12" },
+  { "id": "11", "title": "Matrice rischi & mitigazioni", "format": "PDF", "size": "540 KB", "updated": "2026-03-09" },
+  { "id": "12", "title": "Deck investor (15 slide)", "format": "PDF", "size": "2.8 MB", "updated": "2026-03-15" },
+  { "id": "13", "title": "Roadmap 36 mesi dettagliata", "format": "PDF", "size": "760 KB", "updated": "2026-03-15" }
+]

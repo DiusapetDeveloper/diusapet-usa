@@ -1,0 +1,58 @@
+[
+  {
+    "area": "Regulatory",
+    "risk": "Ritardo FDA/AAFCO sulle etichette",
+    "probability": "Media",
+    "impact": "Alto",
+    "mitigation": "Consulente compliance dedicato fin da M1. Buffer 6 settimane sul go-to-market."
+  },
+  {
+    "area": "Supply chain",
+    "risk": "Dazi import o ritardi container",
+    "probability": "Media",
+    "impact": "Alto",
+    "mitigation": "Doppio fornitore spedizionieri. Stock di sicurezza 60 gg in 3PL NJ."
+  },
+  {
+    "area": "Commerciale",
+    "risk": "Ciclo di vendita più lungo del previsto",
+    "probability": "Alta",
+    "impact": "Medio",
+    "mitigation": "Pipeline larga 60+ lead. Sampling aggressivo. Sales rep M4 per raddoppiare capacità."
+  },
+  {
+    "area": "Finanziario",
+    "risk": "Cambio EUR/USD sfavorevole",
+    "probability": "Media",
+    "impact": "Medio",
+    "mitigation": "Hedging forward sui lotti > $40k. Price list USA rivista semestralmente."
+  },
+  {
+    "area": "Prodotto",
+    "risk": "Richiamo o contaminazione",
+    "probability": "Bassa",
+    "impact": "Alto",
+    "mitigation": "Assicurazione product liability $2M. QA lotti con audit trimestrale fornitori EU."
+  },
+  {
+    "area": "Talent",
+    "risk": "Difficoltà assunzione sales rep bilingue",
+    "probability": "Media",
+    "impact": "Medio",
+    "mitigation": "Canali comunità italo-americane. Offer competitiva con variable + equity simbolica."
+  },
+  {
+    "area": "Competitivo",
+    "risk": "Entrata competitor EU con budget maggiore",
+    "probability": "Bassa",
+    "impact": "Medio",
+    "mitigation": "Esclusive di zona con retailer chiave. Storytelling heritage difficile da replicare."
+  },
+  {
+    "area": "Reputazionale",
+    "risk": "Recensioni negative early adopter",
+    "probability": "Bassa",
+    "impact": "Medio",
+    "mitigation": "Customer care bilingue 24h. Programma sample sostitutivi gratuiti primi 12 mesi."
+  }
+]

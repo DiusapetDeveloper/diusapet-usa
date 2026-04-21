@@ -1,0 +1,18 @@
+{
+  "ninetyDays": [
+    { "week": "Sett. 1-2", "title": "Setup legale USA", "detail": "Costituzione LLC in NJ, EIN, conto corrente, assicurazione." },
+    { "week": "Sett. 3-4", "title": "FDA & compliance pet food", "detail": "Registrazione etichette, AAFCO statement, import broker." },
+    { "week": "Sett. 5-6", "title": "3PL & logistica", "detail": "Contratto magazzino NJ, primo container 20ft, assicurazione merci." },
+    { "week": "Sett. 7-8", "title": "Branding & trade kit", "detail": "Listino USA, sell-sheet bilingue, sample kit per buyer." },
+    { "week": "Sett. 9-10", "title": "Prime 10 visite retail", "detail": "Pilot con 3 pet store NJ, 3 italian market NY, 4 lead secondari." },
+    { "week": "Sett. 11-12", "title": "Closing iniziali", "detail": "Target 5 ordini confermati, primo reorder entro sett. 14." }
+  ],
+  "milestones": [
+    { "period": "M6", "title": "20 account attivi", "detail": "Copertura NJ core + Manhattan + Brooklyn." },
+    { "period": "M12", "title": "$175k ricavi Y1", "detail": "Break-even operativo lordo raggiunto." },
+    { "period": "M20", "title": "Break-even netto", "detail": "EBITDA mensile positivo, cassa in equilibrio." },
+    { "period": "M24", "title": "Espansione CT + PA", "detail": "Sales rep #2, 60+ account." },
+    { "period": "M30", "title": "E-commerce D2C", "detail": "Shopify USA, retargeting community italo-americane." },
+    { "period": "M36", "title": "$510k ricavi Y3", "detail": "ROI 3Y +112%, valutazione pre-exit." }
+  ]
+}

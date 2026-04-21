@@ -1,0 +1,36 @@
+[
+  {
+    "id": "market",
+    "label": "Mercato pet USA",
+    "value": 136,
+    "prefix": "$",
+    "suffix": "B",
+    "trend": "+6.1% CAGR",
+    "caption": "Dimensione 2025 (APPA)"
+  },
+  {
+    "id": "margin",
+    "label": "Margine lordo atteso",
+    "valueRange": [41, 47],
+    "suffix": "%",
+    "trend": "SKU premium EU",
+    "caption": "Range blended SKU principali"
+  },
+  {
+    "id": "breakeven",
+    "label": "Break-even",
+    "value": 20,
+    "suffix": "m",
+    "trend": "scenario base",
+    "caption": "Mesi dall'ingresso operativo"
+  },
+  {
+    "id": "roi",
+    "label": "ROI a 3 anni",
+    "value": 112,
+    "suffix": "%",
+    "prefix": "+",
+    "trend": "IRR > 28%",
+    "caption": "Scenario base, pre-exit"
+  }
+]

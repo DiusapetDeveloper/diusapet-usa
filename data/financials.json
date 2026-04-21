@@ -1,0 +1,43 @@
+{
+  "initialInvestment": 185000,
+  "monthlyFixedCosts": 21000,
+  "scenarios": {
+    "pessimistic": {
+      "label": "Pessimistico",
+      "revenueMultiplier": 0.7,
+      "marginDelta": -0.05,
+      "breakEvenMonth": 28,
+      "roi3y": 54,
+      "ebitdaY1": -62000,
+      "revenues": { "y1": 122500, "y2": 241500, "y3": 357000 }
+    },
+    "base": {
+      "label": "Base",
+      "revenueMultiplier": 1,
+      "marginDelta": 0,
+      "breakEvenMonth": 20,
+      "roi3y": 112,
+      "ebitdaY1": -28000,
+      "revenues": { "y1": 175000, "y2": 345000, "y3": 510000 }
+    },
+    "optimistic": {
+      "label": "Ottimistico",
+      "revenueMultiplier": 1.25,
+      "marginDelta": 0.03,
+      "breakEvenMonth": 15,
+      "roi3y": 178,
+      "ebitdaY1": 11000,
+      "revenues": { "y1": 218750, "y2": 431250, "y3": 637500 }
+    }
+  },
+  "plQuarterly": [
+    { "q": "Q1 Y1", "revenue": 18000, "cogs": -10800, "opex": -63000, "ebitda": -55800 },
+    { "q": "Q2 Y1", "revenue": 34000, "cogs": -19720, "opex": -63000, "ebitda": -48720 },
+    { "q": "Q3 Y1", "revenue": 52000, "cogs": -29640, "opex": -63000, "ebitda": -40640 },
+    { "q": "Q4 Y1", "revenue": 71000, "cogs": -39760, "opex": -63000, "ebitda": -31760 },
+    { "q": "Q1 Y2", "revenue": 72000, "cogs": -39600, "opex": -66000, "ebitda": -33600 },
+    { "q": "Q2 Y2", "revenue": 83000, "cogs": -44820, "opex": -66000, "ebitda": -27820 },
+    { "q": "Q3 Y2", "revenue": 91000, "cogs": -48230, "opex": -66000, "ebitda": -23230 },
+    { "q": "Q4 Y2", "revenue": 99000, "cogs": -51480, "opex": -66000, "ebitda": -18480 }
+  ]
+}
