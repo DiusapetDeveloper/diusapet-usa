@@ -23,6 +23,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { useTranslations } from "next-intl";
 import { AnimatedSection } from "@/components/animated-section";
+import OutreachSection from "@/components/outreach-section";
 import clientsData from "@/data/clients.json";
 import { cn } from "@/lib/utils";
 
@@ -542,6 +543,9 @@ export default function ClientiPage() {
           </h3>
         </div>
       </div>
+
+      {/* OUTREACH — APPROCCIO COMMERCIALE */}
+      <OutreachSection />
     </div>
   );
 }

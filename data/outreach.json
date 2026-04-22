@@ -1,0 +1,157 @@
+{
+  "meta": {
+    "title": "Approccio commerciale",
+    "subtitle": "Outreach sistematico, non ad-hoc. Sette template, quattro follow-up, una routine settimanale.",
+    "source": "Diusapet USA Cowork Sales Playbook v1.0"
+  },
+  "kpi_weekly": [
+    { "value": "20-30", "unit": "",        "label": "Email prima-touch / settimana" },
+    { "value": "15-25", "unit": "",        "label": "Follow-up inviati / settimana" },
+    { "value": "5-10",  "unit": "",        "label": "Chiamate / settimana" },
+    { "value": "2-5",   "unit": "",        "label": "Visite in-store / settimana" }
+  ],
+  "follow_up_sequence": {
+    "title": "L'80% delle conversioni arriva dai follow-up.",
+    "subtitle": "La prima email ha il 2-3% di risposta. Ogni follow-up aggiunge punti percentuali. Non si molla dopo la prima.",
+    "touches": [
+      { "day": "T+0",  "name": "Email iniziale",    "angle": "Hook personalizzato + value prop + CTA campioni",      "length": "120-150 parole", "color": "#0B1E3F" },
+      { "day": "T+5",  "name": "Follow-up 1",        "angle": "Ricorda il contesto + social proof nuova + CTA soft",   "length": "60-80 parole",   "color": "#3B5166" },
+      { "day": "T+12", "name": "Follow-up 2",        "angle": "Cambia angolo (se tecnico prima → emozionale ora)",     "length": "50-70 parole",   "color": "#5A6B4D" },
+      { "day": "T+22", "name": "Break-up email",     "angle": "\"Capisco che non è il momento\" — chiude il cerchio",  "length": "40-60 parole",   "color": "#B8925A" },
+      { "day": "T+90", "name": "Cold re-engage",     "angle": "News / novità prodotto dopo un trimestre",               "length": "80-100 parole",  "color": "#A88C5F" }
+    ],
+    "insight": "Contro-intuitivo: la break-up email è spesso la mail che converte di più. Rimuove pressione, crea reciprocità, attiva la paura di perdere l'opportunità (\"aspetta, dammi altri due giorni\")."
+  },
+  "email_templates": {
+    "title": "Sette angoli, sette template.",
+    "subtitle": "Ogni tipo di contatto ha il suo angolo di attacco. Niente email generiche.",
+    "templates": [
+      {
+        "letter": "A",
+        "name": "Italian heritage angle",
+        "target": "Owner italiano / Italian community",
+        "when_to_use": "Contatti con cognome italiano (D'Elia, Longo, Rizzo), negozi in Italian neighborhoods (Edison, Hoboken, Bay Ridge), clientela italoamericana dichiarata.",
+        "subject": "First Italian-made pet food for [Hoboken]",
+        "body": "Hi [Name],\n\nI noticed [Store Name] serves a strong Italian-American customer base in [neighborhood] — my family is from [region] and I'm writing because we're about to launch the first Italian-made premium pet food in the US market.\n\n• Alleva is made in central Italy, 46% protein, Aloe + Ginseng + Hemp as functional ingredients.\n• Your Italian customers will recognize quality the moment they see the bag.\n• 46% retailer margin vs 35-38% on competing imports.\n\nCan I drop off a free sample pack — 4 SKUs, 2 bags each, zero commitment?\n\nDaniele Franceschini\nDiusapet USA · +1 (201) xxx-xxxx · allevastore.com",
+        "hook_type": "Emotional / heritage"
+      },
+      {
+        "letter": "B",
+        "name": "Holistic / nutrition angle",
+        "target": "Holistic / nutrition expert stores",
+        "when_to_use": "Owner con certificazioni nutrizione (es. Mike @ Hoboken Pet), store holistic-focused, negozi che vendono raw e freeze-dried.",
+        "subject": "46% protein, 4000mg taurine — thought you'd want a look",
+        "body": "Hi [Name],\n\nSaw that [Store Name] is one of the few stores in [zone] where customers get a real nutritional conversation — [specific: your raw selection / your cat formulas / your owner certification]. That's rare, and the reason I'm writing.\n\nI'm launching Alleva, Italian-made premium pet food, in the US:\n• 46% protein (vs US average 22-28%)\n• 4000mg/kg taurine in cat formulas (4-8x the AAFCO minimum)\n• Functional ingredients: Aloe, Ginseng, Hemp — not marketing fluff, real inclusions\n\nHappy to drop off a free sample pack. No pitch, just let the formulas speak.\n\nDaniele Franceschini\nDiusapet USA",
+        "hook_type": "Technical / nutrition"
+      },
+      {
+        "letter": "C",
+        "name": "Orijen-shelf angle",
+        "target": "Premium shelf stores",
+        "when_to_use": "Store che vendono Orijen, Acana, Fromm a $28-35. Clientela già educata al premium, pronta a pagare.",
+        "subject": "Same shelf as Orijen, better margin for you",
+        "body": "Hi [Name],\n\nNoticed [Store Name] carries Orijen and Acana — your customers clearly value premium quality. I'm writing because I'm launching a brand that sits right next to those on the shelf with one key difference.\n\nAlleva is Italian-made premium, positioned $23-26 retail (vs Orijen $28-35):\n• Comparable protein levels (27-46% depending on SKU)\n• Functional ingredients competitors don't have\n• 46% retailer margin — 8-10 points above what Orijen typically gives you\n\nA free sample pack next week? 4 SKUs, 2 bags each, no commitment.\n\nDaniele Franceschini\nDiusapet USA",
+        "hook_type": "Commercial / margin"
+      },
+      {
+        "letter": "D",
+        "name": "Cat specialty angle",
+        "target": "Cat-only / cat-focused stores",
+        "when_to_use": "Cat-only stores, negozi con sezione cat grande, breeder di gatti. La nostra linea gatto con taurina 4000mg è un argomento forte.",
+        "subject": "4x the taurine — finally a cat formula worth carrying",
+        "body": "Hi [Name],\n\nCat stores in [zone] are rare — and ones that actually push nutrition standards forward even rarer. That's why I'm writing to [Store Name].\n\nI'm launching Alleva's cat line in the US — Italian formulas built with higher nutritional standards than anything currently on US shelves:\n• Taurine 4000 mg/kg (4-8x the AAFCO minimum)\n• Protein 30-46% depending on life stage\n• Four SKUs: Kitten, Adult, Ocean Fish, Light Hairball\n\nYour cat customers will know the difference on the first bag. Free sample pack?\n\nDaniele Franceschini\nDiusapet USA",
+        "hook_type": "Technical / feline"
+      },
+      {
+        "letter": "E",
+        "name": "Italian breed angle",
+        "target": "Allevatori razze italiane",
+        "when_to_use": "Allevatori di Cane Corso, Bracco Italiano, Lagotto, Maremma, Italian Greyhound. L'italianità è un vantaggio emozionale fortissimo.",
+        "subject": "Italian kibble for Italian dogs — would you try it?",
+        "body": "Hi [Name],\n\nYour work with [breed: Cane Corso / Bracco / Lagotto] caught my attention — [specific: the litter you posted in Dec / your breed championship / your AKC Merit status]. As an Italian raising Italian-origin dogs, I thought you'd want to know about this.\n\nI'm launching Alleva in the US — premium kibble made in central Italy. Formulas developed with Italian vet nutritionists:\n• 46% protein puppy / 27-38% adult\n• Grain-free, with Aloe + Hemp\n• Honest supply chain — the factory I can walk into\n\nCan I send you two bags for your [breed]? No strings.\n\nDaniele Franceschini\nDiusapet USA",
+        "hook_type": "Emotional / breed"
+      },
+      {
+        "letter": "F",
+        "name": "Italian specialty store angle",
+        "target": "Italian deli / salumerie / Eataly",
+        "when_to_use": "Italian deli, salumerie, mercati italiani, Eataly. Non sono pet store ma vendono italianità — categoria adiacente.",
+        "subject": "First Italian pet food — a natural fit for your shelves",
+        "body": "Hi [Name],\n\nYour customers already trust [Store Name] to bring them the real Italy — [specific: your cured meats / your pasta selection / your olive oil range]. I'm writing because there's one Italian category no one has brought over yet: premium pet food.\n\nAlleva is made in central Italy, the first Made in Italy pet food brand in the US. Two reasons it fits your shelf:\n• Your Italian-American customers already spend premium on Italian authenticity\n• Zero competition — you'd be the only store in [zone] with Italian kibble\n\n4 SKUs, ready to ship. Free sample pack?\n\nDaniele Franceschini\nDiusapet USA",
+        "hook_type": "Adjacent category"
+      },
+      {
+        "letter": "G",
+        "name": "Distributor angle",
+        "target": "Distributori indipendenti pet food",
+        "when_to_use": "Distributori pet food indipendenti con portafoglio europeo (Farmina, Ziwi, Carna4). 30-150 retailer serviti.",
+        "subject": "Category whitespace — first Italian premium pet food",
+        "body": "Hi [Name],\n\n[Company] is one of the few distributors in [region] that's taken real positions on European premium — [specific: Farmina, Ziwi, Carna4]. That's exactly why I'm writing.\n\nI run Diusapet USA, the American entity for the Alleva brand — Italian-made premium pet food launching Q2 2026 out of our NJ warehouse. There is currently zero Italian presence in the $136B US pet food market.\n\n• 8 SKUs, 41-47% margin at distributor pricing\n• FSVP-compliant, ready for import\n• Exclusive regional agreements available for the first three distributors\n\nWould a 10-min intro call next week make sense?\n\nDaniele Franceschini\nDiusapet USA",
+        "hook_type": "B2B / wholesale"
+      }
+    ]
+  },
+  "subject_patterns": {
+    "title": "Il subject è il 70% del gioco.",
+    "subtitle": "Nessuno apre \"Introducing Alleva\". Aprono oggetti con un numero, un beneficio o una curiosità legittima.",
+    "that_work": [
+      { "pattern": "Numero specifico",      "example": "46% protein, 4000mg taurine — a look?",        "why": "Numeri = credibilità + specificità" },
+      { "pattern": "Beneficio + contesto",  "example": "Same shelf as Orijen, better margin",          "why": "Rapid value + familiarità" },
+      { "pattern": "Domanda bruciante",     "example": "Italian kibble for Italian dogs — try it?",    "why": "Engage, bassa pressione" },
+      { "pattern": "Pronomi + località",    "example": "First Italian pet food for Bay Ridge",         "why": "Personalizzazione geografica" },
+      { "pattern": "Curiosità funzionale",  "example": "Aloe + Hemp in premium kibble — seen it?",     "why": "Ingredienti unici come gancio" },
+      { "pattern": "Problem-to-solution",   "example": "Cat food taurine problem — solved",             "why": "Tech angle per audience esperta" },
+      { "pattern": "Brevi, minuscolo",      "example": "quick question about your shelf",               "why": "Sembra informale, friend-to-friend" }
+    ],
+    "forbidden": [
+      { "pattern": "\"Introducing...\"",          "reason": "Sa di press release, aperture <5%" },
+      { "pattern": "\"Partnership Opportunity\"",  "reason": "Formale, vago, spam flag" },
+      { "pattern": "\"Revolutionary new product\"","reason": "Nessuno crede più all'aggettivo" },
+      { "pattern": "\"Re:\" / \"Fw:\" finti",      "reason": "Manipolativo, distrugge trust" },
+      { "pattern": "TUTTO MAIUSCOLO o emoji",     "reason": "Spam classifier trigger" },
+      { "pattern": ">10 parole",                   "reason": "Si tagliano su mobile (70% dei buyer legge lì)" }
+    ]
+  },
+  "cta_formulas": {
+    "title": "Le tre CTA che convertono.",
+    "subtitle": "La CTA più efficace chiede qualcosa di così piccolo che il \"no\" suonerebbe scortese.",
+    "items": [
+      { "name": "Free sample pack",    "phrasing": "Can I drop off a free sample pack — 4 SKUs, 2 bags each, zero commitment?", "use": "CTA principale per tutti i pet store e Italian deli", "psychological_cost": "Bassissimo" },
+      { "name": "10-min intro call",   "phrasing": "Would a 10-min intro call next week make sense?",                            "use": "Distributori e account manager",                       "psychological_cost": "Minimale" },
+      { "name": "Reply anziché apply", "phrasing": "If now isn't the right timing, even a one-line 'not for us' helps me move forward.", "use": "Follow-up T+12 — apre la porta al rifiuto facile",   "psychological_cost": "Zero" }
+    ]
+  },
+  "three_numbers": {
+    "title": "I tre numeri non-negoziabili.",
+    "subtitle": "Se una email non contiene almeno uno di questi, non sta vendendo Alleva.",
+    "numbers": [
+      { "value": "46%",      "label": "protein",        "context": "US average 22-28% — vantaggio misurabile",           "use_with": "Brand nutrizionali, Orijen-shelf, breeder" },
+      { "value": "4000 mg",  "label": "taurina",         "context": "4-8× il minimo AAFCO — salute cardiaca felina",     "use_with": "Cat specialty, vet channel, breeder felini" },
+      { "value": "46%",      "label": "retailer margin", "context": "Media premium category: 35-38% — soldi reali",     "use_with": "Tutti i retailer (core value prop commerciale)" }
+    ]
+  },
+  "weekly_routine": {
+    "title": "La routine settimanale del CEO.",
+    "subtitle": "Per ottenere compounding serve disciplina. 12 settimane di questa routine = pipeline solida e misurabile.",
+    "days": [
+      { "day": "Lunedì",    "duration": "60-90 min", "activities": ["Review report settimana scorsa", "Decide priorità: zona scouting + batch email", "Lancia scouting per la zona scelta"] },
+      { "day": "Martedì",   "duration": "90-120 min","activities": ["Arricchimento contatti nuovi", "Genera batch 15-20 email HOT", "Review qualità email — passaggio non-delegabile"] },
+      { "day": "Mercoledì", "duration": "30 min",    "activities": ["Invio manuale via Gmail: 9am / 11am / 2pm EST", "Aggiorna CRM: stato_pipeline → contattato"] },
+      { "day": "Giovedì",   "duration": "60 min",    "activities": ["Genera follow-up T+5 / T+12 / T+22", "Invio nello stesso thread (reply, non nuova email)"] },
+      { "day": "Venerdì",   "duration": "30 min",    "activities": ["Chiamate ai top 5 HOT che non hanno risposto", "+40% response rate dopo 2 email e 1 call"] }
+    ]
+  },
+  "funnel_kpi": {
+    "title": "Sei metriche che misurano il funnel.",
+    "subtitle": "Se una metrica scivola sotto il target, si interviene su una variabile precisa.",
+    "metrics": [
+      { "metric": "Open rate",           "formula": "Aperture / Inviate",           "target": "30-45%",   "if_below": "Subject line deboli — rivedi pattern" },
+      { "metric": "Reply rate",           "formula": "Risposte / Inviate",           "target": "5-10%",    "if_below": "Hook personalizzato troppo generico" },
+      { "metric": "Positive reply rate",  "formula": "Risposte positive / Inviate",  "target": "2-4%",     "if_below": "Value prop non allineata al profilo" },
+      { "metric": "Sample-to-order",      "formula": "Ordini / Campioni inviati",    "target": "25-40%",   "if_below": "Follow-up post-sample debole o assente" },
+      { "metric": "Pipeline velocity",    "formula": "Giorni da contatto a ordine",  "target": "30-60gg",  "if_below": "Se >90gg: troppo ciclo, affina CTA" },
+      { "metric": "Cost per acquisition", "formula": "Ore investite / Clienti chiusi","target": "<8h",     "if_below": "Se >15h: stai inseguendo i prospect sbagliati" }
+    ]
+  },
+  "closing_callout": "Sette angoli, quattro follow-up, una routine. Cowork moltiplica l'esecuzione — l'ultimo miglio resta umano: rileggere ogni email prima dell'invio. Se esce un dettaglio sbagliato (\"vendete Orijen\" quando non è vero) si perde trust in modo irrecuperabile."
+}
