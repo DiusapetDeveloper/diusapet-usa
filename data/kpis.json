@@ -1,36 +1,41 @@
-[
-  {
-    "id": "market",
-    "label": "Mercato pet USA",
-    "value": 136,
-    "prefix": "$",
-    "suffix": "B",
-    "trend": "+6.1% CAGR",
-    "caption": "Dimensione 2025 (APPA)"
+{
+  "meta": {
+    "title": "Numeri chiave",
+    "subtitle": "Sintesi del business case in quattro dimensioni.",
+    "source": "Modello finanziario ricalibrato · Aprile 2025"
   },
-  {
-    "id": "margin",
-    "label": "Margine lordo atteso",
-    "valueRange": [41, 47],
-    "suffix": "%",
-    "trend": "SKU premium EU",
-    "caption": "Range blended SKU principali"
-  },
-  {
-    "id": "breakeven",
-    "label": "Break-even",
-    "value": 20,
-    "suffix": "m",
-    "trend": "scenario base",
-    "caption": "Mesi dall'ingresso operativo"
-  },
-  {
-    "id": "roi",
-    "label": "ROI a 3 anni",
-    "value": 112,
-    "suffix": "%",
-    "prefix": "+",
-    "trend": "IRR > 28%",
-    "caption": "Scenario base, pre-exit"
-  }
-]
+  "kpis": [
+    {
+      "label": "Mercato pet USA",
+      "value": "$136B",
+      "suffix": "",
+      "trend": "+5.8% CAGR",
+      "caption": "Total pet food market 2025. Segmento premium/holistic +12–15% annuo.",
+      "source": "APPA 2025"
+    },
+    {
+      "label": "Margine lordo atteso",
+      "value": "44%",
+      "suffix": "",
+      "trend": "41%–47% per SKU",
+      "caption": "Blended 8 SKU. Competitor USA medi: 35–38%.",
+      "source": "Listino Diusapet / Alleva"
+    },
+    {
+      "label": "Break-even",
+      "value": "Mese 20",
+      "suffix": "",
+      "trend": "−7 mesi vs piano originale",
+      "caption": "Scenario base ricalibrato con compenso CEO scalato e 5 clienti pre-validati.",
+      "source": "Modello interno"
+    },
+    {
+      "label": "ROI 3 anni",
+      "value": "+112%",
+      "suffix": "",
+      "trend": "+255% ottimistico",
+      "caption": "Su investimento iniziale di $185k. Feasibility score 82/100.",
+      "source": "Modello interno"
+    }
+  ]
+}

@@ -1,137 +1,276 @@
-[
-  {
-    "id": 1,
-    "name": "Hoboken Pet Market",
-    "type": "pet_store",
-    "city": "Hoboken",
-    "state": "NJ",
-    "status": "confermato",
-    "hook": "Selezione premium EU già richiesta dai clienti italo-americani."
+{
+  "meta": {
+    "title": "Top 15 prospect — Settimana 1",
+    "subtitle": "Dalla lista verificata di 55 contatti NJ/NY. Obiettivo: 5 ordini firmati pre-container.",
+    "source": "Diusapet USA — Lista Clienti NJ/NY, Aprile 2025",
+    "goal_pre_container_orders": 5
   },
-  {
-    "id": 2,
-    "name": "Eataly Flatiron",
-    "type": "italian_market",
-    "city": "New York",
-    "state": "NY",
-    "status": "interessato",
-    "hook": "Cross-sell corner pet nel reparto gastronomia italiana."
+  "funnel": {
+    "lead": 4,
+    "contattato": 4,
+    "interessato": 4,
+    "confermato": 3
   },
-  {
-    "id": 3,
-    "name": "Lucca's Italian Deli",
-    "type": "italian_market",
-    "city": "Newark",
-    "state": "NJ",
-    "status": "contattato",
-    "hook": "Pubblico heritage italiano di seconda generazione."
+  "map": {
+    "center_lon": -74.15,
+    "center_lat": 40.7,
+    "zoom": 48
   },
-  {
-    "id": 4,
-    "name": "Brooklyn Barker",
-    "type": "pet_store",
-    "city": "Brooklyn",
-    "state": "NY",
-    "status": "interessato",
-    "hook": "Store boutique con focus su food premium grain-free."
-  },
-  {
-    "id": 5,
-    "name": "Montclair Paws & Co.",
-    "type": "pet_store",
-    "city": "Montclair",
-    "state": "NJ",
-    "status": "lead",
-    "hook": "Zona affluente con forte domanda prodotti funzionali."
-  },
-  {
-    "id": 6,
-    "name": "Buon Italia Chelsea",
-    "type": "italian_market",
-    "city": "New York",
-    "state": "NY",
-    "status": "confermato",
-    "hook": "Catena retail con buyer dedicato a Made in Italy."
-  },
-  {
-    "id": 7,
-    "name": "Jersey City Cane",
-    "type": "breeder",
-    "city": "Jersey City",
-    "state": "NJ",
-    "status": "contattato",
-    "hook": "Allevamento di razze italiane, necessità alimenti specifici."
-  },
-  {
-    "id": 8,
-    "name": "Williamsburg Wag",
-    "type": "pet_store",
-    "city": "Brooklyn",
-    "state": "NY",
-    "status": "interessato",
-    "hook": "Clientela giovane, alta sensibilità al branding."
-  },
-  {
-    "id": 9,
-    "name": "Princeton Kennel Club",
-    "type": "breeder",
-    "city": "Princeton",
-    "state": "NJ",
-    "status": "lead",
-    "hook": "Network di allevatori certificati AKC."
-  },
-  {
-    "id": 10,
-    "name": "Di Palo's Fine Foods",
-    "type": "italian_market",
-    "city": "New York",
-    "state": "NY",
-    "status": "contattato",
-    "hook": "Storico fine food italiano, pubblico fedele."
-  },
-  {
-    "id": 11,
-    "name": "Hoboken Hound House",
-    "type": "pet_store",
-    "city": "Hoboken",
-    "state": "NJ",
-    "status": "lead",
-    "hook": "Retail indipendente, cerca assortimento differenziante."
-  },
-  {
-    "id": 12,
-    "name": "Upper East Tails",
-    "type": "pet_store",
-    "city": "New York",
-    "state": "NY",
-    "status": "interessato",
-    "hook": "Affluenza alta, disponibilità a premium pricing."
-  },
-  {
-    "id": 13,
-    "name": "Bergen Italian Breeders Assoc.",
-    "type": "breeder",
-    "city": "Paramus",
-    "state": "NJ",
-    "status": "lead",
-    "hook": "Gruppo di 12 allevatori, volumi ricorrenti."
-  },
-  {
-    "id": 14,
-    "name": "Morris Pet Emporium",
-    "type": "pet_store",
-    "city": "Morristown",
-    "state": "NJ",
-    "status": "contattato",
-    "hook": "Espansione prevista in 3 nuove location entro 18 mesi."
-  },
-  {
-    "id": 15,
-    "name": "Staten Island Pet Deli",
-    "type": "pet_store",
-    "city": "Staten Island",
-    "state": "NY",
-    "status": "interessato",
-    "hook": "Quartiere con forte identità italiana, passaparola attivo."
-  }
-]
+  "prospects": [
+    {
+      "rank": 1,
+      "name": "Hoboken Pet",
+      "owner": "Mike",
+      "type": "pet_store",
+      "city": "Hoboken",
+      "state": "NJ",
+      "coordinates": [
+        -74.0324,
+        40.7439
+      ],
+      "phone": "(201) 459-0500",
+      "address": "524 Washington St, Hoboken NJ 07030",
+      "priority": "HOT",
+      "status": "interessato",
+      "hook": "Owner certificato in nutrizione pet, vende holistic/premium — capirà la differenza nutrizionale (proteine 46%, taurina 4000 mg)."
+    },
+    {
+      "rank": 2,
+      "name": "Cornerstone Pets",
+      "owner": "Meagan Matthews",
+      "type": "pet_store",
+      "city": "Hoboken",
+      "state": "NJ",
+      "coordinates": [
+        -74.033,
+        40.746
+      ],
+      "phone": "(201) 653-4644",
+      "address": "105 9th St, Hoboken NJ 07030",
+      "priority": "HOT",
+      "status": "contattato",
+      "hook": "Natural/holistic e raw diets. Founded 2004, clientela premium fidelizzata. Owner aperta a brand europei."
+    },
+    {
+      "rank": 3,
+      "name": "CB Pet Market",
+      "owner": "Garwood",
+      "type": "pet_store",
+      "city": "Garwood",
+      "state": "NJ",
+      "coordinates": [
+        -74.3232,
+        40.6515
+      ],
+      "phone": "(908) 276-1960",
+      "address": "Union County, NJ",
+      "priority": "HOT",
+      "status": "lead",
+      "hook": "Chain 7 stores NJ, owner italiani, flagship holistic. Un sì = accesso multi-location."
+    },
+    {
+      "rank": 4,
+      "name": "My Natural Pet",
+      "owner": "Margot",
+      "type": "pet_store",
+      "city": "Bay Ridge (Brooklyn)",
+      "state": "NY",
+      "coordinates": [
+        -74.0261,
+        40.6342
+      ],
+      "phone": "(718) 916-0033",
+      "address": "Bay Ridge, Brooklyn NY",
+      "priority": "HOT",
+      "status": "interessato",
+      "hook": "Zona italiana Bay Ridge. Premium/holistic. Owner aperta a novità europee."
+    },
+    {
+      "rank": 5,
+      "name": "Vinny's Pet Shop",
+      "owner": "—",
+      "type": "pet_store",
+      "city": "Bay Ridge (Brooklyn)",
+      "state": "NY",
+      "coordinates": [
+        -74.03,
+        40.636
+      ],
+      "phone": "Google",
+      "address": "Bay Ridge, Brooklyn NY",
+      "priority": "HOT",
+      "status": "lead",
+      "hook": "Vende Orijen a $28-35. Alleva = qualità comparabile a prezzo più contenuto, margine retail 40%."
+    },
+    {
+      "rank": 6,
+      "name": "L+B Pet Market",
+      "owner": "Mike D'Elia",
+      "type": "pet_store",
+      "city": "Jersey City",
+      "state": "NJ",
+      "coordinates": [
+        -74.0431,
+        40.7178
+      ],
+      "phone": "Google",
+      "address": "Jersey City, NJ",
+      "priority": "HOT",
+      "status": "contattato",
+      "hook": "Owner italiano (D'Elia). Premium raw/freeze-dried/kibble. Zona CEO — possibile visita di persona."
+    },
+    {
+      "rank": 7,
+      "name": "Meow Mini Mart",
+      "owner": "—",
+      "type": "pet_store",
+      "city": "Jersey City",
+      "state": "NJ",
+      "coordinates": [
+        -74.045,
+        40.72
+      ],
+      "phone": "Google",
+      "address": "Jersey City, NJ (Hudson County)",
+      "priority": "HOT",
+      "status": "interessato",
+      "hook": "Unico cat-centric store di Jersey City. Perfetto per linea gatto: taurina 4000 mg, Light & Hairball unico sul mercato."
+    },
+    {
+      "rank": 8,
+      "name": "Whiskers NYC",
+      "owner": "Joseph",
+      "type": "pet_store",
+      "city": "Manhattan",
+      "state": "NY",
+      "coordinates": [
+        -73.9712,
+        40.7831
+      ],
+      "phone": "1-800-944-7537",
+      "address": "Manhattan, NYC",
+      "priority": "HOT",
+      "status": "confermato",
+      "hook": "Leggenda holistic NYC. Endorsement vale come 20 aperture. Referente storico del segmento premium cat."
+    },
+    {
+      "rank": 9,
+      "name": "Brookdale Pet Center",
+      "owner": "—",
+      "type": "pet_store",
+      "city": "Montclair",
+      "state": "NJ",
+      "coordinates": [
+        -74.209,
+        40.8176
+      ],
+      "phone": "Google",
+      "address": "Bloomfield Ave, Montclair NJ",
+      "priority": "HOT",
+      "status": "lead",
+      "hook": "Holistic food + rescue. Community engaged, Essex County alto reddito."
+    },
+    {
+      "rank": 10,
+      "name": "Well Bred of Livingston",
+      "owner": "—",
+      "type": "pet_store",
+      "city": "Livingston",
+      "state": "NJ",
+      "coordinates": [
+        -74.3149,
+        40.7959
+      ],
+      "phone": "(973) 533-5050",
+      "address": "Livingston, NJ (Essex County)",
+      "priority": "HOT",
+      "status": "contattato",
+      "hook": "Posizionamento 'healthy, holistic, organic'. Essex County alto reddito. Multi-location NJ."
+    },
+    {
+      "rank": 11,
+      "name": "Dogs and Cats Rule",
+      "owner": "—",
+      "type": "pet_store_chain",
+      "city": "Shrewsbury",
+      "state": "NJ",
+      "coordinates": [
+        -74.0607,
+        40.3293
+      ],
+      "phone": "(732) 494-0405",
+      "address": "7 stores NJ + PA",
+      "priority": "HOT",
+      "status": "lead",
+      "hook": "7 store NJ+PA, holistic experts. Un sì = 7 location attive contemporaneamente."
+    },
+    {
+      "rank": 12,
+      "name": "Cane Corso breeders",
+      "owner": "—",
+      "type": "breeder",
+      "city": "NJ/NY area",
+      "state": "NJ",
+      "coordinates": [
+        -74.6,
+        40.55
+      ],
+      "phone": "Google + AKC",
+      "address": "Via akc.org",
+      "priority": "HOT",
+      "status": "lead",
+      "hook": "Razza italiana per eccellenza. Allevatori italofili per definizione — argomento Made in Italy emozionale."
+    },
+    {
+      "rank": 13,
+      "name": "AKC breeders top-rated",
+      "owner": "—",
+      "type": "breeder",
+      "city": "NJ area",
+      "state": "NJ",
+      "coordinates": [
+        -74.75,
+        40.45
+      ],
+      "phone": "akc.org",
+      "address": "Via akc.org — Breeder of Merit / H.E.A.R.T.",
+      "priority": "HOT",
+      "status": "lead",
+      "hook": "Opinion leader del segmento. Un allevatore top-rated vale 50 pet store. Volume 200+ sacchi/mese per kennel."
+    },
+    {
+      "rank": 14,
+      "name": "Eataly Short Hills",
+      "owner": "Buyer grocery",
+      "type": "italian_market",
+      "city": "Short Hills",
+      "state": "NJ",
+      "coordinates": [
+        -74.3229,
+        40.7487
+      ],
+      "phone": "(212) 229-2560",
+      "address": "Short Hills, NJ",
+      "priority": "HOT",
+      "status": "interessato",
+      "hook": "Se accettano = exposure a migliaia di italofili premium. Cross-sell corner pet nel reparto gastronomia italiana."
+    },
+    {
+      "rank": 15,
+      "name": "Beasty Feast",
+      "owner": "—",
+      "type": "pet_store",
+      "city": "West Village (Manhattan)",
+      "state": "NY",
+      "coordinates": [
+        -74.0066,
+        40.7335
+      ],
+      "phone": "Google",
+      "address": "West Village, Manhattan NYC",
+      "priority": "HOT",
+      "status": "confermato",
+      "hook": "Premium West Village. Clientela professionisti NYC, sensibilità a brand storytelling."
+    }
+  ]
+}

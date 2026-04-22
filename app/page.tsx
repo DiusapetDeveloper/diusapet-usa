@@ -5,16 +5,16 @@ import { motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { KPICard } from "@/components/kpi-card";
 import { AnimatedSection } from "@/components/animated-section";
-import kpis from "@/data/kpis.json";
+import kpisData from "@/data/kpis.json";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
 const sections = [
-  { href: "/mercato", label: "Mercato", hint: "$136B · +6.1% CAGR" },
+  { href: "/mercato", label: "Mercato", hint: "$136B · +5.8% CAGR" },
   { href: "/prodotto", label: "Prodotto", hint: "8 SKU · margine 41–47%" },
   { href: "/modello-operativo", label: "Modello operativo", hint: "CEO + 1 sales + 3PL" },
-  { href: "/piano-finanziario", label: "Piano finanziario", hint: "Break-even mese 20" },
-  { href: "/clienti", label: "Clienti & pipeline", hint: "60+ lead tri-state" },
+  { href: "/piano-finanziario", label: "Piano finanziario", hint: "Break-even mese 20 · ROI 3Y +112%" },
+  { href: "/clienti", label: "Clienti & pipeline", hint: "15 prospect HOT tri-state" },
   { href: "/roadmap", label: "Roadmap", hint: "90 giorni + 36 mesi" },
 ];
 
@@ -75,35 +75,58 @@ export default function Home() {
         </motion.div>
       </section>
 
-      <section className="pb-28">
-        <div className="flex items-end justify-between mb-8">
-          <div>
-            <p className="eyebrow">Numeri chiave</p>
-            <h2 className="mt-3 font-serif text-hero text-navy max-w-xl">
-              Una sintesi in quattro dimensioni.
-            </h2>
-          </div>
-          <p className="hidden md:block text-xs text-carbon-muted max-w-xs text-right">
-            Fonte: APPA 2025, modello finanziario interno, pipeline commerciale
-            tri-state.
-          </p>
-        </div>
+      <section className="relative pb-28">
+        {/* Dot-grid pattern, scoped to this section only */}
+        <svg
+          className="absolute inset-0 h-full w-full pointer-events-none"
+          aria-hidden="true"
+        >
+          <defs>
+            <pattern
+              id="kpi-dot-grid"
+              width="24"
+              height="24"
+              patternUnits="userSpaceOnUse"
+            >
+              <circle cx="1" cy="1" r="1" fill="#0B1E3F" fillOpacity="0.06" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#kpi-dot-grid)" />
+        </svg>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-hairline border border-hairline">
-          {kpis.map((k, i) => (
-            <KPICard
-              key={k.id}
-              label={k.label}
-              value={(k as any).value}
-              valueRange={(k as any).valueRange}
-              prefix={k.prefix}
-              suffix={k.suffix}
-              trend={k.trend}
-              caption={k.caption}
-              delay={i * 0.1}
-              className="bg-white"
-            />
-          ))}
+        <div className="relative">
+          <div className="flex items-end justify-between mb-8 gap-6">
+            <div>
+              <p className="eyebrow">{kpisData.meta.title}</p>
+              <h2 className="mt-3 font-serif text-hero text-navy max-w-xl">
+                {kpisData.meta.subtitle}
+              </h2>
+            </div>
+            <p className="hidden md:block text-xs text-carbon-muted max-w-xs text-right">
+              {kpisData.meta.source}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {kpisData.kpis.map((k, i) => (
+              <KPICard
+                key={k.label}
+                label={k.label}
+                value={k.value}
+                trend={k.trend}
+                caption={k.caption}
+                delay={i * 0.15}
+              />
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ width: 0 }}
+            whileInView={{ width: "100%" }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 2, delay: 0.8, ease }}
+            className="mt-10 h-px bg-gold origin-left"
+          />
         </div>
       </section>
 

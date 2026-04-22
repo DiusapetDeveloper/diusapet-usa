@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add *)",
+      "Bash(git -c user.name=\"Diusapet\" -c user.email=\"dev@diusapet.work\" commit -q -m \"feat: intro cinematica + kpi cockpit drammatico + mappa interattiva prospect\")"
+    ]
+  }
+}

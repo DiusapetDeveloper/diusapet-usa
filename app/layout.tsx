@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { SmoothScrollProvider } from "@/components/smooth-scroll-provider";
+import { IntroSequence } from "@/components/intro-sequence";
 
 const plexSans = IBM_Plex_Sans({
   subsets: ["latin"],
@@ -37,6 +38,7 @@ export default function RootLayout({
       className={`${plexSans.variable} ${plexSerif.variable}`}
     >
       <body>
+        <IntroSequence />
         <SmoothScrollProvider>
           <Navbar />
           <main className="pt-24 md:pt-28">{children}</main>

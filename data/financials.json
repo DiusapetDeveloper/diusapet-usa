@@ -1,43 +1,357 @@
 {
-  "initialInvestment": 185000,
-  "monthlyFixedCosts": 21000,
+  "meta": {
+    "title": "Piano finanziario — scenario ricalibrato",
+    "subtitle": "Break-even mese 20, ROI 3Y +112%, feasibility score 82/100",
+    "initial_investment_usd": 185000,
+    "monthly_fixed_costs_usd": 21000,
+    "feasibility_score": 82,
+    "feasibility_score_baseline": 70,
+    "recalibration_note": "Piano ricalibrato rispetto al fascicolo originale applicando 5 leve operative che migliorano la feasibility da 70/100 a 82/100 senza alterare il modello di business."
+  },
+  "recalibration_levers": [
+    {
+      "id": 1,
+      "name": "Compenso CEO scalato",
+      "description": "$8.000/mese per i primi 6 mesi (pre-revenue e ramp-up), poi $12.000/mese a regime. Riduce il carico Y1 mantenendo un compenso dignitoso da giorno 1.",
+      "impact_ebitda_y1_usd": 24000,
+      "risk": "Nessuno — accordo pianificato a monte"
+    },
+    {
+      "id": 2,
+      "name": "Pre-acquisizione 5 clienti",
+      "description": "Chiudere 5 ordini firmati prima di mandare il primo container. Valida la domanda e permette un ordine ridotto in partenza.",
+      "impact_ebitda_y1_usd": 18000,
+      "risk": "Basso — lista 55 contatti e Top 15 già pronti"
+    },
+    {
+      "id": 3,
+      "name": "Lancio con 4 SKU + mezzo container",
+      "description": "Fase 1 focalizzata sui 4 SKU a margine più alto (>45%) e primo ordine da mezzo container. Riduce il capex iniziale e il rischio inventory.",
+      "impact_ebitda_y1_usd": 12000,
+      "risk": "Basso — gli altri 4 SKU entrano in Fase 2"
+    },
+    {
+      "id": 4,
+      "name": "Warehouse Linden vs Carteret",
+      "description": "Scelta di Linden/Avenel a $13/sqft invece di Carteret a $16/sqft. Differenza strutturale che si compone anno su anno.",
+      "impact_ebitda_y1_usd": 12000,
+      "risk": "Basso — entrambe zone industriali adeguate"
+    },
+    {
+      "id": 5,
+      "name": "Bagging manuale in-house Fase 1",
+      "description": "CEO opera l'impulse sealer (~600 sacchi/mese). Zero costo manodopera aggiuntiva, capex ridotto a $4k attrezzature.",
+      "impact_ebitda_y1_usd": 8000,
+      "risk": "Medio — sostenibile fino a ~800 sacchi/mese"
+    }
+  ],
   "scenarios": {
     "pessimistic": {
       "label": "Pessimistico",
-      "revenueMultiplier": 0.7,
-      "marginDelta": -0.05,
-      "breakEvenMonth": 28,
-      "roi3y": 54,
-      "ebitdaY1": -62000,
-      "revenues": { "y1": 122500, "y2": 241500, "y3": 357000 }
+      "assumption": "Vendite 50% delle previsioni, difficoltà di penetrazione",
+      "revenue_y1": 95000,
+      "revenue_y2": 185000,
+      "revenue_y3": 285000,
+      "ebitda_y1": -165000,
+      "ebitda_y2": -110000,
+      "ebitda_y3": -40000,
+      "breakeven_month": null,
+      "roi_3y_pct": -170,
+      "bags_month_y1_avg": 150,
+      "bags_month_y3_avg": 650
     },
     "base": {
-      "label": "Base",
-      "revenueMultiplier": 1,
-      "marginDelta": 0,
-      "breakEvenMonth": 20,
-      "roi3y": 112,
-      "ebitdaY1": -28000,
-      "revenues": { "y1": 175000, "y2": 345000, "y3": 510000 }
+      "label": "Base (ricalibrato)",
+      "assumption": "Penetrazione realistica con 5 clienti pre-validati e 4 SKU Fase 1",
+      "revenue_y1": 195000,
+      "revenue_y2": 365000,
+      "revenue_y3": 535000,
+      "ebitda_y1": -28000,
+      "ebitda_y2": 90000,
+      "ebitda_y3": 145000,
+      "breakeven_month": 20,
+      "roi_3y_pct": 112,
+      "bags_month_y1_avg": 600,
+      "bags_month_y3_avg": 1600,
+      "gross_margin_pct": 44
     },
     "optimistic": {
       "label": "Ottimistico",
-      "revenueMultiplier": 1.25,
-      "marginDelta": 0.03,
-      "breakEvenMonth": 15,
-      "roi3y": 178,
-      "ebitdaY1": 11000,
-      "revenues": { "y1": 218750, "y2": 431250, "y3": 637500 }
+      "assumption": "Global Pet Expo 2026 produce 3 accordi distribuzione + Amazon breakthrough",
+      "revenue_y1": 295000,
+      "revenue_y2": 595000,
+      "revenue_y3": 855000,
+      "ebitda_y1": 40000,
+      "ebitda_y2": 280000,
+      "ebitda_y3": 500000,
+      "breakeven_month": 14,
+      "roi_3y_pct": 443,
+      "bags_month_y1_avg": 950,
+      "bags_month_y3_avg": 2600
     }
   },
-  "plQuarterly": [
-    { "q": "Q1 Y1", "revenue": 18000, "cogs": -10800, "opex": -63000, "ebitda": -55800 },
-    { "q": "Q2 Y1", "revenue": 34000, "cogs": -19720, "opex": -63000, "ebitda": -48720 },
-    { "q": "Q3 Y1", "revenue": 52000, "cogs": -29640, "opex": -63000, "ebitda": -40640 },
-    { "q": "Q4 Y1", "revenue": 71000, "cogs": -39760, "opex": -63000, "ebitda": -31760 },
-    { "q": "Q1 Y2", "revenue": 72000, "cogs": -39600, "opex": -66000, "ebitda": -33600 },
-    { "q": "Q2 Y2", "revenue": 83000, "cogs": -44820, "opex": -66000, "ebitda": -27820 },
-    { "q": "Q3 Y2", "revenue": 91000, "cogs": -48230, "opex": -66000, "ebitda": -23230 },
-    { "q": "Q4 Y2", "revenue": 99000, "cogs": -51480, "opex": -66000, "ebitda": -18480 }
+  "monthly_base": [
+    {
+      "month": 1,
+      "revenue": 0,
+      "fixed_costs": 17000,
+      "ebitda": -17000,
+      "cum_ebitda": -17000
+    },
+    {
+      "month": 2,
+      "revenue": 0,
+      "fixed_costs": 17000,
+      "ebitda": -17000,
+      "cum_ebitda": -34000
+    },
+    {
+      "month": 3,
+      "revenue": 2600,
+      "fixed_costs": 17000,
+      "ebitda": -15900,
+      "cum_ebitda": -49900
+    },
+    {
+      "month": 4,
+      "revenue": 6500,
+      "fixed_costs": 17000,
+      "ebitda": -14150,
+      "cum_ebitda": -64050
+    },
+    {
+      "month": 5,
+      "revenue": 10400,
+      "fixed_costs": 17000,
+      "ebitda": -12400,
+      "cum_ebitda": -76450
+    },
+    {
+      "month": 6,
+      "revenue": 14300,
+      "fixed_costs": 17000,
+      "ebitda": -10650,
+      "cum_ebitda": -87100
+    },
+    {
+      "month": 7,
+      "revenue": 18200,
+      "fixed_costs": 21000,
+      "ebitda": -12900,
+      "cum_ebitda": -100000
+    },
+    {
+      "month": 8,
+      "revenue": 22100,
+      "fixed_costs": 21000,
+      "ebitda": -11150,
+      "cum_ebitda": -111150
+    },
+    {
+      "month": 9,
+      "revenue": 26000,
+      "fixed_costs": 21000,
+      "ebitda": -9400,
+      "cum_ebitda": -120550
+    },
+    {
+      "month": 10,
+      "revenue": 29900,
+      "fixed_costs": 21000,
+      "ebitda": -7650,
+      "cum_ebitda": -128200
+    },
+    {
+      "month": 11,
+      "revenue": 32500,
+      "fixed_costs": 21000,
+      "ebitda": -6450,
+      "cum_ebitda": -134650
+    },
+    {
+      "month": 12,
+      "revenue": 33800,
+      "fixed_costs": 21000,
+      "ebitda": -5850,
+      "cum_ebitda": -140500
+    },
+    {
+      "month": 13,
+      "revenue": 36400,
+      "fixed_costs": 21000,
+      "ebitda": -4650,
+      "cum_ebitda": -145150
+    },
+    {
+      "month": 14,
+      "revenue": 39000,
+      "fixed_costs": 21000,
+      "ebitda": -3450,
+      "cum_ebitda": -148600
+    },
+    {
+      "month": 15,
+      "revenue": 41600,
+      "fixed_costs": 21000,
+      "ebitda": -2250,
+      "cum_ebitda": -150850
+    },
+    {
+      "month": 16,
+      "revenue": 44200,
+      "fixed_costs": 21000,
+      "ebitda": -1050,
+      "cum_ebitda": -151900
+    },
+    {
+      "month": 17,
+      "revenue": 46800,
+      "fixed_costs": 21000,
+      "ebitda": 150,
+      "cum_ebitda": -151750
+    },
+    {
+      "month": 18,
+      "revenue": 49400,
+      "fixed_costs": 21000,
+      "ebitda": 1350,
+      "cum_ebitda": -150400
+    },
+    {
+      "month": 19,
+      "revenue": 52000,
+      "fixed_costs": 21000,
+      "ebitda": 2550,
+      "cum_ebitda": -147850
+    },
+    {
+      "month": 20,
+      "revenue": 54600,
+      "fixed_costs": 21000,
+      "ebitda": 3750,
+      "cum_ebitda": -144100,
+      "breakeven": true
+    },
+    {
+      "month": 21,
+      "revenue": 57200,
+      "fixed_costs": 21000,
+      "ebitda": 4950,
+      "cum_ebitda": -139150
+    },
+    {
+      "month": 22,
+      "revenue": 59800,
+      "fixed_costs": 21000,
+      "ebitda": 6150,
+      "cum_ebitda": -133000
+    },
+    {
+      "month": 23,
+      "revenue": 62400,
+      "fixed_costs": 21000,
+      "ebitda": 7350,
+      "cum_ebitda": -125650
+    },
+    {
+      "month": 24,
+      "revenue": 65000,
+      "fixed_costs": 21000,
+      "ebitda": 8550,
+      "cum_ebitda": -117100
+    }
+  ],
+  "investment_breakdown": [
+    {
+      "category": "Legale & setup LLC + E-2",
+      "usd": 12500
+    },
+    {
+      "category": "FDA/FSVP + labeling USA",
+      "usd": 8000
+    },
+    {
+      "category": "Deposito magazzino Linden (3 mesi)",
+      "usd": 17800
+    },
+    {
+      "category": "Setup attrezzature magazzino",
+      "usd": 4040
+    },
+    {
+      "category": "Primo ordine (mezzo container 4 SKU)",
+      "usd": 35000
+    },
+    {
+      "category": "Sito web + branding + foto",
+      "usd": 6000
+    },
+    {
+      "category": "Trasferimento CEO + setup NJ",
+      "usd": 18000
+    },
+    {
+      "category": "Compenso CEO 3 mesi pre-revenue",
+      "usd": 24000
+    },
+    {
+      "category": "Buffer operativo 4 mesi",
+      "usd": 23000
+    },
+    {
+      "category": "Contingency",
+      "usd": 36660
+    }
+  ],
+  "feasibility_dimensions": [
+    {
+      "dimension": "Break-even (scenario base)",
+      "weight": 20,
+      "score_baseline": 68,
+      "score_recalibrated": 82,
+      "comment": "Mese 27 → Mese 20 grazie alle 5 leve"
+    },
+    {
+      "dimension": "ROI 3 anni (scenario base)",
+      "weight": 20,
+      "score_baseline": 57,
+      "score_recalibrated": 75,
+      "comment": "85% → 112%"
+    },
+    {
+      "dimension": "Capitale richiesto",
+      "weight": 15,
+      "score_baseline": 78,
+      "score_recalibrated": 85,
+      "comment": "Mezzo container riduce capex iniziale"
+    },
+    {
+      "dimension": "Opportunità di mercato",
+      "weight": 15,
+      "score_baseline": 88,
+      "score_recalibrated": 88,
+      "comment": "$136B + white space Made in Italy"
+    },
+    {
+      "dimension": "Fattibilità operativa",
+      "weight": 15,
+      "score_baseline": 85,
+      "score_recalibrated": 88,
+      "comment": "4 SKU Fase 1 semplifica lancio"
+    },
+    {
+      "dimension": "Compliance USA",
+      "weight": 10,
+      "score_baseline": 70,
+      "score_recalibrated": 72,
+      "comment": "FSVP consultant già identificato"
+    },
+    {
+      "dimension": "Cash flow Anno 1",
+      "weight": 15,
+      "score_baseline": 42,
+      "score_recalibrated": 72,
+      "comment": "EBITDA Y1 passa da -$55k a -$28k"
+    }
   ]
 }
