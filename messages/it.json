@@ -370,7 +370,8 @@
     "hero": {
       "eyebrow": "05 · PIANO FINANZIARIO",
       "title": "Numeri ricalibrati, scenari trasparenti.",
-      "subtitle": "Tre scenari modellati su 36 mesi. Cinque leve di ricalibrazione portano il feasibility score da 70 a 82."
+      "subtitle": "Tre scenari modellati su 36 mesi. Cinque leve di ricalibrazione portano il feasibility score da 70 a 82.",
+      "recalibrationNote": "Piano ricalibrato rispetto al fascicolo originale applicando 5 leve operative che migliorano la feasibility da 70/100 a 82/100 senza alterare il modello di business."
     },
     "scenarios": {
       "pessimistic":  "Pessimistico",
@@ -378,14 +379,16 @@
       "optimistic":   "Ottimistico"
     },
     "kpi": {
-      "capex":       "Investimento iniziale",
-      "capexCaption":"Setup legale, primo inventory, buffer 4 mesi, contingency.",
-      "monthlyFix":  "Costi fissi mensili",
-      "opexCaption": "Team lean, 3PL Linden, trade marketing, compliance.",
-      "breakeven":   "Break-even",
-      "monthPrefix": "Mese",
-      "roi3y":       "ROI 3 anni",
-      "ebitdaY1":    "EBITDA Anno 1"
+      "capex":              "Investimento iniziale",
+      "capexCaption":       "Setup legale, primo inventory, buffer 4 mesi, contingency.",
+      "monthlyFix":         "Costi fissi mensili",
+      "opexCaption":        "Team lean, 3PL Linden, trade marketing, compliance.",
+      "breakeven":          "Break-even",
+      "monthPrefix":        "Mese",
+      "roi3y":              "ROI 3 anni",
+      "ebitdaY1":           "EBITDA Anno 1",
+      "feasibilityFooter":  "ROI 3Y +112% · feasibility score {score}/100.",
+      "notAvailable":       "n/d"
     },
     "tableHeaders": {
       "month":    "Mese",
@@ -395,15 +398,91 @@
       "ebitda":   "EBITDA",
       "cashflow": "Cash flow cum."
     },
+    "simulator": {
+      "eyebrow":       "Simulatore scenari",
+      "title":         "Pessimistico, base, ottimistico — con override what-if.",
+      "scenarioLabel": "Scenario",
+      "volumeSlider":  "Volume ricavi (what-if)",
+      "priceSlider":   "Leva di pricing (what-if)",
+      "note":          "Lo scenario seleziona le assunzioni strutturali. I cursori applicano override ±20% sul volume e ±10% sul prezzo per test what-if.",
+      "metrics": {
+        "revenueY1": "Ricavi Y1",
+        "revenueY2": "Ricavi Y2",
+        "revenueY3": "Ricavi Y3",
+        "ebitdaY1":  "EBITDA Y1",
+        "margin":    "Margine lordo",
+        "breakeven": "Break-even"
+      }
+    },
     "levers": {
-      "eyebrow": "LEVE DI RICALIBRAZIONE",
-      "title":   "Cinque leve, zero cambio di modello.",
+      "eyebrow":            "Ricalibrazione",
+      "title":              "Cinque leve operative che spostano il piano da 70/100 a 82/100.",
+      "ebitdaImpactLabel":  "Impatto EBITDA Y1",
+      "riskLabel":          "Rischio",
       "items": {
-        "salary":      { "title": "Compenso CEO scalato",        "desc": "$8k/mese primi 6 mesi, poi $12k/mese a regime." },
-        "preSold":     { "title": "Pre-acquisizione 5 clienti",  "desc": "Ordini firmati prima del primo container." },
-        "reducedSku":  { "title": "4 SKU + mezzo container",     "desc": "Fase 1 più leggera, meno capitale bloccato." },
-        "warehouse":   { "title": "Warehouse Linden $13/sqft",   "desc": "Scelta Linden vs Carteret: −$14k/anno." },
-        "inHouse":     { "title": "Imbustamento in-house CEO",   "desc": "Zero costo lavoro fino a Fase 2." }
+        "salary":     { "title": "Compenso CEO scalato",              "desc": "$8.000/mese per i primi 6 mesi (pre-revenue e ramp-up), poi $12.000/mese a regime. Riduce il carico Y1 mantenendo un compenso dignitoso da giorno 1.", "risk": "Nessuno — accordo pianificato a monte" },
+        "preSold":    { "title": "Pre-acquisizione 5 clienti",        "desc": "Chiudere 5 ordini firmati prima di mandare il primo container. Valida la domanda e permette un ordine ridotto in partenza.",                                         "risk": "Basso — lista 55 contatti e Top 15 già pronti" },
+        "reducedSku": { "title": "Lancio con 4 SKU + mezzo container","desc": "Fase 1 focalizzata sui 4 SKU a margine più alto (>45%) e primo ordine da mezzo container. Riduce il capex iniziale e il rischio inventory.",                       "risk": "Basso — gli altri 4 SKU entrano in Fase 2" },
+        "warehouse":  { "title": "Warehouse Linden vs Carteret",      "desc": "Scelta di Linden/Avenel a $13/sqft invece di Carteret a $16/sqft. Differenza strutturale che si compone anno su anno.",                                             "risk": "Basso — entrambe zone industriali adeguate" },
+        "inHouse":    { "title": "Bagging manuale in-house Fase 1",   "desc": "CEO opera l'impulse sealer (~600 sacchi/mese). Zero costo manodopera aggiuntiva, capex ridotto a $4k attrezzature.",                                                 "risk": "Medio — sostenibile fino a ~800 sacchi/mese" }
+      }
+    },
+    "chart": {
+      "eyebrow":          "Convergenza EBITDA",
+      "title":            "Dal primo mese al break-even operativo.",
+      "monthlyEbitda":    "EBITDA mensile",
+      "cumulativeEbitda": "EBITDA cumulato",
+      "breakEvenLabel":   "Break-even · M{month}"
+    },
+    "breakdown": {
+      "eyebrow":    "Breakdown investimento",
+      "title":      "Come sono allocati i {total} iniziali.",
+      "totalLabel": "Totale",
+      "categories": {
+        "legal":            "Legale & setup LLC + E-2",
+        "fda":              "FDA/FSVP + labeling USA",
+        "warehouseDeposit": "Deposito magazzino Linden (3 mesi)",
+        "equipment":        "Setup attrezzature magazzino",
+        "firstOrder":       "Primo ordine (mezzo container 4 SKU)",
+        "branding":         "Sito web + branding + foto",
+        "ceoMove":          "Trasferimento CEO + setup NJ",
+        "ceoSalaryPre":     "Compenso CEO 3 mesi pre-revenue",
+        "buffer":           "Buffer operativo 4 mesi",
+        "contingency":      "Contingency"
+      }
+    },
+    "feasibility": {
+      "eyebrow":      "Feasibility score",
+      "title":        "Otto dimensioni valutate, sette in miglioramento.",
+      "scoreTotal":   "Score totale",
+      "fromWord":     "Da",
+      "toWord":       "a",
+      "afterRecalib": "dopo la ricalibrazione.",
+      "explanation":  "Lo score è la media pesata delle 8 dimensioni operative del piano. Il delta riflette esclusivamente l'effetto delle 5 leve applicate.",
+      "headers": {
+        "dimension":    "Dimensione",
+        "weight":       "Peso",
+        "baseline":     "Base",
+        "recalibrated": "Ricalibr.",
+        "note":         "Nota"
+      },
+      "dimensions": {
+        "breakeven":  "Break-even (scenario base)",
+        "roi":        "ROI 3 anni (scenario base)",
+        "capital":    "Capitale richiesto",
+        "market":     "Opportunità di mercato",
+        "operations": "Fattibilità operativa",
+        "compliance": "Compliance USA",
+        "cashflow":   "Cash flow Anno 1"
+      },
+      "comments": {
+        "breakeven":  "Mese 27 → Mese 20 grazie alle 5 leve",
+        "roi":        "85% → 112%",
+        "capital":    "Mezzo container riduce capex iniziale",
+        "market":     "$136B + white space Made in Italy",
+        "operations": "4 SKU Fase 1 semplifica lancio",
+        "compliance": "FSVP consultant già identificato",
+        "cashflow":   "EBITDA Y1 passa da -$55k a -$28k"
       }
     }
   },

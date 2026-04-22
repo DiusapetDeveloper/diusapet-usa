@@ -21,11 +21,50 @@ import { cn, formatCurrency } from "@/lib/utils";
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
-const { meta, recalibration_levers, monthly_base, investment_breakdown, feasibility_dimensions } =
-  financials;
+const {
+  meta,
+  recalibration_levers,
+  monthly_base,
+  investment_breakdown,
+  feasibility_dimensions,
+} = financials;
 
 const totalInvestment = investment_breakdown.reduce((s, x) => s + x.usd, 0);
 const breakevenMonth = monthly_base.find((m: any) => m.breakeven)?.month;
+
+// Map lever id (1..5) to message key
+const LEVER_KEYS: Record<number, string> = {
+  1: "salary",
+  2: "preSold",
+  3: "reducedSku",
+  4: "warehouse",
+  5: "inHouse",
+};
+
+// Map investment_breakdown array index to message key (data order is fixed)
+const BREAKDOWN_KEYS = [
+  "legal",
+  "fda",
+  "warehouseDeposit",
+  "equipment",
+  "firstOrder",
+  "branding",
+  "ceoMove",
+  "ceoSalaryPre",
+  "buffer",
+  "contingency",
+] as const;
+
+// Map feasibility_dimensions index to message key
+const FEASIBILITY_KEYS = [
+  "breakeven",
+  "roi",
+  "capital",
+  "market",
+  "operations",
+  "compliance",
+  "cashflow",
+] as const;
 
 function signedDollarsK(value: number) {
   const sign = value >= 0 ? "+" : "−";
@@ -47,7 +86,7 @@ export default function PianoFinanziarioPage() {
           {t("hero.subtitle")}
         </p>
         <p className="mt-4 text-xs text-carbon-muted leading-relaxed max-w-2xl">
-          {meta.recalibration_note}
+          {t("hero.recalibrationNote")}
         </p>
       </AnimatedSection>
 
@@ -67,8 +106,14 @@ export default function PianoFinanziarioPage() {
         />
         <HeroKpi
           label={t("kpi.breakeven")}
-          value={breakevenMonth ? `${t("kpi.monthPrefix")} ${breakevenMonth}` : "n/d"}
-          caption={`ROI 3Y +112% · feasibility score ${meta.feasibility_score}/100.`}
+          value={
+            breakevenMonth
+              ? `${t("kpi.monthPrefix")} ${breakevenMonth}`
+              : t("kpi.notAvailable")
+          }
+          caption={t("kpi.feasibilityFooter", {
+            score: meta.feasibility_score,
+          })}
         />
       </AnimatedSection>
 
@@ -76,58 +121,61 @@ export default function PianoFinanziarioPage() {
       <AnimatedSection stagger className="mt-28">
         <div className="flex items-end justify-between gap-6">
           <div>
-            <p className="eyebrow">Ricalibrazione</p>
+            <p className="eyebrow">{t("levers.eyebrow")}</p>
             <h2 className="mt-3 font-serif text-hero text-navy max-w-2xl">
-              Cinque leve operative che spostano il piano da 70/100 a 82/100.
+              {t("levers.title")}
             </h2>
           </div>
         </div>
 
         <div className="mt-12 border border-hairline">
-          {recalibration_levers.map((l, i) => (
-            <motion.div
-              key={l.id}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.25 }}
-              transition={{ duration: 0.7, ease, delay: i * 0.06 }}
-              className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-0 border-b border-hairline last:border-b-0 bg-white hover:bg-navy/[0.02] transition-colors p-6 lg:p-0"
-            >
-              <div className="lg:col-span-1 lg:p-8">
-                <p className="font-serif text-4xl text-navy num">
-                  0{l.id}
-                </p>
-              </div>
-              <div className="lg:col-span-5 lg:p-8">
-                <h3 className="font-serif text-2xl text-navy leading-tight">
-                  {l.name}
-                </h3>
-                <p className="mt-3 text-sm text-carbon-muted leading-relaxed">
-                  {l.description}
-                </p>
-              </div>
-              <div className="lg:col-span-3 lg:p-8">
-                <p className="eyebrow">Impatto EBITDA Y1</p>
-                <p className="mt-3 font-serif text-3xl text-gold num">
-                  {signedDollarsK(l.impact_ebitda_y1_usd)}
-                </p>
-              </div>
-              <div className="lg:col-span-3 lg:p-8">
-                <p className="eyebrow">Rischio</p>
-                <p className="mt-3 text-sm text-carbon leading-relaxed">
-                  {l.risk}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+          {recalibration_levers.map((l, i) => {
+            const key = LEVER_KEYS[l.id];
+            return (
+              <motion.div
+                key={l.id}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.25 }}
+                transition={{ duration: 0.7, ease, delay: i * 0.06 }}
+                className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-0 border-b border-hairline last:border-b-0 bg-white hover:bg-navy/[0.02] transition-colors p-6 lg:p-0"
+              >
+                <div className="lg:col-span-1 lg:p-8">
+                  <p className="font-serif text-4xl text-navy num">
+                    0{l.id}
+                  </p>
+                </div>
+                <div className="lg:col-span-5 lg:p-8">
+                  <h3 className="font-serif text-2xl text-navy leading-tight">
+                    {t(`levers.items.${key}.title`)}
+                  </h3>
+                  <p className="mt-3 text-sm text-carbon-muted leading-relaxed">
+                    {t(`levers.items.${key}.desc`)}
+                  </p>
+                </div>
+                <div className="lg:col-span-3 lg:p-8">
+                  <p className="eyebrow">{t("levers.ebitdaImpactLabel")}</p>
+                  <p className="mt-3 font-serif text-3xl text-gold num">
+                    {signedDollarsK(l.impact_ebitda_y1_usd)}
+                  </p>
+                </div>
+                <div className="lg:col-span-3 lg:p-8">
+                  <p className="eyebrow">{t("levers.riskLabel")}</p>
+                  <p className="mt-3 text-sm text-carbon leading-relaxed">
+                    {t(`levers.items.${key}.risk`)}
+                  </p>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </AnimatedSection>
 
       {/* SIMULATORE SCENARI */}
       <section className="mt-28">
-        <p className="eyebrow">Simulatore scenari</p>
+        <p className="eyebrow">{t("simulator.eyebrow")}</p>
         <h2 className="mt-3 font-serif text-hero text-navy max-w-2xl">
-          Pessimistico, base, ottimistico — con override what-if.
+          {t("simulator.title")}
         </h2>
         <div className="mt-10">
           <ScenarioSimulator />
@@ -136,9 +184,9 @@ export default function PianoFinanziarioPage() {
 
       {/* CONVERGENZA EBITDA */}
       <section className="mt-28">
-        <p className="eyebrow">Convergenza EBITDA</p>
+        <p className="eyebrow">{t("chart.eyebrow")}</p>
         <h2 className="mt-3 font-serif text-hero text-navy max-w-2xl">
-          Dal primo mese al break-even operativo.
+          {t("chart.title")}
         </h2>
 
         <motion.div
@@ -149,8 +197,12 @@ export default function PianoFinanziarioPage() {
           className="mt-8 h-[440px] border border-hairline bg-white p-6"
         >
           <div className="flex items-center gap-6 mb-4">
-            <Legend color="#0B1E3F" label="EBITDA mensile" />
-            <Legend color="#B8925A" label="EBITDA cumulato" dashed />
+            <Legend color="#0B1E3F" label={t("chart.monthlyEbitda")} />
+            <Legend
+              color="#B8925A"
+              label={t("chart.cumulativeEbitda")}
+              dashed
+            />
           </div>
           <ResponsiveContainer width="100%" height="88%">
             <LineChart data={monthly_base}>
@@ -190,13 +242,9 @@ export default function PianoFinanziarioPage() {
                 formatter={(v: number) =>
                   formatCurrency(v, { compact: true })
                 }
-                labelFormatter={(v) => `Mese ${v}`}
+                labelFormatter={(v) => `${t("kpi.monthPrefix")} ${v}`}
               />
-              <ReferenceLine
-                yAxisId="left"
-                y={0}
-                stroke="#E6E8EC"
-              />
+              <ReferenceLine yAxisId="left" y={0} stroke="#E6E8EC" />
               {breakevenMonth && (
                 <ReferenceLine
                   yAxisId="left"
@@ -205,7 +253,9 @@ export default function PianoFinanziarioPage() {
                   strokeDasharray="2 4"
                 >
                   <Label
-                    value={`Break-even · M${breakevenMonth}`}
+                    value={t("chart.breakEvenLabel", {
+                      month: breakevenMonth,
+                    })}
                     position="insideTopRight"
                     fill="#B8925A"
                     fontSize={11}
@@ -243,9 +293,11 @@ export default function PianoFinanziarioPage() {
       <AnimatedSection stagger className="mt-28">
         <div className="flex items-end justify-between gap-6">
           <div>
-            <p className="eyebrow">Breakdown investimento</p>
+            <p className="eyebrow">{t("breakdown.eyebrow")}</p>
             <h2 className="mt-3 font-serif text-hero text-navy max-w-2xl">
-              Come sono allocati i {formatCurrency(totalInvestment)} iniziali.
+              {t("breakdown.title", {
+                total: formatCurrency(totalInvestment),
+              })}
             </h2>
           </div>
         </div>
@@ -253,9 +305,10 @@ export default function PianoFinanziarioPage() {
         <div className="mt-10 border border-hairline bg-white">
           {investment_breakdown.map((it, i) => {
             const pct = (it.usd / totalInvestment) * 100;
+            const key = BREAKDOWN_KEYS[i];
             return (
               <motion.div
-                key={it.category}
+                key={key ?? it.category}
                 initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
@@ -263,7 +316,7 @@ export default function PianoFinanziarioPage() {
                 className="grid grid-cols-12 items-center gap-4 border-b border-hairline last:border-b-0 p-5"
               >
                 <div className="col-span-5 text-sm text-carbon">
-                  {it.category}
+                  {key ? t(`breakdown.categories.${key}`) : it.category}
                 </div>
                 <div className="col-span-5">
                   <div className="h-1.5 bg-hairline/60 w-full">
@@ -271,7 +324,11 @@ export default function PianoFinanziarioPage() {
                       initial={{ width: 0 }}
                       whileInView={{ width: `${pct}%` }}
                       viewport={{ once: true, amount: 0.3 }}
-                      transition={{ duration: 1, ease, delay: i * 0.04 + 0.15 }}
+                      transition={{
+                        duration: 1,
+                        ease,
+                        delay: i * 0.04 + 0.15,
+                      }}
                       className="h-full bg-navy"
                     />
                   </div>
@@ -286,7 +343,7 @@ export default function PianoFinanziarioPage() {
             );
           })}
           <div className="grid grid-cols-12 items-center gap-4 bg-navy/[0.03] p-5">
-            <div className="col-span-5 eyebrow">Totale</div>
+            <div className="col-span-5 eyebrow">{t("breakdown.totalLabel")}</div>
             <div className="col-span-5" />
             <div className="col-span-1 text-right text-xs text-carbon-muted num">
               100%
@@ -300,14 +357,14 @@ export default function PianoFinanziarioPage() {
 
       {/* FEASIBILITY SCORE */}
       <AnimatedSection className="mt-28">
-        <p className="eyebrow">Feasibility score</p>
+        <p className="eyebrow">{t("feasibility.eyebrow")}</p>
         <h2 className="mt-3 font-serif text-hero text-navy max-w-2xl">
-          Otto dimensioni valutate, sette in miglioramento.
+          {t("feasibility.title")}
         </h2>
 
         <div className="mt-12 grid lg:grid-cols-12 gap-10 items-start">
           <div className="lg:col-span-4 border border-hairline p-8 bg-white">
-            <p className="eyebrow">Score totale</p>
+            <p className="eyebrow">{t("feasibility.scoreTotal")}</p>
             <div className="mt-6 flex items-baseline gap-2 num">
               <span className="font-serif text-[96px] leading-none text-navy">
                 {meta.feasibility_score}
@@ -317,37 +374,46 @@ export default function PianoFinanziarioPage() {
               </span>
             </div>
             <p className="mt-6 text-sm text-carbon-muted">
-              Da{" "}
+              {t("feasibility.fromWord")}{" "}
               <span className="num text-carbon">
                 {meta.feasibility_score_baseline}
               </span>{" "}
-              a{" "}
+              {t("feasibility.toWord")}{" "}
               <span className="num text-navy">
                 {meta.feasibility_score}
-              </span>
-              {" "}dopo la ricalibrazione.
+              </span>{" "}
+              {t("feasibility.afterRecalib")}
             </p>
             <div className="mt-6 h-px bg-hairline" />
             <p className="mt-6 text-xs text-carbon-muted leading-relaxed">
-              Lo score è la media pesata delle 8 dimensioni operative del
-              piano. Il delta riflette esclusivamente l'effetto delle 5 leve
-              applicate.
+              {t("feasibility.explanation")}
             </p>
           </div>
 
           <div className="lg:col-span-8 border border-hairline overflow-hidden">
             <div className="grid grid-cols-12 border-b border-hairline bg-white">
-              <div className="col-span-4 p-4 eyebrow">Dimensione</div>
-              <div className="col-span-1 p-4 eyebrow text-right">Peso</div>
-              <div className="col-span-2 p-4 eyebrow text-right">Base</div>
-              <div className="col-span-2 p-4 eyebrow text-right">Ricalibr.</div>
-              <div className="col-span-3 p-4 eyebrow">Nota</div>
+              <div className="col-span-4 p-4 eyebrow">
+                {t("feasibility.headers.dimension")}
+              </div>
+              <div className="col-span-1 p-4 eyebrow text-right">
+                {t("feasibility.headers.weight")}
+              </div>
+              <div className="col-span-2 p-4 eyebrow text-right">
+                {t("feasibility.headers.baseline")}
+              </div>
+              <div className="col-span-2 p-4 eyebrow text-right">
+                {t("feasibility.headers.recalibrated")}
+              </div>
+              <div className="col-span-3 p-4 eyebrow">
+                {t("feasibility.headers.note")}
+              </div>
             </div>
             {feasibility_dimensions.map((d, i) => {
               const delta = d.score_recalibrated - d.score_baseline;
+              const key = FEASIBILITY_KEYS[i];
               return (
                 <motion.div
-                  key={d.dimension}
+                  key={key ?? d.dimension}
                   initial={{ opacity: 0, y: 12 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.25 }}
@@ -355,7 +421,9 @@ export default function PianoFinanziarioPage() {
                   className="grid grid-cols-12 items-center border-b border-hairline last:border-b-0 bg-white hover:bg-navy/[0.02] transition-colors"
                 >
                   <div className="col-span-4 p-4 text-sm text-navy font-serif">
-                    {d.dimension}
+                    {key
+                      ? t(`feasibility.dimensions.${key}`)
+                      : d.dimension}
                   </div>
                   <div className="col-span-1 p-4 text-right num text-xs text-carbon-muted">
                     {d.weight}%
@@ -372,7 +440,7 @@ export default function PianoFinanziarioPage() {
                     )}
                   </div>
                   <div className="col-span-3 p-4 text-xs text-carbon-muted leading-relaxed">
-                    {d.comment}
+                    {key ? t(`feasibility.comments.${key}`) : d.comment}
                   </div>
                 </motion.div>
               );
@@ -422,7 +490,9 @@ function Legend({
         )}
         style={{ borderColor: color, borderTopWidth: 1.5 }}
       />
-      <span className="text-xs text-carbon-muted tracking-tight">{label}</span>
+      <span className="text-xs text-carbon-muted tracking-tight">
+        {label}
+      </span>
     </div>
   );
 }

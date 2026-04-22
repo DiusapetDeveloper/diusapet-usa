@@ -3,6 +3,7 @@
 import * as SliderPrimitive from "@radix-ui/react-slider";
 import { AnimatePresence, motion } from "framer-motion";
 import { useMemo, useState } from "react";
+import { useTranslations } from "next-intl";
 import financials from "@/data/financials.json";
 import { cn, formatCurrency } from "@/lib/utils";
 
@@ -15,7 +16,17 @@ const MARGIN_FALLBACK: Record<ScenarioKey, number> = {
   optimistic: 47,
 };
 
+// Map scenario key to assumption translation key
+const ASSUMPTION_KEYS: Record<ScenarioKey, string> = {
+  pessimistic: "pessimistic",
+  base: "base",
+  optimistic: "optimistic",
+};
+
 export function ScenarioSimulator() {
+  const t = useTranslations("finanziario.simulator");
+  const tScenarios = useTranslations("finanziario.scenarios");
+  const tKpi = useTranslations("finanziario.kpi");
   const [idx, setIdx] = useState(1);
   const [revenueAdj, setRevenueAdj] = useState(100);
   const [priceAdj, setPriceAdj] = useState(100);
@@ -29,7 +40,6 @@ export function ScenarioSimulator() {
 
     const baseMargin =
       (scenario as any).gross_margin_pct ?? MARGIN_FALLBACK[key];
-    // every 1% price change ≈ 0.5pp on margin (COGS roughly fixed)
     const marginPct = Math.max(
       25,
       Math.min(60, baseMargin + (priceAdj - 100) * 0.5)
@@ -46,20 +56,24 @@ export function ScenarioSimulator() {
     const be = scenario.breakeven_month;
     const breakEven =
       be == null
-        ? "n/d"
-        : `Mese ${Math.max(
+        ? tKpi("notAvailable")
+        : `${tKpi("monthPrefix")} ${Math.max(
             6,
-            Math.round(be / Math.max(0.6, rev * pr) / Math.max(0.85, marginPct / baseMargin))
+            Math.round(
+              be /
+                Math.max(0.6, rev * pr) /
+                Math.max(0.85, marginPct / baseMargin)
+            )
           )}`;
 
     return { revY1, revY2, revY3, ebitdaY1, marginPct, breakEven };
-  }, [scenario, key, revenueAdj, priceAdj]);
+  }, [scenario, key, revenueAdj, priceAdj, tKpi]);
 
   return (
     <div className="grid lg:grid-cols-5 gap-8 border border-hairline p-8 bg-white">
       <div className="lg:col-span-2 space-y-10">
         <div>
-          <p className="eyebrow mb-4">Scenario</p>
+          <p className="eyebrow mb-4">{t("scenarioLabel")}</p>
           <div className="flex items-center gap-1 p-1 border border-hairline w-fit">
             {ORDER.map((k, i) => (
               <button
@@ -78,7 +92,7 @@ export function ScenarioSimulator() {
                   />
                 )}
                 <span className="relative z-10">
-                  {financials.scenarios[k].label}
+                  {tScenarios(ASSUMPTION_KEYS[k])}
                 </span>
               </button>
             ))}
@@ -89,7 +103,7 @@ export function ScenarioSimulator() {
         </div>
 
         <SliderRow
-          label="Volume ricavi (what-if)"
+          label={t("volumeSlider")}
           value={revenueAdj}
           onChange={setRevenueAdj}
           min={80}
@@ -97,7 +111,7 @@ export function ScenarioSimulator() {
           suffix="%"
         />
         <SliderRow
-          label="Leva di pricing (what-if)"
+          label={t("priceSlider")}
           value={priceAdj}
           onChange={setPriceAdj}
           min={90}
@@ -106,21 +120,20 @@ export function ScenarioSimulator() {
         />
 
         <p className="text-xs text-carbon-muted leading-relaxed">
-          Lo scenario seleziona le assunzioni strutturali. I cursori applicano
-          override ±20% sul volume e ±10% sul prezzo per test what-if.
+          {t("note")}
         </p>
       </div>
 
       <div className="lg:col-span-3 grid grid-cols-2 md:grid-cols-3 gap-4">
-        <Metric label="Ricavi Y1" value={pl.revY1} />
-        <Metric label="Ricavi Y2" value={pl.revY2} />
-        <Metric label="Ricavi Y3" value={pl.revY3} />
-        <Metric label="EBITDA Y1" value={pl.ebitdaY1} />
+        <Metric label={t("metrics.revenueY1")} value={pl.revY1} />
+        <Metric label={t("metrics.revenueY2")} value={pl.revY2} />
+        <Metric label={t("metrics.revenueY3")} value={pl.revY3} />
+        <Metric label={t("metrics.ebitdaY1")} value={pl.ebitdaY1} />
         <Metric
-          label="Margine lordo"
+          label={t("metrics.margin")}
           custom={`${pl.marginPct.toFixed(1)}%`}
         />
-        <Metric label="Break-even" custom={pl.breakEven} />
+        <Metric label={t("metrics.breakeven")} custom={pl.breakEven} />
       </div>
     </div>
   );
