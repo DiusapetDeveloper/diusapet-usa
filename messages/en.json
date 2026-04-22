@@ -37,13 +37,30 @@
     "hero": {
       "eyebrow": "01 · COCKPIT",
       "title": "The business case for U.S. expansion.",
-      "subtitle": "The entire project in a single, navigable document. Data, scenarios and roadmap across nine pages."
+      "subtitle": "The entire project in a single, navigable document. Data, scenarios and roadmap across nine pages.",
+      "ctaPrimary":   "Explore the business case",
+      "ctaSecondary": "Simulate the scenarios"
     },
     "kpi": {
-      "market":    { "label": "U.S. pet food market 2025",      "unit": "B" },
-      "margin":    { "label": "Gross margin per SKU",            "unit": "%" },
-      "breakeven": { "label": "Break-even, base scenario",       "unit": "" },
-      "roi":       { "label": "3-year ROI",                      "unit": "%" }
+      "eyebrow": "Key numbers",
+      "title":   "The business case in four dimensions.",
+      "source":  "Recalibrated financial model · April 2026",
+      "market":    { "label": "U.S. pet food market 2025",   "unit": "B", "value": "$136",     "trend": "+5.8% CAGR",                "caption": "Total pet food market 2025. Premium/holistic segment +12–15% annually." },
+      "margin":    { "label": "Gross margin per SKU",         "unit": "%", "value": "44",       "trend": "41%–47% per SKU",           "caption": "Blended 8 SKUs. U.S. competitor average: 35–38%." },
+      "breakeven": { "label": "Break-even, base scenario",    "unit": "",  "value": "Month 20", "trend": "−7 months vs original plan","caption": "Recalibrated base scenario with scaled CEO salary and 5 pre-validated clients." },
+      "roi":       { "label": "3-year ROI",                   "unit": "%", "value": "+112",     "trend": "+255% optimistic",          "caption": "On $185k initial investment. Feasibility score 82/100." }
+    },
+    "index": {
+      "eyebrow": "Operational index",
+      "title":   "Browse the dossier by decision area.",
+      "sections": {
+        "mercato":     { "label": "Market",             "hint": "$136B · +5.8% CAGR" },
+        "prodotto":    { "label": "Product",            "hint": "8 SKUs · 41–47% margin" },
+        "operativo":   { "label": "Operating model",    "hint": "CEO + 1 sales + 3PL" },
+        "finanziario": { "label": "Financial plan",     "hint": "Break-even month 20 · 3Y ROI +112%" },
+        "clienti":     { "label": "Clients & pipeline", "hint": "15 HOT prospects tri-state" },
+        "roadmap":     { "label": "Roadmap",            "hint": "90 days + 36 months" }
+      }
     },
     "supplyChain": {
       "eyebrow": "SUPPLY CHAIN",
@@ -197,7 +214,8 @@
     "hero": {
       "eyebrow": "03 · PRODUCTS",
       "title": "Eight SKUs to open the market.",
-      "subtitle": "Four dog, four cat. All with 41–47% gross margin and premium protein levels. Phase 1 launches four SKUs with the highest expected rotation."
+      "subtitle": "Four dog, four cat. All with 41–47% gross margin and premium protein levels. Phase 1 launches four SKUs with the highest expected rotation.",
+      "marginLabel": "Blended margin"
     },
     "filters": {
       "all":    "All",
@@ -208,15 +226,24 @@
     },
     "labels": {
       "retail":        "U.S. retail price",
-      "margin":        "Gross margin",
+      "margin":        "Margin",
       "transferCost":  "Transfer cost",
+      "price":         "Price",
+      "cost":          "Cost",
       "protein":       "Protein",
       "taurine":       "Taurine",
       "grainFree":     "Grain-free",
+      "omega3":        "Omega-3",
+      "origin":        "Origin",
       "usp":           "USP",
       "category":      "Category",
       "format":        "Format",
       "phase":         "Launch phase"
+    },
+    "mockupPlaceholder": "Mockup coming soon",
+    "differentiators": {
+      "eyebrow": "Nutritional differentiators",
+      "title":   "Why the positioning holds against U.S. premium brands."
     },
     "closing": {
       "title": "Four SKUs to start, eight at steady state.",
@@ -552,7 +579,8 @@
       "title":   "The full dossier in thirteen documents.",
       "subtitle":"Every chapter of the business plan and every analytical appendix, downloadable in Word."
     },
-    "downloadLabel": "Download .docx",
-    "pages":         "pages"
+    "downloadLabel": "Download",
+    "pages":         "pages",
+    "footerNote":    "Files are placeholders. Wiring to the private bucket will be enabled at deployment on usa.diusapet.work."
   }
 }

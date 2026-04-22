@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { AnimatedSection } from "@/components/animated-section";
 import productsData from "@/data/products.json";
 import { formatCurrency } from "@/lib/utils";
@@ -11,30 +12,34 @@ const { meta, items, differentiators } = productsData;
 
 const DIFF_FIELDS: Array<{
   key: "protein" | "taurine" | "omega_3" | "grain_free_ratio" | "origin";
-  label: string;
+  labelKey: string;
 }> = [
-  { key: "protein", label: "Proteine" },
-  { key: "taurine", label: "Taurina" },
-  { key: "omega_3", label: "Omega-3" },
-  { key: "grain_free_ratio", label: "Grain free" },
-  { key: "origin", label: "Origine" },
+  { key: "protein", labelKey: "protein" },
+  { key: "taurine", labelKey: "taurine" },
+  { key: "omega_3", labelKey: "omega3" },
+  { key: "grain_free_ratio", labelKey: "grainFree" },
+  { key: "origin", labelKey: "origin" },
 ];
 
 type Product = (typeof items)[number] & { image: string | null };
 
 export default function ProdottoPage() {
+  const t = useTranslations("prodotto");
+  const tCommon = useTranslations("common");
+
   return (
     <div className="container py-8">
       <AnimatedSection>
-        <p className="eyebrow text-gold">02 · Prodotto</p>
+        <p className="eyebrow text-gold">{t("hero.eyebrow")}</p>
         <h1 className="mt-6 font-serif text-hero text-navy max-w-3xl">
-          {meta.title}
+          {t("hero.title")}
         </h1>
         <p className="mt-6 max-w-2xl text-carbon-muted leading-relaxed">
-          {meta.subtitle}
+          {t("hero.subtitle")}
         </p>
         <p className="mt-4 text-xs text-carbon-muted num">
-          Margine blended {meta.margin_range} · fonte: {meta.source}
+          {t("hero.marginLabel")} {meta.margin_range} ·{" "}
+          {tCommon("source").toLowerCase()}: {meta.source}
         </p>
       </AnimatedSection>
 
@@ -45,9 +50,9 @@ export default function ProdottoPage() {
       </section>
 
       <AnimatedSection stagger className="mt-24">
-        <p className="eyebrow">Differenziatori nutrizionali</p>
+        <p className="eyebrow">{t("differentiators.eyebrow")}</p>
         <h2 className="mt-3 font-serif text-hero text-navy max-w-2xl">
-          Perché il posizionamento regge contro i premium USA.
+          {t("differentiators.title")}
         </h2>
 
         <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-5 gap-px bg-hairline border border-hairline">
@@ -64,7 +69,7 @@ export default function ProdottoPage() {
               }}
               className="bg-white p-6"
             >
-              <p className="eyebrow">{f.label}</p>
+              <p className="eyebrow">{t(`labels.${f.labelKey}`)}</p>
               <p className="mt-4 font-serif text-lg text-navy leading-snug">
                 {differentiators[f.key]}
               </p>
@@ -76,7 +81,14 @@ export default function ProdottoPage() {
   );
 }
 
-function ProductCard({ product: p, index: i }: { product: Product; index: number }) {
+function ProductCard({
+  product: p,
+  index: i,
+}: {
+  product: Product;
+  index: number;
+}) {
+  const t = useTranslations("prodotto");
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -113,7 +125,7 @@ function ProductCard({ product: p, index: i }: { product: Product; index: number
         ) : (
           <div className="absolute inset-0 flex items-center justify-center">
             <p className="text-[10px] uppercase tracking-micro text-carbon-muted">
-              Mockup in arrivo
+              {t("mockupPlaceholder")}
             </p>
           </div>
         )}
@@ -133,9 +145,16 @@ function ProductCard({ product: p, index: i }: { product: Product; index: number
         <p className="mt-2 text-sm text-carbon-muted num">{p.format}</p>
 
         <div className="mt-8 hairline pt-6 grid grid-cols-3 gap-4 num">
-          <Stat label="Prezzo" value={formatCurrency(p.price_usa)} />
-          <Stat label="Costo" value={`€${p.transfer_eu.toFixed(2)}`} />
-          <Stat label="Margine" value={`${p.margin_pct}%`} accent />
+          <Stat label={t("labels.price")} value={formatCurrency(p.price_usa)} />
+          <Stat
+            label={t("labels.cost")}
+            value={`€${p.transfer_eu.toFixed(2)}`}
+          />
+          <Stat
+            label={t("labels.margin")}
+            value={`${p.margin_pct}%`}
+            accent
+          />
         </div>
 
         <p className="mt-auto pt-8 text-xs text-carbon-muted leading-relaxed">

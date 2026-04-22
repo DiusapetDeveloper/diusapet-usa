@@ -31,7 +31,8 @@
       "Bash(git mv *)",
       "Bash(/usr/bin/find app *)",
       "Bash(/usr/bin/sort)",
-      "Bash(git -c user.name=\"Diusapet\" -c user.email=\"dev@diusapet.work\" commit -q -m \"feat\\(i18n\\): navbar links and EN/IT language switcher\")"
+      "Bash(git -c user.name=\"Diusapet\" -c user.email=\"dev@diusapet.work\" commit -q -m \"feat\\(i18n\\): navbar links and EN/IT language switcher\")",
+      "Bash(git -c user.name=\"Diusapet\" -c user.email=\"dev@diusapet.work\" commit -q -m \"feat\\(i18n\\): translate home + simple pages \\(allegati, prodotto\\)\")"
     ]
   }
 }

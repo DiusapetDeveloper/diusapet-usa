@@ -16,18 +16,20 @@ import {
 } from "framer-motion";
 import { useEffect, useMemo } from "react";
 import { useInView } from "react-intersection-observer";
+import { useTranslations } from "next-intl";
 import supply from "@/data/supply-chain-map.json";
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
-const {
-  meta,
-  origin,
-  destination,
-  kpi_strip,
-  animation_params,
-  bottom_note,
-} = supply;
+const { origin, destination, animation_params } = supply;
+
+const KPI_KEYS = ["transit", "cost", "volume", "cadence"] as const;
+const KPI_VALUES: Record<(typeof KPI_KEYS)[number], string> = {
+  transit: "25-38",
+  cost: "$5.2-7.8",
+  volume: "2",
+  cadence: "45",
+};
 
 const WIDTH = 1200;
 const HEIGHT = 675;
@@ -67,6 +69,7 @@ const HIGHLIGHTED_COUNTRIES = new Set([
 
 export default function WorldBridge() {
   const reduce = useReducedMotion();
+  const t = useTranslations("home.supplyChain");
   const { ref, inView } = useInView({
     threshold: 0.25,
     triggerOnce: true,
@@ -96,12 +99,12 @@ export default function WorldBridge() {
     <section ref={ref} className="relative bg-white py-24 md:py-32">
       <div className="container">
         <div className="max-w-3xl">
-          <p className="eyebrow text-gold">Supply chain</p>
+          <p className="eyebrow text-gold">{t("eyebrow")}</p>
           <h2 className="mt-4 font-serif text-hero text-navy">
-            {meta.title}.
+            {t("title")}
           </h2>
           <p className="mt-6 text-lg text-carbon-muted leading-relaxed max-w-[640px]">
-            {meta.subtitle}
+            {t("subtitle")}
           </p>
         </div>
 
@@ -219,8 +222,8 @@ export default function WorldBridge() {
             {/* Markers */}
             <Marker coordinates={[origin.lng, origin.lat]}>
               <EndpointMarker
-                label={origin.label}
-                sublabel={origin.sublabel}
+                label={t("origin.label")}
+                sublabel={t("origin.sublabel")}
                 labelY={-18}
                 sublabelY={-4}
                 appear={inView}
@@ -230,8 +233,8 @@ export default function WorldBridge() {
             </Marker>
             <Marker coordinates={[destination.lng, destination.lat]}>
               <EndpointMarker
-                label={destination.label}
-                sublabel={destination.sublabel}
+                label={t("destination.label")}
+                sublabel={t("destination.sublabel")}
                 labelY={36}
                 sublabelY={22}
                 appear={inView}
@@ -244,9 +247,9 @@ export default function WorldBridge() {
 
         {/* KPI STRIP */}
         <div className="mt-16 grid grid-cols-2 lg:grid-cols-4 gap-px bg-hairline border border-hairline">
-          {kpi_strip.map((k, i) => (
+          {KPI_KEYS.map((k, i) => (
             <motion.div
-              key={k.label}
+              key={k}
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.35 }}
@@ -257,20 +260,18 @@ export default function WorldBridge() {
               }}
               className="bg-white p-6 md:p-8 flex flex-col"
             >
-              <p className="eyebrow text-carbon-muted">{k.label}</p>
+              <p className="eyebrow text-carbon-muted">{t(`kpi.${k}.label`)}</p>
               <div className="mt-4 flex items-baseline gap-1 num">
                 <span className="font-serif text-3xl md:text-4xl text-navy leading-none">
-                  {k.value}
+                  {KPI_VALUES[k]}
                 </span>
-                {k.unit && (
-                  <span className="font-serif text-lg text-navy/75 ml-0.5">
-                    {k.unit}
-                  </span>
-                )}
+                <span className="font-serif text-lg text-navy/75 ml-0.5">
+                  {t(`kpi.${k}.unit`)}
+                </span>
               </div>
               <div className="mt-4 h-px w-8 bg-gold" />
               <p className="mt-4 text-xs text-carbon-muted leading-relaxed">
-                {k.note}
+                {t(`kpi.${k}.note`)}
               </p>
             </motion.div>
           ))}
@@ -279,7 +280,7 @@ export default function WorldBridge() {
         {/* BOTTOM NOTE */}
         <div className="mt-16 pt-12 border-t border-hairline">
           <p className="font-serif italic text-navy/80 text-base md:text-lg leading-relaxed text-center max-w-[680px] mx-auto">
-            {bottom_note}
+            {t("bottomNote")}
           </p>
         </div>
       </div>

@@ -37,13 +37,30 @@
     "hero": {
       "eyebrow": "01 · COCKPIT",
       "title": "Il business case dell'espansione USA.",
-      "subtitle": "Tutto il progetto in un solo documento navigabile. Dati, scenari e roadmap in nove pagine."
+      "subtitle": "Tutto il progetto in un solo documento navigabile. Dati, scenari e roadmap in nove pagine.",
+      "ctaPrimary":   "Esplora il business case",
+      "ctaSecondary": "Simula gli scenari"
     },
     "kpi": {
-      "market": { "label": "Mercato pet food USA 2025", "unit": "B" },
-      "margin": { "label": "Margine lordo SKU", "unit": "%" },
-      "breakeven": { "label": "Break-even scenario base", "unit": "" },
-      "roi": { "label": "ROI a 3 anni", "unit": "%" }
+      "eyebrow": "Numeri chiave",
+      "title":   "Sintesi del business case in quattro dimensioni.",
+      "source":  "Modello finanziario ricalibrato · Aprile 2026",
+      "market":    { "label": "Mercato pet food USA 2025",   "unit": "B", "value": "$136",    "trend": "+5.8% CAGR",              "caption": "Mercato pet food totale 2025. Segmento premium/holistic +12–15% annuo." },
+      "margin":    { "label": "Margine lordo SKU",            "unit": "%", "value": "44",      "trend": "41%–47% per SKU",         "caption": "Blended 8 SKU. Competitor USA medi: 35–38%." },
+      "breakeven": { "label": "Break-even scenario base",     "unit": "",  "value": "Mese 20", "trend": "−7 mesi vs piano originale","caption": "Scenario base ricalibrato con compenso CEO scalato e 5 clienti pre-validati." },
+      "roi":       { "label": "ROI a 3 anni",                 "unit": "%", "value": "+112",    "trend": "+255% ottimistico",       "caption": "Su investimento iniziale di $185k. Feasibility score 82/100." }
+    },
+    "index": {
+      "eyebrow": "Indice operativo",
+      "title":   "Naviga il dossier per dimensione decisionale.",
+      "sections": {
+        "mercato":     { "label": "Mercato",            "hint": "$136B · +5.8% CAGR" },
+        "prodotto":    { "label": "Prodotto",           "hint": "8 SKU · margine 41–47%" },
+        "operativo":   { "label": "Modello operativo",  "hint": "CEO + 1 sales + 3PL" },
+        "finanziario": { "label": "Piano finanziario",  "hint": "Break-even mese 20 · ROI 3Y +112%" },
+        "clienti":     { "label": "Clienti & pipeline", "hint": "15 prospect HOT tri-state" },
+        "roadmap":     { "label": "Roadmap",            "hint": "90 giorni + 36 mesi" }
+      }
     },
     "supplyChain": {
       "eyebrow": "SUPPLY CHAIN",
@@ -197,7 +214,8 @@
     "hero": {
       "eyebrow": "03 · PRODOTTI",
       "title": "Otto SKU per aprire il mercato.",
-      "subtitle": "Quattro cane, quattro gatto. Tutti con margine 41–47% e proteine premium. Lancio Fase 1 con quattro SKU a rotazione più alta."
+      "subtitle": "Quattro cane, quattro gatto. Tutti con margine 41–47% e proteine premium. Lancio Fase 1 con quattro SKU a rotazione più alta.",
+      "marginLabel": "Margine blended"
     },
     "filters": {
       "all":   "Tutti",
@@ -208,15 +226,24 @@
     },
     "labels": {
       "retail":        "Prezzo retail USA",
-      "margin":        "Margine lordo",
+      "margin":        "Margine",
       "transferCost":  "Transfer cost",
+      "price":         "Prezzo",
+      "cost":          "Costo",
       "protein":       "Proteina",
       "taurine":       "Taurina",
       "grainFree":     "Grain-free",
+      "omega3":        "Omega-3",
+      "origin":        "Origine",
       "usp":           "USP",
       "category":      "Categoria",
       "format":        "Formato",
       "phase":         "Fase lancio"
+    },
+    "mockupPlaceholder": "Mockup in arrivo",
+    "differentiators": {
+      "eyebrow": "Differenziatori nutrizionali",
+      "title":   "Perché il posizionamento regge contro i premium USA."
     },
     "closing": {
       "title": "Quattro SKU per partire, otto a regime.",
@@ -552,7 +579,8 @@
       "title": "Il fascicolo completo in tredici documenti.",
       "subtitle": "Ogni capitolo del business plan e ogni allegato analitico, scaricabili in Word."
     },
-    "downloadLabel": "Scarica .docx",
-    "pages": "pagine"
+    "downloadLabel": "Scarica",
+    "pages": "pagine",
+    "footerNote": "I file sono placeholder. Il wiring al bucket riservato sarà attivato in fase di deploy su usa.diusapet.work."
   }
 }

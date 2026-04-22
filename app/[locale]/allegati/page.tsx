@@ -2,21 +2,22 @@
 
 import { motion } from "framer-motion";
 import { Download, FileText, FileSpreadsheet } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { AnimatedSection } from "@/components/animated-section";
 import attachments from "@/data/attachments.json";
 
 export default function AllegatiPage() {
+  const t = useTranslations("allegati");
+
   return (
     <div className="container py-8">
       <AnimatedSection>
-        <p className="eyebrow text-gold">08 · Allegati</p>
+        <p className="eyebrow text-gold">{t("hero.eyebrow")}</p>
         <h1 className="mt-6 font-serif text-hero text-navy max-w-3xl">
-          Tredici documenti a supporto del business case.
+          {t("hero.title")}
         </h1>
         <p className="mt-6 max-w-2xl text-carbon-muted leading-relaxed">
-          Executive summary, studio di mercato, listino, P&L dettagliato,
-          CRM prospect, compliance checklist e deck investor. Download
-          disponibile dopo il wiring del bucket.
+          {t("hero.subtitle")}
         </p>
       </AnimatedSection>
 
@@ -58,7 +59,7 @@ export default function AllegatiPage() {
                 type="button"
                 className="group/btn inline-flex items-center gap-2 text-sm text-navy border-b border-navy/30 hover:border-gold pb-1 transition-colors"
               >
-                Scarica
+                {t("downloadLabel")}
                 <Download className="h-3.5 w-3.5 transition-transform group-hover/btn:translate-y-0.5" />
               </button>
             </div>
@@ -66,10 +67,7 @@ export default function AllegatiPage() {
         ))}
       </AnimatedSection>
 
-      <p className="mt-8 text-xs text-carbon-muted">
-        I file sono placeholder. Il wiring al bucket riservato sarà attivato
-        in fase di deploy su usa.diusapet.work.
-      </p>
+      <p className="mt-8 text-xs text-carbon-muted">{t("footerNote")}</p>
     </div>
   );
 }
