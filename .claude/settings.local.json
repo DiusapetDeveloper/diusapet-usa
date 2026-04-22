@@ -26,7 +26,12 @@
       "Bash(git -c user.name=\"Diusapet\" -c user.email=\"dev@diusapet.work\" commit -q -m \"feat: pagine mercato e rischi con dati reali da docx\")",
       "Bash(git -c user.name=\"Diusapet\" -c user.email=\"dev@diusapet.work\" commit -q -m \"feat: home supply chain bridge Italia-NJ con rotta container animata\")",
       "Bash(/usr/bin/head -c 800 /Users/danielefranceschini/diusapet-usa/messages/it.json)",
-      "Bash(git -c user.name=\"Diusapet\" -c user.email=\"dev@diusapet.work\" commit -q -m \"feat\\(i18n\\): setup next-intl routing + middleware + messages\")"
+      "Bash(git -c user.name=\"Diusapet\" -c user.email=\"dev@diusapet.work\" commit -q -m \"feat\\(i18n\\): setup next-intl routing + middleware + messages\")",
+      "Bash(mkdir -p app/\\\\[locale\\\\])",
+      "Bash(git mv *)",
+      "Bash(/usr/bin/find app *)",
+      "Bash(/usr/bin/sort)",
+      "Bash(git -c user.name=\"Diusapet\" -c user.email=\"dev@diusapet.work\" commit -q -m \"feat\\(i18n\\): navbar links and EN/IT language switcher\")"
     ]
   }
 }

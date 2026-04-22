@@ -1,27 +1,37 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
+import { Link, usePathname } from "@/i18n/navigation";
+import {
+  motion,
+  useMotionValueEvent,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 
-const nav = [
-  { href: "/", label: "Cockpit" },
-  { href: "/mercato", label: "Mercato" },
-  { href: "/prodotto", label: "Prodotto" },
-  { href: "/modello-operativo", label: "Operativo" },
-  { href: "/piano-finanziario", label: "Finanziario" },
-  { href: "/clienti", label: "Clienti" },
-  { href: "/roadmap", label: "Roadmap" },
-  { href: "/rischi", label: "Rischi" },
-  { href: "/allegati", label: "Allegati" },
+const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
+const NAV_ITEMS: Array<{ href: string; key: string }> = [
+  { href: "/", key: "cockpit" },
+  { href: "/mercato", key: "mercato" },
+  { href: "/prodotto", key: "prodotto" },
+  { href: "/operativo", key: "operativo" },
+  { href: "/finanziario", key: "finanziario" },
+  { href: "/clienti", key: "clienti" },
+  { href: "/roadmap", key: "roadmap" },
+  { href: "/rischi", key: "rischi" },
+  { href: "/allegati", key: "allegati" },
 ];
 
 export function Navbar() {
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const locale = useLocale();
+  const t = useTranslations("nav");
+  const tCommon = useTranslations("common");
 
   useMotionValueEvent(scrollY, "change", (y) => setScrolled(y > 24));
 
@@ -46,7 +56,7 @@ export function Navbar() {
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1">
-          {nav.map((item) => {
+          {NAV_ITEMS.map((item) => {
             const active =
               item.href === "/"
                 ? pathname === "/"
@@ -57,15 +67,17 @@ export function Navbar() {
                 href={item.href}
                 className={cn(
                   "relative px-3 py-2 text-sm tracking-tight transition-colors",
-                  active ? "text-navy" : "text-carbon-muted hover:text-navy"
+                  active
+                    ? "text-navy"
+                    : "text-carbon-muted hover:text-navy"
                 )}
               >
-                {item.label}
+                {t(item.key)}
                 {active && (
                   <motion.span
                     layoutId="nav-underline"
                     className="absolute left-3 right-3 -bottom-0.5 h-px bg-gold"
-                    transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{ duration: 0.35, ease }}
                   />
                 )}
               </Link>
@@ -73,10 +85,51 @@ export function Navbar() {
           })}
         </nav>
 
-        <div className="hidden lg:block eyebrow text-carbon-muted">
-          Riservato
+        <div className="hidden lg:flex items-center gap-4">
+          <LanguageSwitcher current={locale} pathname={pathname} />
+          <span className="eyebrow text-carbon-muted">
+            {tCommon("confidential")}
+          </span>
         </div>
       </div>
     </motion.header>
+  );
+}
+
+function LanguageSwitcher({
+  current,
+  pathname,
+}: {
+  current: string;
+  pathname: string;
+}) {
+  return (
+    <div className="flex items-center gap-2 text-xs">
+      <Link
+        href={pathname}
+        locale="it"
+        className={cn(
+          "pb-0.5 transition-colors",
+          current === "it"
+            ? "text-navy border-b-2 border-gold"
+            : "text-carbon-muted hover:text-navy"
+        )}
+      >
+        IT
+      </Link>
+      <span className="text-carbon-muted/60">·</span>
+      <Link
+        href={pathname}
+        locale="en"
+        className={cn(
+          "pb-0.5 transition-colors",
+          current === "en"
+            ? "text-navy border-b-2 border-gold"
+            : "text-carbon-muted hover:text-navy"
+        )}
+      >
+        EN
+      </Link>
+    </div>
   );
 }
