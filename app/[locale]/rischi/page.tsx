@@ -60,6 +60,60 @@ const SEVERITY_RANK: Record<string, number> = {
   Basso: 1,
 };
 
+// Mitigation levers order in data matches messages keys
+const LEVER_KEYS = [
+  "buffer",
+  "breakClause",
+  "halfContainer",
+  "preSold",
+] as const;
+
+// Feasibility dimensions order matches messages keys
+const FEASIBILITY_KEYS = [
+  "breakeven",
+  "roi",
+  "capital",
+  "market",
+  "operations",
+  "compliance",
+  "cashflow",
+] as const;
+
+// Map data stress scenario content to message key
+function stressScenarioKey(scenario: string): string {
+  if (scenario.startsWith("Prezzo")) return "priceDown";
+  if (scenario.startsWith("Volume")) return "volumeDown";
+  if (scenario.startsWith("Costi")) return "containerUp";
+  if (scenario.includes("Carteret")) return "carteret";
+  if (scenario.includes("FDA")) return "fdaDelay";
+  if (scenario.includes("Compenso CEO")) return "ceoSalary";
+  return "";
+}
+
+// Map data probability_label to messages.probabilityLevels key
+const PROB_KEY_MAP: Record<string, string> = {
+  Bassa: "low",
+  "Medio-bassa": "medLow",
+  Media: "medium",
+  "Medio-alta": "medHigh",
+  Alta: "high",
+};
+
+// Map data impact to messages.impactLevels key
+const IMPACT_KEY_MAP: Record<string, string> = {
+  Basso: "low",
+  Medio: "medium",
+  Alto: "high",
+};
+
+// Map data severity to messages.severity key
+const SEVERITY_KEY_MAP: Record<string, string> = {
+  Basso: "low",
+  Medio: "medium",
+  Alto: "high",
+  Critico: "critical",
+};
+
 export default function RischiPage() {
   const t = useTranslations("rischi");
   const [hoveredRisk, setHoveredRisk] = useState<string | null>(null);
@@ -108,10 +162,10 @@ export default function RischiPage() {
       <AnimatedSection className="mt-24">
         <p className="eyebrow">{t("matrix.eyebrow")}</p>
         <h2 className="mt-3 font-serif text-hero text-navy max-w-3xl">
-          {risk_matrix.title}
+          {t("matrix.title")}
         </h2>
         <p className="mt-4 max-w-2xl text-carbon-muted leading-relaxed">
-          {risk_matrix.subtitle}
+          {t("matrix.subtitle")}
         </p>
 
         <div className="mt-10 grid lg:grid-cols-[420px_1fr] gap-8 items-start">
@@ -122,9 +176,18 @@ export default function RischiPage() {
               onHover={setHoveredRisk}
             />
             <div className="mt-4 flex items-center gap-4 text-[11px] text-carbon-muted">
-              <LegendDot color="#5A6B4D" label="Basso" />
-              <LegendDot color="#B8925A" label="Medio" />
-              <LegendDot color="#7A2E2E" label="Alto" />
+              <LegendDot
+                color="#5A6B4D"
+                label={t("matrix.impactLevels.low")}
+              />
+              <LegendDot
+                color="#B8925A"
+                label={t("matrix.impactLevels.medium")}
+              />
+              <LegendDot
+                color="#7A2E2E"
+                label={t("matrix.impactLevels.high")}
+              />
             </div>
           </div>
 
@@ -144,51 +207,64 @@ export default function RischiPage() {
 
       {/* STRESS TESTS */}
       <AnimatedSection className="mt-24">
-        <p className="eyebrow">{stress_tests.title.replace(/\.$/, "")}</p>
+        <p className="eyebrow">{t("stress.eyebrow")}</p>
         <h2 className="mt-3 font-serif text-hero text-navy max-w-2xl">
-          Sei what-if quantificati.
+          {t("stress.title")}
         </h2>
         <p className="mt-4 max-w-2xl text-carbon-muted leading-relaxed">
-          {stress_tests.subtitle}
+          {t("stress.subtitle")}
         </p>
 
         <div className="mt-10 border border-hairline overflow-x-auto">
           <table className="w-full text-left min-w-[760px]">
             <thead>
               <tr className="border-b border-hairline bg-white">
-                <Th className="w-[38%]">Scenario</Th>
-                <Th className="w-[18%] text-right">Impatto EBITDA</Th>
-                <Th className="w-[14%]">Severità</Th>
-                <Th className="w-[30%]">Gestibilità</Th>
+                <Th className="w-[38%]">{t("stress.headers.scenario")}</Th>
+                <Th className="w-[18%] text-right">
+                  {t("stress.headers.impact")}
+                </Th>
+                <Th className="w-[14%]">{t("stress.headers.severity")}</Th>
+                <Th className="w-[30%]">
+                  {t("stress.headers.manageability")}
+                </Th>
               </tr>
             </thead>
             <tbody>
-              {stressSorted.map((s, i) => (
-                <motion.tr
-                  key={s.scenario}
-                  initial={{ opacity: 0, y: 8 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.45, ease, delay: i * 0.05 }}
-                  className="border-b border-hairline last:border-b-0 bg-white hover:bg-navy/[0.02] transition-colors"
-                >
-                  <Td>
-                    <span className="font-serif text-navy">{s.scenario}</span>
-                  </Td>
-                  <Td className="text-right num font-serif text-[#7A2E2E]">
-                    −$
-                    {Math.abs(s.ebitda_impact_usd).toLocaleString("it-IT")}
-                  </Td>
-                  <Td>
-                    <SeverityBadge s={s.severity} />
-                  </Td>
-                  <Td>
-                    <span className="text-xs text-carbon-muted leading-relaxed">
-                      {s.manageability}
-                    </span>
-                  </Td>
-                </motion.tr>
-              ))}
+              {stressSorted.map((s, i) => {
+                const sKey = stressScenarioKey(s.scenario);
+                return (
+                  <motion.tr
+                    key={s.scenario}
+                    initial={{ opacity: 0, y: 8 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.45, ease, delay: i * 0.05 }}
+                    className="border-b border-hairline last:border-b-0 bg-white hover:bg-navy/[0.02] transition-colors"
+                  >
+                    <Td>
+                      <span className="font-serif text-navy">
+                        {sKey
+                          ? t(`stress.scenarios.${sKey}.scenario`)
+                          : s.scenario}
+                      </span>
+                    </Td>
+                    <Td className="text-right num font-serif text-[#7A2E2E]">
+                      −$
+                      {Math.abs(s.ebitda_impact_usd).toLocaleString()}
+                    </Td>
+                    <Td>
+                      <SeverityBadge s={s.severity} />
+                    </Td>
+                    <Td>
+                      <span className="text-xs text-carbon-muted leading-relaxed">
+                        {sKey
+                          ? t(`stress.scenarios.${sKey}.manageability`)
+                          : s.manageability}
+                      </span>
+                    </Td>
+                  </motion.tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
@@ -204,9 +280,10 @@ export default function RischiPage() {
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-hairline border border-hairline">
           {mitigation_levers.levers.map((l, i) => {
             const Icon = LEVER_ICON[l.icon] ?? Banknote;
+            const leverKey = LEVER_KEYS[i];
             return (
               <motion.div
-                key={l.name}
+                key={leverKey ?? l.name}
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
@@ -215,13 +292,13 @@ export default function RischiPage() {
               >
                 <Icon className="h-5 w-5 text-navy" strokeWidth={1.2} />
                 <h3 className="mt-6 font-serif text-[17px] text-navy leading-snug">
-                  {l.name}
+                  {leverKey ? t(`levers.items.${leverKey}.name`) : l.name}
                 </h3>
                 <p className="mt-5 font-serif text-2xl text-gold num leading-none">
-                  {l.amount}
+                  {leverKey ? t(`levers.items.${leverKey}.amount`) : l.amount}
                 </p>
                 <p className="mt-auto pt-5 text-xs text-carbon-muted leading-relaxed">
-                  {l.note}
+                  {leverKey ? t(`levers.items.${leverKey}.note`) : l.note}
                 </p>
               </motion.div>
             );
@@ -245,7 +322,9 @@ export default function RischiPage() {
               {feasibility_comparison.baseline_score}
               <span className="text-2xl text-carbon-muted/70">/100</span>
             </p>
-            <p className="mt-3 eyebrow text-carbon-muted">Baseline</p>
+            <p className="mt-3 eyebrow text-carbon-muted">
+              {t("feasibility.baselineLabel")}
+            </p>
           </div>
           <motion.div
             initial={{ opacity: 0, x: -10 }}
@@ -263,9 +342,11 @@ export default function RischiPage() {
               {feasibility_comparison.recalibrated_score}
               <span className="text-3xl text-navy/70">/100</span>
             </p>
-            <p className="mt-3 eyebrow text-navy">Ricalibrato</p>
+            <p className="mt-3 eyebrow text-navy">
+              {t("feasibility.recalibratedLabel")}
+            </p>
             <p className="mt-2 font-serif text-xl text-gold num">
-              +{feasibility_comparison.delta} punti
+              +{feasibility_comparison.delta} {t("feasibility.deltaLabel")}
             </p>
           </div>
         </div>
@@ -274,11 +355,21 @@ export default function RischiPage() {
           <table className="w-full text-left min-w-[640px]">
             <thead>
               <tr className="border-b border-hairline bg-white">
-                <Th className="w-[34%]">Dimensione</Th>
-                <Th className="w-[12%] text-right">Peso</Th>
-                <Th className="w-[18%] text-right">Baseline</Th>
-                <Th className="w-[18%] text-right">Ricalibrato</Th>
-                <Th className="w-[18%] text-right">Delta</Th>
+                <Th className="w-[34%]">
+                  {t("feasibility.headers.dimension")}
+                </Th>
+                <Th className="w-[12%] text-right">
+                  {t("feasibility.headers.weight")}
+                </Th>
+                <Th className="w-[18%] text-right">
+                  {t("feasibility.headers.baseline")}
+                </Th>
+                <Th className="w-[18%] text-right">
+                  {t("feasibility.headers.recalibrated")}
+                </Th>
+                <Th className="w-[18%] text-right">
+                  {t("feasibility.headers.delta")}
+                </Th>
               </tr>
             </thead>
             <tbody>
@@ -290,9 +381,10 @@ export default function RischiPage() {
                   )
                 );
                 const isMaxDelta = delta === maxDelta && delta > 0;
+                const dimKey = FEASIBILITY_KEYS[i];
                 return (
                   <motion.tr
-                    key={d.dimension}
+                    key={dimKey ?? d.dimension}
                     initial={{ opacity: 0, y: 8 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.2 }}
@@ -304,7 +396,9 @@ export default function RischiPage() {
                   >
                     <Td>
                       <span className="font-serif text-navy">
-                        {d.dimension}
+                        {dimKey
+                          ? t(`feasibility.dimensions.${dimKey}`)
+                          : d.dimension}
                       </span>
                     </Td>
                     <Td className="text-right num text-xs text-carbon-muted">
@@ -363,7 +457,7 @@ export default function RischiPage() {
                 {String(i + 1).padStart(2, "0")}
               </span>
               <span className="font-serif text-base md:text-lg text-navy leading-snug">
-                {item}
+                {t(`decalogue.items.i${i + 1}`)}
               </span>
             </motion.li>
           ))}
@@ -407,6 +501,7 @@ function RiskMatrixSvg({
   hoveredRisk: string | null;
   onHover: (id: string | null) => void;
 }) {
+  const tMatrix = useTranslations("rischi.matrix");
   const VIEW_W = 420;
   const VIEW_H = 240;
   const X_PAD = 72;
@@ -466,6 +561,7 @@ function RiskMatrixSvg({
           Y_PAD_TOP +
           (IMPACT_LEVELS.length - 1 - impIdx) * CELL_H +
           CELL_H / 2;
+        const key = IMPACT_KEY_MAP[label];
         return (
           <text
             key={`imp-${label}`}
@@ -480,7 +576,7 @@ function RiskMatrixSvg({
               letterSpacing: "0.1em",
             }}
           >
-            {label}
+            {key ? tMatrix(`impactLevels.${key}`) : label}
           </text>
         );
       })}
@@ -488,6 +584,7 @@ function RiskMatrixSvg({
       {/* X-axis labels (prob) */}
       {PROB_LEVELS.map((label, probIdx) => {
         const x = X_PAD + probIdx * CELL_W + CELL_W / 2;
+        const key = PROB_KEY_MAP[label];
         return (
           <text
             key={`prob-${label}`}
@@ -502,7 +599,7 @@ function RiskMatrixSvg({
               letterSpacing: "0.08em",
             }}
           >
-            {label}
+            {key ? tMatrix(`probabilityLevels.${key}`) : label}
           </text>
         );
       })}
@@ -520,7 +617,7 @@ function RiskMatrixSvg({
           letterSpacing: "0.14em",
         }}
       >
-        Probabilità →
+        {tMatrix("axisProbabilityArrow")}
       </text>
       <text
         x={14}
@@ -537,7 +634,7 @@ function RiskMatrixSvg({
           letterSpacing: "0.14em",
         }}
       >
-        Impatto →
+        {tMatrix("axisImpactArrow")}
       </text>
 
       {/* Risk dots */}
@@ -623,7 +720,7 @@ function RiskMatrixSvg({
                       fontSize: 12,
                     }}
                   >
-                    {r.name}
+                    {tMatrix(`risks.${r.id}.name`)}
                   </p>
                   <p
                     style={{
@@ -631,7 +728,10 @@ function RiskMatrixSvg({
                       opacity: 0.7,
                     }}
                   >
-                    {r.probability_pct}% · {r.impact}
+                    {r.probability_pct}% ·{" "}
+                    {IMPACT_KEY_MAP[r.impact]
+                      ? tMatrix(`impactLevels.${IMPACT_KEY_MAP[r.impact]}`)
+                      : r.impact}
                   </p>
                 </div>
               </foreignObject>
@@ -668,6 +768,7 @@ function RiskCard({
   hovered: boolean;
   onHover: (id: string | null) => void;
 }) {
+  const tMatrix = useTranslations("rischi.matrix");
   const Icon = RISK_ICON[risk.icon] ?? Flag;
   return (
     <motion.article
@@ -696,7 +797,7 @@ function RiskCard({
 
         <div className="flex-1">
           <h3 className="font-serif text-[18px] text-navy leading-snug">
-            {risk.name}
+            {tMatrix(`risks.${risk.id}.name`)}
           </h3>
           <div className="mt-3 flex flex-wrap items-center gap-2">
             <ProbBadge
@@ -706,14 +807,16 @@ function RiskCard({
             <ImpactBadge impact={risk.impact} />
           </div>
           <p className="mt-4 text-sm text-carbon leading-relaxed">
-            {risk.description}
+            {tMatrix(`risks.${risk.id}.desc`)}
           </p>
-          <p className="mt-5 eyebrow text-gold">Piano di risposta</p>
+          <p className="mt-5 eyebrow text-gold">
+            {tMatrix("responsePlan")}
+          </p>
           <p className="mt-2 text-[13px] text-carbon-muted leading-relaxed">
-            {risk.response_plan}
+            {tMatrix(`risks.${risk.id}.response`)}
           </p>
           <p className="mt-4 text-[11px] text-carbon-muted">
-            Owner:{" "}
+            {tMatrix("ownerLabel")}:{" "}
             <span className="text-navy">{risk.owner}</span>
           </p>
         </div>
@@ -729,8 +832,13 @@ function ProbBadge({
   probPct: number;
   probLabel: string;
 }) {
+  const tMatrix = useTranslations("rischi.matrix");
   const color =
     probPct >= 30 ? "#7A2E2E" : probPct >= 20 ? "#B8925A" : "#5A6B4D";
+  const probKey = PROB_KEY_MAP[probLabel];
+  const localizedLabel = probKey
+    ? tMatrix(`probabilityLevels.${probKey}`)
+    : probLabel;
   return (
     <span
       className="inline-flex items-center gap-1.5 px-2 py-0.5 text-[10px] uppercase tracking-micro border num"
@@ -740,24 +848,29 @@ function ProbBadge({
         className="inline-block h-1.5 w-1.5 rounded-full"
         style={{ backgroundColor: color }}
       />
-      Probabilità {probPct}% · {probLabel}
+      {tMatrix("probFormat", { pct: probPct, label: localizedLabel })}
     </span>
   );
 }
 
 function ImpactBadge({ impact }: { impact: string }) {
+  const tMatrix = useTranslations("rischi.matrix");
   const color =
     impact === "Alto"
       ? "#7A2E2E"
       : impact === "Medio"
       ? "#B8925A"
       : "#5A6B4D";
+  const impactKey = IMPACT_KEY_MAP[impact];
+  const localizedImpact = impactKey
+    ? tMatrix(`impactLevels.${impactKey}`)
+    : impact;
   return (
     <span
       className="inline-flex items-center gap-1.5 px-2 py-0.5 text-[10px] uppercase tracking-micro border"
       style={{ color, borderColor: color }}
     >
-      Impatto {impact}
+      {tMatrix("impactFormat", { level: localizedImpact })}
     </span>
   );
 }
@@ -765,6 +878,7 @@ function ImpactBadge({ impact }: { impact: string }) {
 /* ---------------- SEVERITY / TABLE PRIMITIVES ---------------- */
 
 function SeverityBadge({ s }: { s: string }) {
+  const tSev = useTranslations("rischi.stress.severity");
   const map: Record<string, string> = {
     Basso: "text-carbon-muted border-hairline",
     Medio: "text-gold border-gold",
@@ -772,9 +886,8 @@ function SeverityBadge({ s }: { s: string }) {
     Critico: "text-white border-[#7A2E2E]",
   };
   const style =
-    s === "Critico"
-      ? { backgroundColor: "#7A2E2E" }
-      : undefined;
+    s === "Critico" ? { backgroundColor: "#7A2E2E" } : undefined;
+  const sevKey = SEVERITY_KEY_MAP[s];
   return (
     <span
       style={style}
@@ -783,7 +896,7 @@ function SeverityBadge({ s }: { s: string }) {
         map[s] ?? map.Basso
       )}
     >
-      {s}
+      {sevKey ? tSev(sevKey) : s}
     </span>
   );
 }
