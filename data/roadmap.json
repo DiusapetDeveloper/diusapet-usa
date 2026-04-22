@@ -1,18 +1,115 @@
 {
-  "ninetyDays": [
-    { "week": "Sett. 1-2", "title": "Setup legale USA", "detail": "Costituzione LLC in NJ, EIN, conto corrente, assicurazione." },
-    { "week": "Sett. 3-4", "title": "FDA & compliance pet food", "detail": "Registrazione etichette, AAFCO statement, import broker." },
-    { "week": "Sett. 5-6", "title": "3PL & logistica", "detail": "Contratto magazzino NJ, primo container 20ft, assicurazione merci." },
-    { "week": "Sett. 7-8", "title": "Branding & trade kit", "detail": "Listino USA, sell-sheet bilingue, sample kit per buyer." },
-    { "week": "Sett. 9-10", "title": "Prime 10 visite retail", "detail": "Pilot con 3 pet store NJ, 3 italian market NY, 4 lead secondari." },
-    { "week": "Sett. 11-12", "title": "Closing iniziali", "detail": "Target 5 ordini confermati, primo reorder entro sett. 14." }
+  "meta": {
+    "title": "Roadmap esecutiva",
+    "subtitle": "Due livelli di lettura: i primi 90 giorni al dettaglio settimanale, i 36 mesi in ottica strategica.",
+    "source": "Allegato 02 — Piano di Massima, Allegato 07 — Spedizione, Capitolo 11 — Aspettative"
+  },
+  "headline_kpi": [
+    { "value": "13",  "unit": "settimane", "label": "Dal via al primo container" },
+    { "value": "5",   "unit": "ordini",    "label": "Pre-firmati prima dell'arrivo container" },
+    { "value": "Mese 20", "unit": "",       "label": "Break-even scenario base" },
+    { "value": "36",  "unit": "mesi",      "label": "Orizzonte del piano" }
   ],
-  "milestones": [
-    { "period": "M6", "title": "20 account attivi", "detail": "Copertura NJ core + Manhattan + Brooklyn." },
-    { "period": "M12", "title": "$175k ricavi Y1", "detail": "Break-even operativo lordo raggiunto." },
-    { "period": "M20", "title": "Break-even netto", "detail": "EBITDA mensile positivo, cassa in equilibrio." },
-    { "period": "M24", "title": "Espansione CT + PA", "detail": "Sales rep #2, 60+ account." },
-    { "period": "M30", "title": "E-commerce D2C", "detail": "Shopify USA, retargeting community italo-americane." },
-    { "period": "M36", "title": "$510k ricavi Y3", "detail": "ROI 3Y +112%, valutazione pre-exit." }
+  "workstreams": [
+    { "id": "legal",      "label": "Legale & società",    "color": "#0B1E3F" },
+    { "id": "visa",       "label": "Visto E-2",           "color": "#7A2E2E" },
+    { "id": "compliance", "label": "FDA & compliance",    "color": "#5A6B4D" },
+    { "id": "warehouse",  "label": "Warehouse",           "color": "#B8925A" },
+    { "id": "container",  "label": "Supply chain",        "color": "#A88C5F" },
+    { "id": "sales",      "label": "Commerciale",         "color": "#3B5166" },
+    { "id": "ceo",        "label": "Trasferimento CEO",   "color": "#6B6560" }
+  ],
+  "view_90days": {
+    "unit": "week",
+    "total_weeks": 13,
+    "tasks": [
+      { "id": "t1",  "workstream": "legal",      "name": "Contatto attorney USA E-2 + filing LLC Delaware",            "start": 1,  "end": 2,  "critical": true },
+      { "id": "t2",  "workstream": "legal",      "name": "EIN + operating agreement + conto banca business",           "start": 2,  "end": 4  },
+      { "id": "t3",  "workstream": "legal",      "name": "Foreign entity registration NJ + sales tax permit",          "start": 4,  "end": 5  },
+
+      { "id": "t4",  "workstream": "visa",       "name": "Preparazione documentazione E-2 Treaty Investor",            "start": 1,  "end": 4,  "critical": true },
+      { "id": "t5",  "workstream": "visa",       "name": "Filing E-2 consolato + attesa approvazione",                 "start": 4,  "end": 10, "critical": true },
+      { "id": "t6",  "workstream": "visa",       "name": "Ingresso USA + SSN + driver license NJ",                      "start": 10, "end": 12 },
+
+      { "id": "t7",  "workstream": "compliance", "name": "Ingaggio FSVP consultant certificato FDA",                    "start": 3,  "end": 4,  "critical": true },
+      { "id": "t8",  "workstream": "compliance", "name": "FDA Food Facility Registration Diusapet Italia",              "start": 4,  "end": 6  },
+      { "id": "t9",  "workstream": "compliance", "name": "Design etichette USA AAFCO compliant (8 SKU)",                "start": 5,  "end": 8  },
+      { "id": "t10", "workstream": "compliance", "name": "Setup FSVP records + HACCP procedures magazzino",             "start": 8,  "end": 11 },
+
+      { "id": "t11", "workstream": "warehouse",  "name": "Ricerca magazzino Linden/Avenel (LoopNet, Crexi, broker)",    "start": 2,  "end": 6  },
+      { "id": "t12", "workstream": "warehouse",  "name": "Sopralluoghi + verifica zoning industrial",                   "start": 5,  "end": 7,  "critical": true },
+      { "id": "t13", "workstream": "warehouse",  "name": "Firma lease + deposito cauzionale 3 mesi",                    "start": 7,  "end": 8,  "critical": true },
+      { "id": "t14", "workstream": "warehouse",  "name": "Setup attrezzature (scaffali, sigillatrice, telecamere)",     "start": 8,  "end": 10 },
+
+      { "id": "t15", "workstream": "container",  "name": "Ordine primo container mezzo carico 4 SKU a Diusapet Italia", "start": 9,  "end": 10, "critical": true },
+      { "id": "t16", "workstream": "container",  "name": "Produzione + bigbag in Italia (lead time)",                   "start": 10, "end": 12 },
+      { "id": "t17", "workstream": "container",  "name": "ISF filing + Prior Notice FDA + transit NJ",                  "start": 12, "end": 13, "critical": true },
+
+      { "id": "t18", "workstream": "sales",      "name": "Outreach Top 15 prospect (email Cowork + call + campioni)",   "start": 6,  "end": 11, "critical": true },
+      { "id": "t19", "workstream": "sales",      "name": "Chiusura 5 ordini firmati pre-container",                     "start": 9,  "end": 12, "critical": true },
+      { "id": "t20", "workstream": "sales",      "name": "Lancio sito web + foto prodotto professionali",               "start": 10, "end": 13 },
+
+      { "id": "t21", "workstream": "ceo",        "name": "Trasferimento famiglia + housing Jersey City/Hoboken",        "start": 10, "end": 12 },
+      { "id": "t22", "workstream": "ceo",        "name": "Assicurazione sanitaria USA + setup CPA",                     "start": 11, "end": 13 }
+    ],
+    "milestones": [
+      { "week": 2,  "label": "LLC Delaware attiva + EIN", "workstream": "legal" },
+      { "week": 4,  "label": "FSVP consultant ingaggiato", "workstream": "compliance" },
+      { "week": 8,  "label": "Lease magazzino firmato", "workstream": "warehouse", "critical": true },
+      { "week": 10, "label": "Primo container spedito da Italia", "workstream": "container", "critical": true },
+      { "week": 12, "label": "5 ordini pre-container firmati", "workstream": "sales", "critical": true },
+      { "week": 13, "label": "Container arrivato a Port Newark", "workstream": "container", "critical": true }
+    ]
+  },
+  "view_36months": {
+    "unit": "month",
+    "total_months": 36,
+    "tasks": [
+      { "id": "m1",  "workstream": "legal",      "name": "Setup legale + visti",                                      "start": 1,  "end": 3  },
+      { "id": "m2",  "workstream": "warehouse",  "name": "Warehouse operativo Linden (lease 36 mesi)",                 "start": 3,  "end": 36 },
+      { "id": "m3",  "workstream": "compliance", "name": "FDA/FSVP ongoing + HACCP mensile",                           "start": 3,  "end": 36 },
+
+      { "id": "m4",  "workstream": "container",  "name": "Ordini container (mezzo carico)",                            "start": 3,  "end": 6  },
+      { "id": "m5",  "workstream": "container",  "name": "Ordini container regolari ogni 45 giorni",                   "start": 6,  "end": 36 },
+
+      { "id": "m6",  "workstream": "sales",      "name": "Lancio Zona 1: Hudson + Essex + Union County",               "start": 4,  "end": 8  },
+      { "id": "m7",  "workstream": "sales",      "name": "Espansione Zona 2: Manhattan + Brooklyn + Bergen",           "start": 7,  "end": 14 },
+      { "id": "m8",  "workstream": "sales",      "name": "Amazon Seller Central setup + lancio Prime",                 "start": 6,  "end": 10 },
+      { "id": "m9",  "workstream": "sales",      "name": "Amazon crescita + PPC Sponsored Products",                   "start": 10, "end": 36 },
+      { "id": "m10", "workstream": "sales",      "name": "Global Pet Expo Orlando (stand + 3 accordi distribuzione)",  "start": 14, "end": 15, "critical": true },
+      { "id": "m11", "workstream": "sales",      "name": "Espansione Pennsylvania (Philadelphia suburbs)",             "start": 18, "end": 26 },
+      { "id": "m12", "workstream": "sales",      "name": "Attivazione Chewy + distributori Fase 2 (Zeigler, Fauna)",   "start": 20, "end": 30 },
+      { "id": "m13", "workstream": "sales",      "name": "Connecticut + upstate NY",                                    "start": 26, "end": 36 },
+
+      { "id": "m14", "workstream": "ceo",        "name": "Operations CEO-only (Fase 1)",                                "start": 3,  "end": 18 },
+      { "id": "m15", "workstream": "ceo",        "name": "Part-time operatore (Fase 1+, da 800 sacchi/mese)",          "start": 18, "end": 30 },
+      { "id": "m16", "workstream": "ceo",        "name": "Operaio full-time + driver dedicato (Fase 2)",                "start": 30, "end": 36 }
+    ],
+    "milestones": [
+      { "month": 3,  "label": "LLC attiva + magazzino operativo",                   "workstream": "warehouse", "critical": true },
+      { "month": 5,  "label": "Prime vendite (5+ pet store riordinano)",            "workstream": "sales" },
+      { "month": 6,  "label": "Break-even operativo (escluso compenso CEO)",        "workstream": "sales",     "critical": true },
+      { "month": 9,  "label": "Amazon live con 50+ review",                          "workstream": "sales" },
+      { "month": 12, "label": "Review Anno 1: decisione scala o consolida",         "workstream": "ceo" },
+      { "month": 14, "label": "Global Pet Expo: 3 accordi distribuzione",           "workstream": "sales",     "critical": true },
+      { "month": 20, "label": "Break-even totale (compenso CEO incluso)",            "workstream": "ceo",       "critical": true },
+      { "month": 24, "label": "50+ clienti attivi, 3 stati coperti",                 "workstream": "sales" },
+      { "month": 36, "label": "EBITDA +$145k, LLC valore $500k+",                    "workstream": "ceo",       "critical": true }
+    ]
+  },
+  "critical_path_90days": [
+    "Contatto attorney + filing LLC (week 1–2)",
+    "Filing E-2 (week 4–10) — cammino critico più lungo",
+    "Lease warehouse (week 7–8)",
+    "Ordine container (week 9–10)",
+    "5 ordini pre-container (week 9–12)",
+    "Arrivo container NJ (week 13)"
+  ],
+  "phase_labels": [
+    { "phase": "Setup",       "from": 1,  "to": 3,  "note": "Fondazioni: legali, visti, compliance" },
+    { "phase": "Launch",      "from": 4,  "to": 6,  "note": "Warehouse operativo, primo container, prime vendite" },
+    { "phase": "Growth",      "from": 7,  "to": 14, "note": "Espansione Zone 2, Amazon live, Global Pet Expo" },
+    { "phase": "Scale",       "from": 15, "to": 24, "note": "Break-even, PA, Chewy, 50+ clienti" },
+    { "phase": "Consolidate", "from": 25, "to": 36, "note": "Fase 2, operaio full-time, CT + upstate NY" }
   ]
 }

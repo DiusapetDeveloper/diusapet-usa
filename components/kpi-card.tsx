@@ -14,6 +14,7 @@ import { cn } from "@/lib/utils";
 type Props = {
   label: string;
   value: string | number;
+  unit?: string;
   trend?: string;
   caption?: string;
   delay?: number;
@@ -36,6 +37,7 @@ const BORDER_EASE: [number, number, number, number] = [0.65, 0, 0.35, 1];
 export function KPICard({
   label,
   value,
+  unit,
   trend,
   caption,
   delay = 0,
@@ -101,6 +103,11 @@ export function KPICard({
           >
             {String(value)}
           </motion.span>
+        )}
+        {unit && (
+          <span className="font-serif text-2xl md:text-3xl text-navy/75 ml-1">
+            {unit}
+          </span>
         )}
       </div>
 
