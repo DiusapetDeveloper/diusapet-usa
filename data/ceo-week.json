@@ -1,0 +1,126 @@
+{
+  "meta": {
+    "title": "La settimana tipo del CEO",
+    "subtitle": "Modello operativo Fase 1: un solo operatore, 5 giorni pieni, 2 weekend Italia al mese.",
+    "source": "Allegato 02 — Piano di Massima (cap. Flusso Operativo) + Allegato 06 — Produzione",
+    "phase": "Fase 1 — CEO unico operatore · 600 sacchi/mese"
+  },
+  "weekly_kpi": [
+    { "value": "≈ 150", "label": "Sacchi movimentati / settimana" },
+    { "value": "25–30", "label": "Clienti toccati / settimana" },
+    { "value": "5–8", "label": "Cold call nuovi prospect" },
+    { "value": "55–60", "label": "Ore lavorate / settimana" }
+  ],
+  "categories": {
+    "production": { "label": "Produzione & magazzino", "color": "#B8925A" },
+    "delivery":   { "label": "Consegne su furgone",    "color": "#0B1E3F" },
+    "sales":      { "label": "Vendita & networking",   "color": "#5A6B4D" },
+    "admin":      { "label": "Amministrazione",        "color": "#6B6560" },
+    "italy":      { "label": "Supply chain Italia",    "color": "#7A2E2E" },
+    "rest":       { "label": "Riposo / personale",     "color": "#D4D0CA" }
+  },
+  "days": [
+    {
+      "day": "Lunedì",
+      "day_short": "Lun",
+      "focus": "Produzione & preparazione settimana",
+      "blocks": [
+        { "time": "07:30 – 08:00", "activity": "Apertura magazzino, checklist giornaliera, review ordini settimana", "category": "production" },
+        { "time": "08:00 – 10:00", "activity": "Imbustamento sacchi con impulse sealer (~60 sacchi/ora)", "category": "production" },
+        { "time": "10:00 – 12:00", "activity": "Etichettatura AAFCO + controllo inventario + riordino scaffali", "category": "production" },
+        { "time": "12:00 – 13:00", "activity": "Lunch + lettura trade news (Pet Business, PetAge)", "category": "rest" },
+        { "time": "13:00 – 15:30", "activity": "Picking e preparazione consegne martedì (NJ Hudson + Essex)", "category": "production" },
+        { "time": "15:30 – 17:00", "activity": "Email, update CRM, follow-up clienti attivi", "category": "admin" },
+        { "time": "17:00 – 19:00", "activity": "Call con Diusapet Italia (sfruttando fuso +6h): produzione, ordini nuovi SKU, questioni regolatorie", "category": "italy" }
+      ],
+      "total_hours": 10.5
+    },
+    {
+      "day": "Martedì",
+      "day_short": "Mar",
+      "focus": "Consegne New Jersey",
+      "blocks": [
+        { "time": "07:30 – 08:30", "activity": "Carico furgone Enterprise 3.5t: ordini 8–12 pet store NJ", "category": "delivery" },
+        { "time": "08:30 – 14:00", "activity": "Consegne Hudson County (Hoboken, Jersey City) + Essex (Montclair, Livingston)", "category": "delivery" },
+        { "time": "14:00 – 15:00", "activity": "Lunch working + aggiornamento ordini via smartphone", "category": "rest" },
+        { "time": "15:00 – 17:30", "activity": "Rientro magazzino, scarico resi eventuali, riordino stock", "category": "production" },
+        { "time": "17:30 – 19:00", "activity": "CRM update dettagliato, note clienti visitati, foto per Instagram", "category": "admin" }
+      ],
+      "total_hours": 11.5
+    },
+    {
+      "day": "Mercoledì",
+      "day_short": "Mer",
+      "focus": "New York + scouting clienti",
+      "blocks": [
+        { "time": "08:00 – 09:00", "activity": "Prep consegne NYC: checklist indirizzi, piano traffico Lincoln Tunnel", "category": "delivery" },
+        { "time": "09:00 – 14:00", "activity": "Consegne Manhattan (Whiskers, Beasty Feast) + Brooklyn (Bay Ridge, Williamsburg)", "category": "delivery" },
+        { "time": "14:00 – 16:00", "activity": "Cold call fisiche: 5–8 visite pet store nuovi prospect NYC area", "category": "sales" },
+        { "time": "16:00 – 18:00", "activity": "Rientro magazzino, drop-off documenti, update pipeline", "category": "delivery" },
+        { "time": "18:00 – 19:30", "activity": "Evento community italiana NJ/NYC (bi-settimanale: associazioni, meetup razze italiane)", "category": "sales" }
+      ],
+      "total_hours": 11.0
+    },
+    {
+      "day": "Giovedì",
+      "day_short": "Gio",
+      "focus": "Pennsylvania + Union County",
+      "blocks": [
+        { "time": "07:30 – 08:30", "activity": "Carico furgone per PA + Union County NJ", "category": "delivery" },
+        { "time": "08:30 – 14:30", "activity": "Consegne PA (Philadelphia suburbs) + Union County NJ (Garwood, Westfield, Linden)", "category": "delivery" },
+        { "time": "14:30 – 15:30", "activity": "Lunch + trade news", "category": "rest" },
+        { "time": "15:30 – 17:30", "activity": "Rientro + follow-up telefonico clienti per riordini", "category": "sales" },
+        { "time": "17:30 – 19:00", "activity": "Call Italia per programmazione container successivo (2ª settimana del mese)", "category": "italy" }
+      ],
+      "total_hours": 11.0
+    },
+    {
+      "day": "Venerdì",
+      "day_short": "Ven",
+      "focus": "Amministrazione & pianificazione",
+      "blocks": [
+        { "time": "08:00 – 10:00", "activity": "QuickBooks: fatturazione settimana, riconciliazioni bancarie, expense tracking", "category": "admin" },
+        { "time": "10:00 – 12:00", "activity": "Ordine Italia: pianificazione volumi container, conferma SKU, payment wire", "category": "italy" },
+        { "time": "12:00 – 13:00", "activity": "Lunch", "category": "rest" },
+        { "time": "13:00 – 15:00", "activity": "Social media + newsletter clienti (blog Alleva USA, case study settimanali)", "category": "admin" },
+        { "time": "15:00 – 17:00", "activity": "Pipeline review settimanale: KPI, conversioni, target Lun–Gio successivo", "category": "admin" },
+        { "time": "17:00 – 18:00", "activity": "Planning settimana successiva + briefing a CPA / legal se necessario", "category": "admin" }
+      ],
+      "total_hours": 9.0
+    },
+    {
+      "day": "Sabato",
+      "day_short": "Sab",
+      "focus": "Weekend variabile",
+      "blocks": [
+        { "time": "Weekend 1–3", "activity": "Evento community italiana NJ: Italian American Day, cane corso meetup, fiere di quartiere", "category": "sales" },
+        { "time": "Weekend 2–4", "activity": "Volo Italia (2× al mese): partenza venerdì sera, rientro domenica sera", "category": "italy" }
+      ],
+      "total_hours": 6.0,
+      "note": "Alterna evento sul territorio e rientro Italia. Non è giorno libero fisso."
+    },
+    {
+      "day": "Domenica",
+      "day_short": "Dom",
+      "focus": "Riposo / famiglia",
+      "blocks": [
+        { "time": "Tutto il giorno", "activity": "Giorno di riposo OPPURE rientro da Italia (volo domenica sera)", "category": "rest" }
+      ],
+      "total_hours": 0
+    }
+  ],
+  "monthly_cadence": [
+    { "frequency": "2× al mese",  "activity": "Volo Italia per vedere i figli (Ven sera → Dom sera)",                          "category": "italy" },
+    { "frequency": "1× al mese",  "activity": "Evento community italiana NJ/NY di alta visibilità (festa patronale, mercato italiano)", "category": "sales" },
+    { "frequency": "1× al mese",  "activity": "Ordine container a Diusapet Italia (lead time 25 giorni)",                      "category": "italy" },
+    { "frequency": "Quarterly",   "activity": "Review finanziaria con CPA + aggiornamento forecast",                            "category": "admin" },
+    { "frequency": "Annuale",     "activity": "Global Pet Expo Orlando (Febbraio): stand + 3 target accordi distribuzione",     "category": "sales" }
+  ],
+  "time_allocation": [
+    { "category": "production", "hours_per_week": 9.5,  "pct": 17 },
+    { "category": "delivery",   "hours_per_week": 22.0, "pct": 40 },
+    { "category": "sales",      "hours_per_week": 8.5,  "pct": 15 },
+    { "category": "admin",      "hours_per_week": 9.5,  "pct": 17 },
+    { "category": "italy",      "hours_per_week": 6.5,  "pct": 11 }
+  ]
+}

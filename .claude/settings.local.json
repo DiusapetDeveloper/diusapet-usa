@@ -2,7 +2,25 @@
   "permissions": {
     "allow": [
       "Bash(git add *)",
-      "Bash(git -c user.name=\"Diusapet\" -c user.email=\"dev@diusapet.work\" commit -q -m \"feat: intro cinematica + kpi cockpit drammatico + mappa interattiva prospect\")"
+      "Bash(git -c user.name=\"Diusapet\" -c user.email=\"dev@diusapet.work\" commit -q -m \"feat: intro cinematica + kpi cockpit drammatico + mappa interattiva prospect\")",
+      "Read(//Users/danielefranceschini/Downloads/crm_pack/**)",
+      "Bash(cp ~/Downloads/crm_pack/scripts/sync-crm.mjs scripts/)",
+      "Bash(cp ~/Downloads/crm_pack/data/crm/*.xlsx data/crm/)",
+      "Bash(cp ~/Downloads/crm_pack/data/clients.json data/clients.json)",
+      "Bash(/usr/bin/stat -f \"%N %m\" data/clients.json)",
+      "Bash(/usr/bin/stat -f \"%N size=%z mtime=%Sm\" data/clients.json scripts/sync-crm.mjs)",
+      "Bash(cp ~/Downloads/crm_pack/scripts/sync-crm.mjs /Users/danielefranceschini/diusapet-usa/scripts/)",
+      "Bash(cp ~/Downloads/crm_pack/data/crm/*.xlsx /Users/danielefranceschini/diusapet-usa/data/crm/)",
+      "Bash(cp ~/Downloads/crm_pack/data/clients.json /Users/danielefranceschini/diusapet-usa/data/clients.json)",
+      "Bash(/usr/bin/stat -f \"size=%z mtime=%Sm\" /Users/danielefranceschini/diusapet-usa/data/clients.json)",
+      "Bash(npm install *)",
+      "Bash(npm list *)",
+      "Bash(npm run *)",
+      "Bash(node *)",
+      "Bash(/usr/bin/curl *)",
+      "Bash(/usr/bin/find /Users/danielefranceschini/diusapet-usa -name \"ceo*\")",
+      "Bash(/usr/bin/tail *)",
+      "Bash(git -c user.name=\"Diusapet\" -c user.email=\"dev@diusapet.work\" commit -q -m \"feat: modello operativo — settimana tipo CEO con timeline interattiva\")"
     ]
   }
 }

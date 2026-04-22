@@ -24,7 +24,8 @@ type NumericParts = { prefix: string; number: number; suffix: string };
 
 function parseNumeric(v: string | number): NumericParts | null {
   if (typeof v === "number") return { prefix: "", number: v, suffix: "" };
-  const m = v.match(/^([$+\-]?)(\d+(?:\.\d+)?)(.*)$/);
+  // Strict: optional $/+/-, then a single number, then only short unit suffix (%, B, k, K, M, m). No dashes / ranges.
+  const m = v.match(/^([$+\-]?)(\d+(?:\.\d+)?)([%BKkMm]*)$/);
   if (!m) return null;
   return { prefix: m[1], number: parseFloat(m[2]), suffix: m[3] };
 }

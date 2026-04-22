@@ -8,8 +8,11 @@ import {
 } from "react-simple-maps";
 import { geoCentroid } from "d3-geo";
 import { motion, useReducedMotion } from "framer-motion";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import clientsData from "@/data/clients.json";
+import { cn } from "@/lib/utils";
+
+type Prospect = (typeof clientsData.prospects)[number];
 
 const TRI_STATE_LABEL: Record<string, string> = {
   "34": "NJ",
@@ -24,37 +27,131 @@ const STATUS_COLOR: Record<string, string> = {
   contattato: "rgba(11, 30, 63, 0.5)",
   lead: "#9CA3AF",
 };
+const UNICUM_COLOR = "#D4A94A";
 
-const STATUS_ORDER: Array<keyof typeof STATUS_COLOR> = [
-  "confermato",
-  "interessato",
-  "contattato",
-  "lead",
-];
+const PRIORITY_RANK: Record<string, number> = {
+  COLD: 0,
+  WARM: 0,
+  HOT: 1,
+  UNICUM: 2,
+};
 
-type Prospect = (typeof clientsData.prospects)[number];
+function markerColor(p: Prospect): string {
+  if (p.priority === "UNICUM") return UNICUM_COLOR;
+  return STATUS_COLOR[p.status] || STATUS_COLOR.lead;
+}
+
+function topPriorityOf(items: Prospect[]): string {
+  return items.reduce(
+    (best, p) =>
+      (PRIORITY_RANK[p.priority] ?? 0) > (PRIORITY_RANK[best] ?? 0)
+        ? p.priority
+        : best,
+    "WARM"
+  );
+}
+
+type Cluster =
+  | { kind: "single"; p: Prospect }
+  | { kind: "pair"; items: [Prospect, Prospect] }
+  | { kind: "big"; items: Prospect[]; topPriority: string };
+
+function buildClusters(prospects: Prospect[]): Cluster[] {
+  const groups = new Map<string, Prospect[]>();
+  for (const p of prospects) {
+    const key = p.coordinates.join(",");
+    const arr = groups.get(key) ?? [];
+    arr.push(p);
+    groups.set(key, arr);
+  }
+  const out: Cluster[] = [];
+  for (const items of groups.values()) {
+    if (items.length === 1) out.push({ kind: "single", p: items[0] });
+    else if (items.length === 2)
+      out.push({ kind: "pair", items: [items[0], items[1]] });
+    else
+      out.push({ kind: "big", items, topPriority: topPriorityOf(items) });
+  }
+  return out;
+}
+
+function clusterTopRank(c: Cluster): number {
+  if (c.kind === "single") return PRIORITY_RANK[c.p.priority] ?? 0;
+  if (c.kind === "pair") return topRank(c.items);
+  return PRIORITY_RANK[c.topPriority] ?? 0;
+}
+
+function topRank(items: Prospect[]): number {
+  return Math.max(...items.map((p) => PRIORITY_RANK[p.priority] ?? 0));
+}
+
+export type ProspectMapProps = {
+  prospects: Prospect[];
+  totalCount: number;
+  goalPreContainer: number;
+  stateChips: Array<{ key: string; label: string; count: number }>;
+  activeStates: Set<string>;
+  onToggleState: (key: string) => void;
+  onSelect: (id: string) => void;
+};
 
 export function ProspectMap({
+  prospects,
+  totalCount,
+  goalPreContainer,
+  stateChips,
+  activeStates,
+  onToggleState,
   onSelect,
-}: {
-  onSelect?: (rank: number) => void;
-}) {
-  const [hovered, setHovered] = useState<number | null>(null);
+}: ProspectMapProps) {
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [hoveredCluster, setHoveredCluster] = useState<string | null>(null);
   const reduce = useReducedMotion();
-  const { map: mapConf, prospects, meta } = clientsData;
+  const { map: mapConf } = clientsData;
+
+  const clusters = useMemo(() => buildClusters(prospects), [prospects]);
+  const sortedClusters = useMemo(
+    () =>
+      [...clusters].sort((a, b) => clusterTopRank(a) - clusterTopRank(b)),
+    [clusters]
+  );
 
   const scale = mapConf.zoom * 140;
-  const statesCovered = new Set(prospects.map((p) => p.state.split("/")[0])).size;
 
   return (
     <div className="relative border border-hairline bg-white">
-      <div className="absolute top-6 right-6 z-10 text-right pointer-events-none">
+      {/* STATE CHIPS */}
+      <div className="flex flex-wrap items-center gap-2 border-b border-hairline px-6 py-4">
+        <p className="eyebrow text-carbon-muted mr-3">Stati</p>
+        {stateChips.map((c) => {
+          const active = activeStates.has(c.key);
+          return (
+            <button
+              key={c.key}
+              onClick={() => onToggleState(c.key)}
+              className={cn(
+                "inline-flex items-center gap-2 px-3 py-1.5 text-[11px] uppercase tracking-micro border transition-colors",
+                active
+                  ? "bg-navy text-white border-navy"
+                  : "text-carbon-muted border-hairline hover:border-navy hover:text-navy"
+              )}
+            >
+              <span>{c.label}</span>
+              <span className="num opacity-75">{c.count}</span>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* COUNTER */}
+      <div className="absolute top-[58px] right-6 z-10 text-right pointer-events-none bg-white/80 backdrop-blur-sm px-3 py-1">
         <p className="eyebrow text-carbon-muted num">
-          {prospects.length} prospect · {statesCovered} stati · Target:{" "}
-          {meta.goal_pre_container_orders} ordini firmati
+          {prospects.length} di {totalCount} prospect · Target:{" "}
+          {goalPreContainer} ordini firmati
         </p>
       </div>
 
+      {/* MAP */}
       <div className="min-h-[560px]">
         <ComposableMap
           projection="geoMercator"
@@ -97,7 +194,6 @@ export function ProspectMap({
                     />
                   );
                 })}
-
                 {geographies.map((geo) => {
                   const id = String(geo.id).padStart(2, "0");
                   if (!(id in TRI_STATE_LABEL)) return null;
@@ -126,61 +222,171 @@ export function ProspectMap({
             )}
           </Geographies>
 
-          {prospects.map((p, i) => (
-            <ProspectMarker
-              key={p.rank}
-              p={p as Prospect}
-              index={i}
-              hovered={hovered === p.rank}
-              onHover={(v) => setHovered(v ? p.rank : null)}
-              onClick={() => onSelect?.(p.rank)}
-              reduce={!!reduce}
-            />
-          ))}
+          {sortedClusters.map((c, idx) => {
+            if (c.kind === "single") {
+              return (
+                <SingleMarker
+                  key={c.p.id}
+                  p={c.p}
+                  cy={0}
+                  hovered={hoveredId === c.p.id}
+                  onHover={(v) => setHoveredId(v ? c.p.id : null)}
+                  onClick={() => onSelect(c.p.id)}
+                  reduce={!!reduce}
+                />
+              );
+            }
+            if (c.kind === "pair") {
+              return (
+                <Marker
+                  key={`pair-${idx}`}
+                  coordinates={c.items[0].coordinates as [number, number]}
+                >
+                  <PairDot
+                    p={c.items[0]}
+                    cy={-4}
+                    hovered={hoveredId === c.items[0].id}
+                    onHover={(v) => setHoveredId(v ? c.items[0].id : null)}
+                    onClick={() => onSelect(c.items[0].id)}
+                    reduce={!!reduce}
+                  />
+                  <PairDot
+                    p={c.items[1]}
+                    cy={4}
+                    hovered={hoveredId === c.items[1].id}
+                    onHover={(v) => setHoveredId(v ? c.items[1].id : null)}
+                    onClick={() => onSelect(c.items[1].id)}
+                    reduce={!!reduce}
+                  />
+                </Marker>
+              );
+            }
+            // big cluster
+            const color =
+              c.topPriority === "UNICUM"
+                ? UNICUM_COLOR
+                : STATUS_COLOR[c.items[0].status] ?? STATUS_COLOR.lead;
+            const cKey = `cl-${idx}`;
+            const isHover = hoveredCluster === cKey;
+            return (
+              <Marker
+                key={cKey}
+                coordinates={c.items[0].coordinates as [number, number]}
+              >
+                {!reduce && (
+                  <motion.circle
+                    r={0}
+                    fill="none"
+                    stroke={color}
+                    strokeWidth={1}
+                    initial={{ r: 0, opacity: 0.35 }}
+                    animate={
+                      isHover
+                        ? { r: 16, opacity: 0.2 }
+                        : { r: [0, 18], opacity: [0.35, 0] }
+                    }
+                    transition={
+                      isHover
+                        ? { duration: 0.25, ease: "easeOut" }
+                        : {
+                            duration: 2.6,
+                            delay: (idx * 0.173) % 2,
+                            repeat: Infinity,
+                            ease: "easeOut",
+                          }
+                    }
+                  />
+                )}
+                <circle
+                  r={isHover ? 12 : 10}
+                  fill={color}
+                  stroke="white"
+                  strokeWidth={1.5}
+                  style={{ cursor: "pointer", transition: "r 150ms ease" }}
+                  onMouseEnter={() => setHoveredCluster(cKey)}
+                  onMouseLeave={() => setHoveredCluster(null)}
+                />
+                <text
+                  textAnchor="middle"
+                  dy={3.5}
+                  fontSize={9}
+                  fill="white"
+                  fontWeight={700}
+                  style={{
+                    pointerEvents: "none",
+                    fontFamily: "var(--font-plex-sans), sans-serif",
+                  }}
+                >
+                  {c.items.length}
+                </text>
+                {isHover && <ClusterTooltip items={c.items} color={color} />}
+              </Marker>
+            );
+          })}
         </ComposableMap>
       </div>
 
-      <div className="flex flex-wrap items-center gap-6 border-t border-hairline px-6 py-4">
+      {/* LEGEND */}
+      <div className="flex flex-wrap items-center gap-5 border-t border-hairline px-6 py-4">
         <p className="eyebrow text-carbon-muted">Legenda</p>
-        {STATUS_ORDER.map((status) => (
-          <div key={status} className="flex items-center gap-2">
-            <span
-              className="inline-block h-2 w-2 rounded-full"
-              style={{ backgroundColor: STATUS_COLOR[status] }}
-            />
-            <span className="text-xs text-carbon-muted capitalize">
-              {status}
-            </span>
-          </div>
-        ))}
+        <LegendDot color={UNICUM_COLOR} label="Unicum" ring />
+        <LegendDot color={STATUS_COLOR.confermato} label="Confermato" />
+        <LegendDot color={STATUS_COLOR.interessato} label="Interessato" />
+        <LegendDot color={STATUS_COLOR.contattato} label="Contattato" />
+        <LegendDot color={STATUS_COLOR.lead} label="Lead" />
       </div>
     </div>
   );
 }
 
-function ProspectMarker({
+function LegendDot({
+  color,
+  label,
+  ring,
+}: {
+  color: string;
+  label: string;
+  ring?: boolean;
+}) {
+  return (
+    <div className="flex items-center gap-2">
+      <span
+        className={cn(
+          "inline-block h-2 w-2 rounded-full",
+          ring && "ring-2 ring-gold/40 ring-offset-1"
+        )}
+        style={{ backgroundColor: color }}
+      />
+      <span className="text-xs text-carbon-muted">{label}</span>
+    </div>
+  );
+}
+
+function SingleMarker({
   p,
-  index,
+  cy,
   hovered,
   onHover,
   onClick,
   reduce,
 }: {
   p: Prospect;
-  index: number;
+  cy: number;
   hovered: boolean;
   onHover: (v: boolean) => void;
   onClick: () => void;
   reduce: boolean;
 }) {
-  const color = STATUS_COLOR[p.status] || STATUS_COLOR.lead;
-  // Deterministic random-like offset so halos don't sync (avoids SSR mismatch)
-  const haloDelay = (p.rank * 0.173) % 2;
+  const color = markerColor(p);
+  const isUnicum = p.priority === "UNICUM";
+  // Deterministic halo delay based on id hash
+  const haloDelay = hashDelay(p.id);
 
   return (
     <Marker coordinates={p.coordinates as [number, number]}>
       {!reduce && (
         <motion.circle
+          cy={cy}
           r={0}
           fill="none"
           stroke={color}
@@ -188,8 +394,8 @@ function ProspectMarker({
           initial={{ r: 0, opacity: 0.4 }}
           animate={
             hovered
-              ? { r: 14, opacity: 0.25 }
-              : { r: [0, 18], opacity: [0.4, 0] }
+              ? { r: 11, opacity: 0.25 }
+              : { r: [0, 14], opacity: [0.4, 0] }
           }
           transition={
             hovered
@@ -203,30 +409,101 @@ function ProspectMarker({
           }
         />
       )}
-
+      {isUnicum && (
+        <circle
+          cy={cy}
+          r={hovered ? 7 : 6}
+          fill="none"
+          stroke={UNICUM_COLOR}
+          strokeWidth={1}
+          strokeOpacity={0.8}
+          style={{ pointerEvents: "none", transition: "r 150ms ease" }}
+        />
+      )}
       <circle
-        r={hovered ? 7 : 5}
+        cy={cy}
+        r={hovered ? 5 : 3.5}
         fill={color}
         stroke="white"
-        strokeWidth={1.5}
+        strokeWidth={1.2}
         style={{ cursor: "pointer", transition: "r 150ms ease" }}
         onMouseEnter={() => onHover(true)}
         onMouseLeave={() => onHover(false)}
         onClick={onClick}
       />
-
       {hovered && <MarkerTooltip p={p} color={color} />}
     </Marker>
   );
 }
 
-function MarkerTooltip({ p, color }: { p: Prospect; color: string }) {
+function PairDot({
+  p,
+  cy,
+  hovered,
+  onHover,
+  onClick,
+  reduce,
+}: {
+  p: Prospect;
+  cy: number;
+  hovered: boolean;
+  onHover: (v: boolean) => void;
+  onClick: () => void;
+  reduce: boolean;
+}) {
+  const color = markerColor(p);
+  const isUnicum = p.priority === "UNICUM";
+  return (
+    <g>
+      {isUnicum && (
+        <circle
+          cy={cy}
+          r={hovered ? 7 : 6}
+          fill="none"
+          stroke={UNICUM_COLOR}
+          strokeWidth={1}
+          strokeOpacity={0.8}
+          style={{ pointerEvents: "none", transition: "r 150ms ease" }}
+        />
+      )}
+      <circle
+        cy={cy}
+        r={hovered ? 5 : 3.5}
+        fill={color}
+        stroke="white"
+        strokeWidth={1.2}
+        style={{ cursor: "pointer", transition: "r 150ms ease" }}
+        onMouseEnter={() => onHover(true)}
+        onMouseLeave={() => onHover(false)}
+        onClick={onClick}
+      />
+      {hovered && <MarkerTooltip p={p} color={color} dy={cy} />}
+    </g>
+  );
+}
+
+function hashDelay(id: string): number {
+  let h = 0;
+  for (let i = 0; i < id.length; i++) h = (h * 31 + id.charCodeAt(i)) >>> 0;
+  return (h % 240) / 100; // 0 – 2.4
+}
+
+function MarkerTooltip({
+  p,
+  color,
+  dy = 0,
+}: {
+  p: Prospect;
+  color: string;
+  dy?: number;
+}) {
+  const hook = p.hook || "";
   return (
     <foreignObject
-      x={10}
-      y={-92}
+      x={8}
+      y={-96 + dy}
       width={300}
-      height={200}
+      height={220}
       style={{ overflow: "visible", pointerEvents: "none" }}
     >
       <motion.div
@@ -265,11 +542,25 @@ function MarkerTooltip({ p, color }: { p: Prospect; color: string }) {
             lineHeight: 1.2,
           }}
         >
-          <span style={{ opacity: 0.5, marginRight: 6 }}>#{p.rank}</span>
+          {p.italian_surname === "SÌ" && (
+            <span
+              style={{
+                display: "inline-block",
+                width: 6,
+                height: 6,
+                borderRadius: "50%",
+                background: "#B8925A",
+                marginRight: 6,
+                verticalAlign: "middle",
+              }}
+            />
+          )}
           {p.name}
         </p>
         <p style={{ margin: "6px 0 0 0", fontSize: 11, opacity: 0.65 }}>
-          {p.city}, {p.state}
+          {p.city}
+          {p.city && p.state ? ", " : ""}
+          {p.state}
         </p>
         <span
           style={{
@@ -285,18 +576,115 @@ function MarkerTooltip({ p, color }: { p: Prospect; color: string }) {
             borderRadius: 2,
           }}
         >
-          {p.status}
+          {p.priority === "UNICUM" ? "Unicum" : p.status}
         </span>
+        {hook && (
+          <p
+            style={{
+              margin: "8px 0 0 0",
+              fontSize: 11,
+              lineHeight: 1.45,
+              opacity: 0.85,
+              maxHeight: 80,
+              overflow: "hidden",
+            }}
+          >
+            {hook.length > 180 ? hook.slice(0, 180) + "…" : hook}
+          </p>
+        )}
+      </motion.div>
+    </foreignObject>
+  );
+}
+
+function ClusterTooltip({
+  items,
+  color,
+}: {
+  items: Prospect[];
+  color: string;
+}) {
+  const shown = items.slice(0, 5);
+  const extra = items.length - shown.length;
+  return (
+    <foreignObject
+      x={14}
+      y={-120}
+      width={300}
+      height={240}
+      style={{ overflow: "visible", pointerEvents: "none" }}
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 4 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.15, ease: [0.22, 1, 0.36, 1] }}
+        style={{
+          display: "inline-block",
+          background: "#0B1E3F",
+          color: "#F5F3EE",
+          padding: "12px 16px",
+          borderRadius: 2,
+          maxWidth: 280,
+          boxShadow: "0 12px 40px -8px rgba(0,0,0,0.35)",
+          fontFamily: "var(--font-plex-sans), sans-serif",
+          position: "relative",
+        }}
+      >
+        <span
+          style={{
+            position: "absolute",
+            left: -5,
+            bottom: 18,
+            width: 0,
+            height: 0,
+            borderTop: "5px solid transparent",
+            borderBottom: "5px solid transparent",
+            borderRight: "5px solid #0B1E3F",
+          }}
+        />
         <p
           style={{
-            margin: "8px 0 0 0",
-            fontSize: 11,
-            lineHeight: 1.45,
-            opacity: 0.85,
+            margin: 0,
+            fontSize: 13,
+            fontFamily: "var(--font-plex-serif), serif",
           }}
         >
-          {p.hook}
+          {items.length} prospect in quest'area
         </p>
+        <p style={{ margin: "4px 0 10px 0", fontSize: 11, opacity: 0.6 }}>
+          {items[0].city || "Area"}
+          {items[0].state ? `, ${items[0].state}` : ""}
+        </p>
+        <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
+          {shown.map((p) => (
+            <li
+              key={p.id}
+              style={{
+                fontSize: 11,
+                opacity: 0.85,
+                padding: "3px 0",
+                borderTop: "1px solid rgba(245,243,238,0.08)",
+              }}
+            >
+              {p.name}
+              <span style={{ opacity: 0.5, marginLeft: 6 }}>
+                · {p.priority}
+              </span>
+            </li>
+          ))}
+        </ul>
+        {extra > 0 && (
+          <p
+            style={{
+              margin: "6px 0 0 0",
+              fontSize: 10,
+              opacity: 0.55,
+              textAlign: "right",
+            }}
+          >
+            +{extra} altri
+          </p>
+        )}
       </motion.div>
     </foreignObject>
   );
