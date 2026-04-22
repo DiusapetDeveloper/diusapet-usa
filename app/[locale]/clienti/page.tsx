@@ -43,12 +43,13 @@ type Prospect = (typeof clientsData.prospects)[number];
 
 const { meta, stats, prospects } = clientsData;
 
-const TYPE_LABEL: Record<string, string> = {
-  pet_store: "Pet store",
-  italian_market: "Italian market",
-  breeder: "Breeder",
-  distributor: "Distributore",
-  daycare: "Daycare",
+// Maps data.type → messages.categories.* key
+const TYPE_TO_MSG: Record<string, string> = {
+  pet_store: "petStore",
+  italian_market: "italianMarket",
+  breeder: "breeder",
+  distributor: "distributor",
+  daycare: "daycare",
 };
 
 const TYPE_ICON = {
@@ -69,17 +70,19 @@ const TYPE_ORDER: Array<keyof typeof TYPE_ICON> = [
 
 const PRIORITY_ORDER = ["UNICUM", "HOT", "WARM"] as const;
 
+const PRIORITY_TO_MSG: Record<string, string> = {
+  UNICUM: "unicum",
+  HOT: "hot",
+  WARM: "warm",
+  COLD: "cold",
+};
+
 function stateBucket(s: string): "NJ" | "NY" | "PA" | "other" {
   if (s === "NJ" || s === "NY" || s === "PA") return s;
   return "other";
 }
 
-const STATE_CHIP_LABELS: Array<{ key: string; label: string }> = [
-  { key: "NJ", label: "NJ" },
-  { key: "NY", label: "NY" },
-  { key: "PA", label: "PA" },
-  { key: "other", label: "Altri" },
-];
+const STATE_CHIP_KEYS = ["NJ", "NY", "PA", "other"] as const;
 
 const stateChipCounts: Record<string, number> = prospects.reduce(
   (acc, p) => {
@@ -182,9 +185,10 @@ export default function ClientiPage() {
     (stats.by_priority.HOT ?? 0) + (stats.by_priority.UNICUM ?? 0);
   const statesCovered = Object.keys(stats.by_state).length;
 
-  const statChipCountsForMap = STATE_CHIP_LABELS.map((c) => ({
-    ...c,
-    count: stateChipCounts[c.key] ?? 0,
+  const statChipCountsForMap = STATE_CHIP_KEYS.map((key) => ({
+    key,
+    label: t(`states.${key}`),
+    count: stateChipCounts[key] ?? 0,
   }));
 
   return (
@@ -211,41 +215,42 @@ export default function ClientiPage() {
       <AnimatedSection stagger className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
         <StatTile
           value={meta.total_prospects}
-          label="Prospect totali"
+          label={t("kpi.total")}
           delay={0}
         />
         <StatTile
           value={statesCovered}
-          label="Stati coperti"
+          label={t("kpi.states")}
           delay={0.1}
         />
         <StatTile
           value={hotUnicum}
-          label="HOT + Unicum"
+          label={t("kpi.hotUnicum")}
           delay={0.2}
         />
         <StatTile
           value={meta.goal_pre_container_orders}
-          suffix=" ordini"
-          label="Obiettivo pre-container"
+          suffix={t("kpi.ordersSuffix")}
+          label={t("kpi.orderGoal")}
           delay={0.3}
         />
       </AnimatedSection>
 
       {/* BREAKDOWN PER CATEGORIA */}
       <AnimatedSection stagger className="mt-24">
-        <p className="eyebrow">Ripartizione per categoria</p>
+        <p className="eyebrow">{t("breakdown.eyebrow")}</p>
         <h2 className="mt-3 font-serif text-hero text-navy max-w-2xl">
-          Cinque segmenti, cinque narrative commerciali.
+          {t("breakdown.title")}
         </h2>
 
         <div className="mt-10 grid grid-cols-2 md:grid-cols-5 gap-px bg-hairline border border-hairline">
-          {TYPE_ORDER.map((t, i) => {
-            const Icon = TYPE_ICON[t];
-            const count = stats.by_type[t as keyof typeof stats.by_type] ?? 0;
+          {TYPE_ORDER.map((typeKey, i) => {
+            const Icon = TYPE_ICON[typeKey];
+            const count =
+              stats.by_type[typeKey as keyof typeof stats.by_type] ?? 0;
             return (
               <motion.div
-                key={t}
+                key={typeKey}
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
@@ -260,7 +265,9 @@ export default function ClientiPage() {
                 <p className="mt-6 font-serif text-4xl text-navy num">
                   {count}
                 </p>
-                <p className="mt-3 eyebrow">{TYPE_LABEL[t]}</p>
+                <p className="mt-3 eyebrow">
+                  {t(`categories.${TYPE_TO_MSG[typeKey]}`)}
+                </p>
               </motion.div>
             );
           })}
@@ -269,15 +276,12 @@ export default function ClientiPage() {
 
       {/* MAP */}
       <AnimatedSection className="mt-24">
-        <p className="eyebrow">La mappa della pipeline</p>
+        <p className="eyebrow">{t("map.eyebrow")}</p>
         <h2 className="mt-3 font-serif text-hero text-navy max-w-3xl">
-          Il tri-state area, nome per nome.
+          {t("map.title")}
         </h2>
         <p className="mt-6 max-w-2xl text-carbon-muted leading-relaxed">
-          Densità pesante su Hudson County (Jersey City, Hoboken) e Brooklyn
-          (Bay Ridge): corridoio giornaliero del CEO. Ogni punto è un
-          prospect reale; i gruppi ≥3 sono aggregati con il numero dentro.
-          Clicca un marker per saltare alla scheda.
+          {t("map.description")}
         </p>
 
         <div className="mt-10">
@@ -297,10 +301,9 @@ export default function ClientiPage() {
       <section ref={filtersRef} className="mt-24 scroll-mt-28">
         <div className="flex items-end justify-between gap-6 mb-8">
           <div>
-            <p className="eyebrow">Pipeline completa</p>
+            <p className="eyebrow">{t("pipeline.eyebrow")}</p>
             <h2 className="mt-3 font-serif text-hero text-navy max-w-xl">
-              Filtra, cerca, espandi: {meta.total_prospects} prospect in una
-              sola vista.
+              {t("pipeline.title", { count: meta.total_prospects })}
             </h2>
           </div>
         </div>
@@ -317,30 +320,31 @@ export default function ClientiPage() {
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Cerca per nome, città, owner, brand distribuiti…"
+                placeholder={t("filters.searchPlaceholder")}
                 className="w-full pl-9 pr-3 py-2 text-sm bg-white border border-hairline focus:border-navy focus:outline-none transition-colors placeholder:text-carbon-muted"
               />
             </div>
             <p className="text-xs text-carbon-muted num whitespace-nowrap">
-              Mostrati{" "}
-              <span className="text-navy font-serif">{filtered.length}</span> di{" "}
-              {meta.total_prospects}
+              {t("filters.showingPrefix")}{" "}
+              <span className="text-navy font-serif">{filtered.length}</span>{" "}
+              {t("filters.of")} {meta.total_prospects}
             </p>
             <button
               onClick={resetAll}
               className="inline-flex items-center gap-1.5 text-xs text-carbon-muted hover:text-navy border-b border-transparent hover:border-navy pb-0.5 transition-colors"
             >
               <X className="h-3 w-3" strokeWidth={1.8} />
-              Reset
+              {t("filters.reset")}
             </button>
           </div>
 
           <div className="flex flex-wrap items-center gap-2">
             <FilterGroup
-              label="Tipo"
+              label={t("filters.typeLabel")}
+              allLabel={t("filters.all")}
               options={TYPE_ORDER.map((k) => ({
                 key: k,
-                label: TYPE_LABEL[k],
+                label: t(`categories.${TYPE_TO_MSG[k]}`),
               }))}
               selected={types}
               onToggle={toggleSet(setTypes, types)}
@@ -348,10 +352,11 @@ export default function ClientiPage() {
             />
             <span className="h-4 w-px bg-hairline" />
             <FilterGroup
-              label="Priorità"
+              label={t("filters.priorityLabel")}
+              allLabel={t("filters.all")}
               options={PRIORITY_ORDER.map((k) => ({
                 key: k,
-                label: k[0] + k.slice(1).toLowerCase(),
+                label: t(`priorities.${PRIORITY_TO_MSG[k]}`),
               }))}
               selected={priorities}
               onToggle={toggleSet(setPriorities, priorities)}
@@ -359,8 +364,12 @@ export default function ClientiPage() {
             />
             <span className="h-4 w-px bg-hairline" />
             <FilterGroup
-              label="Stato"
-              options={STATE_CHIP_LABELS}
+              label={t("filters.stateLabel")}
+              allLabel={t("filters.all")}
+              options={STATE_CHIP_KEYS.map((k) => ({
+                key: k,
+                label: t(`states.${k}`),
+              }))}
               selected={states}
               onToggle={toggleSet(setStates, states)}
               onClear={() => setStates(new Set())}
@@ -371,20 +380,34 @@ export default function ClientiPage() {
         {/* TABLE */}
         <div className="mt-6 border border-hairline overflow-hidden">
           <div className="hidden lg:grid grid-cols-12 border-b border-hairline bg-white">
-            <div className="col-span-1 p-4 eyebrow">#</div>
-            <div className="col-span-3 p-4 eyebrow">Nome</div>
-            <div className="col-span-1 p-4 eyebrow">Tipo</div>
-            <div className="col-span-2 p-4 eyebrow">Luogo</div>
-            <div className="col-span-1 p-4 eyebrow">Priorità</div>
-            <div className="col-span-1 p-4 eyebrow">Stato</div>
-            <div className="col-span-2 p-4 eyebrow">Hook</div>
+            <div className="col-span-1 p-4 eyebrow">
+              {t("tableHeaders.rowNum")}
+            </div>
+            <div className="col-span-3 p-4 eyebrow">
+              {t("tableHeaders.name")}
+            </div>
+            <div className="col-span-1 p-4 eyebrow">
+              {t("tableHeaders.type")}
+            </div>
+            <div className="col-span-2 p-4 eyebrow">
+              {t("tableHeaders.place")}
+            </div>
+            <div className="col-span-1 p-4 eyebrow">
+              {t("tableHeaders.priority")}
+            </div>
+            <div className="col-span-1 p-4 eyebrow">
+              {t("tableHeaders.status")}
+            </div>
+            <div className="col-span-2 p-4 eyebrow">
+              {t("tableHeaders.hook")}
+            </div>
             <div className="col-span-1 p-4" />
           </div>
 
           {paged.length === 0 ? (
             <div className="p-12 text-center">
               <p className="eyebrow text-carbon-muted">
-                Nessun contatto corrisponde ai filtri
+                {t("empty.noResults")}
               </p>
             </div>
           ) : (
@@ -489,8 +512,8 @@ export default function ClientiPage() {
           <div className="mt-6 flex items-center justify-between">
             <p className="text-xs text-carbon-muted num">
               {clampedPage * PAGE_SIZE + 1}–
-              {Math.min((clampedPage + 1) * PAGE_SIZE, filtered.length)} di{" "}
-              {filtered.length}
+              {Math.min((clampedPage + 1) * PAGE_SIZE, filtered.length)}{" "}
+              {t("pagination.of")} {filtered.length}
             </p>
             <div className="flex items-center gap-4">
               <button
@@ -503,7 +526,7 @@ export default function ClientiPage() {
                     : "text-carbon-muted border-transparent hover:text-navy hover:border-navy"
                 )}
               >
-                Precedente
+                {t("pagination.previous")}
               </button>
               <p className="text-xs text-carbon-muted num">
                 <span className="text-navy font-serif text-sm">
@@ -523,7 +546,7 @@ export default function ClientiPage() {
                     : "text-carbon-muted border-transparent hover:text-navy hover:border-navy"
                 )}
               >
-                Successiva
+                {t("pagination.next")}
               </button>
             </div>
           </div>
@@ -533,13 +556,10 @@ export default function ClientiPage() {
       {/* CTA */}
       <div className="mt-24 -mx-6 border-y border-gold/40 bg-gold/[0.06]">
         <div className="container py-12 text-center">
-          <p className="eyebrow text-gold">Obiettivo Settimana 1</p>
+          <p className="eyebrow text-gold">{t("cta.eyebrow")}</p>
           <h3 className="mt-4 font-serif text-2xl md:text-3xl text-navy max-w-3xl mx-auto leading-snug">
-            5 ordini firmati dai Top HOT.{" "}
-            <span className="text-carbon-muted">
-              Ogni contatto chiuso sposta il break-even di 2 settimane verso
-              sinistra.
-            </span>
+            {t("cta.title")}{" "}
+            <span className="text-carbon-muted">{t("cta.suffix")}</span>
           </h3>
         </div>
       </div>
@@ -615,12 +635,14 @@ function StatTile({
 
 function FilterGroup({
   label,
+  allLabel,
   options,
   selected,
   onToggle,
   onClear,
 }: {
   label: string;
+  allLabel: string;
   options: Array<{ key: string; label: string }>;
   selected: Set<string>;
   onToggle: (key: string) => void;
@@ -640,7 +662,7 @@ function FilterGroup({
             : "text-carbon-muted border-hairline hover:border-navy hover:text-navy"
         )}
       >
-        Tutti
+        {allLabel}
       </button>
       {options.map((o) => {
         const active = selected.has(o.key);
@@ -664,21 +686,25 @@ function FilterGroup({
   );
 }
 
-function TypeBadge({ t }: { t: string }) {
+function TypeBadge({ t: typeCode }: { t: string }) {
+  const tMsg = useTranslations("clienti.categories");
+  const msgKey = TYPE_TO_MSG[typeCode];
   return (
     <span className="inline-block px-1.5 py-0.5 text-[10px] uppercase tracking-micro border border-hairline text-carbon-muted">
-      {TYPE_LABEL[t] ?? t}
+      {msgKey ? tMsg(msgKey) : typeCode}
     </span>
   );
 }
 
 function PriorityBadge({ p }: { p: string }) {
+  const tMsg = useTranslations("clienti.priorities");
   const map: Record<string, string> = {
     UNICUM: "bg-gold text-white border-gold",
     HOT: "bg-navy text-white border-navy",
     WARM: "text-carbon-muted border-hairline",
     COLD: "text-carbon-muted/50 border-hairline",
   };
+  const msgKey = PRIORITY_TO_MSG[p];
   return (
     <span
       className={cn(
@@ -686,18 +712,21 @@ function PriorityBadge({ p }: { p: string }) {
         map[p] ?? map.WARM
       )}
     >
-      {p}
+      {msgKey ? tMsg(msgKey) : p}
     </span>
   );
 }
 
 function StatusBadge({ s }: { s: string }) {
+  const tMsg = useTranslations("clienti.statuses");
   const map: Record<string, string> = {
     lead: "text-carbon-muted border-hairline bg-hairline/40",
     contattato: "text-carbon-muted border-carbon/20",
     interessato: "text-navy border-navy",
     confermato: "text-white bg-navy border-navy",
   };
+  // messages.clienti.statuses keys mirror data values (lead/contattato/...)
+  const label = map[s] ? tMsg(s) : s;
   return (
     <span
       className={cn(
@@ -705,22 +734,23 @@ function StatusBadge({ s }: { s: string }) {
         map[s] ?? map.lead
       )}
     >
-      {s}
+      {label}
     </span>
   );
 }
 
 function ExpandedRow({ c }: { c: Prospect }) {
+  const tMsg = useTranslations("clienti.expanded");
   const rows: Array<{ label: string; value?: string | null }> = [
-    { label: "Telefono", value: nonEmpty(c.phone) },
-    { label: "Email", value: nonEmpty(c.email) },
-    { label: "Website", value: nonEmpty(c.website) },
-    { label: "Brand distribuiti", value: nonEmpty(c.brands_sold) },
-    { label: "Hook completo", value: nonEmpty(c.hook) },
-    { label: "Prossimo step", value: nonEmpty(c.next_step) },
-    { label: "Famiglia", value: nonEmpty(c.family_story) },
+    { label: tMsg("phone"), value: nonEmpty(c.phone) },
+    { label: tMsg("email"), value: nonEmpty(c.email) },
+    { label: tMsg("website"), value: nonEmpty(c.website) },
+    { label: tMsg("brandsSold"), value: nonEmpty(c.brands_sold) },
+    { label: tMsg("hookFull"), value: nonEmpty(c.hook) },
+    { label: tMsg("nextStep"), value: nonEmpty(c.next_step) },
+    { label: tMsg("family"), value: nonEmpty(c.family_story) },
     {
-      label: "Retailer serviti",
+      label: tMsg("retailers"),
       value: nonEmpty(c.retailers_estimate),
     },
   ].filter((r) => r.value);

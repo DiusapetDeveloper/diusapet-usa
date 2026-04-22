@@ -493,16 +493,52 @@
       "subtitle": "CRM sincronizzato con Cowork. Un UNICUM: Alleva Dairy a Lyndhurst, stesso cognome della famiglia del brand."
     },
     "kpi": {
-      "total":  "Prospect totali",
-      "hot":    "Hot",
-      "warm":   "Warm",
-      "states": "Stati coperti"
+      "total":         "Prospect totali",
+      "hot":           "Hot",
+      "warm":          "Warm",
+      "states":        "Stati coperti",
+      "hotUnicum":     "HOT + Unicum",
+      "orderGoal":     "Obiettivo pre-container",
+      "ordersSuffix":  " ordini"
+    },
+    "breakdown": {
+      "eyebrow": "Ripartizione per categoria",
+      "title":   "Cinque segmenti, cinque narrative commerciali."
+    },
+    "map": {
+      "eyebrow":      "La mappa della pipeline",
+      "title":        "Il tri-state area, nome per nome.",
+      "description":  "Densità pesante su Hudson County (Jersey City, Hoboken) e Brooklyn (Bay Ridge): corridoio giornaliero del CEO. Ogni punto è un prospect reale; i gruppi ≥3 sono aggregati con il numero dentro. Clicca un marker per saltare alla scheda.",
+      "statesLabel":  "Stati",
+      "legendLabel":  "Legenda",
+      "counter":      "{shown} di {total} prospect · Target: {goal} ordini firmati",
+      "clusterCount": "{count} prospect in quest'area",
+      "clusterMore":  "+{count} altri",
+      "areaFallback": "Area",
+      "unicumLabel":  "Unicum"
+    },
+    "pipeline": {
+      "eyebrow": "Pipeline completa",
+      "title":   "Filtra, cerca, espandi: {count} prospect in una sola vista."
     },
     "filters": {
-      "all":         "Tutti",
-      "byState":     "Per stato",
-      "byPriority":  "Per priorità",
-      "byCategory":  "Per categoria"
+      "all":               "Tutti",
+      "byState":           "Per stato",
+      "byPriority":        "Per priorità",
+      "byCategory":        "Per categoria",
+      "typeLabel":         "Tipo",
+      "priorityLabel":     "Priorità",
+      "stateLabel":        "Stato",
+      "reset":             "Reset",
+      "searchPlaceholder": "Cerca per nome, città, owner, brand distribuiti…",
+      "showingPrefix":     "Mostrati",
+      "of":                "di"
+    },
+    "states": {
+      "NJ":    "NJ",
+      "NY":    "NY",
+      "PA":    "PA",
+      "other": "Altri"
     },
     "priorities": {
       "unicum": "Unicum",
@@ -512,24 +548,45 @@
     },
     "categories": {
       "petStore":       "Pet store",
-      "italianMarket":  "Italian specialty",
-      "breeder":        "Allevatore",
+      "italianMarket":  "Italian market",
+      "breeder":        "Breeder",
       "distributor":    "Distributore",
-      "daycare":        "Pet daycare"
+      "daycare":        "Daycare"
     },
     "statuses": {
       "lead":        "Lead",
-      "contacted":   "Contattato",
-      "interested":  "Interessato",
-      "confirmed":   "Confermato"
+      "contattato":  "Contattato",
+      "interessato": "Interessato",
+      "confermato":  "Confermato"
     },
     "tableHeaders": {
+      "rowNum":   "#",
       "name":     "Nome",
+      "type":     "Tipo",
+      "place":    "Luogo",
+      "priority": "Priorità",
+      "status":   "Stato",
+      "hook":     "Hook",
       "city":     "Città",
       "state":    "Stato",
-      "category": "Categoria",
-      "priority": "Priorità",
-      "status":   "Stato"
+      "category": "Categoria"
+    },
+    "empty":      { "noResults": "Nessun contatto corrisponde ai filtri" },
+    "pagination": { "previous":  "Precedente", "next": "Successiva", "of": "di" },
+    "cta": {
+      "eyebrow": "Obiettivo Settimana 1",
+      "title":   "5 ordini firmati dai Top HOT.",
+      "suffix":  "Ogni contatto chiuso sposta il break-even di 2 settimane verso sinistra."
+    },
+    "expanded": {
+      "phone":       "Telefono",
+      "email":       "Email",
+      "website":     "Website",
+      "brandsSold":  "Brand distribuiti",
+      "hookFull":    "Hook completo",
+      "nextStep":    "Prossimo step",
+      "family":      "Famiglia",
+      "retailers":   "Retailer serviti"
     }
   },
   "roadmap": {

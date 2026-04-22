@@ -493,16 +493,52 @@
       "subtitle": "CRM synced with Cowork. One UNICUM: Alleva Dairy in Lyndhurst, same surname as the brand family."
     },
     "kpi": {
-      "total":  "Total prospects",
-      "hot":    "Hot",
-      "warm":   "Warm",
-      "states": "States covered"
+      "total":        "Total prospects",
+      "hot":          "Hot",
+      "warm":         "Warm",
+      "states":       "States covered",
+      "hotUnicum":    "HOT + Unicum",
+      "orderGoal":    "Pre-container goal",
+      "ordersSuffix": " orders"
+    },
+    "breakdown": {
+      "eyebrow": "Breakdown by category",
+      "title":   "Five segments, five commercial narratives."
+    },
+    "map": {
+      "eyebrow":      "Pipeline map",
+      "title":        "The tri-state area, name by name.",
+      "description":  "High density across Hudson County (Jersey City, Hoboken) and Brooklyn (Bay Ridge): the CEO's daily corridor. Each dot is a real prospect; clusters of ≥3 are aggregated with the count inside. Click a marker to jump to the record.",
+      "statesLabel":  "States",
+      "legendLabel":  "Legend",
+      "counter":      "{shown} of {total} prospects · Target: {goal} signed orders",
+      "clusterCount": "{count} prospects in this area",
+      "clusterMore":  "+{count} more",
+      "areaFallback": "Area",
+      "unicumLabel":  "Unicum"
+    },
+    "pipeline": {
+      "eyebrow": "Full pipeline",
+      "title":   "Filter, search, expand: {count} prospects in a single view."
     },
     "filters": {
-      "all":         "All",
-      "byState":     "By state",
-      "byPriority":  "By priority",
-      "byCategory":  "By category"
+      "all":               "All",
+      "byState":           "By state",
+      "byPriority":        "By priority",
+      "byCategory":        "By category",
+      "typeLabel":         "Type",
+      "priorityLabel":     "Priority",
+      "stateLabel":        "State",
+      "reset":             "Reset",
+      "searchPlaceholder": "Search by name, city, owner, brands sold…",
+      "showingPrefix":     "Showing",
+      "of":                "of"
+    },
+    "states": {
+      "NJ":    "NJ",
+      "NY":    "NY",
+      "PA":    "PA",
+      "other": "Other"
     },
     "priorities": {
       "unicum": "Unicum",
@@ -512,24 +548,45 @@
     },
     "categories": {
       "petStore":      "Pet store",
-      "italianMarket": "Italian specialty",
+      "italianMarket": "Italian market",
       "breeder":       "Breeder",
       "distributor":   "Distributor",
-      "daycare":       "Pet daycare"
+      "daycare":       "Daycare"
     },
     "statuses": {
       "lead":        "Lead",
-      "contacted":   "Contacted",
-      "interested":  "Interested",
-      "confirmed":   "Confirmed"
+      "contattato":  "Contacted",
+      "interessato": "Interested",
+      "confermato":  "Confirmed"
     },
     "tableHeaders": {
+      "rowNum":   "#",
       "name":     "Name",
+      "type":     "Type",
+      "place":    "Place",
+      "priority": "Priority",
+      "status":   "Status",
+      "hook":     "Hook",
       "city":     "City",
       "state":    "State",
-      "category": "Category",
-      "priority": "Priority",
-      "status":   "Status"
+      "category": "Category"
+    },
+    "empty":      { "noResults": "No contact matches the filters" },
+    "pagination": { "previous":  "Previous", "next": "Next", "of": "of" },
+    "cta": {
+      "eyebrow": "Week 1 goal",
+      "title":   "5 signed orders from the Top HOT.",
+      "suffix":  "Every contact closed moves break-even two weeks to the left."
+    },
+    "expanded": {
+      "phone":      "Phone",
+      "email":      "Email",
+      "website":    "Website",
+      "brandsSold": "Brands sold",
+      "hookFull":   "Full hook",
+      "nextStep":   "Next step",
+      "family":     "Family",
+      "retailers":  "Retailers served"
     }
   },
   "roadmap": {

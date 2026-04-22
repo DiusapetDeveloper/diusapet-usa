@@ -9,6 +9,7 @@ import {
 import { geoCentroid } from "d3-geo";
 import { motion, useReducedMotion } from "framer-motion";
 import { useMemo, useState } from "react";
+import { useTranslations } from "next-intl";
 import clientsData from "@/data/clients.json";
 import { cn } from "@/lib/utils";
 
@@ -104,6 +105,8 @@ export function ProspectMap({
   onToggleState,
   onSelect,
 }: ProspectMapProps) {
+  const t = useTranslations("clienti.map");
+  const tStatus = useTranslations("clienti.statuses");
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [hoveredCluster, setHoveredCluster] = useState<string | null>(null);
   const reduce = useReducedMotion();
@@ -122,7 +125,7 @@ export function ProspectMap({
     <div className="relative border border-hairline bg-white">
       {/* STATE CHIPS */}
       <div className="flex flex-wrap items-center gap-2 border-b border-hairline px-6 py-4">
-        <p className="eyebrow text-carbon-muted mr-3">Stati</p>
+        <p className="eyebrow text-carbon-muted mr-3">{t("statesLabel")}</p>
         {stateChips.map((c) => {
           const active = activeStates.has(c.key);
           return (
@@ -146,8 +149,11 @@ export function ProspectMap({
       {/* COUNTER */}
       <div className="absolute top-[58px] right-6 z-10 text-right pointer-events-none bg-white/80 backdrop-blur-sm px-3 py-1">
         <p className="eyebrow text-carbon-muted num">
-          {prospects.length} di {totalCount} prospect · Target:{" "}
-          {goalPreContainer} ordini firmati
+          {t("counter", {
+            shown: prospects.length,
+            total: totalCount,
+            goal: goalPreContainer,
+          })}
         </p>
       </div>
 
@@ -328,12 +334,21 @@ export function ProspectMap({
 
       {/* LEGEND */}
       <div className="flex flex-wrap items-center gap-5 border-t border-hairline px-6 py-4">
-        <p className="eyebrow text-carbon-muted">Legenda</p>
-        <LegendDot color={UNICUM_COLOR} label="Unicum" ring />
-        <LegendDot color={STATUS_COLOR.confermato} label="Confermato" />
-        <LegendDot color={STATUS_COLOR.interessato} label="Interessato" />
-        <LegendDot color={STATUS_COLOR.contattato} label="Contattato" />
-        <LegendDot color={STATUS_COLOR.lead} label="Lead" />
+        <p className="eyebrow text-carbon-muted">{t("legendLabel")}</p>
+        <LegendDot color={UNICUM_COLOR} label={t("unicumLabel")} ring />
+        <LegendDot
+          color={STATUS_COLOR.confermato}
+          label={tStatus("confermato")}
+        />
+        <LegendDot
+          color={STATUS_COLOR.interessato}
+          label={tStatus("interessato")}
+        />
+        <LegendDot
+          color={STATUS_COLOR.contattato}
+          label={tStatus("contattato")}
+        />
+        <LegendDot color={STATUS_COLOR.lead} label={tStatus("lead")} />
       </div>
     </div>
   );
@@ -604,6 +619,7 @@ function ClusterTooltip({
   items: Prospect[];
   color: string;
 }) {
+  const t = useTranslations("clienti.map");
   const shown = items.slice(0, 5);
   const extra = items.length - shown.length;
   return (
@@ -649,10 +665,10 @@ function ClusterTooltip({
             fontFamily: "var(--font-plex-serif), serif",
           }}
         >
-          {items.length} prospect in quest'area
+          {t("clusterCount", { count: items.length })}
         </p>
         <p style={{ margin: "4px 0 10px 0", fontSize: 11, opacity: 0.6 }}>
-          {items[0].city || "Area"}
+          {items[0].city || t("areaFallback")}
           {items[0].state ? `, ${items[0].state}` : ""}
         </p>
         <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
@@ -682,7 +698,7 @@ function ClusterTooltip({
               textAlign: "right",
             }}
           >
-            +{extra} altri
+            {t("clusterMore", { count: extra })}
           </p>
         )}
       </motion.div>
