@@ -223,6 +223,7 @@ export default function RoadmapPage() {
             <div className="mt-10 flex flex-col gap-3">
               {phase_labels.map((p, i) => {
                 const widthPct = ((p.to - p.from + 1) / 36) * 100;
+                const phaseKey = p.phase.toLowerCase();
                 return (
                   <motion.div
                     key={p.phase}
@@ -237,14 +238,14 @@ export default function RoadmapPage() {
                       style={{ width: `${widthPct}%`, minWidth: 180 }}
                     >
                       <span className="eyebrow text-gold whitespace-nowrap">
-                        {p.phase}
+                        {t(`phases.${phaseKey}`)}
                       </span>
                       <span className="text-[11px] text-carbon-muted num whitespace-nowrap">
                         M{p.from}–M{p.to}
                       </span>
                     </div>
                     <p className="text-sm text-carbon-muted leading-relaxed flex-1">
-                      {p.note}
+                      {t(`phaseNotes.${phaseKey}`)}
                     </p>
                   </motion.div>
                 );

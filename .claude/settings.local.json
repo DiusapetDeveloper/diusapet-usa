@@ -35,7 +35,12 @@
       "Bash(git -c user.name=\"Diusapet\" -c user.email=\"dev@diusapet.work\" commit -q -m \"feat\\(i18n\\): translate home + simple pages \\(allegati, prodotto\\)\")",
       "Bash(/usr/bin/grep -n \"flow\" /Users/danielefranceschini/diusapet-usa/messages/en.json)",
       "Bash(/usr/bin/grep -n \"zone\\\\.name\\\\|zone\\\\.dims_ft\\\\|flow_arrows\" /Users/danielefranceschini/diusapet-usa/components/warehouse-map.tsx)",
-      "Bash(git -c user.name=\"Diusapet\" -c user.email=\"dev@diusapet.work\" commit -q -m \"feat\\(i18n\\): translate operativo + finanziario + clienti\")"
+      "Bash(git -c user.name=\"Diusapet\" -c user.email=\"dev@diusapet.work\" commit -q -m \"feat\\(i18n\\): translate operativo + finanziario + clienti\")",
+      "Bash(/usr/bin/grep -nE 'Cammino|cammino|critica|Milestone' /Users/danielefranceschini/diusapet-usa/components/gantt-chart.tsx)",
+      "Bash(/usr/bin/grep -nE '\"[A-Z].*\"|\"[a-z].*\"' /Users/danielefranceschini/diusapet-usa/components/gantt-chart.tsx)",
+      "Bash(/usr/bin/grep -viE 'import|from|className|#|easeOut|sans-serif|serif|Plex|^[[:space:]]*//|uppercase|tracking|num|px|em|stroke|Label|transparent|white|F5F3EE|E6E8EC|EDEFF3|F9F7F2')",
+      "Bash(/usr/bin/grep -n '\"legend\":\\\\|\"phases\":' /Users/danielefranceschini/diusapet-usa/messages/it.json)",
+      "Bash(/usr/bin/grep *)"
     ]
   }
 }

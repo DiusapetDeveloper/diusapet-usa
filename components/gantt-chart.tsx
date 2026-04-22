@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -57,6 +58,9 @@ export function GanttChart({
   phaseLabels,
 }: Props) {
   const reduce = useReducedMotion();
+  const tGantt = useTranslations("roadmap.gantt");
+  const tWs = useTranslations("roadmap.workstreams");
+  const tPhases = useTranslations("roadmap.phases");
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
   const [hovered, setHovered] = useState<string | null>(null);
 
@@ -69,14 +73,23 @@ export function GanttChart({
 
   const wsIndexById = (id: string) =>
     workstreams.findIndex((w) => w.id === id);
-  const wsById = (id: string) =>
-    workstreams.find((w) => w.id === id);
+  const wsLabelById = (id: string) => {
+    // Workstream ids from data map 1:1 to message keys in roadmap.workstreams
+    try {
+      return tWs(id);
+    } catch {
+      return workstreams.find((w) => w.id === id)?.label ?? id;
+    }
+  };
 
   // Show every Nth unit label if density is too high
   const labelStep =
     totalUnits > 20 ? Math.max(1, Math.round(totalUnits / 12)) : 1;
 
-  const unitWordLong = unitPrefix === "W" ? "settimane" : "mesi";
+  const unitWordLong =
+    unitPrefix === "W" ? tGantt("weeksLong") : tGantt("monthsLong");
+  const unitWordShort =
+    unitPrefix === "W" ? tGantt("weeksShort") : tGantt("monthsShort");
 
   return (
     <div
@@ -123,6 +136,11 @@ export function GanttChart({
           phaseLabels.map((p) => {
             const px = scaleX(p.from);
             const pw = scaleX(p.to + 1) - px;
+            const phaseKey = p.phase.toLowerCase();
+            let label = p.phase;
+            try {
+              label = tPhases(phaseKey);
+            } catch {}
             return (
               <g key={p.phase}>
                 <rect
@@ -148,7 +166,7 @@ export function GanttChart({
                     letterSpacing: "0.16em",
                   }}
                 >
-                  {p.phase}
+                  {label}
                 </text>
               </g>
             );
@@ -205,7 +223,7 @@ export function GanttChart({
                   fontFamily: "var(--font-plex-sans), sans-serif",
                 }}
               >
-                {w.label}
+                {wsLabelById(w.id)}
               </text>
             </g>
           );
@@ -215,21 +233,22 @@ export function GanttChart({
         {tasks.map((t, i) => {
           const rowIdx = wsIndexById(t.workstream);
           if (rowIdx < 0) return null;
-          const color = wsById(t.workstream)?.color ?? "#9CA3AF";
+          const wsColor =
+            workstreams.find((w) => w.id === t.workstream)?.color ?? "#9CA3AF";
+          const color = wsColor;
           const x1 = scaleX(t.start);
           const x2 = scaleX(t.end + 1);
           const w = Math.max(x2 - x1, 6);
           const y = HEADER_H + rowIdx * ROW_H + (ROW_H - BAR_H) / 2 + 4;
           const isHovered = hovered === t.id;
           const duration = t.end - t.start + 1;
+          const wsLabel = wsLabelById(t.workstream);
 
           return (
             <motion.g
               key={t.id}
               role="button"
-              aria-label={`${t.name}, ${
-                wsById(t.workstream)?.label
-              }, ${unitWordLong} ${t.start}–${t.end}`}
+              aria-label={`${t.name}, ${wsLabel}, ${unitWordLong} ${t.start}–${t.end}`}
               onMouseEnter={() => setHovered(t.id)}
               onMouseLeave={() => setHovered(null)}
               style={{ cursor: "pointer" }}
@@ -297,11 +316,12 @@ export function GanttChart({
                   x={x1 + w / 2}
                   y={y}
                   task={t}
-                  workstreamLabel={wsById(t.workstream)?.label ?? ""}
+                  workstreamLabel={wsLabel}
                   color={color}
                   duration={duration}
                   unitWordLong={unitWordLong}
-                  unitPrefix={unitPrefix}
+                  unitWordShort={unitWordShort}
+                  criticalLabel={tGantt("criticalPathBadge")}
                 />
               )}
             </motion.g>
@@ -322,8 +342,8 @@ export function GanttChart({
             <motion.g
               key={`ms-${i}`}
               role="button"
-              aria-label={`Milestone: ${m.label}${
-                m.critical ? " — critica" : ""
+              aria-label={`${tGantt("ariaMilestone")}: ${m.label}${
+                m.critical ? ` — ${tGantt("ariaCritical")}` : ""
               }`}
               onMouseEnter={() => setHovered(`m${i}`)}
               onMouseLeave={() => setHovered(null)}
@@ -357,7 +377,12 @@ export function GanttChart({
                 strokeWidth={m.critical ? 1.5 : 1}
               />
               {isHovered && (
-                <MilestoneTooltip cx={cx} cy={cy} milestone={m} />
+                <MilestoneTooltip
+                  cx={cx}
+                  cy={cy}
+                  milestone={m}
+                  criticalLabel={tGantt("criticalMilestone")}
+                />
               )}
             </motion.g>
           );
@@ -377,7 +402,8 @@ function TaskTooltip({
   color,
   duration,
   unitWordLong,
-  unitPrefix,
+  unitWordShort,
+  criticalLabel,
 }: {
   x: number;
   y: number;
@@ -386,7 +412,8 @@ function TaskTooltip({
   color: string;
   duration: number;
   unitWordLong: string;
-  unitPrefix: "W" | "M";
+  unitWordShort: string;
+  criticalLabel: string;
 }) {
   return (
     <foreignObject
@@ -454,8 +481,7 @@ function TaskTooltip({
             fontVariantNumeric: "tabular-nums",
           }}
         >
-          {unitPrefix === "W" ? "Settimane" : "Mesi"} {task.start}–{task.end}{" "}
-          · {duration} {unitWordLong}
+          {unitWordShort} {task.start}–{task.end} · {duration} {unitWordLong}
         </p>
         {task.critical && (
           <span
@@ -472,7 +498,7 @@ function TaskTooltip({
               borderRadius: 2,
             }}
           >
-            Cammino critico
+            {criticalLabel}
           </span>
         )}
       </div>
@@ -484,10 +510,12 @@ function MilestoneTooltip({
   cx,
   cy,
   milestone,
+  criticalLabel,
 }: {
   cx: number;
   cy: number;
   milestone: Milestone;
+  criticalLabel: string;
 }) {
   return (
     <foreignObject
@@ -541,7 +569,7 @@ function MilestoneTooltip({
               borderRadius: 2,
             }}
           >
-            Milestone critica
+            {criticalLabel}
           </span>
         )}
       </div>

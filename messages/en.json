@@ -635,9 +635,24 @@
       "scale":       "Scale",
       "consolidate": "Consolidate"
     },
+    "phaseNotes": {
+      "setup":       "Foundations: legal, visas, compliance",
+      "launch":      "Warehouse live, first container, first sales",
+      "growth":      "Zone 2 expansion, Amazon live, Global Pet Expo",
+      "scale":       "Break-even, PA, Chewy, 50+ clients",
+      "consolidate": "Phase 2, full-time operator, CT + upstate NY"
+    },
     "gantt": {
-      "eyebrow": "Executive Gantt",
-      "title":   "Two reading levels, one narrative."
+      "eyebrow":            "Executive Gantt",
+      "title":              "Two reading levels, one narrative.",
+      "weeksLong":          "weeks",
+      "monthsLong":         "months",
+      "weeksShort":         "Weeks",
+      "monthsShort":        "Months",
+      "criticalPathBadge":  "Critical path",
+      "criticalMilestone":  "Critical milestone",
+      "ariaMilestone":      "Milestone",
+      "ariaCritical":       "critical"
     },
     "callout": {
       "eyebrow": "PACE OF THE PLAN",

@@ -635,9 +635,24 @@
       "scale":       "Scale",
       "consolidate": "Consolidate"
     },
+    "phaseNotes": {
+      "setup":       "Fondazioni: legali, visti, compliance",
+      "launch":      "Warehouse operativo, primo container, prime vendite",
+      "growth":      "Espansione Zone 2, Amazon live, Global Pet Expo",
+      "scale":       "Break-even, PA, Chewy, 50+ clienti",
+      "consolidate": "Fase 2, operaio full-time, CT + upstate NY"
+    },
     "gantt": {
-      "eyebrow": "Gantt esecutivo",
-      "title":   "Due livelli di lettura, una sola narrativa."
+      "eyebrow":            "Gantt esecutivo",
+      "title":              "Due livelli di lettura, una sola narrativa.",
+      "weeksLong":          "settimane",
+      "monthsLong":         "mesi",
+      "weeksShort":         "Settimane",
+      "monthsShort":        "Mesi",
+      "criticalPathBadge":  "Cammino critico",
+      "criticalMilestone":  "Milestone critica",
+      "ariaMilestone":      "Milestone",
+      "ariaCritical":       "critica"
     },
     "callout": {
       "eyebrow": "CADENZA DEL PIANO",
