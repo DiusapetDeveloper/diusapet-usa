@@ -1,11 +1,25 @@
 "use client";
 
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { KPICard } from "@/components/kpi-card";
 import { AnimatedSection } from "@/components/animated-section";
 import kpisData from "@/data/kpis.json";
+
+const WorldBridge = dynamic(() => import("@/components/world-bridge"), {
+  ssr: false,
+  loading: () => (
+    <section className="py-24 md:py-32">
+      <div className="container">
+        <div className="min-h-[560px] flex items-center justify-center">
+          <p className="eyebrow text-carbon-muted">Caricamento mappa…</p>
+        </div>
+      </div>
+    </section>
+  ),
+});
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -20,8 +34,8 @@ const sections = [
 
 export default function Home() {
   return (
-    <div className="container">
-      <section className="pt-8 md:pt-16 pb-28">
+    <>
+      <section className="container pt-8 md:pt-16 pb-28">
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -75,7 +89,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      <section className="relative pb-28">
+      <section className="container relative pb-28">
         {/* Dot-grid pattern, scoped to this section only */}
         <svg
           className="absolute inset-0 h-full w-full pointer-events-none"
@@ -130,7 +144,9 @@ export default function Home() {
         </div>
       </section>
 
-      <AnimatedSection stagger className="pb-28">
+      <WorldBridge />
+
+      <AnimatedSection stagger className="container pb-28">
         <p className="eyebrow">Indice operativo</p>
         <h2 className="mt-3 font-serif text-hero text-navy max-w-2xl">
           Naviga il dossier per dimensione decisionale.
@@ -160,6 +176,6 @@ export default function Home() {
           ))}
         </div>
       </AnimatedSection>
-    </div>
+    </>
   );
 }

@@ -1,0 +1,44 @@
+{
+  "meta": {
+    "title": "Il ponte Italia — New Jersey",
+    "subtitle": "Una supply chain già operativa: dalle Marche al porto di Newark, 25-38 giorni di transit time."
+  },
+  "origin": {
+    "id": "italy",
+    "label": "Stabilimento Diusapet",
+    "sublabel": "Marche · Italia",
+    "lat": 43.3,
+    "lng": 13.5,
+    "iconRole": "factory"
+  },
+  "destination": {
+    "id": "nj",
+    "label": "Warehouse Diusapet USA",
+    "sublabel": "Linden · New Jersey",
+    "lat": 40.62,
+    "lng": -74.24,
+    "iconRole": "warehouse"
+  },
+  "route_waypoints": [
+    { "step": 1, "label": "Marche → Porto Genova/Livorno",    "mode": "truck", "duration_days": "1-2" },
+    { "step": 2, "label": "Export Italia",                      "mode": "port",  "duration_days": "2-3" },
+    { "step": 3, "label": "Traversata Atlantico",               "mode": "ship",  "duration_days": "18-22" },
+    { "step": 4, "label": "Port Newark + sdoganamento",         "mode": "customs","duration_days": "3-5" },
+    { "step": 5, "label": "Drayage a Linden warehouse",         "mode": "truck", "duration_days": "1" }
+  ],
+  "kpi_strip": [
+    { "value": "25-38",  "unit": "giorni",    "label": "Transit time totale",  "note": "Dalla partenza Marche al ricevimento Linden" },
+    { "value": "$5.2-7.8", "unit": "k",       "label": "Costo per container",  "note": "Incluso trasporto, dogana, drayage" },
+    { "value": "2",       "unit": "container", "label": "Per ordine regolare", "note": "Prodotto sfuso + sacchi vuoti" },
+    { "value": "45",      "unit": "giorni",    "label": "Cadenza ordini",      "note": "A regime dal Mese 6" }
+  ],
+  "animation_params": {
+    "bezier_control_offset_lat": 20,
+    "bezier_control_offset_lng_west": -35,
+    "draw_duration_ms": 2400,
+    "container_count": 3,
+    "container_travel_duration_ms": 6000,
+    "container_stagger_ms": 2000
+  },
+  "bottom_note": "Nessuna produzione da avviare negli USA, nessuna dipendenza da fornitori terzi. La supply chain esiste già e consegna a Marche ogni giorno — la estendiamo all'oceano."
+}
