@@ -1,45 +1,163 @@
 {
-  "overview": {
-    "size2025Bn": 136,
-    "cagr": 6.1,
-    "premiumShare": 38,
-    "italianImportShare": 1.9
+  "meta": {
+    "title": "Il mercato USA e la finestra Made in Italy",
+    "subtitle": "$136 miliardi nel 2025, premium/holistic in doppia cifra, zero brand italiani posizionati.",
+    "source": "APPA 2025 · Packaged Facts 2021-2025 · Allegato 03 — Analisi Mercato"
   },
-  "growth": [
-    { "year": "2019", "value": 97 },
-    { "year": "2020", "value": 103 },
-    { "year": "2021", "value": 109 },
-    { "year": "2022", "value": 117 },
-    { "year": "2023", "value": 126 },
-    { "year": "2024", "value": 131 },
-    { "year": "2025", "value": 136 },
-    { "year": "2026E", "value": 144 },
-    { "year": "2027E", "value": 153 }
+  "headline_kpi": [
+    { "value": "$136",  "unit": "B",   "label": "Mercato pet food USA 2025" },
+    { "value": "+5.8",  "unit": "%",   "label": "CAGR 2023–2028" },
+    { "value": "67",    "unit": "%",   "label": "Famiglie USA con almeno un pet" },
+    { "value": "0",     "unit": "",    "label": "Brand italiani significativi" }
   ],
-  "segments": [
-    { "name": "Food", "value": 64 },
-    { "name": "Treats & Chews", "value": 22 },
-    { "name": "Health & Wellness", "value": 18 },
-    { "name": "Accessories", "value": 14 },
-    { "name": "Grooming", "value": 8 },
-    { "name": "Services", "value": 10 }
+  "segment_growth": {
+    "title": "Premium e holistic crescono a doppia cifra.",
+    "subtitle": "Il segmento target Alleva è in accelerazione vs mercato totale.",
+    "data": [
+      { "segment": "Premium / Holistic",   "growth_pct": 13.5, "note": "Alleva gioca qui" },
+      { "segment": "Natural / Grain-free", "growth_pct": 9.2,  "note": "Compatibile" },
+      { "segment": "Mainstream premium",    "growth_pct": 5.8,  "note": "Sovrapposto a mass" },
+      { "segment": "Mass market",           "growth_pct": 2.1,  "note": "Fuori perimetro" },
+      { "segment": "Value / Economy",       "growth_pct": -0.8, "note": "In declino" }
+    ]
+  },
+  "channels": {
+    "title": "L'e-commerce ha superato tutto il resto messo insieme.",
+    "subtitle": "Quota di mercato per canale 2015 → 2025. Trend netto verso online.",
+    "source": "Packaged Facts 2021-2025",
+    "years": ["2015", "2019", "2025"],
+    "data": [
+      { "channel": "E-commerce (Amazon, Chewy)", "share_2015": 7,  "share_2019": 22, "share_2025": 54, "trend": "up",   "action": "Setup Seller Central mese 4-5, lancio mese 6" },
+      { "channel": "Mass market (Walmart, Target)",   "share_2015": 23, "share_2019": 15, "share_2025": 8,  "trend": "down", "action": "Fuori perimetro Fase 1" },
+      { "channel": "Supermarket / grocery",           "share_2015": 24, "share_2019": 21, "share_2025": 15, "trend": "down", "action": "Italian markets come sotto-canale" },
+      { "channel": "Pet specialty chain (PetSmart)",  "share_2015": 16, "share_2019": 12, "share_2025": 11, "trend": "down", "action": "Anno 2-3" },
+      { "channel": "Pet specialty indipendenti",      "share_2015": 9,  "share_2019": 10, "share_2025": 9,  "trend": "flat", "action": "CANALE CHIAVE FASE 1" },
+      { "channel": "Wholesale club (Costco, BJ's)",   "share_2015": 2,  "share_2019": 8,  "share_2025": 7,  "trend": "flat", "action": "Non priorità" }
+    ]
+  },
+  "online_leaders": [
+    { "platform": "Amazon",         "purchase_intent_pct": "31.9–59",  "strength": "Prime, logistica, trust universale",     "action": "Attivare mese 6 (post primo container)" },
+    { "platform": "Chewy",          "purchase_intent_pct": "24.9–41",  "strength": "Customer service #1, autoship 75% fatturato", "action": "Attivare mese 9-12 con account manager" },
+    { "platform": "Walmart.com",    "purchase_intent_pct": "15–33",    "strength": "Prezzo + omnichannel + grocery",          "action": "Anno 2-3" },
+    { "platform": "DTC allevastore.com", "purchase_intent_pct": "—",   "strength": "Brand story Made in Italy, margine 100%", "action": "Lancio mese 5" }
   ],
-  "drivers": [
+  "competitors": {
+    "title": "Nessun brand italiano, cinque concorrenti nordamericani.",
+    "subtitle": "Confronto su parametri chiave: prezzo, proteine, origine, canale, differenziatori.",
+    "diusapet_positioning": "$23–26 retail · 27–46% proteina · Taurina 4000 mg (gatto) · Grain-free 7/8 SKU · Ingredienti funzionali (Aloe, Ginseng, Hemp) · Made in Italy",
+    "data": [
+      {
+        "brand": "Orijen",
+        "origin": "Canada",
+        "price_2kg_usd": "28–35",
+        "protein_pct": "38–40",
+        "grain_free": true,
+        "channel": "Specialty + online",
+        "gap_vs_alleva": "No Made in Italy, no Aloe / Ginseng / Hemp. Prezzo più alto."
+      },
+      {
+        "brand": "Acana",
+        "origin": "Canada",
+        "price_2kg_usd": "24–30",
+        "protein_pct": "35–38",
+        "grain_free": true,
+        "channel": "Specialty + Amazon",
+        "gap_vs_alleva": "No italianità, no ingredienti funzionali."
+      },
+      {
+        "brand": "Taste of the Wild",
+        "origin": "USA",
+        "price_2kg_usd": "18–24",
+        "protein_pct": "32",
+        "grain_free": true,
+        "channel": "Mass + specialty",
+        "gap_vs_alleva": "Qualità inferiore, target mass market."
+      },
+      {
+        "brand": "Blue Buffalo",
+        "origin": "USA",
+        "price_2kg_usd": "22–28",
+        "protein_pct": "30–32",
+        "grain_free": "Parziale",
+        "channel": "PetSmart + Chewy",
+        "gap_vs_alleva": "Brand commoditizzato, perdita di premium positioning."
+      },
+      {
+        "brand": "Fromm",
+        "origin": "USA",
+        "price_2kg_usd": "26–34",
+        "protein_pct": "33–36",
+        "grain_free": "Parziale",
+        "channel": "Independent pet",
+        "gap_vs_alleva": "Qualità simile, zero Made in Italy."
+      },
+      {
+        "brand": "Diusapet / Alleva",
+        "origin": "Italia",
+        "price_2kg_usd": "23–26",
+        "protein_pct": "27–46",
+        "grain_free": true,
+        "channel": "Independent + Amazon + DTC",
+        "gap_vs_alleva": "UNICO Made in Italy posizionato. White space totale.",
+        "is_us": true
+      }
+    ]
+  },
+  "trends": [
     {
-      "title": "Humanization del pet",
-      "detail": "78% dei proprietari considera il pet membro della famiglia. Disponibilità a pagare premium per nutrizione certificata."
+      "trend": "Grain-free in crescita",
+      "impact": "7 su 8 SKU Alleva sono grain-free — allineamento perfetto.",
+      "icon": "Wheat"
     },
     {
-      "title": "Domanda Made in Italy",
-      "detail": "Food italiano percepito come gold standard qualità. Gap di offerta nel segmento pet premium EU."
+      "trend": "Single-protein preference",
+      "impact": "Ocean Fish dog & cat ideali per cani/gatti sensibili.",
+      "icon": "Fish"
     },
     {
-      "title": "Concentrazione tri-state",
-      "detail": "NJ+NY+CT = 22M pet owner con reddito mediano 1.4× media USA."
+      "trend": "Ingredienti funzionali",
+      "impact": "Aloe, Ginseng, Hemp, Green Lipped Mussel — USP non replicabili.",
+      "icon": "Leaf"
     },
     {
-      "title": "Canale indipendente in crescita",
-      "detail": "Pet store indipendenti +4.8% YoY mentre mass retail piatto. Margini superiori 9-12 pp."
+      "trend": "Tracciabilità Made in Italy",
+      "impact": "Vantaggio competitivo unico vs brand USA generici.",
+      "icon": "ShieldCheck"
+    },
+    {
+      "trend": "Taurina awareness post-FDA DCM",
+      "impact": "4000 mg/kg nei gatti = argomento di vendita forte (FDA ha segnalato rischio DCM da deficit taurina).",
+      "icon": "HeartPulse"
+    },
+    {
+      "trend": "Umanizzazione e premiumization",
+      "impact": "67% famiglie USA spendono crescentemente per pet. Trend secolare, non ciclico.",
+      "icon": "Heart"
     }
-  ]
+  ],
+  "geography": {
+    "title": "New Jersey è la rampa di lancio naturale.",
+    "subtitle": "Reddito alto, community italiana da 1.5M persone, accesso diretto al porto.",
+    "nj_profile": [
+      { "metric": "Popolazione NJ",                      "value": "9.3M" },
+      { "metric": "Famiglie con cane",                   "value": "986.000 (29%)" },
+      { "metric": "Famiglie con gatto",                  "value": "643.000 (19%)" },
+      { "metric": "Pet owner NJ: spesa vet >$4k/anno",   "value": "50.5% (2° nazionale)" },
+      { "metric": "Italoamericani NJ (NIAF)",            "value": "1.5 milioni" },
+      { "metric": "Reddito mediano NJ",                  "value": "$97.126 (4° USA)" },
+      { "metric": "Pet store indipendenti NJ+NY stimati","value": "800–1.200" }
+    ],
+    "zones": [
+      { "zone": "Hudson County (Jersey City, Hoboken)",        "state": "NJ", "italian_pct": 22, "income": "72k+", "stores": "15–20",  "priority": 1, "note": "Base CEO, community forte" },
+      { "zone": "Essex County (Montclair, Newark)",            "state": "NJ", "italian_pct": 18, "income": "65k+", "stores": "20–25",  "priority": 1, "note": "Montclair = premium" },
+      { "zone": "Union County (Linden, Elizabeth, Garwood)",   "state": "NJ", "italian_pct": 25, "income": "68k+", "stores": "15–20",  "priority": 1, "note": "Zona magazzino target" },
+      { "zone": "Middlesex County (Edison)",                   "state": "NJ", "italian_pct": 28, "income": "79k+", "stores": "20–25",  "priority": 2, "note": "Edison = max% italiana NJ" },
+      { "zone": "Bergen County (Teaneck)",                     "state": "NJ", "italian_pct": 20, "income": "85k+", "stores": "25–30",  "priority": 2, "note": "Reddito altissimo" },
+      { "zone": "Manhattan UES / UWS",                         "state": "NY", "italian_pct": 12, "income": "95k+", "stores": "40–50",  "priority": 2, "note": "20 min via tunnel" },
+      { "zone": "Brooklyn (Bensonhurst, Bay Ridge)",           "state": "NY", "italian_pct": 30, "income": "58k+", "stores": "30–35",  "priority": 2, "note": "Community italiana NYC" },
+      { "zone": "Morris / Somerset",                           "state": "NJ", "italian_pct": 12, "income": "95k+", "stores": "15–20",  "priority": 3, "note": "Suburbia premium" },
+      { "zone": "Philadelphia Sud",                            "state": "PA", "italian_pct": 16, "income": "55k+", "stores": "30–40",  "priority": 3, "note": "Secondo mercato Anno 2" }
+    ]
+  },
+  "whitespace_callout": "Nessun competitor offre la combinazione: Made in Italy + grain-free + ingredienti funzionali + livelli proteici e taurina superiori. Questo è il white space che Diusapet occupa — e il first-mover advantage vale come 3 anni di vantaggio non replicabile."
 }

@@ -1,58 +1,151 @@
-[
-  {
-    "area": "Regulatory",
-    "risk": "Ritardo FDA/AAFCO sulle etichette",
-    "probability": "Media",
-    "impact": "Alto",
-    "mitigation": "Consulente compliance dedicato fin da M1. Buffer 6 settimane sul go-to-market."
+{
+  "meta": {
+    "title": "Rischi e mitigazioni",
+    "subtitle": "Cinque rischi monitorati, sei stress test quantificati, un buffer di liquidità calibrato.",
+    "source": "Allegato 13 — Report Finale · Allegato 10-12 — Scenari e Sensitivity"
   },
-  {
-    "area": "Supply chain",
-    "risk": "Dazi import o ritardi container",
-    "probability": "Media",
-    "impact": "Alto",
-    "mitigation": "Doppio fornitore spedizionieri. Stock di sicurezza 60 gg in 3PL NJ."
+  "headline_kpi": [
+    { "value": "5",    "unit": "",      "label": "Rischi principali mappati" },
+    { "value": "$30",  "unit": "k",     "label": "Buffer liquidità aggiuntivo" },
+    { "value": "Mese 18", "unit": "",    "label": "Break clause lease come exit" },
+    { "value": "82",    "unit": "/100", "label": "Feasibility score ricalibrato" }
+  ],
+  "risk_matrix": {
+    "title": "I cinque rischi principali, nome e cognome.",
+    "subtitle": "Ognuno con probabilità stimata, impatto e piano di risposta operativo.",
+    "probability_levels": ["Bassa", "Medio-bassa", "Media", "Medio-alta", "Alta"],
+    "impact_levels": ["Basso", "Medio", "Alto"],
+    "risks": [
+      {
+        "id": "visa",
+        "name": "Ritardo o rifiuto visto E-2",
+        "probability_pct": 15,
+        "probability_label": "Medio-bassa",
+        "impact": "Alto",
+        "description": "Il consolato può richiedere documentazione integrativa o rifiutare la pratica per cavilli di business plan.",
+        "response_plan": "Attorney specializzato E-2 da settimana 1. Documentazione impeccabile. Piano B: visti alternativi L-1 / O-1. Piano C: gestione remota temporanea con socio USA.",
+        "owner": "CEO + attorney",
+        "icon": "Passport"
+      },
+      {
+        "id": "sales",
+        "name": "Vendite sotto il 50% delle previsioni",
+        "probability_pct": 25,
+        "probability_label": "Media",
+        "impact": "Medio",
+        "description": "Penetrazione commerciale più lenta del previsto nei primi 6–9 mesi.",
+        "response_plan": "Buffer liquidità $30k copre 6 mesi extra di costi fissi. Compenso CEO garantito dal piano. Break clause del lease al mese 18 come exit option. Accelerazione Amazon + distributori.",
+        "owner": "CEO",
+        "icon": "TrendingDown"
+      },
+      {
+        "id": "fda",
+        "name": "Blocco FDA su spedizione",
+        "probability_pct": 10,
+        "probability_label": "Bassa",
+        "impact": "Alto",
+        "description": "Ispezione FDA alla dogana con detain/hold/refuse — può ritardare o compromettere il container.",
+        "response_plan": "FSVP consultant esperto dal mese 3. Prior Notice impeccabile per ogni spedizione. Primo container ridotto (mezzo carico) come pilota. Campioni testati in laboratorio indipendente.",
+        "owner": "CEO + FSVP consultant",
+        "icon": "ShieldAlert"
+      },
+      {
+        "id": "competitor",
+        "name": "Concorrente italiano entra nel mercato",
+        "probability_pct": 20,
+        "probability_label": "Medio-bassa",
+        "impact": "Medio",
+        "description": "Un altro brand italiano (es. Farmina, Monge) occupa lo spazio Made in Italy prima di noi.",
+        "response_plan": "First-mover advantage + community italiana NJ già acquisita = vantaggio non replicabile in <3 anni. Accelerazione firma contratti esclusiva con Top 15 prospect. Depositi trademark USA sul brand.",
+        "owner": "CEO + legal",
+        "icon": "Flag"
+      },
+      {
+        "id": "zoning",
+        "name": "Zoning magazzino non idoneo",
+        "probability_pct": 30,
+        "probability_label": "Media",
+        "impact": "Basso",
+        "description": "Il lotto target (es. Carteret) potrebbe essere zonato retail anziché industrial/light manufacturing.",
+        "response_plan": "Verifica municipio OBBLIGATORIA prima della firma. Opzioni alternative già identificate: Linden, Avenel, Elizabeth, Rahway. Nessuna firma senza certificato zoning.",
+        "owner": "CEO + broker",
+        "icon": "MapPin"
+      }
+    ]
   },
-  {
-    "area": "Commerciale",
-    "risk": "Ciclo di vendita più lungo del previsto",
-    "probability": "Alta",
-    "impact": "Medio",
-    "mitigation": "Pipeline larga 60+ lead. Sampling aggressivo. Sales rep M4 per raddoppiare capacità."
+  "stress_tests": {
+    "title": "Sei stress test quantificati su EBITDA Anno 2.",
+    "subtitle": "Ogni scenario è modellato con impatto in dollari e piano di gestione.",
+    "source": "Allegato 10-12 — Sensitivity Analysis",
+    "data": [
+      { "scenario": "Prezzo vendita −10%",              "ebitda_impact_usd": -34500, "severity": "Medio",   "manageability": "Assorbibile — ridurre marketing discrezionale" },
+      { "scenario": "Volume −20%",                       "ebitda_impact_usd": -47000, "severity": "Critico", "manageability": "Attivare canali alternativi (Amazon + Chewy anticipato)" },
+      { "scenario": "Costi container +20%",              "ebitda_impact_usd": -18000, "severity": "Medio",   "manageability": "Gestibile con ottimizzazione mix SKU" },
+      { "scenario": "Magazzino Carteret (+$3/sqft)",     "ebitda_impact_usd": -14000, "severity": "Basso",   "manageability": "Già modellato, nel range accettabile" },
+      { "scenario": "Ritardo FDA/FSVP +3 mesi",          "ebitda_impact_usd": -63000, "severity": "Alto",    "manageability": "Buffer $30k + riserva 4 mesi costi fissi coprono l'evento" },
+      { "scenario": "Compenso CEO +$2k/mese",            "ebitda_impact_usd": -24000, "severity": "Basso",   "manageability": "Previsto nella crescita Anno 2-3 del piano" }
+    ]
   },
-  {
-    "area": "Finanziario",
-    "risk": "Cambio EUR/USD sfavorevole",
-    "probability": "Media",
-    "impact": "Medio",
-    "mitigation": "Hedging forward sui lotti > $40k. Price list USA rivista semestralmente."
+  "mitigation_levers": {
+    "title": "Quattro leve di mitigazione attive dal Giorno 1.",
+    "levers": [
+      {
+        "name": "Buffer liquidità",
+        "amount": "$30.000",
+        "note": "Riserva aggiuntiva oltre ai 4 mesi di costi fissi già in investimento. Copre 6 mesi extra se le vendite rallentano.",
+        "icon": "Banknote"
+      },
+      {
+        "name": "Break clause lease al mese 18",
+        "amount": "Exit option",
+        "note": "Clausola contrattuale negoziata con landlord al momento della firma. Dà la possibilità di chiudere l'operazione con costi limitati se lo scenario pessimistico si realizza.",
+        "icon": "DoorOpen"
+      },
+      {
+        "name": "Primo container ridotto (mezzo carico)",
+        "amount": "−$27k capex iniziale",
+        "note": "Invece di 2 container pieni, si parte con un mezzo carico dei 4 SKU a margine più alto. Riduce esposizione a rischio FDA e inventory.",
+        "icon": "PackageOpen"
+      },
+      {
+        "name": "5 ordini pre-firmati prima del container",
+        "amount": "Domanda validata",
+        "note": "Obiettivo di chiudere 5 clienti Top 15 con ordini firmati prima di spedire. Valida la domanda e protegge dal rischio di penetrazione lenta.",
+        "icon": "FileSignature"
+      }
+    ]
   },
-  {
-    "area": "Prodotto",
-    "risk": "Richiamo o contaminazione",
-    "probability": "Bassa",
-    "impact": "Alto",
-    "mitigation": "Assicurazione product liability $2M. QA lotti con audit trimestrale fornitori EU."
+  "feasibility_comparison": {
+    "title": "Dal 70/100 al 82/100 attraverso le cinque leve.",
+    "subtitle": "Il piano ricalibrato sposta il feasibility score di 12 punti senza alterare il modello di business.",
+    "baseline_score": 70,
+    "recalibrated_score": 82,
+    "delta": 12,
+    "dimensions": [
+      { "dimension": "Break-even",            "baseline": 68, "recalibrated": 82, "weight": 20 },
+      { "dimension": "ROI 3 anni",            "baseline": 57, "recalibrated": 75, "weight": 20 },
+      { "dimension": "Capitale richiesto",    "baseline": 78, "recalibrated": 85, "weight": 15 },
+      { "dimension": "Opportunità di mercato", "baseline": 88, "recalibrated": 88, "weight": 15 },
+      { "dimension": "Fattibilità operativa", "baseline": 85, "recalibrated": 88, "weight": 15 },
+      { "dimension": "Compliance USA",        "baseline": 70, "recalibrated": 72, "weight": 10 },
+      { "dimension": "Cash flow Anno 1",       "baseline": 42, "recalibrated": 72, "weight": 15 }
+    ]
   },
-  {
-    "area": "Talent",
-    "risk": "Difficoltà assunzione sales rep bilingue",
-    "probability": "Media",
-    "impact": "Medio",
-    "mitigation": "Canali comunità italo-americane. Offer competitiva con variable + equity simbolica."
+  "decalogo": {
+    "title": "Il decalogo delle aspettative realistiche.",
+    "subtitle": "Dieci principi per leggere il progetto senza illusioni e senza allarmismi.",
+    "items": [
+      "Il business non sarà profittevole (compenso CEO incluso) nei primi 2 anni — è normale e previsto.",
+      "Il CEO guadagna dal Giorno 1. Il compenso è nel piano, non è un rischio a cui pensare dopo.",
+      "Break-even operativo (senza compenso) già al Mese 9 con 800 sacchi/mese — dimostra la validità del modello.",
+      "L'investimento totale $185k è tra i più bassi possibili per un'operazione di questo tipo.",
+      "Il rischio principale è il ritardo nella penetrazione commerciale — mitigabile con il selling del CEO.",
+      "Il valore creato non è solo EBITDA: è il brand, la clientela, la LLC — valorizzabili in futuro.",
+      "La community italiana NJ è un vantaggio competitivo reale e non replicabile.",
+      "La linea CARE è un'opzione di crescita già pronta — nessun costo di sviluppo aggiuntivo.",
+      "Con scenario ottimistico (Global Pet Expo 2026), l'intero investimento rientra in 18 mesi.",
+      "Il gioco vale la candela — compenso adeguato, stile di vita NJ, figli raggiungibili 2×/mese, asset in costruzione."
+    ]
   },
-  {
-    "area": "Competitivo",
-    "risk": "Entrata competitor EU con budget maggiore",
-    "probability": "Bassa",
-    "impact": "Medio",
-    "mitigation": "Esclusive di zona con retailer chiave. Storytelling heritage difficile da replicare."
-  },
-  {
-    "area": "Reputazionale",
-    "risk": "Recensioni negative early adopter",
-    "probability": "Bassa",
-    "impact": "Medio",
-    "mitigation": "Customer care bilingue 24h. Programma sample sostitutivi gratuiti primi 12 mesi."
-  }
-]
+  "final_callout": "Il progetto è FATTIBILE. I numeri reggono, il mercato esiste, la supply chain è pronta. La domanda non è SE farlo, ma QUANDO — e la risposta è adesso, prima che qualcun altro occupi lo spazio Made in Italy nel pet food USA."
+}
