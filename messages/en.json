@@ -640,5 +640,51 @@
     "downloadLabel": "Download",
     "pages":         "pages",
     "footerNote":    "Files are placeholders. Wiring to the private bucket will be enabled at deployment on usa.diusapet.work."
+  },
+  "outreach": {
+    "title":   "Go-to-market",
+    "eyebrow": "GO-TO-MARKET",
+    "weeklyKpiTitle": "Weekly target volume",
+    "followUp": {
+      "title":       "80% of conversions come from follow-ups.",
+      "dayLabel":    "Day",
+      "angleLabel":  "Angle",
+      "lengthLabel": "Length"
+    },
+    "templates": {
+      "title":         "Seven angles, seven templates.",
+      "subtitle":      "Every type of contact has its own angle. No generic emails.",
+      "subjectLabel":  "Subject",
+      "whenLabel":     "When to use it",
+      "targetLabel":   "Target",
+      "hookTypeLabel": "Hook type",
+      "copyButton":    "Copy email",
+      "copied":        "Copied"
+    },
+    "subjects": {
+      "title":     "Subject is 70% of the game.",
+      "thatWork":  "Patterns that work",
+      "forbidden": "Patterns to avoid",
+      "example":   "Example",
+      "reason":    "Why"
+    },
+    "cta": {
+      "title":     "The three CTAs that convert.",
+      "psychCost": "Psychological cost"
+    },
+    "numbers": {
+      "title":   "Three non-negotiable numbers.",
+      "useWith": "Use with"
+    },
+    "routine": {
+      "title": "The CEO's weekly routine."
+    },
+    "funnelKpi": {
+      "title":   "Six metrics for the funnel.",
+      "metric":  "Metric",
+      "formula": "Formula",
+      "target":  "Target",
+      "ifBelow": "If below target"
+    }
   }
 }
