@@ -1,0 +1,558 @@
+{
+  "common": {
+    "brand": "Diusapet USA",
+    "confidential": "Riservato",
+    "source": "Fonte",
+    "note": "Nota",
+    "loading": "Caricamento…",
+    "seeAll": "Vedi tutto",
+    "readMore": "Approfondisci",
+    "close": "Chiudi",
+    "download": "Scarica",
+    "back": "Indietro",
+    "forward": "Avanti",
+    "priority": "Priorità",
+    "action": "Azione",
+    "owner": "Owner",
+    "status": "Stato"
+  },
+  "nav": {
+    "cockpit": "Cockpit",
+    "mercato": "Mercato",
+    "prodotto": "Prodotto",
+    "operativo": "Operativo",
+    "finanziario": "Finanziario",
+    "clienti": "Clienti",
+    "roadmap": "Roadmap",
+    "rischi": "Rischi",
+    "allegati": "Allegati"
+  },
+  "footer": {
+    "confidential": "Documento riservato · Uso interno Diusapet S.r.l.",
+    "version": "Versione Aprile 2026",
+    "prepared": "Preparato da Daniele Franceschini",
+    "contact": "Per domande: daniele.franceschini@diusapet.it"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "01 · COCKPIT",
+      "title": "Il business case dell'espansione USA.",
+      "subtitle": "Tutto il progetto in un solo documento navigabile. Dati, scenari e roadmap in nove pagine."
+    },
+    "kpi": {
+      "market": { "label": "Mercato pet food USA 2025", "unit": "B" },
+      "margin": { "label": "Margine lordo SKU", "unit": "%" },
+      "breakeven": { "label": "Break-even scenario base", "unit": "" },
+      "roi": { "label": "ROI a 3 anni", "unit": "%" }
+    },
+    "supplyChain": {
+      "eyebrow": "SUPPLY CHAIN",
+      "title": "Il ponte Italia — New Jersey.",
+      "subtitle": "Una supply chain già operativa: dalle Marche al porto di Newark, 25-38 giorni di transit time.",
+      "kpi": {
+        "transit": { "label": "Transit time totale", "unit": "giorni", "note": "Dalla partenza Marche al ricevimento Linden" },
+        "cost":    { "label": "Costo per container", "unit": "k",      "note": "Incluso trasporto, dogana, drayage" },
+        "volume":  { "label": "Per ordine regolare", "unit": "container", "note": "Prodotto sfuso + sacchi vuoti" },
+        "cadence": { "label": "Cadenza ordini",      "unit": "giorni", "note": "A regime dal Mese 6" }
+      },
+      "origin":      { "label": "Stabilimento Diusapet", "sublabel": "Marche · Italia" },
+      "destination": { "label": "Warehouse Diusapet USA", "sublabel": "Linden · New Jersey" },
+      "bottomNote":  "Nessuna produzione da avviare negli USA, nessuna dipendenza da fornitori terzi. La supply chain esiste già in Italia, la estendiamo all'oceano."
+    }
+  },
+  "mercato": {
+    "hero": {
+      "eyebrow": "02 · ANALISI DI MERCATO",
+      "title": "Il mercato USA e la finestra Made in Italy.",
+      "subtitle": "$136 miliardi nel 2025, premium/holistic in doppia cifra, zero brand italiani posizionati.",
+      "source": "APPA 2025 · Packaged Facts 2021-2025 · Allegato 03 — Analisi Mercato"
+    },
+    "kpi": {
+      "marketSize": "Mercato pet food USA 2025",
+      "cagr":       "CAGR 2023–2028",
+      "households": "Famiglie USA con almeno un pet",
+      "italianBrands": "Brand italiani significativi"
+    },
+    "segments": {
+      "eyebrow": "CRESCITA DEI SEGMENTI",
+      "title": "Premium e holistic crescono a doppia cifra.",
+      "subtitle": "Il segmento target Alleva è in accelerazione vs mercato totale.",
+      "labels": {
+        "premiumHolistic":   "Premium / Holistic",
+        "naturalGrainfree":  "Natural / Grain-free",
+        "mainstreamPremium": "Mainstream premium",
+        "mass":              "Mass market",
+        "value":             "Value / Economy"
+      },
+      "notes": {
+        "allevaPlays":  "Alleva gioca qui",
+        "compatible":   "Compatibile",
+        "overlapsMass": "Sovrapposto a mass",
+        "outOfScope":   "Fuori perimetro",
+        "declining":    "In declino"
+      }
+    },
+    "channels": {
+      "eyebrow": "CANALI DI ACQUISTO",
+      "title": "L'e-commerce ha superato tutto il resto messo insieme.",
+      "subtitle": "Quota di mercato per canale 2015 → 2025. Trend netto verso online.",
+      "source": "Packaged Facts 2021-2025",
+      "tableHeaders": {
+        "channel": "Canale",
+        "trend":   "Trend",
+        "action":  "Azione Diusapet"
+      },
+      "trendLabels": {
+        "up":   "In crescita",
+        "down": "In calo",
+        "flat": "Stabile"
+      },
+      "channelNames": {
+        "ecommerce":   "E-commerce (Amazon, Chewy)",
+        "mass":        "Mass market (Walmart, Target)",
+        "grocery":     "Supermarket / grocery",
+        "petChain":    "Pet specialty chain (PetSmart)",
+        "petIndie":    "Pet specialty indipendenti",
+        "wholesale":   "Wholesale club (Costco, BJ's)"
+      },
+      "actions": {
+        "ecommerce":   "Setup Seller Central mese 4-5, lancio mese 6",
+        "mass":        "Fuori perimetro Fase 1",
+        "grocery":     "Italian markets come sotto-canale",
+        "petChain":    "Anno 2-3",
+        "petIndie":    "CANALE CHIAVE FASE 1",
+        "wholesale":   "Non priorità"
+      }
+    },
+    "onlineLeaders": {
+      "eyebrow": "CHI DOMINA IL CANALE ONLINE",
+      "title": "Quattro piattaforme, quattro strategie distinte.",
+      "purchaseIntent": "Purchase intent",
+      "platforms": {
+        "amazon":  { "strength": "Prime, logistica, trust universale",     "action": "Attivare mese 6 (post primo container)" },
+        "chewy":   { "strength": "Customer service #1, autoship 75% fatturato", "action": "Attivare mese 9-12 con account manager" },
+        "walmart": { "strength": "Prezzo + omnichannel + grocery",         "action": "Anno 2-3" },
+        "dtc":     { "strength": "Brand story Made in Italy, margine 100%","action": "Lancio mese 5" }
+      }
+    },
+    "competitors": {
+      "eyebrow": "COMPETITOR ANALYSIS",
+      "title": "Nessun brand italiano, cinque concorrenti nordamericani.",
+      "subtitle": "Confronto su parametri chiave: prezzo, proteine, origine, canale, differenziatori.",
+      "headers": {
+        "brand":     "Brand",
+        "origin":    "Origine",
+        "price":     "Prezzo 2kg",
+        "protein":   "Proteina %",
+        "grainFree": "Grain free",
+        "channel":   "Canale",
+        "gap":       "Gap vs Alleva"
+      },
+      "grainFreePartial": "Parziale",
+      "positioning": "$23–26 retail · 27–46% proteina · Taurina 4000 mg (gatto) · Grain-free 7/8 SKU · Ingredienti funzionali (Aloe, Ginseng, Hemp) · Made in Italy"
+    },
+    "trends": {
+      "eyebrow": "TREND DEL SEGMENTO",
+      "title": "Sei trend che spingono Alleva.",
+      "items": {
+        "grainFree":     { "title": "Grain-free in crescita",        "impact": "7 su 8 SKU Alleva sono grain-free — allineamento perfetto." },
+        "singleProtein": { "title": "Single-protein preference",     "impact": "Ocean Fish dog & cat ideali per cani/gatti sensibili." },
+        "functional":    { "title": "Ingredienti funzionali",        "impact": "Aloe, Ginseng, Hemp, Green Lipped Mussel — USP non replicabili." },
+        "madeInItaly":   { "title": "Tracciabilità Made in Italy",   "impact": "Vantaggio competitivo unico vs brand USA generici." },
+        "taurine":       { "title": "Taurina awareness post-FDA DCM","impact": "4000 mg/kg nei gatti = argomento di vendita forte (FDA ha segnalato rischio DCM da deficit taurina)." },
+        "humanization":  { "title": "Umanizzazione e premiumization","impact": "67% famiglie USA spendono crescentemente per pet. Trend secolare, non ciclico." }
+      }
+    },
+    "geography": {
+      "eyebrow": "AREA GEOGRAFICA TARGET",
+      "title": "New Jersey è la rampa di lancio naturale.",
+      "subtitle": "Reddito alto, community italiana da 1.5M persone, accesso diretto al porto.",
+      "njProfileTitle": "Profilo New Jersey",
+      "zonesTitle": "Priorità commerciali per zona",
+      "profile": {
+        "population":     "Popolazione NJ",
+        "dogHouseholds":  "Famiglie con cane",
+        "catHouseholds":  "Famiglie con gatto",
+        "vetSpend":       "Pet owner NJ: spesa vet >$4k/anno",
+        "italians":       "Italoamericani NJ (NIAF)",
+        "income":         "Reddito mediano NJ",
+        "stores":         "Pet store indipendenti NJ+NY stimati"
+      },
+      "headers": {
+        "zone":      "Zona",
+        "state":     "Stato",
+        "italianPct":"% Italiani",
+        "income":    "Reddito",
+        "stores":    "Pet store",
+        "priority":  "Priorità",
+        "note":      "Nota"
+      }
+    },
+    "whitespace": {
+      "eyebrow": "WHITE SPACE",
+      "text": "Nessun competitor offre la combinazione: Made in Italy + grain-free + ingredienti funzionali + livelli proteici e taurina superiori. Questo è il white space che Diusapet occupa — e il first-mover advantage vale come 3 anni di vantaggio non replicabile."
+    }
+  },
+  "prodotto": {
+    "hero": {
+      "eyebrow": "03 · PRODOTTI",
+      "title": "Otto SKU per aprire il mercato.",
+      "subtitle": "Quattro cane, quattro gatto. Tutti con margine 41–47% e proteine premium. Lancio Fase 1 con quattro SKU a rotazione più alta."
+    },
+    "filters": {
+      "all":   "Tutti",
+      "dog":   "Cane",
+      "cat":   "Gatto",
+      "phase1":"Fase 1",
+      "phase2":"Fase 2"
+    },
+    "labels": {
+      "retail":        "Prezzo retail USA",
+      "margin":        "Margine lordo",
+      "transferCost":  "Transfer cost",
+      "protein":       "Proteina",
+      "taurine":       "Taurina",
+      "grainFree":     "Grain-free",
+      "usp":           "USP",
+      "category":      "Categoria",
+      "format":        "Formato",
+      "phase":         "Fase lancio"
+    },
+    "closing": {
+      "title": "Quattro SKU per partire, otto a regime.",
+      "text": "La Fase 1 lancia Puppy Chicken&Duck, Adult Chicken&Duck, Adult Natural Chicken&Potato e Ocean Fish per cani — le referenze a più alta rotazione. Gatto arriva al Mese 6 con Kitten, Adult, Ocean Fish e Light."
+    }
+  },
+  "operativo": {
+    "hero": {
+      "eyebrow": "04 · MODELLO OPERATIVO",
+      "title": "Un CEO, un operatore, un flusso.",
+      "subtitle": "4.000 sqft a Linden NJ, imbustamento manuale, consegne dirette. Tutto operato dal CEO nei primi 12 mesi."
+    },
+    "warehouse": {
+      "eyebrow": "MAPPA OPERATIVA · LINDEN NJ",
+      "title": "4.000 sqft, sette zone, un solo flusso.",
+      "subtitle": "4.000 sqft, 7 zone, un solo operatore. Flusso lineare dal container alla spedizione.",
+      "locationLabel": "Linden/Avenel, NJ — Union County",
+      "rentLabel":     "$13/sqft/anno · $4.333/mese base (escluso NNN)",
+      "portLabel":     "8–12 miglia da Port Newark/Elizabeth",
+      "kpi": {
+        "surface":  "Superficie totale",
+        "usage":    "Utilizzo effettivo",
+        "pallet":   "Posti pallet finiti",
+        "bigbag":   "Bigbag da 1 ton stoccabili"
+      },
+      "zones": {
+        "reception":   "Baia carico",
+        "bigbag":      "Stoccaggio bigbag",
+        "bagging":     "Zona imbustamento",
+        "staging":     "Staging spedizioni",
+        "finished":    "Stoccaggio sacchi finiti",
+        "safety":      "Sicurezza & compliance",
+        "office":      "Ufficio + bagno"
+      },
+      "flow": {
+        "reception":  "Ricezione",
+        "picking":    "Prelievo",
+        "loading":    "Carico furgone",
+        "storage":    "Stoccaggio"
+      },
+      "allocation": {
+        "title":    "Il 68% è produttivo, il 32% è corridoio.",
+        "subtitle": "Corridoi e manovra sono necessari per transpallet e sicurezza OSHA. 68% è efficienza tipica di un magazzino operator-operated.",
+        "productive":{ "label": "2725 sqft produttivi",    "note": "Zone operative (bigbag, imbustamento, sacchi, staging)" },
+        "corridor":  { "label": "1275 sqft corridoi e manovra", "note": "Richiesti per transpallet + sicurezza OSHA" }
+      },
+      "setup": {
+        "eyebrow": "SETUP INIZIALE",
+        "title":   "Quattromila dollari per partire.",
+        "headers": { "category": "Categoria", "includes": "Cosa comprende", "cost": "Costo" },
+        "totalLabel": "Totale",
+        "capacityNote": "A 600 sacchi/mese (scenario base Anno 1) bastano 4–6h/settimana di imbustamento. Il layout regge fino a 1.500 sacchi/mese senza modifiche. Oltre, si attiva Fase 2 con operatore part-time."
+      }
+    },
+    "ceoWeek": {
+      "eyebrow": "SETTIMANA TIPO DEL CEO",
+      "title":   "55-60 ore a settimana, 40% in furgone.",
+      "subtitle":"Il CEO è produzione, vendita, logistica e relazione cliente.",
+      "days": {
+        "mon": "Lunedì", "tue": "Martedì", "wed": "Mercoledì", "thu": "Giovedì", "fri": "Venerdì", "sat": "Sabato", "sun": "Domenica"
+      },
+      "categories": {
+        "production": "Produzione",
+        "delivery":   "Consegne",
+        "sales":      "Vendita",
+        "admin":      "Amministrazione",
+        "italy":      "Voli Italia",
+        "rest":       "Riposo"
+      },
+      "vanStrip": "40% del tempo in furgone (NJ + NY + PA)",
+      "monthlyNote": "Cadenza mensile: 2× volo Italia (figli), 1× Global Pet Expo a febbraio."
+    }
+  },
+  "finanziario": {
+    "hero": {
+      "eyebrow": "05 · PIANO FINANZIARIO",
+      "title": "Numeri ricalibrati, scenari trasparenti.",
+      "subtitle": "Tre scenari modellati su 36 mesi. Cinque leve di ricalibrazione portano il feasibility score da 70 a 82."
+    },
+    "scenarios": {
+      "pessimistic":  "Pessimistico",
+      "base":         "Base",
+      "optimistic":   "Ottimistico"
+    },
+    "kpi": {
+      "capex":       "Investimento iniziale",
+      "monthlyFix":  "Costi fissi mensili",
+      "breakeven":   "Break-even",
+      "roi3y":       "ROI 3 anni",
+      "ebitdaY1":    "EBITDA Anno 1"
+    },
+    "tableHeaders": {
+      "month":    "Mese",
+      "year":     "Anno",
+      "revenue":  "Ricavi",
+      "costs":    "Costi totali",
+      "ebitda":   "EBITDA",
+      "cashflow": "Cash flow cum."
+    },
+    "levers": {
+      "eyebrow": "LEVE DI RICALIBRAZIONE",
+      "title":   "Cinque leve, zero cambio di modello.",
+      "items": {
+        "salary":      { "title": "Compenso CEO scalato",        "desc": "$8k/mese primi 6 mesi, poi $12k/mese a regime." },
+        "preSold":     { "title": "Pre-acquisizione 5 clienti",  "desc": "Ordini firmati prima del primo container." },
+        "reducedSku":  { "title": "4 SKU + mezzo container",     "desc": "Fase 1 più leggera, meno capitale bloccato." },
+        "warehouse":   { "title": "Warehouse Linden $13/sqft",   "desc": "Scelta Linden vs Carteret: −$14k/anno." },
+        "inHouse":     { "title": "Imbustamento in-house CEO",   "desc": "Zero costo lavoro fino a Fase 2." }
+      }
+    }
+  },
+  "clienti": {
+    "hero": {
+      "eyebrow": "06 · CLIENTI PROSPECT",
+      "title": "106 prospect NJ/NY/PA, uno pesa doppio.",
+      "subtitle": "CRM sincronizzato con Cowork. Un UNICUM: Alleva Dairy a Lyndhurst, stesso cognome della famiglia del brand."
+    },
+    "kpi": {
+      "total":  "Prospect totali",
+      "hot":    "Hot",
+      "warm":   "Warm",
+      "states": "Stati coperti"
+    },
+    "filters": {
+      "all":         "Tutti",
+      "byState":     "Per stato",
+      "byPriority":  "Per priorità",
+      "byCategory":  "Per categoria"
+    },
+    "priorities": {
+      "unicum": "Unicum",
+      "hot":    "Hot",
+      "warm":   "Warm",
+      "cold":   "Cold"
+    },
+    "categories": {
+      "petStore":       "Pet store",
+      "italianMarket":  "Italian specialty",
+      "breeder":        "Allevatore",
+      "distributor":    "Distributore",
+      "daycare":        "Pet daycare"
+    },
+    "statuses": {
+      "lead":        "Lead",
+      "contacted":   "Contattato",
+      "interested":  "Interessato",
+      "confirmed":   "Confermato"
+    },
+    "tableHeaders": {
+      "name":     "Nome",
+      "city":     "Città",
+      "state":    "Stato",
+      "category": "Categoria",
+      "priority": "Priorità",
+      "status":   "Stato"
+    }
+  },
+  "roadmap": {
+    "hero": {
+      "eyebrow": "07 · ROADMAP ESECUTIVA",
+      "title": "Dal via al primo container in tredici settimane.",
+      "subtitle": "Due livelli di lettura: i primi 90 giorni al dettaglio settimanale, i 36 mesi in ottica strategica.",
+      "source": "Allegato 02 — Piano di Massima, Allegato 07 — Spedizione, Capitolo 11 — Aspettative"
+    },
+    "kpi": {
+      "weeks":    { "label": "Dal via al primo container", "unit": "settimane" },
+      "preSold":  { "label": "Pre-firmati prima dell'arrivo container", "unit": "ordini" },
+      "breakeven":{ "label": "Break-even scenario base", "unit": "" },
+      "horizon":  { "label": "Orizzonte del piano", "unit": "mesi" }
+    },
+    "toggles": {
+      "days90":    "Primi 90 giorni",
+      "months36":  "36 mesi"
+    },
+    "workstreams": {
+      "legal":      "Legale & società",
+      "visa":       "Visto E-2",
+      "compliance": "FDA & compliance",
+      "warehouse":  "Warehouse",
+      "container":  "Supply chain",
+      "sales":      "Commerciale",
+      "ceo":        "Trasferimento CEO"
+    },
+    "legend": {
+      "workstream": "Workstream",
+      "milestone":  "Milestone",
+      "critical":   "Milestone critica",
+      "criticalTask":"Task cammino critico"
+    },
+    "criticalPath": {
+      "eyebrow": "CAMMINO CRITICO 90 GIORNI",
+      "title":   "I sei passaggi che non possono scivolare.",
+      "note":    "Se uno scivola, tutto il container si sposta. Il visto E-2 è la catena più lunga: 6 settimane di attesa consolato."
+    },
+    "phases": {
+      "setup":       "Setup",
+      "launch":      "Launch",
+      "growth":      "Growth",
+      "scale":       "Scale",
+      "consolidate": "Consolidate"
+    },
+    "callout": {
+      "eyebrow": "CADENZA DEL PIANO",
+      "text":    "Il progetto si vince o si perde nei primi 90 giorni. Dopo il primo container a NJ, il resto è esecuzione ripetuta."
+    }
+  },
+  "rischi": {
+    "hero": {
+      "eyebrow": "08 · RISCHI E MITIGAZIONI",
+      "title":   "Rischi e mitigazioni.",
+      "subtitle":"Cinque rischi monitorati, sei stress test quantificati, un buffer di liquidità calibrato.",
+      "source":  "Allegato 13 — Report Finale · Allegato 10-12 — Scenari e Sensitivity"
+    },
+    "kpi": {
+      "risks":      "Rischi principali mappati",
+      "buffer":     "Buffer liquidità aggiuntivo",
+      "breakClause":"Break clause lease come exit",
+      "feasibility":"Feasibility score ricalibrato"
+    },
+    "matrix": {
+      "eyebrow": "MATRICE RISCHI",
+      "title":   "I cinque rischi principali, nome e cognome.",
+      "subtitle":"Ognuno con probabilità stimata, impatto e piano di risposta operativo.",
+      "axisProbability": "Probabilità",
+      "axisImpact":      "Impatto",
+      "responsePlan":    "Piano di risposta",
+      "probabilityLabel":"Probabilità",
+      "impactLabel":     "Impatto",
+      "probabilityLevels": {
+        "low":      "Bassa",
+        "medLow":   "Medio-bassa",
+        "medium":   "Media",
+        "medHigh":  "Medio-alta",
+        "high":     "Alta"
+      },
+      "impactLevels": {
+        "low":    "Basso",
+        "medium": "Medio",
+        "high":   "Alto"
+      },
+      "risks": {
+        "visa":       { "name": "Ritardo o rifiuto visto E-2",           "desc": "Il consolato può richiedere documentazione integrativa o rifiutare la pratica per cavilli di business plan.", "response": "Attorney specializzato E-2 da settimana 1. Documentazione impeccabile. Piano B: visti alternativi L-1 / O-1. Piano C: gestione remota temporanea con socio USA." },
+        "sales":      { "name": "Vendite sotto il 50% delle previsioni","desc": "Penetrazione commerciale più lenta del previsto nei primi 6–9 mesi.",                                       "response": "Buffer liquidità $30k copre 6 mesi extra di costi fissi. Compenso CEO garantito dal piano. Break clause del lease al mese 18 come exit option. Accelerazione Amazon + distributori." },
+        "fda":        { "name": "Blocco FDA su spedizione",              "desc": "Ispezione FDA alla dogana con detain/hold/refuse — può ritardare o compromettere il container.",         "response": "FSVP consultant esperto dal mese 3. Prior Notice impeccabile per ogni spedizione. Primo container ridotto (mezzo carico) come pilota. Campioni testati in laboratorio indipendente." },
+        "competitor": { "name": "Concorrente italiano entra nel mercato","desc": "Un altro brand italiano (es. Farmina, Monge) occupa lo spazio Made in Italy prima di noi.",              "response": "First-mover advantage + community italiana NJ già acquisita = vantaggio non replicabile in <3 anni. Accelerazione firma contratti esclusiva con Top 15 prospect. Depositi trademark USA sul brand." },
+        "zoning":     { "name": "Zoning magazzino non idoneo",           "desc": "Il lotto target (es. Carteret) potrebbe essere zonato retail anziché industrial/light manufacturing.",   "response": "Verifica municipio OBBLIGATORIA prima della firma. Opzioni alternative già identificate: Linden, Avenel, Elizabeth, Rahway. Nessuna firma senza certificato zoning." }
+      }
+    },
+    "stress": {
+      "eyebrow": "SEI STRESS TEST QUANTIFICATI SU EBITDA ANNO 2",
+      "title":   "Sei what-if quantificati.",
+      "subtitle":"Ogni scenario è modellato con impatto in dollari e piano di gestione.",
+      "headers": {
+        "scenario":      "Scenario",
+        "impact":        "Impatto EBITDA",
+        "severity":      "Severità",
+        "manageability": "Gestibilità"
+      },
+      "severity": {
+        "low":      "Basso",
+        "medium":   "Medio",
+        "high":     "Alto",
+        "critical": "Critico"
+      },
+      "scenarios": {
+        "priceDown":    { "scenario": "Prezzo vendita −10%",          "manageability": "Assorbibile — ridurre marketing discrezionale" },
+        "volumeDown":   { "scenario": "Volume −20%",                   "manageability": "Attivare canali alternativi (Amazon + Chewy anticipato)" },
+        "containerUp":  { "scenario": "Costi container +20%",         "manageability": "Gestibile con ottimizzazione mix SKU" },
+        "carteret":     { "scenario": "Magazzino Carteret (+$3/sqft)","manageability": "Già modellato, nel range accettabile" },
+        "fdaDelay":     { "scenario": "Ritardo FDA/FSVP +3 mesi",      "manageability": "Buffer $30k + riserva 4 mesi costi fissi coprono l'evento" },
+        "ceoSalary":    { "scenario": "Compenso CEO +$2k/mese",        "manageability": "Previsto nella crescita Anno 2-3 del piano" }
+      }
+    },
+    "levers": {
+      "eyebrow": "LEVE DI MITIGAZIONE",
+      "title":   "Quattro leve di mitigazione attive dal Giorno 1.",
+      "items": {
+        "buffer":    { "name": "Buffer liquidità",                  "amount": "$30.000",        "note": "Riserva aggiuntiva oltre ai 4 mesi di costi fissi già in investimento. Copre 6 mesi extra se le vendite rallentano." },
+        "breakClause":{ "name": "Break clause lease al mese 18",    "amount": "Exit option",    "note": "Clausola contrattuale negoziata con landlord al momento della firma. Dà la possibilità di chiudere l'operazione con costi limitati se lo scenario pessimistico si realizza." },
+        "halfContainer":{ "name": "Primo container ridotto (mezzo carico)", "amount": "−$27k capex iniziale", "note": "Invece di 2 container pieni, si parte con un mezzo carico dei 4 SKU a margine più alto. Riduce esposizione a rischio FDA e inventory." },
+        "preSold":   { "name": "5 ordini pre-firmati prima del container", "amount": "Domanda validata", "note": "Obiettivo di chiudere 5 clienti Top 15 con ordini firmati prima di spedire. Valida la domanda e protegge dal rischio di penetrazione lenta." }
+      }
+    },
+    "feasibility": {
+      "eyebrow": "FEASIBILITY SCORE",
+      "title":   "Dal 70/100 al 82/100 attraverso le cinque leve.",
+      "subtitle":"Il piano ricalibrato sposta il feasibility score di 12 punti senza alterare il modello di business.",
+      "baselineLabel":   "Baseline",
+      "recalibratedLabel":"Ricalibrato",
+      "deltaLabel":      "punti",
+      "headers": {
+        "dimension":   "Dimensione",
+        "weight":      "Peso",
+        "baseline":    "Baseline",
+        "recalibrated":"Ricalibrato",
+        "delta":       "Delta"
+      },
+      "dimensions": {
+        "breakeven":  "Break-even",
+        "roi":        "ROI 3 anni",
+        "capital":    "Capitale richiesto",
+        "market":     "Opportunità di mercato",
+        "operations": "Fattibilità operativa",
+        "compliance": "Compliance USA",
+        "cashflow":   "Cash flow Anno 1"
+      }
+    },
+    "decalogue": {
+      "eyebrow": "ASPETTATIVE REALISTICHE",
+      "title":   "Il decalogo delle aspettative realistiche.",
+      "subtitle":"Dieci principi per leggere il progetto senza illusioni e senza allarmismi.",
+      "items": {
+        "i1":  "Il business non sarà profittevole (compenso CEO incluso) nei primi 2 anni — è normale e previsto.",
+        "i2":  "Il CEO guadagna dal Giorno 1. Il compenso è nel piano, non è un rischio a cui pensare dopo.",
+        "i3":  "Break-even operativo (senza compenso) già al Mese 9 con 800 sacchi/mese — dimostra la validità del modello.",
+        "i4":  "L'investimento totale $185k è tra i più bassi possibili per un'operazione di questo tipo.",
+        "i5":  "Il rischio principale è il ritardo nella penetrazione commerciale — mitigabile con il selling del CEO.",
+        "i6":  "Il valore creato non è solo EBITDA: è il brand, la clientela, la LLC — valorizzabili in futuro.",
+        "i7":  "La community italiana NJ è un vantaggio competitivo reale e non replicabile.",
+        "i8":  "La linea CARE è un'opzione di crescita già pronta — nessun costo di sviluppo aggiuntivo.",
+        "i9":  "Con scenario ottimistico (Global Pet Expo 2026), l'intero investimento rientra in 18 mesi.",
+        "i10": "Il gioco vale la candela — compenso adeguato, stile di vita NJ, figli raggiungibili 2×/mese, asset in costruzione."
+      }
+    },
+    "callout": {
+      "eyebrow": "BOTTOM LINE",
+      "text":    "Il progetto è FATTIBILE. I numeri reggono, il mercato esiste, la supply chain è pronta. La domanda non è SE farlo, ma QUANDO — e la risposta è adesso, prima che qualcun altro occupi lo spazio Made in Italy nel pet food USA."
+    }
+  },
+  "allegati": {
+    "hero": {
+      "eyebrow": "09 · ALLEGATI",
+      "title": "Il fascicolo completo in tredici documenti.",
+      "subtitle": "Ogni capitolo del business plan e ogni allegato analitico, scaricabili in Word."
+    },
+    "downloadLabel": "Scarica .docx",
+    "pages": "pagine"
+  }
+}

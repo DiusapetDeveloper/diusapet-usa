@@ -24,7 +24,9 @@
       "Bash(git -c user.name=\"Diusapet\" -c user.email=\"dev@diusapet.work\" commit -q -m \"feat: mappa warehouse 4.000 sqft con flusso operativo interattivo\")",
       "Bash(git -c user.name=\"Diusapet\" -c user.email=\"dev@diusapet.work\" commit -q -m \"feat: roadmap Gantt 90 giorni + 36 mesi con milestone critical path\")",
       "Bash(git -c user.name=\"Diusapet\" -c user.email=\"dev@diusapet.work\" commit -q -m \"feat: pagine mercato e rischi con dati reali da docx\")",
-      "Bash(git -c user.name=\"Diusapet\" -c user.email=\"dev@diusapet.work\" commit -q -m \"feat: home supply chain bridge Italia-NJ con rotta container animata\")"
+      "Bash(git -c user.name=\"Diusapet\" -c user.email=\"dev@diusapet.work\" commit -q -m \"feat: home supply chain bridge Italia-NJ con rotta container animata\")",
+      "Bash(/usr/bin/head -c 800 /Users/danielefranceschini/diusapet-usa/messages/it.json)",
+      "Bash(git -c user.name=\"Diusapet\" -c user.email=\"dev@diusapet.work\" commit -q -m \"feat\\(i18n\\): setup next-intl routing + middleware + messages\")"
     ]
   }
 }
