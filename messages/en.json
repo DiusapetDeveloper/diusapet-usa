@@ -491,11 +491,17 @@
       "note":    "If one slips, the whole container slips with it. The E-2 visa is the longest chain: 6 weeks of consulate wait."
     },
     "phases": {
+      "eyebrow":     "Plan phases",
+      "title":       "Five phases, one direction.",
       "setup":       "Setup",
       "launch":      "Launch",
       "growth":      "Growth",
       "scale":       "Scale",
       "consolidate": "Consolidate"
+    },
+    "gantt": {
+      "eyebrow": "Executive Gantt",
+      "title":   "Two reading levels, one narrative."
     },
     "callout": {
       "eyebrow": "PACE OF THE PLAN",

@@ -16,6 +16,7 @@ import {
   TrendingDown,
   type LucideIcon,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { AnimatedSection } from "@/components/animated-section";
 import { KPICard } from "@/components/kpi-card";
 import risksData from "@/data/risks.json";
@@ -60,6 +61,7 @@ const SEVERITY_RANK: Record<string, number> = {
 };
 
 export default function RischiPage() {
+  const t = useTranslations("rischi");
   const [hoveredRisk, setHoveredRisk] = useState<string | null>(null);
 
   const stressSorted = [...stress_tests.data].sort(
@@ -73,16 +75,16 @@ export default function RischiPage() {
       <AnimatedSection>
         <div className="flex items-start justify-between gap-6 flex-wrap">
           <div>
-            <p className="eyebrow text-gold">07 · Rischi e mitigazioni</p>
+            <p className="eyebrow text-gold">{t("hero.eyebrow")}</p>
             <h1 className="mt-6 font-serif text-hero text-navy max-w-3xl">
-              {meta.title}.
+              {t("hero.title")}
             </h1>
             <p className="mt-6 max-w-2xl text-carbon-muted leading-relaxed">
-              {meta.subtitle}
+              {t("hero.subtitle")}
             </p>
           </div>
           <p className="text-xs text-carbon-muted max-w-xs text-right leading-relaxed">
-            {meta.source}
+            {t("hero.source")}
           </p>
         </div>
       </AnimatedSection>
@@ -104,7 +106,7 @@ export default function RischiPage() {
 
       {/* RISK MATRIX */}
       <AnimatedSection className="mt-24">
-        <p className="eyebrow">Matrice rischi</p>
+        <p className="eyebrow">{t("matrix.eyebrow")}</p>
         <h2 className="mt-3 font-serif text-hero text-navy max-w-3xl">
           {risk_matrix.title}
         </h2>
@@ -194,9 +196,9 @@ export default function RischiPage() {
 
       {/* MITIGATION LEVERS */}
       <AnimatedSection stagger className="mt-24">
-        <p className="eyebrow">Leve di mitigazione</p>
+        <p className="eyebrow">{t("levers.eyebrow")}</p>
         <h2 className="mt-3 font-serif text-hero text-navy max-w-2xl">
-          {mitigation_levers.title}
+          {t("levers.title")}
         </h2>
 
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-hairline border border-hairline">
@@ -229,12 +231,12 @@ export default function RischiPage() {
 
       {/* FEASIBILITY COMPARISON */}
       <AnimatedSection className="mt-24">
-        <p className="eyebrow">Feasibility score</p>
+        <p className="eyebrow">{t("feasibility.eyebrow")}</p>
         <h2 className="mt-3 font-serif text-hero text-navy max-w-3xl">
-          {feasibility_comparison.title}
+          {t("feasibility.title")}
         </h2>
         <p className="mt-4 max-w-2xl text-carbon-muted leading-relaxed">
-          {feasibility_comparison.subtitle}
+          {t("feasibility.subtitle")}
         </p>
 
         <div className="mt-12 flex items-center justify-center gap-8 py-12 border-y border-hairline">
@@ -339,12 +341,12 @@ export default function RischiPage() {
 
       {/* DECALOGO */}
       <AnimatedSection className="mt-24">
-        <p className="eyebrow">Aspettative realistiche</p>
+        <p className="eyebrow">{t("decalogue.eyebrow")}</p>
         <h2 className="mt-3 font-serif text-hero text-navy max-w-3xl">
-          {decalogo.title}
+          {t("decalogue.title")}
         </h2>
         <p className="mt-4 max-w-2xl text-carbon-muted leading-relaxed">
-          {decalogo.subtitle}
+          {t("decalogue.subtitle")}
         </p>
 
         <ul className="mt-12 border-y border-hairline divide-y divide-hairline">
@@ -376,9 +378,9 @@ export default function RischiPage() {
         transition={{ duration: 0.8, ease }}
         className="mt-24 border-l-[4px] border-gold bg-gold/[0.05] px-8 md:px-12 py-12"
       >
-        <p className="eyebrow text-gold">Bottom line</p>
+        <p className="eyebrow text-gold">{t("callout.eyebrow")}</p>
         <p className="mt-5 font-serif text-xl md:text-2xl text-navy leading-relaxed max-w-4xl">
-          {final_callout}
+          {t("callout.text")}
         </p>
       </motion.div>
     </div>

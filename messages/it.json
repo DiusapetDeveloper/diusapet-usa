@@ -491,11 +491,17 @@
       "note":    "Se uno scivola, tutto il container si sposta. Il visto E-2 è la catena più lunga: 6 settimane di attesa consolato."
     },
     "phases": {
+      "eyebrow":     "Fasi del piano",
+      "title":       "Cinque fasi, una direzione.",
       "setup":       "Setup",
       "launch":      "Launch",
       "growth":      "Growth",
       "scale":       "Scale",
       "consolidate": "Consolidate"
+    },
+    "gantt": {
+      "eyebrow": "Gantt esecutivo",
+      "title":   "Due livelli di lettura, una sola narrativa."
     },
     "callout": {
       "eyebrow": "CADENZA DEL PIANO",

@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { AnimatedSection } from "@/components/animated-section";
 import { GanttChart } from "@/components/gantt-chart";
 import { KPICard } from "@/components/kpi-card";
@@ -23,6 +24,8 @@ const {
 type View = "90days" | "36months";
 
 export default function RoadmapPage() {
+  const t = useTranslations("roadmap");
+  const tCommon = useTranslations("common");
   const [view, setView] = useState<View>("90days");
 
   return (
@@ -31,15 +34,15 @@ export default function RoadmapPage() {
       <AnimatedSection>
         <div className="flex items-start justify-between gap-6 flex-wrap">
           <div>
-            <p className="eyebrow text-gold">06 · Roadmap esecutiva</p>
+            <p className="eyebrow text-gold">{t("hero.eyebrow")}</p>
             <h1 className="mt-6 font-serif text-hero text-navy max-w-3xl">
-              Dal via al primo container in tredici settimane.
+              {t("hero.title")}
             </h1>
             <p className="mt-6 max-w-2xl text-carbon-muted leading-relaxed">
-              {meta.subtitle}
+              {t("hero.subtitle")}
             </p>
             <p className="mt-4 text-xs text-carbon-muted leading-relaxed">
-              Fonte: {meta.source}
+              {tCommon("source")}: {t("hero.source")}
             </p>
           </div>
         </div>
@@ -64,9 +67,9 @@ export default function RoadmapPage() {
       <AnimatedSection className="mt-20">
         <div className="flex items-end justify-between gap-6 mb-8">
           <div>
-            <p className="eyebrow">Gantt esecutivo</p>
+            <p className="eyebrow">{t("gantt.eyebrow")}</p>
             <h2 className="mt-3 font-serif text-hero text-navy max-w-2xl">
-              Due livelli di lettura, una sola narrativa.
+              {t("gantt.title")}
             </h2>
           </div>
         </div>
@@ -78,14 +81,14 @@ export default function RoadmapPage() {
               onClick={() => setView("90days")}
               layoutId="roadmap-toggle"
             >
-              Primi 90 giorni
+              {t("toggles.days90")}
             </ViewButton>
             <ViewButton
               active={view === "36months"}
               onClick={() => setView("36months")}
               layoutId="roadmap-toggle"
             >
-              36 mesi
+              {t("toggles.months36")}
             </ViewButton>
           </div>
         </div>
@@ -165,9 +168,9 @@ export default function RoadmapPage() {
             transition={{ duration: 0.4, ease }}
             className="mt-24"
           >
-            <p className="eyebrow">Cammino critico 90 giorni</p>
+            <p className="eyebrow">{t("criticalPath.eyebrow")}</p>
             <h2 className="mt-3 font-serif text-hero text-navy max-w-3xl">
-              I sei passaggi che non possono scivolare.
+              {t("criticalPath.title")}
             </h2>
 
             <ul className="mt-10 border-y border-hairline divide-y divide-hairline">
@@ -195,8 +198,7 @@ export default function RoadmapPage() {
             </ul>
 
             <p className="mt-6 text-xs text-carbon-muted leading-relaxed max-w-2xl">
-              Se uno scivola, tutto il container si sposta. Il visto E-2 è la
-              catena più lunga: 6 settimane di attesa consolato.
+              {t("criticalPath.note")}
             </p>
           </motion.section>
         )}
@@ -213,9 +215,9 @@ export default function RoadmapPage() {
             transition={{ duration: 0.4, ease }}
             className="mt-24"
           >
-            <p className="eyebrow">Fasi del piano</p>
+            <p className="eyebrow">{t("phases.eyebrow")}</p>
             <h2 className="mt-3 font-serif text-hero text-navy max-w-3xl">
-              Cinque fasi, una direzione.
+              {t("phases.title")}
             </h2>
 
             <div className="mt-10 flex flex-col gap-3">
@@ -260,12 +262,9 @@ export default function RoadmapPage() {
         transition={{ duration: 0.7, ease }}
         className="mt-24 border-l-4 border-gold bg-gold/[0.04] px-6 md:px-10 py-8"
       >
-        <p className="eyebrow text-gold">Cadenza del piano</p>
+        <p className="eyebrow text-gold">{t("callout.eyebrow")}</p>
         <p className="mt-3 font-serif text-xl md:text-2xl text-navy leading-relaxed max-w-3xl">
-          Il progetto si vince o si perde nei primi 90 giorni.{" "}
-          <span className="text-carbon-muted">
-            Dopo il primo container a NJ, il resto è esecuzione ripetuta.
-          </span>
+          {t("callout.text")}
         </p>
       </motion.div>
     </div>

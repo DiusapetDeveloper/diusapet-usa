@@ -24,6 +24,7 @@ import {
   Wheat,
   type LucideIcon,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { AnimatedSection } from "@/components/animated-section";
 import { KPICard } from "@/components/kpi-card";
 import market from "@/data/market.json";
@@ -63,6 +64,7 @@ const CHANNEL_COLORS = [
 ];
 
 export default function MercatoPage() {
+  const t = useTranslations("mercato");
   const growthMax = Math.max(
     ...segment_growth.data.map((s) => Math.abs(s.growth_pct))
   );
@@ -73,16 +75,16 @@ export default function MercatoPage() {
       <AnimatedSection>
         <div className="flex items-start justify-between gap-6 flex-wrap">
           <div>
-            <p className="eyebrow text-gold">02 · Analisi di mercato</p>
+            <p className="eyebrow text-gold">{t("hero.eyebrow")}</p>
             <h1 className="mt-6 font-serif text-hero text-navy max-w-3xl">
-              {meta.title}
+              {t("hero.title")}
             </h1>
             <p className="mt-6 max-w-2xl text-carbon-muted leading-relaxed">
-              {meta.subtitle}
+              {t("hero.subtitle")}
             </p>
           </div>
           <p className="text-xs text-carbon-muted max-w-xs text-right leading-relaxed">
-            {meta.source}
+            {t("hero.source")}
           </p>
         </div>
       </AnimatedSection>
@@ -104,12 +106,12 @@ export default function MercatoPage() {
 
       {/* SEGMENT GROWTH */}
       <AnimatedSection className="mt-24">
-        <p className="eyebrow">Crescita dei segmenti</p>
+        <p className="eyebrow">{t("segments.eyebrow")}</p>
         <h2 className="mt-3 font-serif text-hero text-navy max-w-2xl">
-          {segment_growth.title}
+          {t("segments.title")}
         </h2>
         <p className="mt-4 max-w-2xl text-carbon-muted leading-relaxed">
-          {segment_growth.subtitle}
+          {t("segments.subtitle")}
         </p>
 
         <div className="mt-10 border-y border-hairline">
@@ -178,12 +180,12 @@ export default function MercatoPage() {
 
       {/* CHANNELS */}
       <AnimatedSection className="mt-24">
-        <p className="eyebrow">Canali di acquisto</p>
+        <p className="eyebrow">{t("channels.eyebrow")}</p>
         <h2 className="mt-3 font-serif text-hero text-navy max-w-2xl">
-          {channels.title}
+          {t("channels.title")}
         </h2>
         <p className="mt-4 max-w-2xl text-carbon-muted leading-relaxed">
-          {channels.subtitle}
+          {t("channels.subtitle")}
         </p>
 
         <StackedChannelChart />
@@ -193,9 +195,9 @@ export default function MercatoPage() {
 
       {/* ONLINE LEADERS */}
       <AnimatedSection stagger className="mt-24">
-        <p className="eyebrow">Chi domina il canale online</p>
+        <p className="eyebrow">{t("onlineLeaders.eyebrow")}</p>
         <h2 className="mt-3 font-serif text-hero text-navy max-w-2xl">
-          Quattro piattaforme, quattro strategie distinte.
+          {t("onlineLeaders.title")}
         </h2>
 
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-hairline border border-hairline">
@@ -215,7 +217,7 @@ export default function MercatoPage() {
                 {p.purchase_intent_pct}
               </p>
               <p className="mt-1 text-[10px] uppercase tracking-micro text-carbon-muted">
-                Purchase intent
+                {t("onlineLeaders.purchaseIntent")}
               </p>
               <p className="mt-5 text-sm text-carbon leading-relaxed">
                 {p.strength}
@@ -231,12 +233,12 @@ export default function MercatoPage() {
 
       {/* COMPETITORS */}
       <AnimatedSection className="mt-24">
-        <p className="eyebrow">Competitor analysis</p>
+        <p className="eyebrow">{t("competitors.eyebrow")}</p>
         <h2 className="mt-3 font-serif text-hero text-navy max-w-2xl">
-          {competitors.title}
+          {t("competitors.title")}
         </h2>
         <p className="mt-4 max-w-2xl text-carbon-muted leading-relaxed">
-          {competitors.subtitle}
+          {t("competitors.subtitle")}
         </p>
 
         <div className="mt-10 border border-hairline overflow-x-auto">
@@ -325,17 +327,17 @@ export default function MercatoPage() {
 
       {/* TRENDS */}
       <AnimatedSection stagger className="mt-24">
-        <p className="eyebrow">Trend del segmento</p>
+        <p className="eyebrow">{t("trends.eyebrow")}</p>
         <h2 className="mt-3 font-serif text-hero text-navy max-w-2xl">
-          Sei trend che spingono Alleva.
+          {t("trends.title")}
         </h2>
 
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-hairline border border-hairline">
-          {trends.map((t, i) => {
-            const Icon = TREND_ICON[t.icon] ?? Leaf;
+          {trends.map((tr, i) => {
+            const Icon = TREND_ICON[tr.icon] ?? Leaf;
             return (
               <motion.div
-                key={t.trend}
+                key={tr.trend}
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
@@ -347,10 +349,10 @@ export default function MercatoPage() {
                   strokeWidth={1.2}
                 />
                 <h3 className="mt-6 font-serif text-[17px] text-navy leading-snug">
-                  {t.trend}
+                  {tr.trend}
                 </h3>
                 <p className="mt-3 text-sm text-carbon-muted leading-relaxed">
-                  {t.impact}
+                  {tr.impact}
                 </p>
                 <span className="absolute left-8 bottom-8 h-px w-6 bg-gold group-hover:w-14 transition-[width] duration-500" />
               </motion.div>
@@ -361,15 +363,15 @@ export default function MercatoPage() {
 
       {/* GEOGRAPHY */}
       <AnimatedSection className="mt-24">
-        <p className="eyebrow">Area geografica target</p>
+        <p className="eyebrow">{t("geography.eyebrow")}</p>
         <h2 className="mt-3 font-serif text-hero text-navy max-w-2xl">
-          {geography.title}
+          {t("geography.title")}
         </h2>
         <p className="mt-4 max-w-2xl text-carbon-muted leading-relaxed">
-          {geography.subtitle}
+          {t("geography.subtitle")}
         </p>
 
-        <p className="mt-12 eyebrow">Profilo New Jersey</p>
+        <p className="mt-12 eyebrow">{t("geography.njProfileTitle")}</p>
         <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-px bg-hairline border border-hairline">
           {geography.nj_profile.map((m, i) => (
             <motion.div
@@ -390,7 +392,7 @@ export default function MercatoPage() {
           ))}
         </div>
 
-        <p className="mt-14 eyebrow">Priorità commerciali per zona</p>
+        <p className="mt-14 eyebrow">{t("geography.zonesTitle")}</p>
         <div className="mt-4 border border-hairline overflow-x-auto">
           <table className="w-full text-left min-w-[820px]">
             <thead>
@@ -444,9 +446,9 @@ export default function MercatoPage() {
         transition={{ duration: 0.7, ease }}
         className="mt-24 border-l-4 border-gold bg-gold/[0.04] px-6 md:px-10 py-8"
       >
-        <p className="eyebrow text-gold">White space</p>
+        <p className="eyebrow text-gold">{t("whitespace.eyebrow")}</p>
         <p className="mt-3 font-serif text-xl md:text-2xl text-navy leading-relaxed max-w-3xl">
-          {whitespace_callout}
+          {t("whitespace.text")}
         </p>
       </motion.div>
     </div>
