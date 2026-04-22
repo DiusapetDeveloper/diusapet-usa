@@ -32,7 +32,10 @@
       "Bash(/usr/bin/find app *)",
       "Bash(/usr/bin/sort)",
       "Bash(git -c user.name=\"Diusapet\" -c user.email=\"dev@diusapet.work\" commit -q -m \"feat\\(i18n\\): navbar links and EN/IT language switcher\")",
-      "Bash(git -c user.name=\"Diusapet\" -c user.email=\"dev@diusapet.work\" commit -q -m \"feat\\(i18n\\): translate home + simple pages \\(allegati, prodotto\\)\")"
+      "Bash(git -c user.name=\"Diusapet\" -c user.email=\"dev@diusapet.work\" commit -q -m \"feat\\(i18n\\): translate home + simple pages \\(allegati, prodotto\\)\")",
+      "Bash(/usr/bin/grep -n \"flow\" /Users/danielefranceschini/diusapet-usa/messages/en.json)",
+      "Bash(/usr/bin/grep -n \"zone\\\\.name\\\\|zone\\\\.dims_ft\\\\|flow_arrows\" /Users/danielefranceschini/diusapet-usa/components/warehouse-map.tsx)",
+      "Bash(git -c user.name=\"Diusapet\" -c user.email=\"dev@diusapet.work\" commit -q -m \"feat\\(i18n\\): translate operativo + finanziario + clienti\")"
     ]
   }
 }

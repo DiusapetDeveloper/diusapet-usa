@@ -254,7 +254,35 @@
     "hero": {
       "eyebrow": "04 · MODELLO OPERATIVO",
       "title": "Un CEO, un operatore, un flusso.",
-      "subtitle": "4.000 sqft a Linden NJ, imbustamento manuale, consegne dirette. Tutto operato dal CEO nei primi 12 mesi."
+      "subtitle": "4.000 sqft a Linden NJ, imbustamento manuale, consegne dirette. Tutto operato dal CEO nei primi 12 mesi.",
+      "phaseBadge": "Fase 1 — CEO unico operatore · 600 sacchi/mese"
+    },
+    "weeklyKpi": {
+      "bags":      "Sacchi movimentati / settimana",
+      "clients":   "Clienti toccati / settimana",
+      "coldCalls": "Cold call nuovi prospect",
+      "hours":     "Ore lavorate / settimana"
+    },
+    "timeline": {
+      "eyebrow":    "La settimana tipo",
+      "title":      "Sette giorni, sei tipologie di attività.",
+      "categoriesLabel": "Categorie",
+      "totalLabel":  "Totale"
+    },
+    "allocation": {
+      "eyebrow":   "Distribuzione del tempo",
+      "title":     "Il 40% della settimana è in furgone.",
+      "subtitle":  "{hours}h/settimana allocati per categoria operativa. Il riposo è escluso dalla barra perché non è tempo di lavoro produttivo.",
+      "hoursUnit": "h/settimana"
+    },
+    "cadence": {
+      "eyebrow": "Cadenza mensile e annuale",
+      "title":   "Oltre la settimana: la cornice ricorrente."
+    },
+    "callout": {
+      "eyebrow": "Scalabilità del modello",
+      "textMain":"Questo modello regge fino a 800 sacchi/mese.",
+      "textSub": "Oltre, si attiva Fase 2: un operatore part-time + driver dedicato."
     },
     "warehouse": {
       "eyebrow": "MAPPA OPERATIVA · LINDEN NJ",
@@ -279,10 +307,31 @@
         "office":      "Ufficio + bagno"
       },
       "flow": {
-        "reception":  "Ricezione",
-        "picking":    "Prelievo",
-        "loading":    "Carico furgone",
-        "storage":    "Stoccaggio"
+        "reception":       "Ricezione",
+        "picking":         "Prelievo",
+        "loading":         "Carico furgone",
+        "storage":         "Stoccaggio",
+        "pickingDispatch": "Picking"
+      },
+      "flowLegend": {
+        "1": "Ricezione",
+        "2": "Bigbag",
+        "3": "Imbustamento",
+        "4": "Sacchi finiti",
+        "5": "Spedizione"
+      },
+      "details": {
+        "step":        "Step",
+        "function":    "Funzione",
+        "equipment":   "Attrezzatura",
+        "hoverHint":   "Passa sopra una zona per vedere i dettagli"
+      },
+      "spaceAllocation": {
+        "eyebrow":  "Allocazione spazi",
+        "sqftSuffix": "sqft"
+      },
+      "capacity": {
+        "eyebrow": "Capacità del layout"
       },
       "allocation": {
         "title":    "Il 68% è produttivo, il 32% è corridoio.",
@@ -330,8 +379,11 @@
     },
     "kpi": {
       "capex":       "Investimento iniziale",
+      "capexCaption":"Setup legale, primo inventory, buffer 4 mesi, contingency.",
       "monthlyFix":  "Costi fissi mensili",
+      "opexCaption": "Team lean, 3PL Linden, trade marketing, compliance.",
       "breakeven":   "Break-even",
+      "monthPrefix": "Mese",
       "roi3y":       "ROI 3 anni",
       "ebitdaY1":    "EBITDA Anno 1"
     },
@@ -582,5 +634,51 @@
     "downloadLabel": "Scarica",
     "pages": "pagine",
     "footerNote": "I file sono placeholder. Il wiring al bucket riservato sarà attivato in fase di deploy su usa.diusapet.work."
+  },
+  "outreach": {
+  "title": "Approccio commerciale",
+  "eyebrow": "APPROCCIO COMMERCIALE",
+  "weeklyKpiTitle": "Volume target settimanale",
+  "followUp": {
+    "title": "L'80% delle conversioni arriva dai follow-up.",
+    "dayLabel": "Giorno",
+    "angleLabel": "Angolo",
+    "lengthLabel": "Lunghezza"
+  },
+  "templates": {
+    "title": "Sette angoli, sette template.",
+    "subtitle": "Ogni tipo di contatto ha il suo angolo di attacco. Niente email generiche.",
+    "subjectLabel": "Subject",
+    "whenLabel": "Quando usarlo",
+    "targetLabel": "Target",
+    "hookTypeLabel": "Tipo hook",
+    "copyButton": "Copia email",
+    "copied": "Copiato"
+  },
+  "subjects": {
+    "title": "Il subject è il 70% del gioco.",
+    "thatWork": "Pattern che funzionano",
+    "forbidden": "Pattern vietati",
+    "example": "Esempio",
+    "reason": "Perché"
+  },
+  "cta": {
+    "title": "Le tre CTA che convertono.",
+    "psychCost": "Costo psicologico"
+  },
+  "numbers": {
+    "title": "I tre numeri non-negoziabili.",
+    "useWith": "Usalo con"
+  },
+  "routine": {
+    "title": "La routine settimanale del CEO."
+  },
+  "funnelKpi": {
+    "title": "Sei metriche che misurano il funnel.",
+    "metric": "Metrica",
+    "formula": "Formula",
+    "target": "Target",
+    "ifBelow": "Se sotto target"
   }
+}
 }

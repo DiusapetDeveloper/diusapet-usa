@@ -254,7 +254,35 @@
     "hero": {
       "eyebrow": "04 · OPERATING MODEL",
       "title": "One CEO, one operator, one flow.",
-      "subtitle": "4,000 sqft in Linden NJ, manual bagging, direct deliveries. CEO-operated for the first 12 months."
+      "subtitle": "4,000 sqft in Linden NJ, manual bagging, direct deliveries. CEO-operated for the first 12 months.",
+      "phaseBadge": "Phase 1 — CEO as sole operator · 600 bags/month"
+    },
+    "weeklyKpi": {
+      "bags":      "Bags handled / week",
+      "clients":   "Clients touched / week",
+      "coldCalls": "New-prospect cold calls",
+      "hours":     "Hours worked / week"
+    },
+    "timeline": {
+      "eyebrow":    "The typical week",
+      "title":      "Seven days, six activity categories.",
+      "categoriesLabel": "Categories",
+      "totalLabel":  "Total"
+    },
+    "allocation": {
+      "eyebrow":   "Time allocation",
+      "title":     "40% of the week is in the van.",
+      "subtitle":  "{hours}h/week allocated by operating category. Rest is excluded from the bar because it is not productive work time.",
+      "hoursUnit": "h/week"
+    },
+    "cadence": {
+      "eyebrow": "Monthly and annual cadence",
+      "title":   "Beyond the week: the recurring frame."
+    },
+    "callout": {
+      "eyebrow": "Model scalability",
+      "textMain":"This model holds up to 800 bags/month.",
+      "textSub": "Beyond that, Phase 2 kicks in: a part-time operator + dedicated driver."
     },
     "warehouse": {
       "eyebrow": "OPERATIONAL MAP · LINDEN NJ",
@@ -279,10 +307,31 @@
         "office":    "Office + restroom"
       },
       "flow": {
-        "reception": "Receiving",
-        "picking":   "Picking",
-        "loading":   "Van loading",
-        "storage":   "Storage"
+        "reception":       "Receiving",
+        "picking":         "Pulling",
+        "loading":         "Van loading",
+        "storage":         "Storage",
+        "pickingDispatch": "Picking"
+      },
+      "flowLegend": {
+        "1": "Receiving",
+        "2": "Bigbag",
+        "3": "Bagging",
+        "4": "Finished bags",
+        "5": "Dispatch"
+      },
+      "details": {
+        "step":        "Step",
+        "function":    "Function",
+        "equipment":   "Equipment",
+        "hoverHint":   "Hover a zone to see details"
+      },
+      "spaceAllocation": {
+        "eyebrow":    "Space allocation",
+        "sqftSuffix": "sqft"
+      },
+      "capacity": {
+        "eyebrow": "Layout capacity"
       },
       "allocation": {
         "title":    "68% is productive, 32% is aisles.",
@@ -330,8 +379,11 @@
     },
     "kpi": {
       "capex":       "Initial investment",
+      "capexCaption":"Legal setup, first inventory, 4-month buffer, contingency.",
       "monthlyFix":  "Monthly fixed costs",
+      "opexCaption": "Lean team, 3PL Linden, trade marketing, compliance.",
       "breakeven":   "Break-even",
+      "monthPrefix": "Month",
       "roi3y":       "3-year ROI",
       "ebitdaY1":    "Year 1 EBITDA"
     },

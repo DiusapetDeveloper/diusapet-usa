@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { KPICard } from "@/components/kpi-card";
 import { AnimatedSection } from "@/components/animated-section";
 import { WeeklyTimeline } from "@/components/weekly-timeline";
@@ -10,7 +11,6 @@ import ceoWeek from "@/data/ceo-week.json";
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const {
-  meta,
   weekly_kpi,
   categories,
   days,
@@ -18,32 +18,37 @@ const {
   monthly_cadence,
 } = ceoWeek;
 
+// Map JSON-ordered KPIs to translation keys (same order as data)
+const WEEKLY_KPI_KEYS = ["bags", "clients", "coldCalls", "hours"] as const;
+
 const totalAllocHours = time_allocation.reduce(
   (s, a) => s + a.hours_per_week,
   0
 );
 
 export default function ModelloOperativoPage() {
+  const t = useTranslations("operativo");
+  const tCommon = useTranslations("common");
+
   return (
     <div className="container py-8">
       {/* HERO */}
       <AnimatedSection>
         <div className="flex items-start justify-between gap-6 flex-wrap">
           <div>
-            <p className="eyebrow text-gold">03 · Modello operativo</p>
+            <p className="eyebrow text-gold">{t("hero.eyebrow")}</p>
             <h1 className="mt-6 font-serif text-hero text-navy max-w-3xl">
-              Un solo operatore, cinque giorni pieni, sessanta ore a
-              settimana.
+              {t("hero.title")}
             </h1>
             <p className="mt-6 max-w-2xl text-carbon-muted leading-relaxed">
-              {meta.subtitle}
+              {t("hero.subtitle")}
             </p>
             <p className="mt-4 text-xs text-carbon-muted">
-              Fonte: {meta.source}
+              {tCommon("source")}: {ceoWeek.meta.source}
             </p>
           </div>
           <span className="inline-block px-3 py-1.5 text-[11px] uppercase tracking-micro border border-navy text-navy whitespace-nowrap">
-            {meta.phase}
+            {t("hero.phaseBadge")}
           </span>
         </div>
       </AnimatedSection>
@@ -53,8 +58,8 @@ export default function ModelloOperativoPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {weekly_kpi.map((k, i) => (
             <KPICard
-              key={k.label}
-              label={k.label}
+              key={WEEKLY_KPI_KEYS[i]}
+              label={t(`weeklyKpi.${WEEKLY_KPI_KEYS[i]}`)}
               value={k.value}
               delay={i * 0.15}
             />
@@ -67,19 +72,21 @@ export default function ModelloOperativoPage() {
         <WarehouseMap />
       </section>
 
-      {/* LEGENDA CATEGORIE */}
+      {/* LEGENDA CATEGORIE + TIMELINE */}
       <AnimatedSection className="mt-24">
         <div className="flex items-end justify-between gap-6 mb-6">
           <div>
-            <p className="eyebrow">La settimana tipo</p>
+            <p className="eyebrow">{t("timeline.eyebrow")}</p>
             <h2 className="mt-3 font-serif text-hero text-navy max-w-2xl">
-              Sette giorni, sei tipologie di attività.
+              {t("timeline.title")}
             </h2>
           </div>
         </div>
 
         <div className="flex flex-wrap items-center gap-x-6 gap-y-3 border-y border-hairline py-4 mb-8">
-          <p className="eyebrow text-carbon-muted">Categorie</p>
+          <p className="eyebrow text-carbon-muted">
+            {t("timeline.categoriesLabel")}
+          </p>
           {Object.entries(categories).map(([key, cat]) => (
             <div key={key} className="flex items-center gap-2">
               <span
@@ -90,7 +97,9 @@ export default function ModelloOperativoPage() {
                   backgroundColor: cat.color,
                 }}
               />
-              <span className="text-xs text-carbon-muted">{cat.label}</span>
+              <span className="text-xs text-carbon-muted">
+                {t(`ceoWeek.categories.${key}`)}
+              </span>
             </div>
           ))}
         </div>
@@ -100,14 +109,12 @@ export default function ModelloOperativoPage() {
 
       {/* TIME ALLOCATION */}
       <AnimatedSection className="mt-24">
-        <p className="eyebrow">Distribuzione del tempo</p>
+        <p className="eyebrow">{t("allocation.eyebrow")}</p>
         <h2 className="mt-3 font-serif text-hero text-navy max-w-2xl">
-          Il 40% della settimana è in furgone.
+          {t("allocation.title")}
         </h2>
         <p className="mt-4 max-w-xl text-sm text-carbon-muted leading-relaxed">
-          {totalAllocHours}h/settimana allocati per categoria operativa. Il
-          riposo è escluso dalla barra perché non è tempo di lavoro
-          produttivo.
+          {t("allocation.subtitle", { hours: totalAllocHours })}
         </p>
 
         <div className="mt-10">
@@ -155,9 +162,12 @@ export default function ModelloOperativoPage() {
                     style={{ backgroundColor: cat?.color ?? "#E6E8EC" }}
                   />
                   <div>
-                    <p className="text-xs text-navy">{cat?.label}</p>
+                    <p className="text-xs text-navy">
+                      {t(`ceoWeek.categories.${a.category}`)}
+                    </p>
                     <p className="text-[11px] text-carbon-muted num">
-                      {a.hours_per_week}h/settimana · {a.pct}%
+                      {a.hours_per_week}
+                      {t("allocation.hoursUnit")} · {a.pct}%
                     </p>
                   </div>
                 </div>
@@ -169,9 +179,9 @@ export default function ModelloOperativoPage() {
 
       {/* MONTHLY CADENCE */}
       <AnimatedSection className="mt-24">
-        <p className="eyebrow">Cadenza mensile e annuale</p>
+        <p className="eyebrow">{t("cadence.eyebrow")}</p>
         <h2 className="mt-3 font-serif text-hero text-navy max-w-2xl">
-          Oltre la settimana: la cornice ricorrente.
+          {t("cadence.title")}
         </h2>
 
         <ul className="mt-10 divide-y divide-hairline border-y border-hairline">
@@ -214,13 +224,10 @@ export default function ModelloOperativoPage() {
         className="mt-24 -mx-6 border-y border-gold/40 bg-gold/[0.06]"
       >
         <div className="container py-12 text-center">
-          <p className="eyebrow text-gold">Scalabilità del modello</p>
+          <p className="eyebrow text-gold">{t("callout.eyebrow")}</p>
           <p className="mt-4 font-serif text-2xl md:text-3xl text-navy max-w-3xl mx-auto leading-snug">
-            Questo modello regge fino a 800 sacchi/mese.{" "}
-            <span className="text-carbon-muted">
-              Oltre, si attiva Fase 2: un operatore part-time + driver
-              dedicato.
-            </span>
+            {t("callout.textMain")}{" "}
+            <span className="text-carbon-muted">{t("callout.textSub")}</span>
           </p>
         </div>
       </motion.div>

@@ -13,6 +13,7 @@ import {
 } from "recharts";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { AnimatedSection } from "@/components/animated-section";
 import { ScenarioSimulator } from "@/components/scenario-simulator";
 import financials from "@/data/financials.json";
@@ -32,17 +33,18 @@ function signedDollarsK(value: number) {
 }
 
 export default function PianoFinanziarioPage() {
+  const t = useTranslations("finanziario");
   const chart = useInView({ threshold: 0.25, triggerOnce: true });
 
   return (
     <div className="container py-8">
       <AnimatedSection>
-        <p className="eyebrow text-gold">04 · Piano finanziario</p>
+        <p className="eyebrow text-gold">{t("hero.eyebrow")}</p>
         <h1 className="mt-6 font-serif text-hero text-navy max-w-3xl">
-          {meta.title}
+          {t("hero.title")}
         </h1>
         <p className="mt-6 max-w-2xl text-carbon-muted leading-relaxed">
-          {meta.subtitle}
+          {t("hero.subtitle")}
         </p>
         <p className="mt-4 text-xs text-carbon-muted leading-relaxed max-w-2xl">
           {meta.recalibration_note}
@@ -54,18 +56,18 @@ export default function PianoFinanziarioPage() {
         className="mt-16 grid md:grid-cols-3 gap-px bg-hairline border border-hairline"
       >
         <HeroKpi
-          label="Investimento iniziale"
+          label={t("kpi.capex")}
           value={formatCurrency(meta.initial_investment_usd)}
-          caption="Setup legale, primo inventory, buffer 4 mesi, contingency."
+          caption={t("kpi.capexCaption")}
         />
         <HeroKpi
-          label="Costi fissi mensili"
+          label={t("kpi.monthlyFix")}
           value={formatCurrency(meta.monthly_fixed_costs_usd)}
-          caption="Team lean, 3PL Linden, trade marketing, compliance."
+          caption={t("kpi.opexCaption")}
         />
         <HeroKpi
-          label="Break-even"
-          value={breakevenMonth ? `Mese ${breakevenMonth}` : "n/d"}
+          label={t("kpi.breakeven")}
+          value={breakevenMonth ? `${t("kpi.monthPrefix")} ${breakevenMonth}` : "n/d"}
           caption={`ROI 3Y +112% · feasibility score ${meta.feasibility_score}/100.`}
         />
       </AnimatedSection>

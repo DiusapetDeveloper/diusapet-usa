@@ -7,10 +7,13 @@ import {
 } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { useInView } from "react-intersection-observer";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
+const DAY_KEYS = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"] as const;
 
 type Block = { time: string; activity: string; category: string };
 
@@ -35,11 +38,11 @@ export function WeeklyTimeline({ days, categories }: Props) {
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
   const [open, setOpen] = useState<Set<string>>(new Set());
 
-  const toggle = (day: string) =>
+  const toggle = (dayKey: string) =>
     setOpen((prev) => {
       const next = new Set(prev);
-      if (next.has(day)) next.delete(day);
-      else next.add(day);
+      if (next.has(dayKey)) next.delete(dayKey);
+      else next.add(dayKey);
       return next;
     });
 
@@ -49,8 +52,9 @@ export function WeeklyTimeline({ days, categories }: Props) {
       <div className="hidden lg:grid grid-cols-7 gap-px bg-hairline border border-hairline">
         {days.map((d, i) => (
           <DayColumn
-            key={d.day}
+            key={DAY_KEYS[i]}
             day={d}
+            dayKey={DAY_KEYS[i]}
             categories={categories}
             index={i}
             inView={inView}
@@ -63,11 +67,12 @@ export function WeeklyTimeline({ days, categories }: Props) {
       <div className="lg:hidden border border-hairline divide-y divide-hairline">
         {days.map((d, i) => (
           <DayAccordion
-            key={d.day}
+            key={DAY_KEYS[i]}
             day={d}
+            dayKey={DAY_KEYS[i]}
             categories={categories}
-            isOpen={open.has(d.day)}
-            onToggle={() => toggle(d.day)}
+            isOpen={open.has(DAY_KEYS[i])}
+            onToggle={() => toggle(DAY_KEYS[i])}
             index={i}
             inView={inView}
             reduce={!!reduce}
@@ -80,17 +85,22 @@ export function WeeklyTimeline({ days, categories }: Props) {
 
 function DayColumn({
   day,
+  dayKey,
   categories,
   index,
   inView,
   reduce,
 }: {
   day: Day;
+  dayKey: string;
   categories: Record<string, Category>;
   index: number;
   inView: boolean;
   reduce: boolean;
 }) {
+  const tCeo = useTranslations("operativo.ceoWeek");
+  const tOp = useTranslations("operativo.timeline");
+
   return (
     <motion.div
       initial={reduce ? false : { opacity: 0, y: 20 }}
@@ -109,7 +119,7 @@ function DayColumn({
       <header className="pb-4 border-b border-hairline">
         <div className="flex items-baseline justify-between gap-2">
           <h3 className="font-serif text-[18px] text-navy leading-none">
-            {day.day}
+            {tCeo(`days.${dayKey}`)}
           </h3>
           <span className="text-[10px] uppercase tracking-micro text-carbon-muted">
             {day.day_short}
@@ -123,9 +133,10 @@ function DayColumn({
       <div className="mt-4 flex flex-col gap-2">
         {day.blocks.map((b, bi) => {
           const cat = categories[b.category];
+          const catLabel = tCeo(`categories.${b.category}`);
           return (
             <motion.div
-              key={`${day.day}-${bi}`}
+              key={`${dayKey}-${bi}`}
               initial={reduce ? false : { opacity: 0, y: 8 }}
               animate={
                 inView || reduce
@@ -141,9 +152,7 @@ function DayColumn({
               style={{
                 borderLeftColor: cat?.color ?? "#E6E8EC",
               }}
-              aria-label={`${b.time} — ${b.activity} — ${
-                cat?.label ?? b.category
-              }`}
+              aria-label={`${b.time} — ${b.activity} — ${catLabel}`}
             >
               <p className="font-mono text-[11px] text-carbon-muted tracking-tight num">
                 {b.time}
@@ -158,7 +167,7 @@ function DayColumn({
 
       <footer className="mt-auto pt-4 border-t border-hairline">
         <p className="text-[11px] text-carbon-muted num">
-          Totale: {day.total_hours}h
+          {tOp("totalLabel")}: {day.total_hours}h
         </p>
         {day.note && (
           <p className="mt-2 text-[11px] italic text-carbon-muted leading-snug">
@@ -172,6 +181,7 @@ function DayColumn({
 
 function DayAccordion({
   day,
+  dayKey,
   categories,
   isOpen,
   onToggle,
@@ -180,6 +190,7 @@ function DayAccordion({
   reduce,
 }: {
   day: Day;
+  dayKey: string;
   categories: Record<string, Category>;
   isOpen: boolean;
   onToggle: () => void;
@@ -187,6 +198,8 @@ function DayAccordion({
   inView: boolean;
   reduce: boolean;
 }) {
+  const tCeo = useTranslations("operativo.ceoWeek");
+
   return (
     <motion.div
       initial={reduce ? false : { opacity: 0, y: 10 }}
@@ -211,7 +224,7 @@ function DayAccordion({
         <div className="flex-1">
           <div className="flex items-baseline gap-3">
             <h3 className="font-serif text-lg text-navy leading-none">
-              {day.day}
+              {tCeo(`days.${dayKey}`)}
             </h3>
             <span className="text-[10px] uppercase tracking-micro text-carbon-muted num">
               {day.total_hours}h
@@ -243,16 +256,15 @@ function DayAccordion({
             <div className="px-4 pb-4 flex flex-col gap-2">
               {day.blocks.map((b, bi) => {
                 const cat = categories[b.category];
+                const catLabel = tCeo(`categories.${b.category}`);
                 return (
                   <div
-                    key={`${day.day}-${bi}`}
+                    key={`${dayKey}-${bi}`}
                     className="py-2.5 px-3 border-l-[3px] bg-navy/[0.02]"
                     style={{
                       borderLeftColor: cat?.color ?? "#E6E8EC",
                     }}
-                    aria-label={`${b.time} — ${b.activity} — ${
-                      cat?.label ?? b.category
-                    }`}
+                    aria-label={`${b.time} — ${b.activity} — ${catLabel}`}
                   >
                     <p className="font-mono text-[11px] text-carbon-muted tracking-tight num">
                       {b.time}

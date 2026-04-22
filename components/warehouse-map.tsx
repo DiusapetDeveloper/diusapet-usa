@@ -20,8 +20,27 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
+import { useTranslations } from "next-intl";
 import warehouse from "@/data/warehouse.json";
 import { cn, formatCurrency } from "@/lib/utils";
+
+const WAREHOUSE_KPI_KEYS = ["surface", "usage", "pallet", "bigbag"] as const;
+const ZONE_KEY_MAP: Record<string, string> = {
+  "loading-dock": "reception",
+  "bigbag-storage": "bigbag",
+  "bagging-area": "bagging",
+  "shipping-staging": "staging",
+  "finished-goods": "finished",
+  "safety-equipment": "safety",
+  office: "office",
+};
+const ARROW_KEY_MAP: Record<string, string> = {
+  Ricezione: "reception",
+  Prelievo: "picking",
+  Stoccaggio: "storage",
+  Picking: "pickingDispatch",
+  "Carico furgone": "loading",
+};
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -100,10 +119,10 @@ export function WarehouseMap() {
       <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6">
         {headline_kpi.map((k, i) => (
           <KpiTile
-            key={k.label}
+            key={WAREHOUSE_KPI_KEYS[i]}
+            kpiKey={WAREHOUSE_KPI_KEYS[i]}
             value={k.value}
             unit={k.unit}
-            label={k.label}
             delay={i * 0.15}
           />
         ))}
@@ -139,21 +158,22 @@ export function WarehouseMap() {
 /* ---------------- HEADER ---------------- */
 
 function Header() {
+  const t = useTranslations("operativo.warehouse");
   return (
     <div className="flex items-start justify-between gap-6 flex-wrap">
       <div>
-        <p className="eyebrow">Mappa operativa · Linden NJ</p>
+        <p className="eyebrow">{t("eyebrow")}</p>
         <h2 className="mt-3 font-serif text-hero text-navy max-w-3xl">
-          4.000 sqft, sette zone, un solo flusso.
+          {t("title")}
         </h2>
         <p className="mt-6 max-w-2xl text-carbon-muted leading-relaxed">
-          {meta.subtitle}
+          {t("subtitle")}
         </p>
       </div>
       <div className="text-right text-xs text-carbon-muted space-y-0.5 num">
-        <p className="text-navy">{meta.location}</p>
-        <p>{meta.lease}</p>
-        <p>{meta.distance_port}</p>
+        <p className="text-navy">{t("locationLabel")}</p>
+        <p>{t("rentLabel")}</p>
+        <p>{t("portLabel")}</p>
       </div>
     </div>
   );
@@ -164,14 +184,16 @@ function Header() {
 function KpiTile({
   value,
   unit,
-  label,
+  kpiKey,
   delay,
 }: {
   value: string;
   unit: string;
-  label: string;
+  kpiKey: string;
   delay: number;
 }) {
+  const t = useTranslations("operativo.warehouse.kpi");
+  const label = t(kpiKey);
   const reduce = useReducedMotion();
   const { ref, inView } = useInView({ threshold: 0.35, triggerOnce: true });
 
@@ -270,6 +292,7 @@ function MapCanvas({
   onHover: (id: string | null) => void;
   onSelect: (id: string) => void;
 }) {
+  const tFlow = useTranslations("operativo.warehouse.flow");
   const reduce = useReducedMotion();
   const { ref, inView } = useInView({ threshold: 0.2, triggerOnce: true });
 
@@ -330,12 +353,15 @@ function MapCanvas({
           {flow_arrows.map((a, i) => {
             const geom = ARROW_GEOMETRY[`${a.from}->${a.to}`];
             if (!geom) return null;
+            const localizedLabel = tFlow(
+              ARROW_KEY_MAP[a.label] ?? "reception"
+            );
             return (
               <FlowArrow
                 key={`${a.from}-${a.to}`}
                 d={geom.d}
                 labelPos={geom.labelPos}
-                label={a.label}
+                label={localizedLabel}
                 index={i}
                 inView={inView}
                 reduce={!!reduce}
@@ -367,10 +393,12 @@ function ZoneRect({
   inView: boolean;
   reduce: boolean;
 }) {
+  const t = useTranslations("operativo.warehouse.zones");
   const { x, y, w, h } = zone.svg;
   const cx = x + w / 2;
   const cy = y + h / 2;
   const Icon = ICON_MAP[zone.icon] ?? Boxes;
+  const localizedName = t(ZONE_KEY_MAP[zone.id] ?? "reception");
 
   return (
     <motion.g
@@ -389,7 +417,7 @@ function ZoneRect({
       onMouseLeave={() => onHover(null)}
       onClick={() => onSelect(zone.id)}
       style={{ cursor: "pointer" }}
-      aria-label={`${zone.name}, ${zone.dims_ft} ft, ${zone.function}`}
+      aria-label={`${localizedName}, ${zone.dims_ft} ft, ${zone.function}`}
     >
       <motion.rect
         x={x}
@@ -462,7 +490,7 @@ function ZoneRect({
           userSelect: "none",
         }}
       >
-        {zone.name}
+        {localizedName}
       </text>
       <text
         x={cx}
@@ -557,6 +585,9 @@ function FlowArrow({
 /* ---------------- DETAILS PANEL ---------------- */
 
 function DetailsPanel({ zone }: { zone: Zone | null }) {
+  const tDetails = useTranslations("operativo.warehouse.details");
+  const tZones = useTranslations("operativo.warehouse.zones");
+  const zoneName = zone ? tZones(ZONE_KEY_MAP[zone.id] ?? "reception") : "";
   return (
     <div className="border border-hairline bg-white p-6 min-h-[280px] lg:w-[320px]">
       <AnimatePresence mode="wait">
@@ -569,22 +600,24 @@ function DetailsPanel({ zone }: { zone: Zone | null }) {
             transition={{ duration: 0.25, ease }}
           >
             {zone.flow_stage != null && (
-              <p className="eyebrow text-gold">Step {zone.flow_stage}</p>
+              <p className="eyebrow text-gold">
+                {tDetails("step")} {zone.flow_stage}
+              </p>
             )}
             <h3 className="mt-2 font-serif text-[22px] text-navy leading-tight">
-              {zone.name}
+              {zoneName}
             </h3>
             <p className="mt-1 text-xs text-carbon-muted num">
               {zone.dims_ft} ft · {zone.area_sqft} sqft
             </p>
             <div className="mt-5 h-px w-10 bg-gold" />
 
-            <p className="mt-5 eyebrow">Funzione</p>
+            <p className="mt-5 eyebrow">{tDetails("function")}</p>
             <p className="mt-2 text-sm text-carbon leading-relaxed">
               {zone.function}
             </p>
 
-            <p className="mt-5 eyebrow">Attrezzatura</p>
+            <p className="mt-5 eyebrow">{tDetails("equipment")}</p>
             <ul className="mt-2 space-y-1.5">
               {zone.equipment.map((item, i) => (
                 <li
@@ -607,7 +640,7 @@ function DetailsPanel({ zone }: { zone: Zone | null }) {
             className="flex items-center justify-center h-full min-h-[240px]"
           >
             <p className="eyebrow text-carbon-muted text-center max-w-[220px] leading-relaxed">
-              Passa sopra una zona per vedere i dettagli
+              {tDetails("hoverHint")}
             </p>
           </motion.div>
         )}
@@ -619,6 +652,7 @@ function DetailsPanel({ zone }: { zone: Zone | null }) {
 /* ---------------- FLOW LEGEND ---------------- */
 
 function FlowLegend() {
+  const t = useTranslations("operativo.warehouse.flowLegend");
   return (
     <div className="mt-10 flex items-center justify-center gap-3 md:gap-4 flex-wrap">
       {FLOW_LABELS.map((s, i) => (
@@ -628,7 +662,7 @@ function FlowLegend() {
               {s.n}
             </span>
             <span className="text-[10px] uppercase tracking-micro text-carbon-muted">
-              {s.l}
+              {t(String(s.n))}
             </span>
           </div>
           {i < FLOW_LABELS.length - 1 && (
@@ -643,6 +677,7 @@ function FlowLegend() {
 /* ---------------- SPACE ALLOCATION ---------------- */
 
 function SpaceAllocation() {
+  const t = useTranslations("operativo.warehouse");
   const productive = space_allocation.productive_zones_sqft;
   const corridors = space_allocation.corridors_maneuver_sqft;
   const total = productive + corridors;
@@ -651,9 +686,9 @@ function SpaceAllocation() {
 
   return (
     <section className="mt-20">
-      <p className="eyebrow">Allocazione spazi</p>
+      <p className="eyebrow">{t("spaceAllocation.eyebrow")}</p>
       <h3 className="mt-3 font-serif text-hero text-navy max-w-2xl">
-        Il {pctProd}% è produttivo, il {pctCorr}% è corridoio.
+        {t("allocation.title")}
       </h3>
 
       <motion.div
@@ -688,10 +723,10 @@ function SpaceAllocation() {
           <span className="mt-1.5 inline-block h-2 w-2 rounded-full bg-gold shrink-0" />
           <div>
             <p className="text-xs text-navy">
-              {productive.toLocaleString("it-IT")} sqft produttivi
+              {t("allocation.productive.label")}
             </p>
             <p className="text-[11px] text-carbon-muted">
-              Zone operative (bigbag, imbustamento, sacchi, staging)
+              {t("allocation.productive.note")}
             </p>
           </div>
         </div>
@@ -699,17 +734,17 @@ function SpaceAllocation() {
           <span className="mt-1.5 inline-block h-2 w-2 rounded-full bg-hairline shrink-0" />
           <div>
             <p className="text-xs text-navy">
-              {corridors.toLocaleString("it-IT")} sqft corridoi e manovra
+              {t("allocation.corridor.label")}
             </p>
             <p className="text-[11px] text-carbon-muted">
-              Richiesti per transpallet + sicurezza OSHA
+              {t("allocation.corridor.note")}
             </p>
           </div>
         </div>
       </div>
 
       <p className="mt-6 text-[13px] text-carbon-muted leading-relaxed max-w-[640px]">
-        {space_allocation.note}
+        {t("allocation.subtitle")}
       </p>
     </section>
   );
@@ -718,18 +753,19 @@ function SpaceAllocation() {
 /* ---------------- EQUIPMENT TABLE ---------------- */
 
 function EquipmentTable() {
+  const t = useTranslations("operativo.warehouse.setup");
   return (
     <section className="mt-20">
-      <p className="eyebrow">Setup iniziale</p>
+      <p className="eyebrow">{t("eyebrow")}</p>
       <h3 className="mt-3 font-serif text-hero text-navy max-w-2xl">
-        Quattromila dollari per partire.
+        {t("title")}
       </h3>
 
       <div className="mt-8 border-y border-hairline">
         <div className="hidden md:grid grid-cols-[180px_1fr_140px] gap-6 py-3 border-b border-hairline">
-          <p className="eyebrow text-carbon-muted">Categoria</p>
-          <p className="eyebrow text-carbon-muted">Cosa comprende</p>
-          <p className="eyebrow text-carbon-muted text-right">Costo</p>
+          <p className="eyebrow text-carbon-muted">{t("headers.category")}</p>
+          <p className="eyebrow text-carbon-muted">{t("headers.includes")}</p>
+          <p className="eyebrow text-carbon-muted text-right">{t("headers.cost")}</p>
         </div>
         {equipment_breakdown.map((row, i) => (
           <motion.div
@@ -766,7 +802,7 @@ function EquipmentTable() {
           }}
           className="grid grid-cols-1 md:grid-cols-[180px_1fr_140px] gap-2 md:gap-6 py-5 bg-gold/[0.06]"
         >
-          <p className="eyebrow text-gold">Totale</p>
+          <p className="eyebrow text-gold">{t("totalLabel")}</p>
           <p />
           <p className="md:text-right font-serif text-gold text-xl num">
             {formatCurrency(equipment_total_usd)}
@@ -780,6 +816,8 @@ function EquipmentTable() {
 /* ---------------- CAPACITY CALLOUT ---------------- */
 
 function CapacityCallout() {
+  const tCap = useTranslations("operativo.warehouse.capacity");
+  const tSetup = useTranslations("operativo.warehouse.setup");
   return (
     <motion.div
       initial={{ opacity: 0, y: 16 }}
@@ -788,10 +826,9 @@ function CapacityCallout() {
       transition={{ duration: 0.7, ease }}
       className="mt-16 border-l-4 border-gold bg-gold/[0.04] px-6 md:px-10 py-8"
     >
-      <p className="eyebrow text-gold">Capacità del layout</p>
+      <p className="eyebrow text-gold">{tCap("eyebrow")}</p>
       <p className="mt-3 font-serif text-lg md:text-xl text-navy leading-relaxed max-w-3xl">
-        A 600 sacchi/mese bastano 4–6 ore di imbustamento a settimana. Il
-        layout regge fino a 1.500 sacchi/mese senza modifiche.
+        {tSetup("capacityNote")}
       </p>
       {scalability_note && (
         <p className="mt-3 text-xs text-carbon-muted max-w-2xl leading-relaxed">

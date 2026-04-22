@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
+import { useTranslations } from "next-intl";
 import { AnimatedSection } from "@/components/animated-section";
 import clientsData from "@/data/clients.json";
 import { cn } from "@/lib/utils";
@@ -91,6 +92,7 @@ const stateChipCounts: Record<string, number> = prospects.reduce(
 const PAGE_SIZE = 25;
 
 export default function ClientiPage() {
+  const t = useTranslations("clienti");
   const [search, setSearch] = useState("");
   const debounced = useDebounce(search, 200);
   const [types, setTypes] = useState<Set<string>>(new Set());
@@ -190,16 +192,12 @@ export default function ClientiPage() {
       <AnimatedSection>
         <div className="flex items-start justify-between gap-6 flex-wrap">
           <div>
-            <p className="eyebrow text-gold">
-              Pipeline commerciale · CRM Cowork
-            </p>
+            <p className="eyebrow text-gold">{t("hero.eyebrow")}</p>
             <h1 className="mt-6 font-serif text-hero text-navy max-w-3xl">
-              {meta.total_prospects} contatti reali, tri-state area.
+              {t("hero.title")}
             </h1>
             <p className="mt-6 max-w-2xl text-carbon-muted leading-relaxed">
-              Pipeline aggiornata dal CRM Cowork con dati verificati: pet
-              store indipendenti, italian markets, allevatori e distributori.
-              Ogni prospect ha un hook personalizzato e uno score di priorità.
+              {t("hero.subtitle")}
             </p>
           </div>
           <p className="text-xs text-carbon-muted max-w-xs text-right num">
