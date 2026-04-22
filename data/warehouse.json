@@ -1,0 +1,156 @@
+{
+  "meta": {
+    "title": "Magazzino operativo Linden",
+    "subtitle": "4.000 sqft, 7 zone, un solo operatore. Flusso lineare dal container alla spedizione.",
+    "location": "Linden/Avenel, NJ — Union County",
+    "lease": "$13/sqft/anno · $4.333/mese base (escluso NNN)",
+    "distance_port": "8–12 miglia da Port Newark/Elizabeth",
+    "distance_ceo_home": "15 minuti da Jersey City",
+    "source": "Allegato 06 — Analisi Produzione (cap. Layout Magazzino)"
+  },
+  "headline_kpi": [
+    { "value": "4.000", "unit": "sqft", "label": "Superficie totale" },
+    { "value": "68",    "unit": "%",    "label": "Utilizzo effettivo" },
+    { "value": "15",    "unit": "",     "label": "Posti pallet finiti" },
+    { "value": "12",    "unit": "",     "label": "Bigbag da 1 ton stoccabili" }
+  ],
+  "svg": {
+    "viewBox": "0 0 1000 520",
+    "scale_note": "Il viewBox è stilizzato (non in scala 1:1). Le aree sqft sono quelle reali dell'allegato 06.",
+    "background_color": "#F5F3EE",
+    "corridor_color": "#EDE9E2"
+  },
+  "zones": [
+    {
+      "id": "loading-dock",
+      "flow_stage": 1,
+      "name": "Baia carico",
+      "name_en": "Loading dock",
+      "dims_ft": "20 × 20",
+      "area_sqft": 400,
+      "icon": "Truck",
+      "function": "Accesso furgone, ricezione container, manovra transpallet",
+      "equipment": ["Porta garage overhead", "Area manovra sgombra", "Transpallet manuale 2.500kg"],
+      "svg": { "x": 20, "y": 20, "w": 200, "h": 220 },
+      "color": "#0B1E3F",
+      "pattern": "diagonal-lines"
+    },
+    {
+      "id": "bigbag-storage",
+      "flow_stage": 2,
+      "name": "Stoccaggio bigbag",
+      "name_en": "Bulk storage",
+      "dims_ft": "30 × 20",
+      "area_sqft": 600,
+      "icon": "Package",
+      "function": "6–12 bigbag da 1 ton su pallet. Scorte per 45 giorni di vendita.",
+      "equipment": ["Scaffalature heavy-duty Uline ($800)", "4 scaffali 1.000kg/posto", "Transpallet manuale"],
+      "svg": { "x": 240, "y": 20, "w": 280, "h": 220 },
+      "color": "#B8925A",
+      "pattern": "dots"
+    },
+    {
+      "id": "bagging-area",
+      "flow_stage": 3,
+      "name": "Zona imbustamento",
+      "name_en": "Bagging area",
+      "dims_ft": "20 × 20",
+      "area_sqft": 400,
+      "icon": "Package2",
+      "function": "Riempimento sacchi dal bigbag, sigillatura, controllo peso. 150 sacchi/ora.",
+      "equipment": [
+        "Sigillatrice a impulso 40cm ($200)",
+        "Bilancia piattaforma digitale 50kg ±10g ($250)",
+        "Tavolo da lavoro inox 180×60cm ($200)",
+        "Tramoggia manuale ($100)"
+      ],
+      "svg": { "x": 540, "y": 20, "w": 200, "h": 220 },
+      "color": "#5A6B4D",
+      "pattern": "solid"
+    },
+    {
+      "id": "shipping-staging",
+      "flow_stage": 5,
+      "name": "Staging spedizioni",
+      "name_en": "Shipping staging",
+      "dims_ft": "20 × 15",
+      "area_sqft": 300,
+      "icon": "Send",
+      "function": "Preparazione ordini giornalieri e carico furgone per consegne NJ/NY/PA",
+      "equipment": ["Bancale + nastro imballaggio", "Etichettatrice ordini", "Checklist giornaliera"],
+      "svg": { "x": 760, "y": 20, "w": 150, "h": 220 },
+      "color": "#7A2E2E",
+      "pattern": "solid"
+    },
+    {
+      "id": "office",
+      "flow_stage": null,
+      "name": "Ufficio + bagno",
+      "name_en": "Office + restroom",
+      "dims_ft": "15 × 15",
+      "area_sqft": 225,
+      "icon": "Briefcase",
+      "function": "Scrivania CEO, PC, archivio FDA, telecamere NVR",
+      "equipment": ["Setup IKEA ufficio ($500)", "Telecamere 4-cam NVR ($280)", "Archivio documentazione FDA/AAFCO"],
+      "svg": { "x": 930, "y": 20, "w": 60, "h": 140 },
+      "color": "#6B6560",
+      "pattern": "cross"
+    },
+    {
+      "id": "finished-goods",
+      "flow_stage": 4,
+      "name": "Stoccaggio sacchi finiti",
+      "name_en": "Finished goods",
+      "dims_ft": "40 × 20",
+      "area_sqft": 800,
+      "icon": "Boxes",
+      "function": "Pallet rack 3 livelli, 15 posti pallet. 1.125 sacchi giacenza media scenario base.",
+      "equipment": ["Pallet rack Uline 3 livelli ($600)", "Etichettatura per lotto", "Log tracciabilità per SKU"],
+      "svg": { "x": 20, "y": 300, "w": 820, "h": 200 },
+      "color": "#A88C5F",
+      "pattern": "grid"
+    },
+    {
+      "id": "safety-equipment",
+      "flow_stage": null,
+      "name": "Sicurezza & compliance",
+      "name_en": "Safety & compliance",
+      "dims_ft": "15 × 15",
+      "area_sqft": 225,
+      "icon": "ShieldCheck",
+      "function": "Kit sicurezza, segnaletica OSHA NJ, HACCP self-inspection mensile",
+      "equipment": ["Kit estintori CO2 ×2 ($160)", "Segnaletica OSHA NJ ($120)", "DPI: guanti, mascherina, grembiule ($80)"],
+      "svg": { "x": 860, "y": 300, "w": 130, "h": 200 },
+      "color": "#9CA3AF",
+      "pattern": "solid"
+    }
+  ],
+  "flow_arrows": [
+    { "from": "loading-dock",     "to": "bigbag-storage",    "label": "Ricezione" },
+    { "from": "bigbag-storage",   "to": "bagging-area",      "label": "Prelievo" },
+    { "from": "bagging-area",     "to": "finished-goods",    "label": "Stoccaggio" },
+    { "from": "finished-goods",   "to": "shipping-staging",  "label": "Picking" },
+    { "from": "shipping-staging", "to": "loading-dock",      "label": "Carico furgone" }
+  ],
+  "space_allocation": {
+    "productive_zones_sqft": 2725,
+    "corridors_maneuver_sqft": 1275,
+    "utilization_pct": 68,
+    "note": "Corridoi e manovra sono necessari per transpallet e sicurezza OSHA. 68% è efficienza tipica di un magazzino operator-operated."
+  },
+  "equipment_breakdown": [
+    { "category": "Stoccaggio",     "items": "Scaffalature heavy-duty + pallet rack + transpallet", "cost_usd": 2000 },
+    { "category": "Imbustamento",   "items": "Sigillatrice + bilancia + tavolo inox + tramoggia",   "cost_usd": 750 },
+    { "category": "Safety",         "items": "Estintori + segnaletica + DPI + kit primo soccorso", "cost_usd": 360 },
+    { "category": "Sicurezza",      "items": "Telecamere NVR 4-cam + serratura rinforzata",        "cost_usd": 280 },
+    { "category": "Ufficio",        "items": "Setup IKEA scrivania + PC + archivio",               "cost_usd": 500 },
+    { "category": "Minor & misc",   "items": "Contenitori sfuso + materiali vari",                 "cost_usd": 150 }
+  ],
+  "equipment_total_usd": 4040,
+  "production_capacity": [
+    { "scenario": "Conservativo", "bags_hour": 100, "bags_month": 3200, "hours_week": 8 },
+    { "scenario": "Realistico",   "bags_hour": 150, "bags_month": 4800, "hours_week": 8 },
+    { "scenario": "Ottimale",     "bags_hour": 200, "bags_month": 6400, "hours_week": 8 }
+  ],
+  "scalability_note": "A 600 sacchi/mese (scenario base Anno 1) bastano 4–6h/settimana di imbustamento. Il layout regge fino a 1.500 sacchi/mese senza modifiche. Oltre, si attiva Fase 2 con operatore part-time."
+}

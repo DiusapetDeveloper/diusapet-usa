@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { KPICard } from "@/components/kpi-card";
 import { AnimatedSection } from "@/components/animated-section";
 import { WeeklyTimeline } from "@/components/weekly-timeline";
+import { WarehouseMap } from "@/components/warehouse-map";
 import ceoWeek from "@/data/ceo-week.json";
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -59,6 +60,11 @@ export default function ModelloOperativoPage() {
             />
           ))}
         </div>
+      </section>
+
+      {/* MAPPA WAREHOUSE */}
+      <section className="mt-24">
+        <WarehouseMap />
       </section>
 
       {/* LEGENDA CATEGORIE */}
