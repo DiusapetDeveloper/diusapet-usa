@@ -11,7 +11,7 @@
   "recalibration_levers": [
     {
       "id": 1,
-      "name": "Compenso CEO scalato",
+      "name": "Compenso MD scalato",
       "description": "$8.000/mese per i primi 6 mesi (pre-revenue e ramp-up), poi $12.000/mese a regime. Riduce il carico Y1 mantenendo un compenso dignitoso da giorno 1.",
       "impact_ebitda_y1_usd": 24000,
       "risk": "Nessuno — accordo pianificato a monte"
@@ -40,7 +40,7 @@
     {
       "id": 5,
       "name": "Bagging manuale in-house Fase 1",
-      "description": "CEO opera l'impulse sealer (~600 sacchi/mese). Zero costo manodopera aggiuntiva, capex ridotto a $4k attrezzature.",
+      "description": "MD opera l'impulse sealer (~600 sacchi/mese). Zero costo manodopera aggiuntiva, capex ridotto a $4k attrezzature.",
       "impact_ebitda_y1_usd": 8000,
       "risk": "Medio — sostenibile fino a ~800 sacchi/mese"
     }
@@ -287,11 +287,11 @@
       "usd": 6000
     },
     {
-      "category": "Trasferimento CEO + setup NJ",
+      "category": "Trasferimento MD + setup NJ",
       "usd": 18000
     },
     {
-      "category": "Compenso CEO 3 mesi pre-revenue",
+      "category": "Compenso MD 3 mesi pre-revenue",
       "usd": 24000
     },
     {

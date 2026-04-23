@@ -5,7 +5,7 @@
     "location": "Linden/Avenel, NJ — Union County",
     "lease": "$13/sqft/anno · $4.333/mese base (escluso NNN)",
     "distance_port": "8–12 miglia da Port Newark/Elizabeth",
-    "distance_ceo_home": "15 minuti da Jersey City",
+    "distance_md_home": "15 minuti da Jersey City",
     "source": "Allegato 06 — Analisi Produzione (cap. Layout Magazzino)"
   },
   "headline_kpi": [
@@ -90,7 +90,7 @@
       "dims_ft": "15 × 15",
       "area_sqft": 225,
       "icon": "Briefcase",
-      "function": "Scrivania CEO, PC, archivio FDA, telecamere NVR",
+      "function": "Scrivania MD, PC, archivio FDA, telecamere NVR",
       "equipment": ["Setup IKEA ufficio ($500)", "Telecamere 4-cam NVR ($280)", "Archivio documentazione FDA/AAFCO"],
       "svg": { "x": 930, "y": 20, "w": 60, "h": 140 },
       "color": "#6B6560",

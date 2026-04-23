@@ -50,7 +50,7 @@ const BREAKDOWN_KEYS = [
   "firstOrder",
   "branding",
   "ceoMove",
-  "ceoSalaryPre",
+  "mdSalaryPre",
   "buffer",
   "contingency",
 ] as const;

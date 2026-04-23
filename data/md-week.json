@@ -1,9 +1,9 @@
 {
   "meta": {
-    "title": "La settimana tipo del CEO",
+    "title": "La settimana tipo del MD",
     "subtitle": "Modello operativo Fase 1: un solo operatore, 5 giorni pieni, 2 weekend Italia al mese.",
     "source": "Allegato 02 — Piano di Massima (cap. Flusso Operativo) + Allegato 06 — Produzione",
-    "phase": "Fase 1 — CEO unico operatore · 600 sacchi/mese"
+    "phase": "Fase 1 — MD unico operatore · 600 sacchi/mese"
   },
   "weekly_kpi": [
     { "value": "≈ 150", "label": "Sacchi movimentati / settimana" },

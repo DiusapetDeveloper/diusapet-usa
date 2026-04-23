@@ -24,7 +24,7 @@
         "impact": "Alto",
         "description": "Il consolato può richiedere documentazione integrativa o rifiutare la pratica per cavilli di business plan.",
         "response_plan": "Attorney specializzato E-2 da settimana 1. Documentazione impeccabile. Piano B: visti alternativi L-1 / O-1. Piano C: gestione remota temporanea con socio USA.",
-        "owner": "CEO + attorney",
+        "owner": "MD + attorney",
         "icon": "Passport"
       },
       {
@@ -34,8 +34,8 @@
         "probability_label": "Media",
         "impact": "Medio",
         "description": "Penetrazione commerciale più lenta del previsto nei primi 6–9 mesi.",
-        "response_plan": "Buffer liquidità $30k copre 6 mesi extra di costi fissi. Compenso CEO garantito dal piano. Break clause del lease al mese 18 come exit option. Accelerazione Amazon + distributori.",
-        "owner": "CEO",
+        "response_plan": "Buffer liquidità $30k copre 6 mesi extra di costi fissi. Compenso MD garantito dal piano. Break clause del lease al mese 18 come exit option. Accelerazione Amazon + distributori.",
+        "owner": "MD",
         "icon": "TrendingDown"
       },
       {
@@ -46,7 +46,7 @@
         "impact": "Alto",
         "description": "Ispezione FDA alla dogana con detain/hold/refuse — può ritardare o compromettere il container.",
         "response_plan": "FSVP consultant esperto dal mese 3. Prior Notice impeccabile per ogni spedizione. Primo container ridotto (mezzo carico) come pilota. Campioni testati in laboratorio indipendente.",
-        "owner": "CEO + FSVP consultant",
+        "owner": "MD + FSVP consultant",
         "icon": "ShieldAlert"
       },
       {
@@ -57,7 +57,7 @@
         "impact": "Medio",
         "description": "Un altro brand italiano (es. Farmina, Monge) occupa lo spazio Made in Italy prima di noi.",
         "response_plan": "First-mover advantage + community italiana NJ già acquisita = vantaggio non replicabile in <3 anni. Accelerazione firma contratti esclusiva con Top 15 prospect. Depositi trademark USA sul brand.",
-        "owner": "CEO + legal",
+        "owner": "MD + legal",
         "icon": "Flag"
       },
       {
@@ -68,7 +68,7 @@
         "impact": "Basso",
         "description": "Il lotto target (es. Carteret) potrebbe essere zonato retail anziché industrial/light manufacturing.",
         "response_plan": "Verifica municipio OBBLIGATORIA prima della firma. Opzioni alternative già identificate: Linden, Avenel, Elizabeth, Rahway. Nessuna firma senza certificato zoning.",
-        "owner": "CEO + broker",
+        "owner": "MD + broker",
         "icon": "MapPin"
       }
     ]
@@ -83,7 +83,7 @@
       { "scenario": "Costi container +20%",              "ebitda_impact_usd": -18000, "severity": "Medio",   "manageability": "Gestibile con ottimizzazione mix SKU" },
       { "scenario": "Magazzino Carteret (+$3/sqft)",     "ebitda_impact_usd": -14000, "severity": "Basso",   "manageability": "Già modellato, nel range accettabile" },
       { "scenario": "Ritardo FDA/FSVP +3 mesi",          "ebitda_impact_usd": -63000, "severity": "Alto",    "manageability": "Buffer $30k + riserva 4 mesi costi fissi coprono l'evento" },
-      { "scenario": "Compenso CEO +$2k/mese",            "ebitda_impact_usd": -24000, "severity": "Basso",   "manageability": "Previsto nella crescita Anno 2-3 del piano" }
+      { "scenario": "Compenso MD +$2k/mese",            "ebitda_impact_usd": -24000, "severity": "Basso",   "manageability": "Previsto nella crescita Anno 2-3 del piano" }
     ]
   },
   "mitigation_levers": {
@@ -135,11 +135,11 @@
     "title": "Il decalogo delle aspettative realistiche.",
     "subtitle": "Dieci principi per leggere il progetto senza illusioni e senza allarmismi.",
     "items": [
-      "Il business non sarà profittevole (compenso CEO incluso) nei primi 2 anni — è normale e previsto.",
-      "Il CEO guadagna dal Giorno 1. Il compenso è nel piano, non è un rischio a cui pensare dopo.",
+      "Il business non sarà profittevole (compenso MD incluso) nei primi 2 anni — è normale e previsto.",
+      "Il MD guadagna dal Giorno 1. Il compenso è nel piano, non è un rischio a cui pensare dopo.",
       "Break-even operativo (senza compenso) già al Mese 9 con 800 sacchi/mese — dimostra la validità del modello.",
       "L'investimento totale $185k è tra i più bassi possibili per un'operazione di questo tipo.",
-      "Il rischio principale è il ritardo nella penetrazione commerciale — mitigabile con il selling del CEO.",
+      "Il rischio principale è il ritardo nella penetrazione commerciale — mitigabile con il selling del MD.",
       "Il valore creato non è solo EBITDA: è il brand, la clientela, la LLC — valorizzabili in futuro.",
       "La community italiana NJ è un vantaggio competitivo reale e non replicabile.",
       "La linea CARE è un'opzione di crescita già pronta — nessun costo di sviluppo aggiuntivo.",

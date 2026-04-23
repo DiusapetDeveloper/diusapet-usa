@@ -40,7 +40,12 @@
       "Bash(/usr/bin/grep -nE '\"[A-Z].*\"|\"[a-z].*\"' /Users/danielefranceschini/diusapet-usa/components/gantt-chart.tsx)",
       "Bash(/usr/bin/grep -viE 'import|from|className|#|easeOut|sans-serif|serif|Plex|^[[:space:]]*//|uppercase|tracking|num|px|em|stroke|Label|transparent|white|F5F3EE|E6E8EC|EDEFF3|F9F7F2')",
       "Bash(/usr/bin/grep -n '\"legend\":\\\\|\"phases\":' /Users/danielefranceschini/diusapet-usa/messages/it.json)",
-      "Bash(/usr/bin/grep *)"
+      "Bash(/usr/bin/grep *)",
+      "Bash(/usr/bin/sort -t: -k2 -rn)",
+      "Bash(/usr/bin/perl -i -pe 's/\"distance_ceo_home\"/\"distance_md_home\"/g' /Users/danielefranceschini/diusapet-usa/data/warehouse.json)",
+      "Bash(/usr/bin/perl -i -pe 's/\"workstream\":\\\\s*\"ceo\"/\"workstream\": \"md\"/g; s/\"id\":\\\\s*\"ceo\",/\"id\": \"md\",/g' /Users/danielefranceschini/diusapet-usa/data/roadmap.json)",
+      "Bash(/usr/bin/perl -i -pe 's/ceoWeek/mdWeek/g; s/ceo-week/md-week/g; s/tCeo/tMd/g' /Users/danielefranceschini/diusapet-usa/app/\\\\[locale\\\\]/operativo/page.tsx /Users/danielefranceschini/diusapet-usa/components/weekly-timeline.tsx)",
+      "Bash(/usr/bin/perl -i -pe 's/Compenso CEO/Compenso MD/g; s/\"ceoSalary\"/\"mdSalary\"/g' /Users/danielefranceschini/diusapet-usa/app/\\\\[locale\\\\]/rischi/page.tsx)"
     ]
   }
 }

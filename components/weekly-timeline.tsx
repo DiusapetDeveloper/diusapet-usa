@@ -98,7 +98,7 @@ function DayColumn({
   inView: boolean;
   reduce: boolean;
 }) {
-  const tCeo = useTranslations("operativo.ceoWeek");
+  const tMd = useTranslations("operativo.mdWeek");
   const tOp = useTranslations("operativo.timeline");
 
   return (
@@ -119,7 +119,7 @@ function DayColumn({
       <header className="pb-4 border-b border-hairline">
         <div className="flex items-baseline justify-between gap-2">
           <h3 className="font-serif text-[18px] text-navy leading-none">
-            {tCeo(`days.${dayKey}`)}
+            {tMd(`days.${dayKey}`)}
           </h3>
           <span className="text-[10px] uppercase tracking-micro text-carbon-muted">
             {day.day_short}
@@ -133,7 +133,7 @@ function DayColumn({
       <div className="mt-4 flex flex-col gap-2">
         {day.blocks.map((b, bi) => {
           const cat = categories[b.category];
-          const catLabel = tCeo(`categories.${b.category}`);
+          const catLabel = tMd(`categories.${b.category}`);
           return (
             <motion.div
               key={`${dayKey}-${bi}`}
@@ -198,7 +198,7 @@ function DayAccordion({
   inView: boolean;
   reduce: boolean;
 }) {
-  const tCeo = useTranslations("operativo.ceoWeek");
+  const tMd = useTranslations("operativo.mdWeek");
 
   return (
     <motion.div
@@ -224,7 +224,7 @@ function DayAccordion({
         <div className="flex-1">
           <div className="flex items-baseline gap-3">
             <h3 className="font-serif text-lg text-navy leading-none">
-              {tCeo(`days.${dayKey}`)}
+              {tMd(`days.${dayKey}`)}
             </h3>
             <span className="text-[10px] uppercase tracking-micro text-carbon-muted num">
               {day.total_hours}h
@@ -256,7 +256,7 @@ function DayAccordion({
             <div className="px-4 pb-4 flex flex-col gap-2">
               {day.blocks.map((b, bi) => {
                 const cat = categories[b.category];
-                const catLabel = tCeo(`categories.${b.category}`);
+                const catLabel = tMd(`categories.${b.category}`);
                 return (
                   <div
                     key={`${dayKey}-${bi}`}

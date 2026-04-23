@@ -86,7 +86,7 @@ function stressScenarioKey(scenario: string): string {
   if (scenario.startsWith("Costi")) return "containerUp";
   if (scenario.includes("Carteret")) return "carteret";
   if (scenario.includes("FDA")) return "fdaDelay";
-  if (scenario.includes("Compenso CEO")) return "ceoSalary";
+  if (scenario.includes("Compenso MD")) return "mdSalary";
   return "";
 }
 

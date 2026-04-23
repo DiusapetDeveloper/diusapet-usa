@@ -17,7 +17,7 @@
     { "id": "warehouse",  "label": "Warehouse",           "color": "#B8925A" },
     { "id": "container",  "label": "Supply chain",        "color": "#A88C5F" },
     { "id": "sales",      "label": "Commerciale",         "color": "#3B5166" },
-    { "id": "ceo",        "label": "Trasferimento CEO",   "color": "#6B6560" }
+    { "id": "md",        "label": "Trasferimento MD",   "color": "#6B6560" }
   ],
   "view_90days": {
     "unit": "week",
@@ -49,8 +49,8 @@
       { "id": "t19", "workstream": "sales",      "name": "Chiusura 5 ordini firmati pre-container",                     "start": 9,  "end": 12, "critical": true },
       { "id": "t20", "workstream": "sales",      "name": "Lancio sito web + foto prodotto professionali",               "start": 10, "end": 13 },
 
-      { "id": "t21", "workstream": "ceo",        "name": "Trasferimento famiglia + housing Jersey City/Hoboken",        "start": 10, "end": 12 },
-      { "id": "t22", "workstream": "ceo",        "name": "Assicurazione sanitaria USA + setup CPA",                     "start": 11, "end": 13 }
+      { "id": "t21", "workstream": "md",        "name": "Trasferimento famiglia + housing Jersey City/Hoboken",        "start": 10, "end": 12 },
+      { "id": "t22", "workstream": "md",        "name": "Assicurazione sanitaria USA + setup CPA",                     "start": 11, "end": 13 }
     ],
     "milestones": [
       { "week": 2,  "label": "LLC Delaware attiva + EIN", "workstream": "legal" },
@@ -81,20 +81,20 @@
       { "id": "m12", "workstream": "sales",      "name": "Attivazione Chewy + distributori Fase 2 (Zeigler, Fauna)",   "start": 20, "end": 30 },
       { "id": "m13", "workstream": "sales",      "name": "Connecticut + upstate NY",                                    "start": 26, "end": 36 },
 
-      { "id": "m14", "workstream": "ceo",        "name": "Operations CEO-only (Fase 1)",                                "start": 3,  "end": 18 },
-      { "id": "m15", "workstream": "ceo",        "name": "Part-time operatore (Fase 1+, da 800 sacchi/mese)",          "start": 18, "end": 30 },
-      { "id": "m16", "workstream": "ceo",        "name": "Operaio full-time + driver dedicato (Fase 2)",                "start": 30, "end": 36 }
+      { "id": "m14", "workstream": "md",        "name": "Operations MD-only (Fase 1)",                                "start": 3,  "end": 18 },
+      { "id": "m15", "workstream": "md",        "name": "Part-time operatore (Fase 1+, da 800 sacchi/mese)",          "start": 18, "end": 30 },
+      { "id": "m16", "workstream": "md",        "name": "Operaio full-time + driver dedicato (Fase 2)",                "start": 30, "end": 36 }
     ],
     "milestones": [
       { "month": 3,  "label": "LLC attiva + magazzino operativo",                   "workstream": "warehouse", "critical": true },
       { "month": 5,  "label": "Prime vendite (5+ pet store riordinano)",            "workstream": "sales" },
-      { "month": 6,  "label": "Break-even operativo (escluso compenso CEO)",        "workstream": "sales",     "critical": true },
+      { "month": 6,  "label": "Break-even operativo (escluso compenso MD)",        "workstream": "sales",     "critical": true },
       { "month": 9,  "label": "Amazon live con 50+ review",                          "workstream": "sales" },
-      { "month": 12, "label": "Review Anno 1: decisione scala o consolida",         "workstream": "ceo" },
+      { "month": 12, "label": "Review Anno 1: decisione scala o consolida",         "workstream": "md" },
       { "month": 14, "label": "Global Pet Expo: 3 accordi distribuzione",           "workstream": "sales",     "critical": true },
-      { "month": 20, "label": "Break-even totale (compenso CEO incluso)",            "workstream": "ceo",       "critical": true },
+      { "month": 20, "label": "Break-even totale (compenso MD incluso)",            "workstream": "md",       "critical": true },
       { "month": 24, "label": "50+ clienti attivi, 3 stati coperti",                 "workstream": "sales" },
-      { "month": 36, "label": "EBITDA +$145k, LLC valore $500k+",                    "workstream": "ceo",       "critical": true }
+      { "month": 36, "label": "EBITDA +$145k, LLC valore $500k+",                    "workstream": "md",       "critical": true }
     ]
   },
   "critical_path_90days": [

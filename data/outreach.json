@@ -131,7 +131,7 @@
     ]
   },
   "weekly_routine": {
-    "title": "La routine settimanale del CEO.",
+    "title": "La routine settimanale del MD.",
     "subtitle": "Per ottenere compounding serve disciplina. 12 settimane di questa routine = pipeline solida e misurabile.",
     "days": [
       { "day": "Lunedì",    "duration": "60-90 min", "activities": ["Review report settimana scorsa", "Decide priorità: zona scouting + batch email", "Lancia scouting per la zona scelta"] },

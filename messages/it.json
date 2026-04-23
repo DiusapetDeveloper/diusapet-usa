@@ -21,6 +21,7 @@
     "mercato": "Mercato",
     "prodotto": "Prodotto",
     "operativo": "Operativo",
+    "governance": "Governance",
     "finanziario": "Finanziario",
     "clienti": "Clienti",
     "roadmap": "Roadmap",
@@ -47,7 +48,7 @@
       "source":  "Modello finanziario ricalibrato · Aprile 2026",
       "market":    { "label": "Mercato pet food USA 2025",   "unit": "B", "value": "$136",    "trend": "+5.8% CAGR",              "caption": "Mercato pet food totale 2025. Segmento premium/holistic +12–15% annuo." },
       "margin":    { "label": "Margine lordo SKU",            "unit": "%", "value": "44",      "trend": "41%–47% per SKU",         "caption": "Blended 8 SKU. Competitor USA medi: 35–38%." },
-      "breakeven": { "label": "Break-even scenario base",     "unit": "",  "value": "Mese 20", "trend": "−7 mesi vs piano originale","caption": "Scenario base ricalibrato con compenso CEO scalato e 5 clienti pre-validati." },
+      "breakeven": { "label": "Break-even scenario base",     "unit": "",  "value": "Mese 20", "trend": "−7 mesi vs piano originale","caption": "Scenario base ricalibrato con compenso MD scalato e 5 clienti pre-validati." },
       "roi":       { "label": "ROI a 3 anni",                 "unit": "%", "value": "+112",    "trend": "+255% ottimistico",       "caption": "Su investimento iniziale di $185k. Feasibility score 82/100." }
     },
     "index": {
@@ -56,7 +57,7 @@
       "sections": {
         "mercato":     { "label": "Mercato",            "hint": "$136B · +5.8% CAGR" },
         "prodotto":    { "label": "Prodotto",           "hint": "8 SKU · margine 41–47%" },
-        "operativo":   { "label": "Modello operativo",  "hint": "CEO + 1 sales + 3PL" },
+        "operativo":   { "label": "Modello operativo",  "hint": "MD + 1 sales + 3PL" },
         "finanziario": { "label": "Piano finanziario",  "hint": "Break-even mese 20 · ROI 3Y +112%" },
         "clienti":     { "label": "Clienti & pipeline", "hint": "15 prospect HOT tri-state" },
         "roadmap":     { "label": "Roadmap",            "hint": "90 giorni + 36 mesi" }
@@ -253,9 +254,9 @@
   "operativo": {
     "hero": {
       "eyebrow": "04 · MODELLO OPERATIVO",
-      "title": "Un CEO, un operatore, un flusso.",
-      "subtitle": "4.000 sqft a Linden NJ, imbustamento manuale, consegne dirette. Tutto operato dal CEO nei primi 12 mesi.",
-      "phaseBadge": "Fase 1 — CEO unico operatore · 600 sacchi/mese"
+      "title": "Un MD, un operatore, un flusso.",
+      "subtitle": "4.000 sqft a Linden NJ, imbustamento manuale, consegne dirette. Tutto operato dal MD nei primi 12 mesi.",
+      "phaseBadge": "Fase 1 — MD unico operatore · 600 sacchi/mese"
     },
     "weeklyKpi": {
       "bags":      "Sacchi movimentati / settimana",
@@ -363,10 +364,10 @@
         }
       }
     },
-    "ceoWeek": {
-      "eyebrow": "SETTIMANA TIPO DEL CEO",
+    "mdWeek": {
+      "eyebrow": "SETTIMANA TIPO DEL MD",
       "title":   "55-60 ore a settimana, 40% in furgone.",
-      "subtitle":"Il CEO è produzione, vendita, logistica e relazione cliente.",
+      "subtitle":"Il MD è produzione, vendita, logistica e relazione cliente.",
       "days": {
         "mon": "Lunedì", "tue": "Martedì", "wed": "Mercoledì", "thu": "Giovedì", "fri": "Venerdì", "sat": "Sabato", "sun": "Domenica"
       },
@@ -436,11 +437,11 @@
       "ebitdaImpactLabel":  "Impatto EBITDA Y1",
       "riskLabel":          "Rischio",
       "items": {
-        "salary":     { "title": "Compenso CEO scalato",              "desc": "$8.000/mese per i primi 6 mesi (pre-revenue e ramp-up), poi $12.000/mese a regime. Riduce il carico Y1 mantenendo un compenso dignitoso da giorno 1.", "risk": "Nessuno — accordo pianificato a monte" },
+        "salary":     { "title": "Compenso MD scalato",              "desc": "$8.000/mese per i primi 6 mesi (pre-revenue e ramp-up), poi $12.000/mese a regime. Riduce il carico Y1 mantenendo un compenso dignitoso da giorno 1.", "risk": "Nessuno — accordo pianificato a monte" },
         "preSold":    { "title": "Pre-acquisizione 5 clienti",        "desc": "Chiudere 5 ordini firmati prima di mandare il primo container. Valida la domanda e permette un ordine ridotto in partenza.",                                         "risk": "Basso — lista 55 contatti e Top 15 già pronti" },
         "reducedSku": { "title": "Lancio con 4 SKU + mezzo container","desc": "Fase 1 focalizzata sui 4 SKU a margine più alto (>45%) e primo ordine da mezzo container. Riduce il capex iniziale e il rischio inventory.",                       "risk": "Basso — gli altri 4 SKU entrano in Fase 2" },
         "warehouse":  { "title": "Warehouse Linden vs Carteret",      "desc": "Scelta di Linden/Avenel a $13/sqft invece di Carteret a $16/sqft. Differenza strutturale che si compone anno su anno.",                                             "risk": "Basso — entrambe zone industriali adeguate" },
-        "inHouse":    { "title": "Bagging manuale in-house Fase 1",   "desc": "CEO opera l'impulse sealer (~600 sacchi/mese). Zero costo manodopera aggiuntiva, capex ridotto a $4k attrezzature.",                                                 "risk": "Medio — sostenibile fino a ~800 sacchi/mese" }
+        "inHouse":    { "title": "Bagging manuale in-house Fase 1",   "desc": "MD opera l'impulse sealer (~600 sacchi/mese). Zero costo manodopera aggiuntiva, capex ridotto a $4k attrezzature.",                                                 "risk": "Medio — sostenibile fino a ~800 sacchi/mese" }
       }
     },
     "chart": {
@@ -461,8 +462,8 @@
         "equipment":        "Setup attrezzature magazzino",
         "firstOrder":       "Primo ordine (mezzo container 4 SKU)",
         "branding":         "Sito web + branding + foto",
-        "ceoMove":          "Trasferimento CEO + setup NJ",
-        "ceoSalaryPre":     "Compenso CEO 3 mesi pre-revenue",
+        "ceoMove":          "Trasferimento MD + setup NJ",
+        "mdSalaryPre":     "Compenso MD 3 mesi pre-revenue",
         "buffer":           "Buffer operativo 4 mesi",
         "contingency":      "Contingency"
       }
@@ -524,7 +525,7 @@
     "map": {
       "eyebrow":      "La mappa della pipeline",
       "title":        "Il tri-state area, nome per nome.",
-      "description":  "Densità pesante su Hudson County (Jersey City, Hoboken) e Brooklyn (Bay Ridge): corridoio giornaliero del CEO. Ogni punto è un prospect reale; i gruppi ≥3 sono aggregati con il numero dentro. Clicca un marker per saltare alla scheda.",
+      "description":  "Densità pesante su Hudson County (Jersey City, Hoboken) e Brooklyn (Bay Ridge): corridoio giornaliero del MD. Ogni punto è un prospect reale; i gruppi ≥3 sono aggregati con il numero dentro. Clicca un marker per saltare alla scheda.",
       "statesLabel":  "Stati",
       "legendLabel":  "Legenda",
       "counter":      "{shown} di {total} prospect · Target: {goal} ordini firmati",
@@ -629,7 +630,7 @@
       "warehouse":  "Warehouse",
       "container":  "Supply chain",
       "sales":      "Commerciale",
-      "ceo":        "Trasferimento CEO"
+      "md": "Trasferimento MD"
     },
     "legend": {
       "workstream": "Workstream",
@@ -716,7 +717,7 @@
       },
       "risks": {
         "visa":       { "name": "Ritardo o rifiuto visto E-2",           "desc": "Il consolato può richiedere documentazione integrativa o rifiutare la pratica per cavilli di business plan.", "response": "Attorney specializzato E-2 da settimana 1. Documentazione impeccabile. Piano B: visti alternativi L-1 / O-1. Piano C: gestione remota temporanea con socio USA." },
-        "sales":      { "name": "Vendite sotto il 50% delle previsioni","desc": "Penetrazione commerciale più lenta del previsto nei primi 6–9 mesi.",                                       "response": "Buffer liquidità $30k copre 6 mesi extra di costi fissi. Compenso CEO garantito dal piano. Break clause del lease al mese 18 come exit option. Accelerazione Amazon + distributori." },
+        "sales":      { "name": "Vendite sotto il 50% delle previsioni","desc": "Penetrazione commerciale più lenta del previsto nei primi 6–9 mesi.",                                       "response": "Buffer liquidità $30k copre 6 mesi extra di costi fissi. Compenso MD garantito dal piano. Break clause del lease al mese 18 come exit option. Accelerazione Amazon + distributori." },
         "fda":        { "name": "Blocco FDA su spedizione",              "desc": "Ispezione FDA alla dogana con detain/hold/refuse — può ritardare o compromettere il container.",         "response": "FSVP consultant esperto dal mese 3. Prior Notice impeccabile per ogni spedizione. Primo container ridotto (mezzo carico) come pilota. Campioni testati in laboratorio indipendente." },
         "competitor": { "name": "Concorrente italiano entra nel mercato","desc": "Un altro brand italiano (es. Farmina, Monge) occupa lo spazio Made in Italy prima di noi.",              "response": "First-mover advantage + community italiana NJ già acquisita = vantaggio non replicabile in <3 anni. Accelerazione firma contratti esclusiva con Top 15 prospect. Depositi trademark USA sul brand." },
         "zoning":     { "name": "Zoning magazzino non idoneo",           "desc": "Il lotto target (es. Carteret) potrebbe essere zonato retail anziché industrial/light manufacturing.",   "response": "Verifica municipio OBBLIGATORIA prima della firma. Opzioni alternative già identificate: Linden, Avenel, Elizabeth, Rahway. Nessuna firma senza certificato zoning." }
@@ -744,7 +745,7 @@
         "containerUp":  { "scenario": "Costi container +20%",         "manageability": "Gestibile con ottimizzazione mix SKU" },
         "carteret":     { "scenario": "Magazzino Carteret (+$3/sqft)","manageability": "Già modellato, nel range accettabile" },
         "fdaDelay":     { "scenario": "Ritardo FDA/FSVP +3 mesi",      "manageability": "Buffer $30k + riserva 4 mesi costi fissi coprono l'evento" },
-        "ceoSalary":    { "scenario": "Compenso CEO +$2k/mese",        "manageability": "Previsto nella crescita Anno 2-3 del piano" }
+        "mdSalary":    { "scenario": "Compenso MD +$2k/mese",        "manageability": "Previsto nella crescita Anno 2-3 del piano" }
       }
     },
     "levers": {
@@ -786,11 +787,11 @@
       "title":   "Il decalogo delle aspettative realistiche.",
       "subtitle":"Dieci principi per leggere il progetto senza illusioni e senza allarmismi.",
       "items": {
-        "i1":  "Il business non sarà profittevole (compenso CEO incluso) nei primi 2 anni — è normale e previsto.",
-        "i2":  "Il CEO guadagna dal Giorno 1. Il compenso è nel piano, non è un rischio a cui pensare dopo.",
+        "i1":  "Il business non sarà profittevole (compenso MD incluso) nei primi 2 anni — è normale e previsto.",
+        "i2":  "Il MD guadagna dal Giorno 1. Il compenso è nel piano, non è un rischio a cui pensare dopo.",
         "i3":  "Break-even operativo (senza compenso) già al Mese 9 con 800 sacchi/mese — dimostra la validità del modello.",
         "i4":  "L'investimento totale $185k è tra i più bassi possibili per un'operazione di questo tipo.",
-        "i5":  "Il rischio principale è il ritardo nella penetrazione commerciale — mitigabile con il selling del CEO.",
+        "i5":  "Il rischio principale è il ritardo nella penetrazione commerciale — mitigabile con il selling del MD.",
         "i6":  "Il valore creato non è solo EBITDA: è il brand, la clientela, la LLC — valorizzabili in futuro.",
         "i7":  "La community italiana NJ è un vantaggio competitivo reale e non replicabile.",
         "i8":  "La linea CARE è un'opzione di crescita già pronta — nessun costo di sviluppo aggiuntivo.",
@@ -915,7 +916,7 @@
       }
     },
     "routine": {
-      "title": "La routine settimanale del CEO.",
+      "title": "La routine settimanale del MD.",
       "days": {
         "mon": { "day": "Lunedì",    "duration": "60-90 min",  "activities": ["Review report settimana scorsa", "Decide priorità: zona scouting + batch email", "Lancia scouting per la zona scelta"] },
         "tue": { "day": "Martedì",   "duration": "90-120 min", "activities": ["Arricchimento contatti nuovi", "Genera batch 15-20 email HOT", "Review qualità email — passaggio non-delegabile"] },
@@ -936,8 +937,30 @@
         "positive":    { "metric": "Positive reply rate",  "formula": "Risposte positive / Risposte",     "target": "2-4%",     "ifBelow": "Value prop non allineata al profilo" },
         "sampleOrder": { "metric": "Sample-to-order",      "formula": "Ordini / Sample inviati",          "target": "25-40%",   "ifBelow": "Follow-up post-sample debole o assente" },
         "velocity":    { "metric": "Pipeline velocity",    "formula": "Giorni medi da lead a ordine",     "target": "30-60gg",  "ifBelow": "Se >90gg: troppo ciclo, affina CTA" },
-        "cpa":         { "metric": "Cost per acquisition", "formula": "Ore CEO / Cliente firmato",        "target": "<8h",      "ifBelow": "Se >15h: stai inseguendo i prospect sbagliati" }
+        "cpa":         { "metric": "Cost per acquisition", "formula": "Ore MD / Cliente firmato",        "target": "<8h",      "ifBelow": "Se >15h: stai inseguendo i prospect sbagliati" }
       }
     }
-  }
+  },
+  "governance": {
+  "eyebrow": "GOVERNANCE",
+  "title": "Governance societaria",
+  "hierarchyTitle": "Gerarchia",
+  "rolesTitle": "Ruoli operativi",
+  "based": "Residenza",
+  "scope": "Scope",
+  "responsibilities": "Responsabilità",
+  "timeCommitment": "Commitment",
+  "decisionMatrix": "Matrice decisionale",
+  "decisionHeaders": {
+    "decision": "Decisione",
+    "md": "MD (Daniele)",
+    "ceo": "CEO (Gael)",
+    "board": "Board Diusa S.A."
+  },
+  "flowsTitle": "Flussi contrattuali",
+  "flowConsideration": "Corrispettivo",
+  "rationaleTitle": "Razionale",
+  "capitalTitle": "Struttura di capitale",
+  "visaNote": "Nota visto E-2"
+}
 }

@@ -8,14 +8,14 @@
     { "day": "Sabato", "block": "Eventi & field", "detail": "Fiere, instore demo, community italiane." }
   ],
   "structure": [
-    { "role": "CEO USA", "seniority": "Founder", "status": "attivo", "mandate": "P&L, vendite, partnership strategiche." },
+    { "role": "MD USA", "seniority": "Founder", "status": "attivo", "mandate": "P&L, vendite, partnership strategiche." },
     { "role": "Sales Rep NJ/NY", "seniority": "Senior", "status": "hiring M4", "mandate": "Visite retail e gestione 40 account." },
     { "role": "Logistics & Ops", "seniority": "Mid", "status": "outsourced 3PL", "mandate": "Magazzino, spedizioni, customs broker." },
     { "role": "Marketing freelance", "seniority": "Senior", "status": "part-time", "mandate": "Brand, contenuti, digital, trade marketing." },
     { "role": "Fiscale & legale", "seniority": "Partner", "status": "retained", "mandate": "Compliance NJ, FDA pet food registration." }
   ],
   "costs": [
-    { "item": "Salario CEO", "monthly": 7500 },
+    { "item": "Salario MD", "monthly": 7500 },
     { "item": "Sales rep (da M4)", "monthly": 5200 },
     { "item": "3PL + logistica", "monthly": 3100 },
     { "item": "Marketing & trade", "monthly": 2400 },

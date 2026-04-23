@@ -21,6 +21,7 @@
     "mercato":     "Market",
     "prodotto":    "Product",
     "operativo":   "Operations",
+    "governance": "Governance",
     "finanziario": "Financials",
     "clienti":     "Clients",
     "roadmap":     "Roadmap",
@@ -47,7 +48,7 @@
       "source":  "Recalibrated financial model · April 2026",
       "market":    { "label": "U.S. pet food market 2025",   "unit": "B", "value": "$136",     "trend": "+5.8% CAGR",                "caption": "Total pet food market 2025. Premium/holistic segment +12–15% annually." },
       "margin":    { "label": "Gross margin per SKU",         "unit": "%", "value": "44",       "trend": "41%–47% per SKU",           "caption": "Blended 8 SKUs. U.S. competitor average: 35–38%." },
-      "breakeven": { "label": "Break-even, base scenario",    "unit": "",  "value": "Month 20", "trend": "−7 months vs original plan","caption": "Recalibrated base scenario with scaled CEO salary and 5 pre-validated clients." },
+      "breakeven": { "label": "Break-even, base scenario",    "unit": "",  "value": "Month 20", "trend": "−7 months vs original plan","caption": "Recalibrated base scenario with scaled MD salary and 5 pre-validated clients." },
       "roi":       { "label": "3-year ROI",                   "unit": "%", "value": "+112",     "trend": "+255% optimistic",          "caption": "On $185k initial investment. Feasibility score 82/100." }
     },
     "index": {
@@ -56,7 +57,7 @@
       "sections": {
         "mercato":     { "label": "Market",             "hint": "$136B · +5.8% CAGR" },
         "prodotto":    { "label": "Product",            "hint": "8 SKUs · 41–47% margin" },
-        "operativo":   { "label": "Operating model",    "hint": "CEO + 1 sales + 3PL" },
+        "operativo":   { "label": "Operating model",    "hint": "MD + 1 sales + 3PL" },
         "finanziario": { "label": "Financial plan",     "hint": "Break-even month 20 · 3Y ROI +112%" },
         "clienti":     { "label": "Clients & pipeline", "hint": "15 HOT prospects tri-state" },
         "roadmap":     { "label": "Roadmap",            "hint": "90 days + 36 months" }
@@ -253,9 +254,9 @@
   "operativo": {
     "hero": {
       "eyebrow": "04 · OPERATING MODEL",
-      "title": "One CEO, one operator, one flow.",
-      "subtitle": "4,000 sqft in Linden NJ, manual bagging, direct deliveries. CEO-operated for the first 12 months.",
-      "phaseBadge": "Phase 1 — CEO as sole operator · 600 bags/month"
+      "title": "One MD, one operator, one flow.",
+      "subtitle": "4,000 sqft in Linden NJ, manual bagging, direct deliveries. MD-operated for the first 12 months.",
+      "phaseBadge": "Phase 1 — MD as sole operator · 600 bags/month"
     },
     "weeklyKpi": {
       "bags":      "Bags handled / week",
@@ -363,10 +364,10 @@
         }
       }
     },
-    "ceoWeek": {
-      "eyebrow": "CEO TYPICAL WEEK",
+    "mdWeek": {
+      "eyebrow": "MD TYPICAL WEEK",
       "title":   "55-60 hours a week, 40% behind the wheel.",
-      "subtitle":"The CEO is production, sales, logistics and customer relationship all at once.",
+      "subtitle":"The MD is production, sales, logistics and customer relationship all at once.",
       "days": {
         "mon": "Monday", "tue": "Tuesday", "wed": "Wednesday", "thu": "Thursday", "fri": "Friday", "sat": "Saturday", "sun": "Sunday"
       },
@@ -436,11 +437,11 @@
       "ebitdaImpactLabel":  "Y1 EBITDA impact",
       "riskLabel":          "Risk",
       "items": {
-        "salary":     { "title": "Tiered CEO compensation",            "desc": "$8,000/month for the first 6 months (pre-revenue and ramp-up), then $12,000/month at steady state. Reduces Y1 load while keeping a dignified compensation from day 1.", "risk": "None — agreement set in advance" },
+        "salary":     { "title": "Tiered MD compensation",            "desc": "$8,000/month for the first 6 months (pre-revenue and ramp-up), then $12,000/month at steady state. Reduces Y1 load while keeping a dignified compensation from day 1.", "risk": "None — agreement set in advance" },
         "preSold":    { "title": "5 pre-signed clients",               "desc": "Close 5 signed orders before shipping the first container. Validates demand and allows a smaller initial order.",                                                                 "risk": "Low — 55-contact list and Top 15 ready" },
         "reducedSku": { "title": "Launch with 4 SKUs + half container","desc": "Phase 1 focused on the 4 highest-margin SKUs (>45%) and a half-container first order. Reduces initial capex and inventory risk.",                                                 "risk": "Low — remaining 4 SKUs enter in Phase 2" },
         "warehouse":  { "title": "Warehouse Linden vs Carteret",       "desc": "Linden/Avenel at $13/sqft chosen over Carteret at $16/sqft. Structural delta that compounds year over year.",                                                                      "risk": "Low — both are suitable industrial zones" },
-        "inHouse":    { "title": "In-house manual bagging, Phase 1",   "desc": "CEO runs the impulse sealer (~600 bags/month). Zero additional labor cost, capex limited to $4k of equipment.",                                                                    "risk": "Medium — sustainable up to ~800 bags/month" }
+        "inHouse":    { "title": "In-house manual bagging, Phase 1",   "desc": "MD runs the impulse sealer (~600 bags/month). Zero additional labor cost, capex limited to $4k of equipment.",                                                                    "risk": "Medium — sustainable up to ~800 bags/month" }
       }
     },
     "chart": {
@@ -461,8 +462,8 @@
         "equipment":        "Warehouse equipment setup",
         "firstOrder":       "First order (half container, 4 SKUs)",
         "branding":         "Website + branding + photography",
-        "ceoMove":          "CEO relocation + NJ setup",
-        "ceoSalaryPre":     "CEO compensation, 3 pre-revenue months",
+        "ceoMove":          "MD relocation + NJ setup",
+        "mdSalaryPre":     "MD compensation, 3 pre-revenue months",
         "buffer":           "4-month operating buffer",
         "contingency":      "Contingency"
       }
@@ -524,7 +525,7 @@
     "map": {
       "eyebrow":      "Pipeline map",
       "title":        "The tri-state area, name by name.",
-      "description":  "High density across Hudson County (Jersey City, Hoboken) and Brooklyn (Bay Ridge): the CEO's daily corridor. Each dot is a real prospect; clusters of ≥3 are aggregated with the count inside. Click a marker to jump to the record.",
+      "description":  "High density across Hudson County (Jersey City, Hoboken) and Brooklyn (Bay Ridge): the MD's daily corridor. Each dot is a real prospect; clusters of ≥3 are aggregated with the count inside. Click a marker to jump to the record.",
       "statesLabel":  "States",
       "legendLabel":  "Legend",
       "counter":      "{shown} of {total} prospects · Target: {goal} signed orders",
@@ -629,7 +630,7 @@
       "warehouse":  "Warehouse",
       "container":  "Supply chain",
       "sales":      "Commercial",
-      "ceo":        "CEO relocation"
+      "md":        "MD relocation"
     },
     "legend": {
       "workstream":  "Workstream",
@@ -716,7 +717,7 @@
       },
       "risks": {
         "visa":       { "name": "E-2 visa delay or denial",                  "desc": "The consulate may request additional documentation or deny the application on business-plan technicalities.", "response": "E-2 specialist attorney from week 1. Flawless documentation. Plan B: L-1 / O-1 alternative visas. Plan C: temporary remote management with a U.S. partner." },
-        "sales":      { "name": "Sales below 50% of forecast",               "desc": "Commercial penetration slower than expected in the first 6–9 months.",                                            "response": "$30k liquidity buffer covers 6 extra months of fixed costs. CEO compensation is guaranteed by the plan. Lease break clause at month 18 as exit option. Accelerate Amazon and distributor channels." },
+        "sales":      { "name": "Sales below 50% of forecast",               "desc": "Commercial penetration slower than expected in the first 6–9 months.",                                            "response": "$30k liquidity buffer covers 6 extra months of fixed costs. MD compensation is guaranteed by the plan. Lease break clause at month 18 as exit option. Accelerate Amazon and distributor channels." },
         "fda":        { "name": "FDA shipment hold",                          "desc": "FDA inspection at customs with detain/hold/refuse — may delay or compromise the container.",                      "response": "Experienced FSVP consultant from month 3. Flawless Prior Notice on every shipment. Reduced first container (half load) as pilot. Samples tested in an independent laboratory." },
         "competitor": { "name": "Italian competitor enters the market",      "desc": "Another Italian brand (e.g. Farmina, Monge) occupies the Made in Italy space before we do.",                   "response": "First-mover advantage + already-acquired NJ Italian community = an advantage that can't be replicated in under 3 years. Accelerate exclusivity contracts with Top 15 prospects. U.S. trademark filings on the brand." },
         "zoning":     { "name": "Warehouse zoning not suitable",             "desc": "The target lot (e.g. Carteret) may be zoned retail rather than industrial / light manufacturing.",                "response": "Municipal verification MANDATORY before signing. Alternative options already identified: Linden, Avenel, Elizabeth, Rahway. No signature without zoning certificate." }
@@ -744,7 +745,7 @@
         "containerUp":  { "scenario": "Container costs +20%",          "manageability": "Manageable with SKU-mix optimization" },
         "carteret":     { "scenario": "Carteret warehouse (+$3/sqft)", "manageability": "Already modeled, within acceptable range" },
         "fdaDelay":     { "scenario": "FDA/FSVP delay +3 months",       "manageability": "$30k buffer + 4-month fixed-cost reserve cover the event" },
-        "ceoSalary":    { "scenario": "CEO compensation +$2k/month",    "manageability": "Already planned in Year 2-3 growth" }
+        "mdSalary":    { "scenario": "MD compensation +$2k/month",    "manageability": "Already planned in Year 2-3 growth" }
       }
     },
     "levers": {
@@ -786,11 +787,11 @@
       "title":   "Ten principles for realistic expectations.",
       "subtitle":"Ten principles to read the project without illusions and without alarm.",
       "items": {
-        "i1":  "The business will not be profitable (CEO compensation included) for the first 2 years — this is normal and expected.",
-        "i2":  "The CEO is paid from Day 1. Compensation is in the plan, not a risk to worry about later.",
+        "i1":  "The business will not be profitable (MD compensation included) for the first 2 years — this is normal and expected.",
+        "i2":  "The MD is paid from Day 1. Compensation is in the plan, not a risk to worry about later.",
         "i3":  "Operational break-even (excluding compensation) at Month 9 with 800 bags/month — proof the model works.",
         "i4":  "$185k total investment is among the lowest possible for an operation of this type.",
-        "i5":  "The main risk is slow commercial penetration — mitigated by the CEO's own selling.",
+        "i5":  "The main risk is slow commercial penetration — mitigated by the MD's own selling.",
         "i6":  "Value created is not only EBITDA: it's the brand, the customer base, the LLC — all monetizable later.",
         "i7":  "The NJ Italian community is a real and non-replicable competitive advantage.",
         "i8":  "The CARE line is a ready-to-launch growth option — no additional development cost.",
@@ -915,7 +916,7 @@
       }
     },
     "routine": {
-      "title": "The CEO's weekly routine.",
+      "title": "The MD's weekly routine.",
       "days": {
         "mon": { "day": "Monday",    "duration": "60-90 min",  "activities": ["Review last week's report", "Decide priorities: scouting zone + email batch", "Launch scouting for the chosen zone"] },
         "tue": { "day": "Tuesday",   "duration": "90-120 min", "activities": ["Enrich new contacts", "Generate a batch of 15–20 HOT emails", "Review email quality — non-delegable step"] },
@@ -936,8 +937,30 @@
         "positive":    { "metric": "Positive reply rate",  "formula": "Positive replies / Replies",       "target": "2-4%",     "ifBelow": "Value prop not aligned with the profile" },
         "sampleOrder": { "metric": "Sample-to-order",      "formula": "Orders / Samples sent",            "target": "25-40%",   "ifBelow": "Weak or missing post-sample follow-up" },
         "velocity":    { "metric": "Pipeline velocity",    "formula": "Avg days from lead to order",      "target": "30-60d",   "ifBelow": "If >90d: cycle too long, refine CTA" },
-        "cpa":         { "metric": "Cost per acquisition", "formula": "CEO hours / Signed client",        "target": "<8h",      "ifBelow": "If >15h: chasing the wrong prospects" }
+        "cpa":         { "metric": "Cost per acquisition", "formula": "MD hours / Signed client",        "target": "<8h",      "ifBelow": "If >15h: chasing the wrong prospects" }
       }
     }
-  }
+  },
+  "governance": {
+  "eyebrow": "GOVERNANCE",
+  "title": "Corporate governance",
+  "hierarchyTitle": "Hierarchy",
+  "rolesTitle": "Operating roles",
+  "based": "Based",
+  "scope": "Scope",
+  "responsibilities": "Responsibilities",
+  "timeCommitment": "Commitment",
+  "decisionMatrix": "Decision matrix",
+  "decisionHeaders": {
+    "decision": "Decision",
+    "md": "MD (Daniele)",
+    "ceo": "CEO (Gael)",
+    "board": "Diusa S.A. Board"
+  },
+  "flowsTitle": "Contractual flows",
+  "flowConsideration": "Consideration",
+  "rationaleTitle": "Rationale",
+  "capitalTitle": "Capital structure",
+  "visaNote": "E-2 visa note"
+}
 }

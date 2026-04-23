@@ -148,7 +148,7 @@
       { "metric": "Pet store indipendenti NJ+NY stimati","value": "800–1.200" }
     ],
     "zones": [
-      { "zone": "Hudson County (Jersey City, Hoboken)",        "state": "NJ", "italian_pct": 22, "income": "72k+", "stores": "15–20",  "priority": 1, "note": "Base CEO, community forte" },
+      { "zone": "Hudson County (Jersey City, Hoboken)",        "state": "NJ", "italian_pct": 22, "income": "72k+", "stores": "15–20",  "priority": 1, "note": "Base MD, community forte" },
       { "zone": "Essex County (Montclair, Newark)",            "state": "NJ", "italian_pct": 18, "income": "65k+", "stores": "20–25",  "priority": 1, "note": "Montclair = premium" },
       { "zone": "Union County (Linden, Elizabeth, Garwood)",   "state": "NJ", "italian_pct": 25, "income": "68k+", "stores": "15–20",  "priority": 1, "note": "Zona magazzino target" },
       { "zone": "Middlesex County (Edison)",                   "state": "NJ", "italian_pct": 28, "income": "79k+", "stores": "20–25",  "priority": 2, "note": "Edison = max% italiana NJ" },

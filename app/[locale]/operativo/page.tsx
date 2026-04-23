@@ -6,7 +6,7 @@ import { KPICard } from "@/components/kpi-card";
 import { AnimatedSection } from "@/components/animated-section";
 import { WeeklyTimeline } from "@/components/weekly-timeline";
 import { WarehouseMap } from "@/components/warehouse-map";
-import ceoWeek from "@/data/ceo-week.json";
+import mdWeek from "@/data/md-week.json";
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -16,7 +16,7 @@ const {
   days,
   time_allocation,
   monthly_cadence,
-} = ceoWeek;
+} = mdWeek;
 
 // Map JSON-ordered KPIs to translation keys (same order as data)
 const WEEKLY_KPI_KEYS = ["bags", "clients", "coldCalls", "hours"] as const;
@@ -44,7 +44,7 @@ export default function ModelloOperativoPage() {
               {t("hero.subtitle")}
             </p>
             <p className="mt-4 text-xs text-carbon-muted">
-              {tCommon("source")}: {ceoWeek.meta.source}
+              {tCommon("source")}: {mdWeek.meta.source}
             </p>
           </div>
           <span className="inline-block px-3 py-1.5 text-[11px] uppercase tracking-micro border border-navy text-navy whitespace-nowrap">
@@ -98,7 +98,7 @@ export default function ModelloOperativoPage() {
                 }}
               />
               <span className="text-xs text-carbon-muted">
-                {t(`ceoWeek.categories.${key}`)}
+                {t(`mdWeek.categories.${key}`)}
               </span>
             </div>
           ))}
@@ -163,7 +163,7 @@ export default function ModelloOperativoPage() {
                   />
                   <div>
                     <p className="text-xs text-navy">
-                      {t(`ceoWeek.categories.${a.category}`)}
+                      {t(`mdWeek.categories.${a.category}`)}
                     </p>
                     <p className="text-[11px] text-carbon-muted num">
                       {a.hours_per_week}
