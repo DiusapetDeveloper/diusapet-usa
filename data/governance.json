@@ -1,0 +1,219 @@
+{
+  "meta": {
+    "eyebrow": "GOVERNANCE & STRUTTURA SOCIETARIA",
+    "title": "Come si colloca Diusapet USA nel gruppo.",
+    "subtitle": "Una sussidiaria controllata al 100% dalla società italiana, con governance group-level e management operativo locale.",
+    "source": "Allegato 05 — Fattibilità Aziendale · Struttura fiscale Italia-USA"
+  },
+  "headline_kpi": [
+    { "value": "3",   "unit": "entità",  "label": "Holding CH → SRL IT → LLC US" },
+    { "value": "100", "unit": "%",       "label": "Controllo Diusapet IT su LLC USA" },
+    { "value": "2",   "unit": "ruoli",   "label": "CEO gruppo + MD operativo USA" },
+    { "value": "5-15","unit": "%",       "label": "Ritenuta dividendi USA → IT (trattato)" }
+  ],
+  "hierarchy": {
+    "eyebrow": "STRUTTURA GERARCHICA",
+    "title": "Tre entità, una catena di controllo lineare.",
+    "subtitle": "Ogni livello ha scopo e giurisdizione distinti. La LLC USA è l'ultimo anello, controllata al 100% da Diusapet S.r.l.",
+    "levels": [
+      {
+        "id": "holding",
+        "level": 1,
+        "name": "Diusa S.A.",
+        "jurisdiction": "Svizzera",
+        "role": "Holding di gruppo",
+        "function": "Detiene le partecipazioni operative. Ruolo finanziario e strategico.",
+        "color": "#0B1E3F",
+        "icon": "Building2"
+      },
+      {
+        "id": "italy",
+        "level": 2,
+        "name": "Diusapet S.r.l.",
+        "jurisdiction": "Italia",
+        "role": "Società operativa",
+        "function": "Produzione brand Alleva. Detiene il know-how, le formule, il marchio. Controlla al 100% la LLC USA.",
+        "color": "#3B5166",
+        "icon": "Factory"
+      },
+      {
+        "id": "usa",
+        "level": 3,
+        "name": "Diusapet USA LLC",
+        "jurisdiction": "Delaware · USA",
+        "role": "Sussidiaria commerciale",
+        "function": "Imbustamento, importazione, distribuzione sul mercato americano. Entità legale separata con responsabilità limitata.",
+        "color": "#B8925A",
+        "icon": "Store"
+      }
+    ]
+  },
+  "roles": {
+    "eyebrow": "RUOLI DELLA LLC USA",
+    "title": "CEO group-level, MD operativo locale.",
+    "subtitle": "Struttura di governance standard per sussidiarie estere di gruppi italiani.",
+    "positions": [
+      {
+        "id": "ceo",
+        "title": "Chief Executive Officer",
+        "holder": "Gael [Cognome]",
+        "entity": "Diusapet USA LLC",
+        "based": "Italia (con visite periodiche USA)",
+        "scope": "Governance group-level, approvazioni strategiche, firma contratti quadro, rapporto con la holding",
+        "responsibilities": [
+          "Rappresentanza legale della LLC verso la holding italiana",
+          "Approvazione budget annuale e deviazioni >$25k",
+          "Firma di contratti con distributori nazionali, fiere strategiche (Global Pet Expo)",
+          "Decisioni su capital allocation, espansione Fase 2-3, exit strategy"
+        ],
+        "time_commitment": "Part-time · stime 20-30 ore/mese",
+        "role_type": "Group executive",
+        "color": "#0B1E3F"
+      },
+      {
+        "id": "md",
+        "title": "Managing Director",
+        "holder": "Daniele Franceschini",
+        "entity": "Diusapet USA LLC",
+        "based": "New Jersey · USA",
+        "scope": "Full P&L USA. Operations, vendite, compliance, relazioni clienti locali",
+        "responsibilities": [
+          "Gestione quotidiana della LLC: warehouse, produzione manuale, consegne",
+          "Sviluppo commerciale: pet store, Italian markets, breeder, distributori",
+          "Compliance FDA/FSVP/OSHA operativa",
+          "Gestione CRM, outreach commerciale, campioni, follow-up",
+          "Riporting mensile al CEO group-level e al board"
+        ],
+        "time_commitment": "Full-time · 55-60 ore/settimana",
+        "role_type": "Country executive",
+        "color": "#B8925A"
+      }
+    ]
+  },
+  "decision_matrix": {
+    "eyebrow": "MATRICE DECISIONALE",
+    "title": "Chi decide cosa.",
+    "subtitle": "Deleghe e soglie di approvazione definite nell'Operating Agreement della LLC.",
+    "matrix": [
+      { "decision": "Ordini container routinari",              "md":  "Decide",    "ceo": "Informato", "board": "—" },
+      { "decision": "Assunzione part-time operator Fase 2",    "md":  "Propone",   "ceo": "Decide",    "board": "—" },
+      { "decision": "Sconti commerciali >10% o contratti esclusiva", "md":  "Propone",   "ceo": "Decide",    "board": "—" },
+      { "decision": "Espansione geografica nuova zona",         "md":  "Propone",   "ceo": "Decide",    "board": "Informato" },
+      { "decision": "Contratti con distributori nazionali",     "md":  "Trattativa","ceo": "Firma",     "board": "—" },
+      { "decision": "Capex >$25k (automazione, semi-auto)",     "md":  "Propone",   "ceo": "Approva",   "board": "Informato" },
+      { "decision": "Modifiche prezzi listino >5%",             "md":  "Decide",    "ceo": "Informato", "board": "—" },
+      { "decision": "Lancio nuove linee (es. CARE)",            "md":  "Propone",   "ceo": "Decide",    "board": "Approva" },
+      { "decision": "Assunzione dipendenti full-time",          "md":  "Propone",   "ceo": "Approva",   "board": "—" },
+      { "decision": "Exit / vendita / ristrutturazione LLC",    "md":  "Informato", "ceo": "Propone",   "board": "Decide" }
+    ],
+    "legend": {
+      "decide":    "Decisione autonoma",
+      "propone":   "Propone con motivazione",
+      "approva":   "Approvazione formale richiesta",
+      "firma":     "Firma legale richiesta",
+      "informato": "Notifica ex post",
+      "board":     "Board Diusa S.A."
+    }
+  },
+  "contractual_flows": {
+    "eyebrow": "FLUSSI CONTRATTUALI",
+    "title": "Quattro flussi formalizzati tra le entità.",
+    "subtitle": "Ogni relazione tra holding e sussidiaria è governata da un contratto specifico, obbligatorio per compliance fiscale transfer pricing.",
+    "flows": [
+      {
+        "id": "license",
+        "from": "Diusapet S.r.l.",
+        "to": "Diusapet USA LLC",
+        "type": "License Agreement",
+        "what": "Licenza d'uso del marchio Alleva sul territorio USA",
+        "consideration": "Royalty 3-5% sul fatturato netto USA",
+        "note": "Obbligatorio per compliance OECD transfer pricing",
+        "icon": "BookLock"
+      },
+      {
+        "id": "supply",
+        "from": "Diusapet S.r.l.",
+        "to": "Diusapet USA LLC",
+        "type": "Supply Agreement",
+        "what": "Fornitura prodotto sfuso (bigbag) e sacchi vuoti",
+        "consideration": "Transfer price a margine industriale italiano (€ per kg)",
+        "note": "Il prezzo è documentato nel transfer pricing study",
+        "icon": "Truck"
+      },
+      {
+        "id": "services",
+        "from": "Diusapet S.r.l.",
+        "to": "Diusapet USA LLC",
+        "type": "Services Agreement",
+        "what": "Consulenza tecnica, R&D, quality assurance",
+        "consideration": "Fee fissa annuale $8-12k",
+        "note": "Copertura per supporto tecnico continuo da Italia",
+        "icon": "Wrench"
+      },
+      {
+        "id": "dividends",
+        "from": "Diusapet USA LLC",
+        "to": "Diusapet S.r.l.",
+        "type": "Distribuzione utili",
+        "what": "Dividendi annuali su utili dopo tasse USA",
+        "consideration": "Ritenuta alla fonte 5-15% (trattato Italia-USA)",
+        "note": "Distribuzione decisa dal CEO con approvazione board Diusa S.A.",
+        "icon": "TrendingUp"
+      }
+    ]
+  },
+  "why_this_structure": {
+    "eyebrow": "RAZIONALE",
+    "title": "Perché questa struttura, non un altra.",
+    "reasons": [
+      {
+        "title": "Responsabilità limitata",
+        "text": "La LLC USA protegge la holding italiana da eventuali passività americane (product liability, contenzioso cliente, infortuni sul lavoro). Il rischio è isolato al capitale versato nella LLC."
+      },
+      {
+        "title": "Fiscalità ottimizzata",
+        "text": "Il trattato bilaterale Italia-USA riduce la ritenuta su dividendi al 5-15% vs 30% standard. La catena SA → SRL → LLC sfrutta anche il regime svizzero di holding privilegia."
+      },
+      {
+        "title": "Governance scalabile",
+        "text": "La separazione CEO group / MD country permette di far crescere la LLC senza sovraccaricare la holding. Se domani apriamo anche Diusapet Germany o UK, stessa struttura replicabile."
+      },
+      {
+        "title": "Credibilità verso stakeholder USA",
+        "text": "Banche, distributori e FDA preferiscono interfacciarsi con una LLC USA guidata da un MD residente piuttosto che con una filiale di un'azienda straniera. Semplifica compliance e apertura conti."
+      },
+      {
+        "title": "Exit ottionality",
+        "text": "Avere la LLC come entità separata permette in futuro: vendita della sola LLC USA, joint venture con un partner americano, ingresso di un investor, IPO parziale. Opzioni che una branch office non permetterebbe."
+      }
+    ]
+  },
+  "capital_structure": {
+    "eyebrow": "STRUTTURA DI CAPITALE LLC",
+    "title": "Come viene capitalizzata la LLC USA.",
+    "subtitle": "L'investimento di $185k viene conferito come combinazione di equity e prestito intercompany.",
+    "items": [
+      {
+        "component": "Equity iniziale",
+        "amount": 50000,
+        "unit": "USD",
+        "note": "Capital contribution di Diusapet S.r.l. per costituzione LLC. Richiesto per visto E-2 (dimostrazione di investimento sostanziale)."
+      },
+      {
+        "component": "Prestito intercompany",
+        "amount": 135000,
+        "unit": "USD",
+        "note": "Shareholder loan di Diusapet S.r.l. a tasso di mercato (SOFR + 3%). Rimborsabile dai dividendi USA su 5 anni."
+      },
+      {
+        "component": "Totale capitalizzazione",
+        "amount": 185000,
+        "unit": "USD",
+        "note": "Allineato al totale investimento iniziale del piano finanziario",
+        "is_total": true
+      }
+    ],
+    "visa_note": "La struttura 50k equity + 135k loan è stata disegnata per soddisfare i requisiti del visto E-2 per il MD: l'USCIS richiede che l'investimento sia 'substantial' e 'at risk'. $50k di equity irreversible soddisfa questo test, mentre il prestito fornisce la liquidità operativa senza appesantire l'equity."
+  },
+  "closing_callout": "La struttura CEO group-level + MD country-level è la governance standard adottata da tutti i principali brand italiani del food con sussidiarie USA (Ferrero, Lavazza, Barilla). Formalizza chiaramente il perimetro decisionale, protegge la holding dal rischio operativo americano, e fornisce una cornice scalabile per la crescita futura del gruppo."
+}

@@ -942,25 +942,41 @@
     }
   },
   "governance": {
-  "eyebrow": "GOVERNANCE",
-  "title": "Corporate governance",
-  "hierarchyTitle": "Hierarchy",
-  "rolesTitle": "Operating roles",
-  "based": "Based",
-  "scope": "Scope",
-  "responsibilities": "Responsibilities",
-  "timeCommitment": "Commitment",
-  "decisionMatrix": "Decision matrix",
-  "decisionHeaders": {
-    "decision": "Decision",
-    "md": "MD (Daniele)",
-    "ceo": "CEO (Gael)",
-    "board": "Diusa S.A. Board"
-  },
-  "flowsTitle": "Contractual flows",
-  "flowConsideration": "Consideration",
-  "rationaleTitle": "Rationale",
-  "capitalTitle": "Capital structure",
-  "visaNote": "E-2 visa note"
-}
+    "hierarchy": {
+      "controlLabel":    "100% control",
+      "newEntityBadge":  "New entity"
+    },
+    "roles": {
+      "scopeLabel":            "Scope",
+      "responsibilitiesLabel": "Responsibilities",
+      "basedLabel":            "Based",
+      "commitmentLabel":       "Commitment",
+      "groupExecPill":         "Group executive",
+      "countryExecPill":       "Country executive"
+    },
+    "decision": {
+      "headers": {
+        "decision": "Decision",
+        "md":       "MD (Daniele)",
+        "ceo":      "CEO (Gael)",
+        "board":    "Diusa S.A. Board"
+      },
+      "badges": {
+        "decide":     "Decides",
+        "propone":    "Proposes",
+        "approva":    "Approves",
+        "firma":      "Signs",
+        "informato":  "Informed",
+        "trattativa": "Negotiates"
+      },
+      "legendLabel": "Legend"
+    },
+    "flows": {
+      "objectLabel":        "Object",
+      "considerationLabel": "Consideration"
+    },
+    "capital": {
+      "totalLabel": "Total capitalization"
+    }
+  }
 }

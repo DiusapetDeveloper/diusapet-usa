@@ -18,6 +18,7 @@ const NAV_ITEMS: Array<{ href: string; key: string }> = [
   { href: "/mercato", key: "mercato" },
   { href: "/prodotto", key: "prodotto" },
   { href: "/operativo", key: "operativo" },
+  { href: "/governance", key: "governance" },
   { href: "/finanziario", key: "finanziario" },
   { href: "/clienti", key: "clienti" },
   { href: "/roadmap", key: "roadmap" },

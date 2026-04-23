@@ -942,25 +942,41 @@
     }
   },
   "governance": {
-  "eyebrow": "GOVERNANCE",
-  "title": "Governance societaria",
-  "hierarchyTitle": "Gerarchia",
-  "rolesTitle": "Ruoli operativi",
-  "based": "Residenza",
-  "scope": "Scope",
-  "responsibilities": "Responsabilità",
-  "timeCommitment": "Commitment",
-  "decisionMatrix": "Matrice decisionale",
-  "decisionHeaders": {
-    "decision": "Decisione",
-    "md": "MD (Daniele)",
-    "ceo": "CEO (Gael)",
-    "board": "Board Diusa S.A."
-  },
-  "flowsTitle": "Flussi contrattuali",
-  "flowConsideration": "Corrispettivo",
-  "rationaleTitle": "Razionale",
-  "capitalTitle": "Struttura di capitale",
-  "visaNote": "Nota visto E-2"
-}
+    "hierarchy": {
+      "controlLabel":    "Controllo 100%",
+      "newEntityBadge":  "Nuova entità"
+    },
+    "roles": {
+      "scopeLabel":            "Scope",
+      "responsibilitiesLabel": "Responsabilità",
+      "basedLabel":            "Residenza",
+      "commitmentLabel":       "Commitment",
+      "groupExecPill":         "Group executive",
+      "countryExecPill":       "Country executive"
+    },
+    "decision": {
+      "headers": {
+        "decision": "Decisione",
+        "md":       "MD (Daniele)",
+        "ceo":      "CEO (Gael)",
+        "board":    "Board Diusa S.A."
+      },
+      "badges": {
+        "decide":     "Decide",
+        "propone":    "Propone",
+        "approva":    "Approva",
+        "firma":      "Firma",
+        "informato":  "Informato",
+        "trattativa": "Trattativa"
+      },
+      "legendLabel": "Legenda"
+    },
+    "flows": {
+      "objectLabel":        "Oggetto",
+      "considerationLabel": "Corrispettivo"
+    },
+    "capital": {
+      "totalLabel": "Totale capitalizzazione"
+    }
+  }
 }
