@@ -18,7 +18,6 @@ import { cn } from "@/lib/utils";
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const {
-  meta,
   kpi_weekly,
   follow_up_sequence,
   email_templates,
@@ -27,13 +26,59 @@ const {
   three_numbers,
   weekly_routine,
   funnel_kpi,
-  closing_callout,
 } = outreach;
 
 const CTA_ICONS: Record<number, LucideIcon> = {
   0: Package,
   1: Phone,
   2: MessageCircle,
+};
+
+// Map data array index → message key
+const TOUCH_KEYS = ["t0", "t5", "t12", "t22", "t90"] as const;
+const CTA_ITEM_KEYS = ["freeSample", "introCall", "replyAnswer"] as const;
+const NUMBER_KEYS = ["protein", "taurine", "margin"] as const;
+const ROUTINE_DAY_KEYS = ["mon", "tue", "wed", "thu", "fri"] as const;
+const FUNNEL_METRIC_KEYS = [
+  "open",
+  "reply",
+  "positive",
+  "sampleOrder",
+  "velocity",
+  "cpa",
+] as const;
+const THAT_WORK_KEYS = [
+  "number",
+  "benefitCtx",
+  "hotQuestion",
+  "geoPronoun",
+  "funcCuriosity",
+  "problemSolution",
+  "shortLower",
+] as const;
+const FORBIDDEN_KEYS = [
+  "introducing",
+  "partnership",
+  "revolutionary",
+  "fakeRe",
+  "caps",
+  "tooLong",
+] as const;
+
+// Map Italian psychological cost value to message cost key
+const COST_KEY_MAP: Record<string, string> = {
+  Bassissimo: "veryLow",
+  Minimale: "minimal",
+  Zero: "zero",
+};
+
+// Map weekly KPI array index → label suffix used only via t().
+// KPIs keep raw value from data; label is derived via mapping below.
+const KPI_LABEL_FROM_ORIG: Record<string, string> = {
+  "Email prima-touch / settimana": "firstTouch",
+  "Follow-up inviati / settimana": "followUps",
+  "Chiamate / settimana": "calls",
+  "Visite in-store / settimana": "visits",
 };
 
 export default function OutreachSection() {
@@ -45,18 +90,18 @@ export default function OutreachSection() {
         <div>
           <p className="eyebrow text-gold">{t("eyebrow")}</p>
           <h2 className="mt-4 font-serif text-hero text-navy max-w-3xl">
-            {meta.title}
+            {t("title")}
           </h2>
           <p className="mt-6 max-w-2xl text-carbon-muted leading-relaxed">
-            {meta.subtitle}
+            {outreach.meta.subtitle}
           </p>
         </div>
         <p className="text-xs text-carbon-muted max-w-xs text-right leading-relaxed">
-          {meta.source}
+          {outreach.meta.source}
         </p>
       </div>
 
-      {/* 2 — KPI WEEKLY */}
+      {/* 2 — KPI WEEKLY (labels from data; values numeric) */}
       <div className="mt-16">
         <p className="eyebrow">{t("weeklyKpiTitle")}</p>
         <div className="mt-6 grid grid-cols-2 lg:grid-cols-4 gap-px bg-hairline border border-hairline">
@@ -90,31 +135,31 @@ export default function OutreachSection() {
 
       {/* 3 — FOLLOW-UP SEQUENCE */}
       <div className="mt-28">
-        <p className="eyebrow">{t("followUp.title").split(".")[0].toUpperCase()}</p>
+        <p className="eyebrow">{t("sectionEyebrows.followUp")}</p>
         <h3 className="mt-3 font-serif text-hero text-navy max-w-3xl">
-          {follow_up_sequence.title}
+          {t("followUp.title")}
         </h3>
         <p className="mt-4 max-w-2xl text-carbon-muted leading-relaxed">
-          {follow_up_sequence.subtitle}
+          {t("followUp.subtitle")}
         </p>
 
         <FollowUpTimeline />
 
         <blockquote className="mt-10 border-l-2 border-gold pl-6 max-w-[720px]">
           <p className="font-serif italic text-base md:text-[17px] text-navy leading-relaxed">
-            {follow_up_sequence.insight}
+            {t("followUp.insight")}
           </p>
         </blockquote>
       </div>
 
       {/* 4 — EMAIL TEMPLATES CAROUSEL */}
       <div className="mt-28">
-        <p className="eyebrow">{t("templates.title").split(",")[0].toUpperCase()}</p>
+        <p className="eyebrow">{t("sectionEyebrows.templates")}</p>
         <h3 className="mt-3 font-serif text-hero text-navy max-w-3xl">
-          {email_templates.title}
+          {t("templates.title")}
         </h3>
         <p className="mt-4 max-w-2xl text-carbon-muted leading-relaxed">
-          {email_templates.subtitle}
+          {t("templates.subtitle")}
         </p>
 
         <TemplatesCarousel />
@@ -122,52 +167,64 @@ export default function OutreachSection() {
 
       {/* 5 — SUBJECT PATTERNS */}
       <div className="mt-28">
-        <p className="eyebrow">{t("subjects.title").split(" è ")[0].toUpperCase()}</p>
+        <p className="eyebrow">{t("sectionEyebrows.subjects")}</p>
         <h3 className="mt-3 font-serif text-hero text-navy max-w-3xl">
-          {subject_patterns.title}
+          {t("subjects.title")}
         </h3>
         <p className="mt-4 max-w-2xl text-carbon-muted leading-relaxed">
-          {subject_patterns.subtitle}
+          {t("subjects.subtitle")}
         </p>
 
         <div className="mt-10 grid md:grid-cols-2 gap-px bg-hairline border border-hairline">
           <div className="bg-white p-6">
             <p className="eyebrow text-[#5A6B4D]">{t("subjects.thatWork")}</p>
             <ul className="mt-4 divide-y divide-hairline">
-              {subject_patterns.that_work.map((s) => (
-                <li key={s.pattern} className="py-4">
-                  <p className="font-serif text-navy text-[15px]">
-                    {s.pattern}
-                  </p>
-                  <p className="mt-1.5 font-mono text-[12px] italic text-carbon bg-hairline/30 px-2 py-1 inline-block">
-                    {s.example}
-                  </p>
-                  <p className="mt-2 text-xs text-carbon-muted">
-                    <span className="eyebrow text-carbon-muted mr-1">
-                      {t("subjects.reason")}:
-                    </span>
-                    {s.why}
-                  </p>
-                </li>
-              ))}
+              {subject_patterns.that_work.map((s, i) => {
+                const key = THAT_WORK_KEYS[i];
+                return (
+                  <li key={key ?? s.pattern} className="py-4">
+                    <p className="font-serif text-navy text-[15px]">
+                      {key
+                        ? t(`subjects.thatWorkItems.${key}.pattern`)
+                        : s.pattern}
+                    </p>
+                    <p className="mt-1.5 font-mono text-[12px] italic text-carbon bg-hairline/30 px-2 py-1 inline-block">
+                      {s.example}
+                    </p>
+                    <p className="mt-2 text-xs text-carbon-muted">
+                      <span className="eyebrow text-carbon-muted mr-1">
+                        {t("subjects.reason")}:
+                      </span>
+                      {key ? t(`subjects.thatWorkItems.${key}.why`) : s.why}
+                    </p>
+                  </li>
+                );
+              })}
             </ul>
           </div>
           <div className="bg-white p-6">
             <p className="eyebrow text-[#7A2E2E]">{t("subjects.forbidden")}</p>
             <ul className="mt-4 divide-y divide-hairline">
-              {subject_patterns.forbidden.map((s) => (
-                <li key={s.pattern} className="py-4">
-                  <p
-                    className="font-serif text-[14px]"
-                    style={{ color: "#7A2E2E" }}
-                  >
-                    {s.pattern}
-                  </p>
-                  <p className="mt-2 text-xs text-carbon-muted leading-relaxed">
-                    {s.reason}
-                  </p>
-                </li>
-              ))}
+              {subject_patterns.forbidden.map((s, i) => {
+                const key = FORBIDDEN_KEYS[i];
+                return (
+                  <li key={key ?? s.pattern} className="py-4">
+                    <p
+                      className="font-serif text-[14px]"
+                      style={{ color: "#7A2E2E" }}
+                    >
+                      {key
+                        ? t(`subjects.forbiddenItems.${key}.pattern`)
+                        : s.pattern}
+                    </p>
+                    <p className="mt-2 text-xs text-carbon-muted leading-relaxed">
+                      {key
+                        ? t(`subjects.forbiddenItems.${key}.reason`)
+                        : s.reason}
+                    </p>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>
@@ -175,25 +232,29 @@ export default function OutreachSection() {
 
       {/* 6 — CTA FORMULAS */}
       <div className="mt-28">
-        <p className="eyebrow">CTA</p>
+        <p className="eyebrow">{t("sectionEyebrows.cta")}</p>
         <h3 className="mt-3 font-serif text-hero text-navy max-w-3xl">
-          {cta_formulas.title}
+          {t("cta.title")}
         </h3>
         <p className="mt-4 max-w-2xl text-carbon-muted leading-relaxed">
-          {cta_formulas.subtitle}
+          {t("cta.subtitle")}
         </p>
 
         <div className="mt-10 grid md:grid-cols-3 gap-px bg-hairline border border-hairline">
           {cta_formulas.items.map((c, i) => {
             const Icon = CTA_ICONS[i] ?? Package;
+            const itemKey = CTA_ITEM_KEYS[i];
+            const costKey = COST_KEY_MAP[c.psychological_cost];
             const costColor =
-              c.psychological_cost.toLowerCase() === "zero" ||
-              c.psychological_cost.toLowerCase() === "bassissimo"
+              costKey === "zero" || costKey === "veryLow"
                 ? "#5A6B4D"
                 : "#B8925A";
+            const costLabel = costKey
+              ? t(`cta.costs.${costKey}`)
+              : c.psychological_cost;
             return (
               <motion.div
-                key={c.name}
+                key={itemKey ?? c.name}
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
@@ -202,20 +263,20 @@ export default function OutreachSection() {
               >
                 <Icon className="h-5 w-5 text-navy" strokeWidth={1.2} />
                 <h4 className="mt-5 font-serif text-[18px] text-navy leading-snug">
-                  {c.name}
+                  {itemKey ? t(`cta.items.${itemKey}.name`) : c.name}
                 </h4>
                 <p className="mt-4 font-mono text-[13px] italic text-carbon bg-hairline/40 px-3 py-2 leading-relaxed">
                   {c.phrasing}
                 </p>
                 <p className="mt-4 text-xs text-carbon-muted leading-relaxed">
-                  {c.use}
+                  {itemKey ? t(`cta.items.${itemKey}.use`) : c.use}
                 </p>
                 <div className="mt-auto pt-5">
                   <span
                     className="inline-block px-2 py-1 text-[10px] uppercase tracking-micro border"
                     style={{ color: costColor, borderColor: costColor }}
                   >
-                    {t("cta.psychCost")}: {c.psychological_cost}
+                    {t("cta.psychCost")}: {costLabel}
                   </span>
                 </div>
               </motion.div>
@@ -226,90 +287,105 @@ export default function OutreachSection() {
 
       {/* 7 — THREE NUMBERS */}
       <div className="mt-28">
-        <p className="eyebrow">{t("numbers.title").split(" ")[1]?.toUpperCase() ?? "NUMERI CHIAVE"}</p>
+        <p className="eyebrow">{t("sectionEyebrows.numbers")}</p>
         <h3 className="mt-3 font-serif text-hero text-navy max-w-3xl">
-          {three_numbers.title}
+          {t("numbers.title")}
         </h3>
         <p className="mt-4 max-w-2xl text-carbon-muted leading-relaxed">
-          {three_numbers.subtitle}
+          {t("numbers.subtitle")}
         </p>
 
         <div className="mt-10 grid md:grid-cols-3 gap-px bg-hairline border border-hairline">
-          {three_numbers.numbers.map((n, i) => (
-            <motion.div
-              key={`${n.value}-${n.label}`}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6, ease, delay: i * 0.1 }}
-              className="bg-white p-8 flex flex-col"
-            >
-              <p className="font-serif text-5xl md:text-6xl text-navy num leading-none">
-                {n.value}
-              </p>
-              <p className="mt-3 eyebrow">{n.label}</p>
-              <div className="mt-5 h-px w-8 bg-gold" />
-              <p className="mt-5 text-[13px] italic text-carbon leading-relaxed">
-                {n.context}
-              </p>
-              <p className="mt-auto pt-5 text-[10px] uppercase tracking-micro text-carbon-muted leading-relaxed">
-                {t("numbers.useWith")}: {n.use_with}
-              </p>
-            </motion.div>
-          ))}
+          {three_numbers.numbers.map((n, i) => {
+            const numKey = NUMBER_KEYS[i];
+            return (
+              <motion.div
+                key={numKey ?? n.value}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.6, ease, delay: i * 0.1 }}
+                className="bg-white p-8 flex flex-col"
+              >
+                <p className="font-serif text-5xl md:text-6xl text-navy num leading-none">
+                  {n.value}
+                </p>
+                <p className="mt-3 eyebrow">
+                  {numKey ? t(`numbers.items.${numKey}.label`) : n.label}
+                </p>
+                <div className="mt-5 h-px w-8 bg-gold" />
+                <p className="mt-5 text-[13px] italic text-carbon leading-relaxed">
+                  {numKey ? t(`numbers.items.${numKey}.context`) : n.context}
+                </p>
+                <p className="mt-auto pt-5 text-[10px] uppercase tracking-micro text-carbon-muted leading-relaxed">
+                  {t("numbers.useWith")}:{" "}
+                  {numKey ? t(`numbers.items.${numKey}.useWith`) : n.use_with}
+                </p>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
 
       {/* 8 — WEEKLY ROUTINE */}
       <div className="mt-28">
-        <p className="eyebrow">{t("routine.title").split(" ")[0]?.toUpperCase() ?? "ROUTINE"}</p>
+        <p className="eyebrow">{t("sectionEyebrows.routine")}</p>
         <h3 className="mt-3 font-serif text-hero text-navy max-w-3xl">
-          {weekly_routine.title}
+          {t("routine.title")}
         </h3>
 
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-px bg-hairline border border-hairline">
-          {weekly_routine.days.map((d, i) => (
-            <motion.div
-              key={d.day}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.55, ease, delay: i * 0.06 }}
-              className={cn(
-                "p-6 flex flex-col",
-                i % 2 === 0 ? "bg-navy/[0.03]" : "bg-white"
-              )}
-            >
-              <div className="flex items-start justify-between gap-2">
-                <h4 className="font-serif text-[20px] text-navy leading-none">
-                  {d.day}
-                </h4>
-                <span className="inline-block px-2 py-0.5 text-[10px] uppercase tracking-micro border border-gold text-gold num whitespace-nowrap">
-                  {d.duration}
-                </span>
-              </div>
-              <div className="mt-4 h-px bg-hairline" />
-              <ul className="mt-4 space-y-2">
-                {d.activities.map((a, ai) => (
-                  <li
-                    key={ai}
-                    className="flex items-start gap-2 text-[13px] text-carbon leading-snug"
-                  >
-                    <span className="mt-1.5 inline-block h-1 w-1 rounded-full bg-gold shrink-0" />
-                    <span>{a}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
+          {weekly_routine.days.map((d, i) => {
+            const dayKey = ROUTINE_DAY_KEYS[i];
+            return (
+              <motion.div
+                key={dayKey ?? d.day}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.55, ease, delay: i * 0.06 }}
+                className={cn(
+                  "p-6 flex flex-col",
+                  i % 2 === 0 ? "bg-navy/[0.03]" : "bg-white"
+                )}
+              >
+                <div className="flex items-start justify-between gap-2">
+                  <h4 className="font-serif text-[20px] text-navy leading-none">
+                    {dayKey ? t(`routine.days.${dayKey}.day`) : d.day}
+                  </h4>
+                  <span className="inline-block px-2 py-0.5 text-[10px] uppercase tracking-micro border border-gold text-gold num whitespace-nowrap">
+                    {dayKey
+                      ? t(`routine.days.${dayKey}.duration`)
+                      : d.duration}
+                  </span>
+                </div>
+                <div className="mt-4 h-px bg-hairline" />
+                <ul className="mt-4 space-y-2">
+                  {d.activities.map((a, ai) => (
+                    <li
+                      key={ai}
+                      className="flex items-start gap-2 text-[13px] text-carbon leading-snug"
+                    >
+                      <span className="mt-1.5 inline-block h-1 w-1 rounded-full bg-gold shrink-0" />
+                      <span>
+                        {dayKey
+                          ? t(`routine.days.${dayKey}.activities.${ai}`)
+                          : a}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
 
       {/* 9 — FUNNEL KPI TABLE */}
       <div className="mt-28">
-        <p className="eyebrow">{t("funnelKpi.title").split(" ")[0]?.toUpperCase() ?? "FUNNEL"}</p>
+        <p className="eyebrow">{t("sectionEyebrows.funnelKpi")}</p>
         <h3 className="mt-3 font-serif text-hero text-navy max-w-3xl">
-          {funnel_kpi.title}
+          {t("funnelKpi.title")}
         </h3>
 
         <div className="mt-10 border border-hairline overflow-x-auto">
@@ -331,31 +407,42 @@ export default function OutreachSection() {
               </tr>
             </thead>
             <tbody>
-              {funnel_kpi.metrics.map((m, i) => (
-                <motion.tr
-                  key={m.metric}
-                  initial={{ opacity: 0, y: 8 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.45, ease, delay: i * 0.05 }}
-                  className="border-b border-hairline last:border-b-0 bg-white hover:bg-navy/[0.02] transition-colors align-top"
-                >
-                  <td className="p-4 font-serif text-navy text-[15px]">
-                    {m.metric}
-                  </td>
-                  <td className="p-4 font-mono text-[12px] text-carbon-muted">
-                    {m.formula}
-                  </td>
-                  <td className="p-4">
-                    <span className="inline-block px-2 py-0.5 text-[11px] uppercase tracking-micro border border-gold text-gold num whitespace-nowrap">
-                      {m.target}
-                    </span>
-                  </td>
-                  <td className="p-4 text-xs italic text-carbon-muted leading-relaxed">
-                    {m.if_below}
-                  </td>
-                </motion.tr>
-              ))}
+              {funnel_kpi.metrics.map((m, i) => {
+                const metricKey = FUNNEL_METRIC_KEYS[i];
+                return (
+                  <motion.tr
+                    key={metricKey ?? m.metric}
+                    initial={{ opacity: 0, y: 8 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.45, ease, delay: i * 0.05 }}
+                    className="border-b border-hairline last:border-b-0 bg-white hover:bg-navy/[0.02] transition-colors align-top"
+                  >
+                    <td className="p-4 font-serif text-navy text-[15px]">
+                      {metricKey
+                        ? t(`funnelKpi.metrics.${metricKey}.metric`)
+                        : m.metric}
+                    </td>
+                    <td className="p-4 font-mono text-[12px] text-carbon-muted">
+                      {metricKey
+                        ? t(`funnelKpi.metrics.${metricKey}.formula`)
+                        : m.formula}
+                    </td>
+                    <td className="p-4">
+                      <span className="inline-block px-2 py-0.5 text-[11px] uppercase tracking-micro border border-gold text-gold num whitespace-nowrap">
+                        {metricKey
+                          ? t(`funnelKpi.metrics.${metricKey}.target`)
+                          : m.target}
+                      </span>
+                    </td>
+                    <td className="p-4 text-xs italic text-carbon-muted leading-relaxed">
+                      {metricKey
+                        ? t(`funnelKpi.metrics.${metricKey}.ifBelow`)
+                        : m.if_below}
+                    </td>
+                  </motion.tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
@@ -370,7 +457,7 @@ export default function OutreachSection() {
         className="mt-24 mb-8 border-l-[3px] border-gold bg-gold/[0.05] px-8 md:px-12 py-10"
       >
         <p className="font-serif italic text-navy text-lg md:text-xl leading-relaxed max-w-[740px] mx-auto text-center">
-          {closing_callout}
+          {outreach.closing_callout}
         </p>
       </motion.div>
     </section>
@@ -384,62 +471,62 @@ function FollowUpTimeline() {
   const reduce = useReducedMotion();
   return (
     <div className="mt-10 flex flex-col md:flex-row md:items-stretch gap-3 md:gap-2">
-      {follow_up_sequence.touches.map((touch, i) => (
-        <div
-          key={touch.day}
-          className="flex flex-col md:flex-row md:items-stretch gap-3 md:gap-2 flex-1"
-        >
-          <motion.div
-            initial={
-              reduce ? false : { opacity: 0, x: -20 }
-            }
-            whileInView={
-              reduce
-                ? { opacity: 1 }
-                : { opacity: 1, x: 0 }
-            }
-            viewport={{ once: true, amount: 0.25 }}
-            transition={{
-              duration: 0.55,
-              ease,
-              delay: reduce ? 0 : i * 0.1,
-            }}
-            className="flex-1 bg-white border border-hairline p-4 flex flex-col gap-3 min-h-[200px]"
+      {follow_up_sequence.touches.map((touch, i) => {
+        const touchKey = TOUCH_KEYS[i];
+        return (
+          <div
+            key={touchKey ?? touch.day}
+            className="flex flex-col md:flex-row md:items-stretch gap-3 md:gap-2 flex-1"
           >
-            <span
-              className="inline-flex items-center justify-center h-9 w-9 rounded-full text-white font-serif text-sm num"
-              style={{ backgroundColor: touch.color }}
+            <motion.div
+              initial={reduce ? false : { opacity: 0, x: -20 }}
+              whileInView={
+                reduce ? { opacity: 1 } : { opacity: 1, x: 0 }
+              }
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{
+                duration: 0.55,
+                ease,
+                delay: reduce ? 0 : i * 0.1,
+              }}
+              className="flex-1 bg-white border border-hairline p-4 flex flex-col gap-3 min-h-[200px]"
             >
-              {i + 1}
-            </span>
-            <p className="font-serif text-lg text-navy num leading-none">
-              {touch.day}
-            </p>
-            <p className="text-[13px] text-navy font-medium leading-snug">
-              {touch.name}
-            </p>
-            <div className="h-px bg-hairline" />
-            <div className="flex flex-col gap-1.5">
-              <p className="eyebrow text-carbon-muted">{t("angleLabel")}</p>
-              <p className="text-[12px] text-carbon-muted leading-snug">
-                {touch.angle}
+              <span
+                className="inline-flex items-center justify-center h-9 w-9 rounded-full text-white font-serif text-sm num"
+                style={{ backgroundColor: touch.color }}
+              >
+                {i + 1}
+              </span>
+              <p className="font-serif text-lg text-navy num leading-none">
+                {touch.day}
               </p>
-            </div>
-            <p className="mt-auto text-[10px] uppercase tracking-micro text-carbon-muted">
-              {t("lengthLabel")}: {touch.length}
-            </p>
-          </motion.div>
-          {i < follow_up_sequence.touches.length - 1 && (
-            <div className="hidden md:flex items-center px-1">
-              <span className="h-px w-4 bg-gold" />
-              <ChevronRight
-                className="h-3 w-3 text-gold -ml-1"
-                strokeWidth={2}
-              />
-            </div>
-          )}
-        </div>
-      ))}
+              <p className="text-[13px] text-navy font-medium leading-snug">
+                {touchKey ? t(`touches.${touchKey}.name`) : touch.name}
+              </p>
+              <div className="h-px bg-hairline" />
+              <div className="flex flex-col gap-1.5">
+                <p className="eyebrow text-carbon-muted">{t("angleLabel")}</p>
+                <p className="text-[12px] text-carbon-muted leading-snug">
+                  {touchKey ? t(`touches.${touchKey}.angle`) : touch.angle}
+                </p>
+              </div>
+              <p className="mt-auto text-[10px] uppercase tracking-micro text-carbon-muted">
+                {t("lengthLabel")}:{" "}
+                {touchKey ? t(`touches.${touchKey}.length`) : touch.length}
+              </p>
+            </motion.div>
+            {i < follow_up_sequence.touches.length - 1 && (
+              <div className="hidden md:flex items-center px-1">
+                <span className="h-px w-4 bg-gold" />
+                <ChevronRight
+                  className="h-3 w-3 text-gold -ml-1"
+                  strokeWidth={2}
+                />
+              </div>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -448,6 +535,7 @@ function FollowUpTimeline() {
 
 function TemplatesCarousel() {
   const t = useTranslations("outreach.templates");
+  const tEyebrows = useTranslations("outreach.sectionEyebrows");
   const reduce = useReducedMotion();
   const templates = email_templates.templates;
   const total = templates.length;
@@ -500,9 +588,7 @@ function TemplatesCarousel() {
       tabIndex={0}
       className="mt-12 relative outline-none"
     >
-      {/* Carousel stage */}
       <div className="relative mx-auto max-w-[900px] min-h-[640px]">
-        {/* Peek prev (desktop only) */}
         {!reduce && (
           <div
             className="hidden lg:block absolute left-0 top-0 w-[480px] h-[600px] pointer-events-none"
@@ -513,11 +599,14 @@ function TemplatesCarousel() {
             }}
             aria-hidden="true"
           >
-            <TemplatePeekCard template={prevTpl} index={(index - 1 + total) % total} total={total} />
+            <TemplatePeekCard
+              template={prevTpl}
+              index={(index - 1 + total) % total}
+              total={total}
+            />
           </div>
         )}
 
-        {/* Current card with AnimatePresence swap */}
         <AnimatePresence mode="wait" custom={direction}>
           <motion.div
             key={index}
@@ -555,7 +644,6 @@ function TemplatesCarousel() {
           </motion.div>
         </AnimatePresence>
 
-        {/* Peek next (desktop only) */}
         {!reduce && (
           <div
             className="hidden lg:block absolute right-0 top-0 w-[480px] h-[600px] pointer-events-none"
@@ -566,17 +654,20 @@ function TemplatesCarousel() {
             }}
             aria-hidden="true"
           >
-            <TemplatePeekCard template={nextTpl} index={(index + 1) % total} total={total} />
+            <TemplatePeekCard
+              template={nextTpl}
+              index={(index + 1) % total}
+              total={total}
+            />
           </div>
         )}
       </div>
 
-      {/* Arrow controls */}
       <div className="mt-8 flex items-center justify-between gap-4">
         <button
           type="button"
           onClick={goPrev}
-          aria-label="Template precedente"
+          aria-label={tEyebrows("prev")}
           className="group inline-flex h-10 w-10 items-center justify-center rounded-full border border-gold text-gold hover:bg-gold hover:text-white transition-colors"
         >
           <ChevronLeft className="h-4 w-4" strokeWidth={1.8} />
@@ -588,7 +679,7 @@ function TemplatesCarousel() {
               key={tpl.letter}
               type="button"
               onClick={() => goTo(i)}
-              aria-label={`Vai al template ${tpl.letter}`}
+              aria-label={`${tEyebrows("next")} ${tpl.letter}`}
               className={cn(
                 "h-6 w-6 rounded-full text-[10px] font-semibold transition-all duration-200 hover:scale-110",
                 i === index
@@ -604,7 +695,7 @@ function TemplatesCarousel() {
         <button
           type="button"
           onClick={goNext}
-          aria-label="Template successivo"
+          aria-label={tEyebrows("next")}
           className="group inline-flex h-10 w-10 items-center justify-center rounded-full border border-gold text-gold hover:bg-gold hover:text-white transition-colors"
         >
           <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
@@ -613,8 +704,6 @@ function TemplatesCarousel() {
     </div>
   );
 }
-
-/* ---------------- TEMPLATE FULL CARD ---------------- */
 
 type Template = (typeof email_templates.templates)[number];
 
@@ -630,6 +719,7 @@ function TemplateFullCard({
   t: ReturnType<typeof useTranslations>;
 }) {
   const [copied, setCopied] = useState(false);
+  const letter = template.letter;
 
   const handleCopy = async () => {
     try {
@@ -643,7 +733,6 @@ function TemplateFullCard({
 
   return (
     <article className="relative bg-white border border-hairline p-8 md:p-12 min-h-[600px] select-text">
-      {/* Big background letter */}
       <span
         className="absolute top-4 right-8 pointer-events-none select-none font-serif leading-none"
         style={{
@@ -653,44 +742,37 @@ function TemplateFullCard({
         }}
         aria-hidden="true"
       >
-        {template.letter}
+        {letter}
       </span>
 
-      {/* Top-left pill */}
       <p className="eyebrow text-carbon-muted num">
-        Template {index + 1}/{total}
+        {t("templateOf", { n: index + 1, total })}
       </p>
 
-      {/* Name + target */}
       <h4 className="mt-5 font-serif text-2xl text-navy leading-tight relative z-10">
-        {template.name}
+        {t(`items.${letter}.name`)}
       </h4>
       <p className="mt-1 text-sm text-carbon-muted relative z-10">
-        {t("targetLabel")}: {template.target}
+        {t("targetLabel")}: {t(`items.${letter}.target`)}
       </p>
 
       <div className="mt-6 grid lg:grid-cols-[220px_1fr] gap-6 relative z-10">
-        {/* When */}
         <div>
           <p className="eyebrow">{t("whenLabel")}</p>
           <p className="mt-2 text-sm text-carbon leading-relaxed">
-            {template.when_to_use}
+            {t(`items.${letter}.when`)}
           </p>
         </div>
 
         <div>
           <div className="h-px w-full bg-gold mb-5 lg:hidden" />
 
-          {/* Subject */}
           <p className="eyebrow">{t("subjectLabel")}</p>
-          <p
-            className="mt-2 font-mono text-[13px] text-navy bg-hairline/40 px-3 py-2 inline-block"
-          >
+          <p className="mt-2 font-mono text-[13px] text-navy bg-hairline/40 px-3 py-2 inline-block">
             {template.subject}
           </p>
 
-          {/* Body */}
-          <p className="mt-5 eyebrow">Email body</p>
+          <p className="mt-5 eyebrow">{t("bodyLabel")}</p>
           <pre
             className="mt-2 font-mono text-[13px] text-carbon leading-relaxed bg-hairline/20 p-4 whitespace-pre-wrap"
             style={{ fontFamily: "ui-monospace, Menlo, Consolas, monospace" }}
@@ -698,10 +780,9 @@ function TemplateFullCard({
             {template.body}
           </pre>
 
-          {/* Bottom: hook + copy */}
           <div className="mt-6 flex items-center justify-between gap-4 flex-wrap">
             <span className="inline-block px-2 py-1 text-[10px] uppercase tracking-micro border border-navy text-navy">
-              {t("hookTypeLabel")}: {template.hook_type}
+              {t("hookTypeLabel")}: {t(`items.${letter}.hookType`)}
             </span>
             <button
               type="button"
@@ -723,8 +804,6 @@ function TemplateFullCard({
   );
 }
 
-/* ---------------- TEMPLATE PEEK CARD (side preview) ---------------- */
-
 function TemplatePeekCard({
   template,
   index,
@@ -734,6 +813,8 @@ function TemplatePeekCard({
   index: number;
   total: number;
 }) {
+  const t = useTranslations("outreach.templates");
+  const letter = template.letter;
   return (
     <div className="relative bg-white border border-hairline h-full p-10 overflow-hidden">
       <span
@@ -744,16 +825,16 @@ function TemplatePeekCard({
           opacity: 0.12,
         }}
       >
-        {template.letter}
+        {letter}
       </span>
       <p className="eyebrow text-carbon-muted num">
-        Template {index + 1}/{total}
+        {t("templateOf", { n: index + 1, total })}
       </p>
       <h4 className="mt-5 font-serif text-xl text-navy leading-tight">
-        {template.name}
+        {t(`items.${letter}.name`)}
       </h4>
       <p className="mt-2 text-xs text-carbon-muted">
-        {template.target}
+        {t(`items.${letter}.target`)}
       </p>
     </div>
   );

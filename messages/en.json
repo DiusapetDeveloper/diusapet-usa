@@ -801,46 +801,127 @@
     "title":   "Go-to-market",
     "eyebrow": "GO-TO-MARKET",
     "weeklyKpiTitle": "Weekly target volume",
+    "sectionEyebrows": {
+      "followUp":  "Follow-up sequence",
+      "templates": "Email templates",
+      "subjects":  "Subject line",
+      "cta":       "CTA",
+      "numbers":   "Key numbers",
+      "routine":   "Weekly routine",
+      "funnelKpi": "Funnel KPIs",
+      "prev":      "Previous template",
+      "next":      "Next template"
+    },
     "followUp": {
       "title":       "80% of conversions come from follow-ups.",
+      "subtitle":    "The first email gets a 2–3% reply rate. Every follow-up adds percentage points. You do not stop after the first.",
       "dayLabel":    "Day",
       "angleLabel":  "Angle",
-      "lengthLabel": "Length"
+      "lengthLabel": "Length",
+      "insight":     "Counter-intuitive: the break-up email is often the highest-converting one. It removes pressure, creates reciprocity, and triggers loss aversion (\"wait, give me two more days\").",
+      "touches": {
+        "t0":  { "name": "Initial email",    "angle": "Personalized hook + value prop + sample CTA",                   "length": "120-150 words" },
+        "t5":  { "name": "Follow-up 1",      "angle": "Reminder of context + new social proof + soft CTA",             "length": "60-80 words" },
+        "t12": { "name": "Follow-up 2",      "angle": "Change angle (if technical first → emotional now)",             "length": "50-70 words" },
+        "t22": { "name": "Break-up email",   "angle": "\"I understand it is not the right time\" — closes the loop",    "length": "40-60 words" },
+        "t90": { "name": "Cold re-engage",   "angle": "News / product updates after a quarter",                         "length": "80-100 words" }
+      }
     },
     "templates": {
       "title":         "Seven angles, seven templates.",
       "subtitle":      "Every type of contact has its own angle. No generic emails.",
       "subjectLabel":  "Subject",
+      "bodyLabel":     "Email body",
       "whenLabel":     "When to use it",
       "targetLabel":   "Target",
       "hookTypeLabel": "Hook type",
       "copyButton":    "Copy email",
-      "copied":        "Copied"
+      "copied":        "Copied",
+      "templateOf":    "Template {n}/{total}",
+      "items": {
+        "A": { "name": "Italian heritage angle",       "target": "Italian owner / Italian community",                 "when": "Contacts with an Italian surname (D'Elia, Longo, Rizzo), stores in Italian neighborhoods (Edison, Hoboken, Bay Ridge), stated Italian-American customer base.", "hookType": "Emotional / heritage" },
+        "B": { "name": "Holistic / nutrition angle",   "target": "Holistic / premium pet store",                      "when": "Stores carrying Orijen, Acana, Fromm, Wellness Core; nutrition-literate owners.",                                                                              "hookType": "Technical / nutrition" },
+        "C": { "name": "Orijen-shelf angle",            "target": "Stores that carry Orijen or Acana",                 "when": "Stores already selling Canadian premium; pitch: same shelf, better margin, Made in Italy story.",                                                             "hookType": "Competitive / margin" },
+        "D": { "name": "Cat specialty angle",           "target": "Cat specialty stores and vet channel",              "when": "Cat-only stores, vets with pet retail; pitch: 4,000 mg/kg taurine, feline cardiac health focus.",                                                              "hookType": "Specialty / health" },
+        "E": { "name": "Italian breed angle",           "target": "Italian-breed breeders (Cane Corso, Maremma)",      "when": "AKC-certified breeders; 200+ bags/month volume; emotional Made in Italy pitch.",                                                                               "hookType": "Heritage / community" },
+        "F": { "name": "Italian specialty store angle", "target": "Italian markets, delicatessens, Eataly",            "when": "Stores with an Italian food section; cross-sell pitch with Italophile customer base.",                                                                         "hookType": "Cross-sell / italianness" },
+        "G": { "name": "Distributor angle",             "target": "Independent pet distributors",                      "when": "Regional distributors (Zeigler, Fauna); pitch: margin, territory exclusivity, marketing support.",                                                              "hookType": "Volume / B2B" }
+      }
     },
     "subjects": {
       "title":     "Subject is 70% of the game.",
+      "subtitle":  "Nobody opens \"Introducing Alleva.\" They open subjects with a number, a benefit, or a legitimate hook.",
       "thatWork":  "Patterns that work",
       "forbidden": "Patterns to avoid",
       "example":   "Example",
-      "reason":    "Why"
+      "reason":    "Why",
+      "thatWorkItems": {
+        "number":        { "pattern": "Specific number",            "why": "Numbers = credibility + specificity" },
+        "benefitCtx":    { "pattern": "Benefit + context",          "why": "Rapid value + familiarity" },
+        "hotQuestion":   { "pattern": "Pressing question",          "why": "Engages, low pressure" },
+        "geoPronoun":    { "pattern": "Pronouns + location",        "why": "Geographic personalization" },
+        "funcCuriosity": { "pattern": "Functional curiosity",       "why": "Unique ingredients as the hook" },
+        "problemSolution": { "pattern": "Problem-to-solution",      "why": "Tech angle for expert audience" },
+        "shortLower":    { "pattern": "Short, lowercase",           "why": "Feels informal, friend-to-friend" }
+      },
+      "forbiddenItems": {
+        "introducing": { "pattern": "\"Introducing...\"",             "reason": "Reads like a press release, <5% opens" },
+        "partnership": { "pattern": "\"Partnership Opportunity\"",    "reason": "Formal, vague, spam flag" },
+        "revolutionary":{ "pattern": "\"Revolutionary new product\"", "reason": "Nobody believes the adjective anymore" },
+        "fakeRe":      { "pattern": "Fake \"Re:\" / \"Fw:\"",          "reason": "Manipulative, destroys trust" },
+        "caps":        { "pattern": "ALL CAPS or emoji",              "reason": "Spam classifier trigger" },
+        "tooLong":     { "pattern": ">10 words",                      "reason": "Gets cut off on mobile (70% of buyers read on phone)" }
+      }
     },
     "cta": {
       "title":     "The three CTAs that convert.",
-      "psychCost": "Psychological cost"
+      "subtitle":  "The most effective CTA asks for something so small that saying \"no\" would feel impolite.",
+      "psychCost": "Psychological cost",
+      "costs": {
+        "veryLow":  "Very low",
+        "minimal":  "Minimal",
+        "zero":     "Zero"
+      },
+      "items": {
+        "freeSample":  { "name": "Free sample pack",      "use": "Primary CTA for every pet store and Italian deli" },
+        "introCall":   { "name": "10-min intro call",     "use": "Distributors and account managers" },
+        "replyAnswer": { "name": "Reply instead of apply","use": "Follow-up T+12 — opens the door to an easy no" }
+      }
     },
     "numbers": {
-      "title":   "Three non-negotiable numbers.",
-      "useWith": "Use with"
+      "title":    "Three non-negotiable numbers.",
+      "subtitle": "If an email doesn't contain at least one of these, it isn't selling Alleva.",
+      "useWith":  "Use with",
+      "items": {
+        "protein":  { "label": "protein",        "context": "US average 22–28% — measurable edge",                    "useWith": "Nutrition-first brands, Orijen-shelf, breeders" },
+        "taurine":  { "label": "taurine",        "context": "4–8× AAFCO minimum — feline cardiac health",              "useWith": "Cat specialty, vet channel, cat breeders" },
+        "margin":   { "label": "retailer margin","context": "Premium category average: 35–38% — real money",           "useWith": "All retailers (core commercial value prop)" }
+      }
     },
     "routine": {
-      "title": "The CEO's weekly routine."
+      "title": "The CEO's weekly routine.",
+      "days": {
+        "mon": { "day": "Monday",    "duration": "60-90 min",  "activities": ["Review last week's report", "Decide priorities: scouting zone + email batch", "Launch scouting for the chosen zone"] },
+        "tue": { "day": "Tuesday",   "duration": "90-120 min", "activities": ["Enrich new contacts", "Generate a batch of 15–20 HOT emails", "Review email quality — non-delegable step"] },
+        "wed": { "day": "Wednesday", "duration": "30 min",     "activities": ["Manual send via Gmail: 9am / 11am / 2pm EST", "Update CRM: pipeline_status → contacted"] },
+        "thu": { "day": "Thursday",  "duration": "60 min",     "activities": ["Generate follow-ups T+5 / T+12 / T+22", "Send in the same thread (reply, not new email)"] },
+        "fri": { "day": "Friday",    "duration": "30 min",     "activities": ["Calls to the top 5 HOT who haven't replied", "+40% response rate after 2 emails and 1 call"] }
+      }
     },
     "funnelKpi": {
       "title":   "Six metrics for the funnel.",
       "metric":  "Metric",
       "formula": "Formula",
       "target":  "Target",
-      "ifBelow": "If below target"
+      "ifBelow": "If below target",
+      "metrics": {
+        "open":        { "metric": "Open rate",            "formula": "Opens / Sent",                     "target": "30-45%",   "ifBelow": "Weak subject lines — revisit the pattern" },
+        "reply":       { "metric": "Reply rate",           "formula": "Replies / Opens",                  "target": "5-10%",    "ifBelow": "Personalized hook too generic" },
+        "positive":    { "metric": "Positive reply rate",  "formula": "Positive replies / Replies",       "target": "2-4%",     "ifBelow": "Value prop not aligned with the profile" },
+        "sampleOrder": { "metric": "Sample-to-order",      "formula": "Orders / Samples sent",            "target": "25-40%",   "ifBelow": "Weak or missing post-sample follow-up" },
+        "velocity":    { "metric": "Pipeline velocity",    "formula": "Avg days from lead to order",      "target": "30-60d",   "ifBelow": "If >90d: cycle too long, refine CTA" },
+        "cpa":         { "metric": "Cost per acquisition", "formula": "CEO hours / Signed client",        "target": "<8h",      "ifBelow": "If >15h: chasing the wrong prospects" }
+      }
     }
   }
 }
