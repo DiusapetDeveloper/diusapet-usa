@@ -344,7 +344,23 @@
         "title":   "Quattromila dollari per partire.",
         "headers": { "category": "Categoria", "includes": "Cosa comprende", "cost": "Costo" },
         "totalLabel": "Totale",
-        "capacityNote": "A 600 sacchi/mese (scenario base Anno 1) bastano 4–6h/settimana di imbustamento. Il layout regge fino a 1.500 sacchi/mese senza modifiche. Oltre, si attiva Fase 2 con operatore part-time."
+        "capacityNote": "A 600 sacchi/mese (scenario base Anno 1) bastano 4–6h/settimana di imbustamento. Il layout regge fino a 1.500 sacchi/mese senza modifiche. Oltre, si attiva Fase 2 con operatore part-time.",
+        "categories": {
+          "storage":  "Stoccaggio",
+          "bagging":  "Imbustamento",
+          "safety":   "Safety",
+          "security": "Sicurezza",
+          "office":   "Ufficio",
+          "misc":     "Minor & misc"
+        },
+        "includes": {
+          "storage":  "Scaffalature heavy-duty + pallet rack + transpallet",
+          "bagging":  "Sigillatrice + bilancia + tavolo inox + tramoggia",
+          "safety":   "Estintori + segnaletica + DPI + kit primo soccorso",
+          "security": "Telecamere NVR 4-cam + serratura rinforzata",
+          "office":   "Setup IKEA scrivania + PC + archivio",
+          "misc":     "Contenitori sfuso + materiali vari"
+        }
       }
     },
     "ceoWeek": {

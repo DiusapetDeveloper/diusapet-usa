@@ -344,7 +344,23 @@
         "title":   "Four thousand dollars to start.",
         "headers": { "category": "Category", "includes": "Includes", "cost": "Cost" },
         "totalLabel": "Total",
-        "capacityNote": "At 600 bags/month (Year 1 base case), 4–6 hours of bagging per week are enough. The layout scales up to 1,500 bags/month without modifications. Beyond that, Phase 2 activates with a part-time operator."
+        "capacityNote": "At 600 bags/month (Year 1 base case), 4–6 hours of bagging per week are enough. The layout scales up to 1,500 bags/month without modifications. Beyond that, Phase 2 activates with a part-time operator.",
+        "categories": {
+          "storage":  "Storage",
+          "bagging":  "Bagging",
+          "safety":   "Safety",
+          "security": "Security",
+          "office":   "Office",
+          "misc":     "Minor & misc"
+        },
+        "includes": {
+          "storage":  "Heavy-duty shelving + pallet rack + pallet jack",
+          "bagging":  "Heat sealer + scale + stainless table + hopper",
+          "safety":   "Fire extinguishers + signage + PPE + first aid kit",
+          "security": "NVR 4-cam system + reinforced lock",
+          "office":   "IKEA desk + PC + filing",
+          "misc":     "Bulk containers + misc materials"
+        }
       }
     },
     "ceoWeek": {

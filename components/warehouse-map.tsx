@@ -767,30 +767,34 @@ function EquipmentTable() {
           <p className="eyebrow text-carbon-muted">{t("headers.includes")}</p>
           <p className="eyebrow text-carbon-muted text-right">{t("headers.cost")}</p>
         </div>
-        {equipment_breakdown.map((row, i) => (
-          <motion.div
-            key={row.category}
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{
-              duration: 0.45,
-              ease,
-              delay: i * 0.06,
-            }}
-            className="grid grid-cols-1 md:grid-cols-[180px_1fr_140px] gap-2 md:gap-6 py-4 border-b border-hairline last:border-b-0"
-          >
-            <p className="font-serif text-navy text-[15px]">
-              {row.category}
-            </p>
-            <p className="text-sm text-carbon-muted leading-relaxed">
-              {row.items}
-            </p>
-            <p className="md:text-right font-serif text-navy num">
-              {formatCurrency(row.cost_usd)}
-            </p>
-          </motion.div>
-        ))}
+        {equipment_breakdown.map((row, i) => {
+          const catKey = (row as { categoryKey?: string }).categoryKey;
+          const incKey = (row as { includesKey?: string }).includesKey;
+          return (
+            <motion.div
+              key={catKey ?? row.category}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{
+                duration: 0.45,
+                ease,
+                delay: i * 0.06,
+              }}
+              className="grid grid-cols-1 md:grid-cols-[180px_1fr_140px] gap-2 md:gap-6 py-4 border-b border-hairline last:border-b-0"
+            >
+              <p className="font-serif text-navy text-[15px]">
+                {catKey ? t(`categories.${catKey}`) : row.category}
+              </p>
+              <p className="text-sm text-carbon-muted leading-relaxed">
+                {incKey ? t(`includes.${incKey}`) : row.items}
+              </p>
+              <p className="md:text-right font-serif text-navy num">
+                {formatCurrency(row.cost_usd)}
+              </p>
+            </motion.div>
+          );
+        })}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}

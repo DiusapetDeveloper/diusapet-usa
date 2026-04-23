@@ -139,12 +139,12 @@
     "note": "Corridoi e manovra sono necessari per transpallet e sicurezza OSHA. 68% è efficienza tipica di un magazzino operator-operated."
   },
   "equipment_breakdown": [
-    { "category": "Stoccaggio",     "items": "Scaffalature heavy-duty + pallet rack + transpallet", "cost_usd": 2000 },
-    { "category": "Imbustamento",   "items": "Sigillatrice + bilancia + tavolo inox + tramoggia",   "cost_usd": 750 },
-    { "category": "Safety",         "items": "Estintori + segnaletica + DPI + kit primo soccorso", "cost_usd": 360 },
-    { "category": "Sicurezza",      "items": "Telecamere NVR 4-cam + serratura rinforzata",        "cost_usd": 280 },
-    { "category": "Ufficio",        "items": "Setup IKEA scrivania + PC + archivio",               "cost_usd": 500 },
-    { "category": "Minor & misc",   "items": "Contenitori sfuso + materiali vari",                 "cost_usd": 150 }
+    { "categoryKey": "storage",  "includesKey": "storage",  "category": "Stoccaggio",   "items": "Scaffalature heavy-duty + pallet rack + transpallet", "cost_usd": 2000 },
+    { "categoryKey": "bagging",  "includesKey": "bagging",  "category": "Imbustamento", "items": "Sigillatrice + bilancia + tavolo inox + tramoggia",   "cost_usd": 750 },
+    { "categoryKey": "safety",   "includesKey": "safety",   "category": "Safety",       "items": "Estintori + segnaletica + DPI + kit primo soccorso",  "cost_usd": 360 },
+    { "categoryKey": "security", "includesKey": "security", "category": "Sicurezza",    "items": "Telecamere NVR 4-cam + serratura rinforzata",         "cost_usd": 280 },
+    { "categoryKey": "office",   "includesKey": "office",   "category": "Ufficio",      "items": "Setup IKEA scrivania + PC + archivio",                "cost_usd": 500 },
+    { "categoryKey": "misc",     "includesKey": "misc",     "category": "Minor & misc", "items": "Contenitori sfuso + materiali vari",                  "cost_usd": 150 }
   ],
   "equipment_total_usd": 4040,
   "production_capacity": [
