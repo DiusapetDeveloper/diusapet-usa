@@ -26,7 +26,9 @@
     "clienti":     "Clients",
     "roadmap":     "Roadmap",
     "rischi":      "Risks",
-    "allegati":    "Appendix"
+    "allegati":    "Appendix",
+    "openMenu":    "Open menu",
+    "closeMenu":   "Close menu"
   },
   "footer": {
     "confidential": "Confidential document · Internal use, Diusapet S.r.l.",

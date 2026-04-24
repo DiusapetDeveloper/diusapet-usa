@@ -49,7 +49,11 @@
       "Bash(curl -s -o /tmp/gov-it.html -w \"%{http_code}\\\\n\" http://localhost:3000/it/governance)",
       "Bash(curl -s -o /tmp/gov-en.html -w \"%{http_code}\\\\n\" http://localhost:3000/en/governance)",
       "Read(//private/tmp/**)",
-      "Bash(git config *)"
+      "Bash(git config *)",
+      "Bash(git commit *)",
+      "Bash(git remote *)",
+      "Bash(git branch *)",
+      "Bash(GIT_TERMINAL_PROMPT=0 git push *)"
     ]
   }
 }
