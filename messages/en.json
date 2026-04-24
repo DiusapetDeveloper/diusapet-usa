@@ -942,41 +942,248 @@
     }
   },
   "governance": {
+    "meta": {
+      "eyebrow": "GOVERNANCE & CORPORATE STRUCTURE",
+      "title": "How Diusapet USA fits into the group.",
+      "subtitle": "Three entities under a single holding. Commercial flows run horizontally between Italy and the U.S., while U.S. earnings stay in the U.S. until distribution.",
+      "source": "Appendix 05 — Corporate Feasibility · Bulgaria-Italy-U.S. tax structure"
+    },
+    "kpi": {
+      "entitiesUnit": "entities",
+      "entitiesLabel": "Diusa SA → SRL IT + LLC US",
+      "percentUnit": "%",
+      "controlLabel": "SA control over operating entities",
+      "rolesUnit": "roles",
+      "rolesLabel": "Group CEO + U.S. operating MD",
+      "dividendLabel": "U.S. earnings distributed in Phase 1-2"
+    },
+    "entities": {
+      "sa": {
+        "jurisdiction": "Bulgaria",
+        "role": "Group holding",
+        "function": "Holds the operating stakes and capitalizes the U.S. LLC. Financial, governance and group strategy role."
+      },
+      "srl": {
+        "jurisdiction": "Italy",
+        "role": "Operating company",
+        "function": "Alleva brand manufacturing. Owns the know-how, formulas and trademark. Supplies product to the U.S. LLC under Supply Agreement."
+      },
+      "llc": {
+        "jurisdiction": "Delaware · USA",
+        "role": "Commercial subsidiary",
+        "function": "Bagging, import and distribution on the U.S. market. Separate legal entity with limited liability."
+      }
+    },
     "hierarchy": {
-      "controlLabel":    "100% control",
-      "newEntityBadge":  "New entity"
+      "eyebrow": "GROUP STRUCTURE",
+      "title": "One holding, two operating companies, dedicated flows.",
+      "subtitle": "The Bulgarian SA holds 100% of both operating companies. Italy and the U.S. operate in parallel through formal commercial relationships."
+    },
+    "flowsAnimation": {
+      "eyebrow": "COMMERCIAL FLOWS",
+      "title": "The full cycle: order, invoice, payment, earnings.",
+      "subtitle": "Animation of the commercial cycle between SRL Italy and LLC U.S., repeated with every container.",
+      "step1": {
+        "label": "Container order",
+        "desc": "The U.S. LLC orders bulk product and empty bags from the Italian SRL."
+      },
+      "step2": {
+        "label": "Supply + invoice",
+        "desc": "The SRL produces and ships. Issues intercompany invoice at documented transfer price."
+      },
+      "step3": {
+        "label": "Supply payment",
+        "desc": "The LLC pays the invoice to the SRL. Transfer price OECD-compliant."
+      },
+      "step4": {
+        "label": "U.S. sale + earnings",
+        "desc": "The LLC sells on the U.S. market. Net earnings after U.S. taxes stay in the LLC for Phase 2 reinvestment."
+      }
+    },
+    "dividend": {
+      "eyebrow": "EARNINGS DISTRIBUTION",
+      "title": "U.S. earnings stay in the U.S. For now.",
+      "subtitle": "In Phase 1-2 (years 1-3) earnings remain in the LLC to finance growth and working capital. Distribution to the holding starts only from Phase 3 onward.",
+      "phase1": {
+        "phase": "Phase 1-2 · Years 1-3",
+        "policy": "100% retention",
+        "note": "All earnings reinvested in the LLC: working capital, Zone 2 expansion, semi-automated operations, marketing."
+      },
+      "phase2": {
+        "phase": "Phase 3 · Year 4+",
+        "policy": "Planned distribution",
+        "note": "Annual dividends from the LLC to the Bulgarian SA. 5% withholding thanks to the U.S.-Bulgaria treaty."
+      },
+      "taxNote": "The Bulgaria-U.S. tax treaty provides a 5% withholding on dividends (vs 30% standard without treaty). Bulgaria has a favorable holding regime, with a 10% flat tax on income.",
+      "whyBulgaria": "Diusa SA is the existing holding of the Diusa group. The Bulgaria choice was made before the U.S. project for reasons of tax efficiency and operational simplicity of the European holding."
     },
     "roles": {
-      "scopeLabel":            "Scope",
-      "responsibilitiesLabel": "Responsibilities",
-      "basedLabel":            "Based",
-      "commitmentLabel":       "Commitment",
-      "groupExecPill":         "Group executive",
-      "countryExecPill":       "Country executive"
-    },
-    "decision": {
-      "headers": {
-        "decision": "Decision",
-        "md":       "MD (Daniele)",
-        "ceo":      "CEO (Gael)",
-        "board":    "Diusa S.A. Board"
+      "eyebrow": "U.S. LLC ROLES",
+      "title": "Group-level CEO, local operating MD.",
+      "subtitle": "Standard governance structure for foreign subsidiaries of European groups.",
+      "ceo": {
+        "title": "Chief Executive Officer",
+        "based": "Italy, with periodic U.S. visits",
+        "scope": "Group-level governance, strategic approvals, framework contracts, relationship with the holding.",
+        "resp1": "Legal representation of the LLC toward the Bulgarian holding and the Italian SRL",
+        "resp2": "Approval of annual budget and of deviations above threshold",
+        "resp3": "Signing of contracts with national distributors and strategic trade shows",
+        "resp4": "Decisions on capital allocation, Phase 2-3 expansion, exit strategy",
+        "timeCommitment": "Part-time · 20-30 hours per month",
+        "roleType": "Group executive"
       },
-      "badges": {
-        "decide":     "Decides",
-        "propone":    "Proposes",
-        "approva":    "Approves",
-        "firma":      "Signs",
-        "informato":  "Informed",
-        "trattativa": "Negotiates"
-      },
-      "legendLabel": "Legend"
+      "md": {
+        "title": "Managing Director",
+        "based": "New Jersey · USA",
+        "scope": "Full P&L of the U.S. LLC. Operations, sales, compliance, local customer relationships.",
+        "resp1": "Day-to-day management of the LLC: warehouse, manual production, deliveries",
+        "resp2": "Commercial development: pet stores, Italian markets, breeders, distributors",
+        "resp3": "FDA, FSVP and OSHA compliance at operating level",
+        "resp4": "CRM management, commercial outreach, samples, follow-up",
+        "resp5": "Monthly reporting to the group-level CEO and to the holding",
+        "timeCommitment": "Full-time · 55-60 hours per week",
+        "roleType": "Country executive"
+      }
     },
-    "flows": {
-      "objectLabel":        "Object",
-      "considerationLabel": "Consideration"
+    "decisionMatrix": {
+      "eyebrow": "DECISION MATRIX",
+      "title": "Who decides what.",
+      "subtitle": "Delegations and approval thresholds to be formalized in the LLC Operating Agreement.",
+      "d1": "Routine container orders",
+      "d2": "Phase 2 part-time operator hire",
+      "d3": "Commercial discounts above 10% or exclusivity contracts",
+      "d4": "Geographic expansion into a new zone",
+      "d5": "Contracts with national distributors",
+      "d6": "Capex above $25k (automation, semi-auto)",
+      "d7": "Price list changes above 5%",
+      "d8": "New line launches (e.g. CARE)",
+      "d9": "Full-time employee hires",
+      "d10": "Exit, sale or restructuring of the LLC",
+      "values": {
+        "decide": "Decides",
+        "propose": "Proposes",
+        "approve": "Approves",
+        "sign": "Signs",
+        "informed": "Informed",
+        "negotiate": "Negotiates",
+        "dash": "—"
+      },
+      "legend": {
+        "decide": "Autonomous decision",
+        "propose": "Proposes with rationale",
+        "approve": "Formal approval required",
+        "sign": "Legal signature required",
+        "informed": "Ex-post notification",
+        "board": "Diusa SA Board"
+      }
+    },
+    "contracts": {
+      "eyebrow": "INTERCOMPANY CONTRACTS",
+      "title": "Five formal relationships between entities.",
+      "subtitle": "Every commercial and capital relationship is governed by a specific contract, required for OECD transfer pricing compliance.",
+      "capital": {
+        "type": "Capital contribution + Shareholder loan",
+        "what": "Establishment capital of the U.S. LLC: equity plus intercompany loan",
+        "consideration": "$50k equity + $135k loan (SOFR + 3%)",
+        "note": "Ownership relationship. The SA holds 100% of the LLC from Day 1."
+      },
+      "license": {
+        "type": "License Agreement",
+        "what": "License to use the Alleva trademark on U.S. territory",
+        "consideration": "3-5% royalty on U.S. net sales",
+        "note": "Required for OECD transfer pricing compliance."
+      },
+      "supply": {
+        "type": "Supply Agreement",
+        "what": "Supply of bulk product (bigbag) and empty bags",
+        "consideration": "Transfer price at Italian industrial margin (€ per kg)",
+        "note": "The price is documented in the transfer pricing study."
+      },
+      "services": {
+        "type": "Services Agreement",
+        "what": "Technical consulting, R&D, quality assurance",
+        "consideration": "Fixed annual fee of $8-12k",
+        "note": "Coverage for ongoing technical support from Italy."
+      },
+      "dividends": {
+        "type": "Earnings distribution · Phase 3+",
+        "what": "Annual dividends on earnings after U.S. taxes",
+        "consideration": "5% withholding at source · U.S.-Bulgaria treaty",
+        "note": "Distribution suspended in Phase 1-2. Active from Year 4."
+      }
+    },
+    "rationale": {
+      "eyebrow": "RATIONALE",
+      "title": "Why this structure, not another.",
+      "r1": {
+        "title": "Limited liability",
+        "text": "The U.S. LLC protects the holding and the Italian SRL from potential U.S. liabilities: product liability, customer litigation, workplace injuries. Risk stays isolated to the capital contributed to the LLC."
+      },
+      "r2": {
+        "title": "Tax optimization via SA",
+        "text": "Diusa SA in Bulgaria is the existing group holding. It enables a favorable tax regime on dividends received from operating entities (IT and U.S.) and a 10% Bulgarian flat tax on holding income."
+      },
+      "r3": {
+        "title": "Scalable governance",
+        "text": "Separation between group-level CEO and country MD allows the LLC to grow without overloading the holding. The same structure is replicable if Diusapet Germany or UK open tomorrow."
+      },
+      "r4": {
+        "title": "Credibility with U.S. stakeholders",
+        "text": "Banks, distributors and the FDA prefer dealing with a U.S. LLC run by a resident MD rather than with a branch of a foreign company. This simplifies compliance and account opening."
+      },
+      "r5": {
+        "title": "Exit optionality",
+        "text": "Having the LLC as a separate entity enables a future sale of only the U.S. LLC, a joint venture with an American partner, an investor entry or a partial IPO. Options a branch office would not allow."
+      }
     },
     "capital": {
-      "totalLabel": "Total capitalization"
+      "eyebrow": "LLC CAPITAL STRUCTURE",
+      "title": "How the U.S. LLC is capitalized.",
+      "subtitle": "The $185k investment is contributed by the Diusa SA holding as a combination of equity and intercompany loan.",
+      "injectorLabel": "Capital injected by",
+      "injectorRole": "Holding that capitalizes the LLC directly",
+      "equity": {
+        "component": "Initial equity",
+        "note": "Capital contribution from Diusa SA for LLC establishment. Required for the E-2 visa as evidence of substantial investment."
+      },
+      "loan": {
+        "component": "Intercompany loan",
+        "note": "Shareholder loan from Diusa SA at market rate (SOFR + 3%). Repayable from U.S. earnings over a 5-year horizon."
+      },
+      "total": {
+        "component": "Total capitalization",
+        "note": "Aligned with the financial plan's total initial investment."
+      },
+      "visaNote": "The 50k equity + 135k loan structure was designed to satisfy the E-2 visa requirements for the MD. USCIS requires the investment to be substantial and at risk: $50k of irreversible equity satisfies this test, while the loan provides operating liquidity without weighing down the equity.",
+      "separationNoteTitle": "Important note",
+      "separationNote": "This is the capital structure, meaning the ownership relationship. Diusa SA capitalizes the LLC because it owns 100% of it. Diusapet S.r.l. instead sells product to the LLC under a Supply Agreement: a distinct commercial relationship that has nothing to do with ownership."
+    },
+    "closing": {
+      "text": "The SA-holding structure with group-level CEO and country-level MD is the standard governance for European groups with U.S. subsidiaries. It formalizes the decision-making perimeter, shields the holding from U.S. operating risk, and provides a scalable framework for the group's future growth."
+    },
+    "ui": {
+      "capitalTotal": "Total capitalization",
+      "importantNote": "Important note",
+      "residence": "Based",
+      "scope": "Scope",
+      "responsibilities": "Responsibilities",
+      "commitment": "Commitment",
+      "decisionHeader": "Decision",
+      "mdHeader": "MD · Daniele",
+      "ceoHeader": "CEO · Gael",
+      "boardHeader": "Diusa SA Board",
+      "objectLabel": "Subject",
+      "considerationLabel": "Consideration",
+      "fromTo": "from",
+      "toLabel": "to",
+      "newEntityBadge": "New entity",
+      "flowLineLabel": "Commercial flows",
+      "cycleLabel": "Commercial cycle",
+      "stepLabel": "Step",
+      "legendLabel": "Legend",
+      "dividendLabel": "Dividend",
+      "whyBulgariaTitle": "Why Bulgaria",
+      "dividendToModel": "To be modeled"
     }
   }
 }

@@ -1,16 +1,16 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
+import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import {
   ArrowRight,
   BookLock,
-  Building2,
   Clock,
-  Factory,
+  DollarSign,
+  FileText,
+  Landmark,
   MapPin,
-  Store,
+  ShoppingCart,
   TrendingUp,
   Truck,
   Wrench,
@@ -18,44 +18,45 @@ import {
 } from "lucide-react";
 import governance from "@/data/governance.json";
 import { cn, formatCurrency } from "@/lib/utils";
+import { HierarchyDiagram } from "@/components/hierarchy-diagram";
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
-const ENTITY_ICON: Record<string, LucideIcon> = {
-  Building2,
-  Factory,
-  Store,
-};
-
-const FLOW_ICON: Record<string, LucideIcon> = {
+const CONTRACT_ICON: Record<string, LucideIcon> = {
   BookLock,
   Truck,
   Wrench,
   TrendingUp,
+  Landmark,
 };
 
-// Map IT matrix values → message key
-const MATRIX_BADGE_KEY: Record<string, string> = {
-  Decide: "decide",
-  Propone: "propone",
-  Approva: "approva",
-  Firma: "firma",
-  Informato: "informato",
-  Trattativa: "trattativa",
+const CYCLE_ICON: Record<string, LucideIcon> = {
+  ShoppingCart,
+  FileText,
+  DollarSign,
+  TrendingUp,
 };
 
-// Badge visual style per value
-function badgeStyle(value: string): string {
-  switch (value) {
-    case "Decide":
+// Extract final segment from a translation key path (e.g.
+// "governance.decisionMatrix.values.decide" → "decide") so that the
+// matrix badge style can be picked from the key itself rather than
+// from the resolved (localized) label text.
+function tailKey(path: string): string {
+  const parts = path.split(".");
+  return parts[parts.length - 1] ?? path;
+}
+
+function badgeStyleForKind(kind: string): string {
+  switch (kind) {
+    case "decide":
       return "bg-gold text-white border-gold";
-    case "Approva":
-    case "Firma":
+    case "approve":
+    case "sign":
       return "bg-navy text-white border-navy";
-    case "Propone":
-    case "Trattativa":
+    case "propose":
+    case "negotiate":
       return "text-navy border-navy bg-white";
-    case "Informato":
+    case "informed":
       return "text-carbon-muted border-hairline bg-hairline/40";
     default:
       return "";
@@ -63,11 +64,14 @@ function badgeStyle(value: string): string {
 }
 
 export default function GovernanceSection() {
-  const t = useTranslations("governance");
+  const t = useTranslations();
+  const tUi = useTranslations("governance.ui");
   const {
     meta,
     headline_kpi,
     hierarchy,
+    flows_animation,
+    dividend_flow,
     roles,
     decision_matrix,
     contractual_flows,
@@ -82,16 +86,16 @@ export default function GovernanceSection() {
       <section>
         <div className="flex items-start justify-between gap-6 flex-wrap">
           <div>
-            <p className="eyebrow text-gold">{meta.eyebrow}</p>
+            <p className="eyebrow text-gold">{t(meta.eyebrowKey)}</p>
             <h1 className="mt-6 font-serif text-hero text-navy max-w-3xl">
-              {meta.title}
+              {t(meta.titleKey)}
             </h1>
             <p className="mt-6 max-w-2xl text-carbon-muted leading-relaxed">
-              {meta.subtitle}
+              {t(meta.subtitleKey)}
             </p>
           </div>
           <p className="text-xs text-carbon-muted max-w-xs text-right leading-relaxed">
-            {meta.source}
+            {t(meta.sourceKey)}
           </p>
         </div>
       </section>
@@ -101,7 +105,7 @@ export default function GovernanceSection() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-hairline border border-hairline">
           {headline_kpi.map((k, i) => (
             <motion.div
-              key={k.label}
+              key={k.labelKey}
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.35 }}
@@ -109,15 +113,15 @@ export default function GovernanceSection() {
               className="bg-white p-6 md:p-8 flex flex-col"
             >
               <p className="eyebrow text-carbon-muted leading-snug">
-                {k.label}
+                {t(k.labelKey)}
               </p>
               <div className="mt-4 flex items-baseline gap-1 num">
                 <span className="font-serif text-3xl md:text-4xl text-navy leading-none">
                   {k.value}
                 </span>
-                {k.unit && (
+                {k.unitKey && (
                   <span className="font-serif text-base text-navy/70 ml-1">
-                    {k.unit}
+                    {t(k.unitKey)}
                   </span>
                 )}
               </div>
@@ -129,25 +133,92 @@ export default function GovernanceSection() {
 
       {/* 3 — HIERARCHY DIAGRAM */}
       <section className="mt-28">
-        <p className="eyebrow">{hierarchy.eyebrow}</p>
+        <p className="eyebrow">{t(hierarchy.eyebrowKey)}</p>
         <h2 className="mt-3 font-serif text-hero text-navy max-w-3xl">
-          {hierarchy.title}
+          {t(hierarchy.titleKey)}
         </h2>
         <p className="mt-4 max-w-2xl text-carbon-muted leading-relaxed">
-          {hierarchy.subtitle}
+          {t(hierarchy.subtitleKey)}
         </p>
 
-        <HierarchyDiagram levels={hierarchy.levels} />
+        <div className="mt-12">
+          <HierarchyDiagram />
+        </div>
       </section>
 
-      {/* 4 — ROLES */}
+      {/* 4 — FLOWS EXPLANATION */}
       <section className="mt-28">
-        <p className="eyebrow">{roles.eyebrow}</p>
+        <p className="eyebrow">{t(flows_animation.eyebrowKey)}</p>
         <h2 className="mt-3 font-serif text-hero text-navy max-w-3xl">
-          {roles.title}
+          {t(flows_animation.titleKey)}
         </h2>
         <p className="mt-4 max-w-2xl text-carbon-muted leading-relaxed">
-          {roles.subtitle}
+          {t(flows_animation.subtitleKey)}
+        </p>
+
+        <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-hairline border border-hairline">
+          {flows_animation.cycle_steps.map((s, i) => {
+            const Icon = CYCLE_ICON[s.icon] ?? TrendingUp;
+            return (
+              <motion.article
+                key={s.step}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.25 }}
+                transition={{ duration: 0.55, ease, delay: i * 0.08 }}
+                className="bg-white p-7 flex flex-col border-l-[3px]"
+                style={{ borderLeftColor: s.color }}
+              >
+                <div className="flex items-baseline justify-between">
+                  <span
+                    className="font-serif text-4xl num leading-none"
+                    style={{ color: s.color }}
+                  >
+                    {String(s.step).padStart(2, "0")}
+                  </span>
+                  <Icon
+                    className="h-6 w-6"
+                    strokeWidth={1.4}
+                    style={{ color: s.color }}
+                  />
+                </div>
+                <h3 className="mt-6 font-serif text-navy text-lg leading-snug">
+                  {t(s.labelKey)}
+                </h3>
+                <p className="mt-3 text-sm text-carbon leading-relaxed">
+                  {t(s.descKey)}
+                </p>
+              </motion.article>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* 5 — DIVIDEND FLOW */}
+      <section className="mt-28">
+        <p className="eyebrow">{t(dividend_flow.eyebrowKey)}</p>
+        <h2 className="mt-3 font-serif text-hero text-navy max-w-3xl">
+          {t(dividend_flow.titleKey)}
+        </h2>
+        <p className="mt-4 max-w-2xl text-carbon-muted leading-relaxed">
+          {t(dividend_flow.subtitleKey)}
+        </p>
+
+        <DividendTimeline
+          phases={dividend_flow.phases}
+          taxNoteKey={dividend_flow.taxNoteKey}
+          whyBulgariaKey={dividend_flow.whyBulgariaKey}
+        />
+      </section>
+
+      {/* 6 — ROLES */}
+      <section className="mt-28">
+        <p className="eyebrow">{t(roles.eyebrowKey)}</p>
+        <h2 className="mt-3 font-serif text-hero text-navy max-w-3xl">
+          {t(roles.titleKey)}
+        </h2>
+        <p className="mt-4 max-w-2xl text-carbon-muted leading-relaxed">
+          {t(roles.subtitleKey)}
         </p>
 
         <div className="mt-12 grid md:grid-cols-2 gap-6">
@@ -157,47 +228,50 @@ export default function GovernanceSection() {
         </div>
       </section>
 
-      {/* 5 — DECISION MATRIX */}
+      {/* 7 — DECISION MATRIX */}
       <section className="mt-28">
-        <p className="eyebrow">{decision_matrix.eyebrow}</p>
+        <p className="eyebrow">{t(decision_matrix.eyebrowKey)}</p>
         <h2 className="mt-3 font-serif text-hero text-navy max-w-3xl">
-          {decision_matrix.title}
+          {t(decision_matrix.titleKey)}
         </h2>
         <p className="mt-4 max-w-2xl text-carbon-muted leading-relaxed">
-          {decision_matrix.subtitle}
+          {t(decision_matrix.subtitleKey)}
         </p>
 
-        <DecisionMatrix rows={decision_matrix.matrix} />
+        <DecisionMatrix
+          rows={decision_matrix.matrix}
+          legendKeys={decision_matrix.legendKeys}
+        />
       </section>
 
-      {/* 6 — CONTRACTUAL FLOWS */}
+      {/* 8 — CONTRACTUAL FLOWS */}
       <section className="mt-28">
-        <p className="eyebrow">{contractual_flows.eyebrow}</p>
+        <p className="eyebrow">{t(contractual_flows.eyebrowKey)}</p>
         <h2 className="mt-3 font-serif text-hero text-navy max-w-3xl">
-          {contractual_flows.title}
+          {t(contractual_flows.titleKey)}
         </h2>
         <p className="mt-4 max-w-2xl text-carbon-muted leading-relaxed">
-          {contractual_flows.subtitle}
+          {t(contractual_flows.subtitleKey)}
         </p>
 
-        <div className="mt-10 grid md:grid-cols-2 gap-px bg-hairline border border-hairline">
+        <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-hairline border border-hairline">
           {contractual_flows.flows.map((f, i) => (
             <FlowCard key={f.id} flow={f} index={i} />
           ))}
         </div>
       </section>
 
-      {/* 7 — RATIONALE */}
+      {/* 9 — RATIONALE */}
       <section className="mt-28">
-        <p className="eyebrow">{why_this_structure.eyebrow}</p>
+        <p className="eyebrow">{t(why_this_structure.eyebrowKey)}</p>
         <h2 className="mt-3 font-serif text-hero text-navy max-w-3xl">
-          {why_this_structure.title}
+          {t(why_this_structure.titleKey)}
         </h2>
 
         <ul className="mt-10 border-y border-hairline divide-y divide-hairline">
           {why_this_structure.reasons.map((r, i) => (
             <motion.li
-              key={r.title}
+              key={r.titleKey}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
@@ -209,10 +283,10 @@ export default function GovernanceSection() {
               </span>
               <div className="max-w-[640px]">
                 <h3 className="font-serif text-navy text-xl leading-snug">
-                  {r.title}
+                  {t(r.titleKey)}
                 </h3>
                 <p className="mt-2 text-sm text-carbon-muted leading-relaxed">
-                  {r.text}
+                  {t(r.textKey)}
                 </p>
               </div>
             </motion.li>
@@ -220,26 +294,66 @@ export default function GovernanceSection() {
         </ul>
       </section>
 
-      {/* 8 — CAPITAL STRUCTURE */}
+      {/* 10 — CAPITAL STRUCTURE */}
       <section className="mt-28">
-        <p className="eyebrow">{capital_structure.eyebrow}</p>
+        <p className="eyebrow">{t(capital_structure.eyebrowKey)}</p>
         <h2 className="mt-3 font-serif text-hero text-navy max-w-3xl">
-          {capital_structure.title}
+          {t(capital_structure.titleKey)}
         </h2>
         <p className="mt-4 max-w-2xl text-carbon-muted leading-relaxed">
-          {capital_structure.subtitle}
+          {t(capital_structure.subtitleKey)}
         </p>
+
+        {/* Injector card */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.55, ease }}
+          className="mt-10 border border-hairline bg-white p-6 md:p-8 flex items-start gap-5"
+        >
+          <span className="shrink-0 inline-flex items-center justify-center h-11 w-11 bg-navy/[0.06] text-navy">
+            <Landmark className="h-5 w-5" strokeWidth={1.4} />
+          </span>
+          <div>
+            <p className="eyebrow text-carbon-muted">
+              {t(capital_structure.injectorLabelKey)}
+            </p>
+            <p className="mt-2 font-serif text-navy text-2xl leading-tight">
+              {capital_structure.injector.name}
+            </p>
+            <p className="mt-1 text-[13px] text-carbon-muted">
+              {t(capital_structure.injector.jurisdictionKey)} ·{" "}
+              {t(capital_structure.injector.roleKey)}
+            </p>
+          </div>
+        </motion.div>
 
         <CapitalBreakdown items={capital_structure.items} />
 
         <blockquote className="mt-8 border-l-2 border-gold pl-6 max-w-[720px]">
           <p className="font-serif italic text-base md:text-[17px] text-navy leading-relaxed">
-            {capital_structure.visa_note}
+            {t(capital_structure.visaNoteKey)}
           </p>
         </blockquote>
+
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.55, ease }}
+          className="mt-8 border-l-[3px] border-navy bg-navy/[0.04] px-6 py-5 max-w-[820px]"
+        >
+          <p className="eyebrow text-navy">
+            {t(capital_structure.separationNoteTitleKey)}
+          </p>
+          <p className="mt-3 text-sm text-carbon leading-relaxed">
+            {t(capital_structure.separationNoteKey)}
+          </p>
+        </motion.div>
       </section>
 
-      {/* 9 — CLOSING CALLOUT */}
+      {/* 11 — CLOSING CALLOUT */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -248,182 +362,101 @@ export default function GovernanceSection() {
         className="mt-24 mb-8 border-l-[3px] border-gold bg-gold/[0.05] px-8 md:px-12 py-12"
       >
         <p className="font-serif italic text-navy text-lg md:text-xl leading-relaxed max-w-[740px] mx-auto text-center">
-          {closing_callout}
+          {t(closing_callout.textKey)}
         </p>
       </motion.div>
     </div>
   );
 }
 
-/* ---------------- HIERARCHY DIAGRAM ---------------- */
+/* ---------------- DIVIDEND TIMELINE ---------------- */
 
-type Level = (typeof governance.hierarchy.levels)[number];
+type DividendPhase = (typeof governance.dividend_flow.phases)[number];
 
-function HierarchyDiagram({ levels }: { levels: Level[] }) {
-  const reduce = useReducedMotion();
-  const tH = useTranslations("governance.hierarchy");
-  const { ref, inView } = useInView({ threshold: 0.2, triggerOnce: true });
+function DividendTimeline({
+  phases,
+  taxNoteKey,
+  whyBulgariaKey,
+}: {
+  phases: DividendPhase[];
+  taxNoteKey: string;
+  whyBulgariaKey: string;
+}) {
+  const t = useTranslations();
+  const tUi = useTranslations("governance.ui");
+  const widths = ["60%", "40%"];
+  const colors = ["rgba(184, 146, 90, 0.12)", "rgba(91, 100, 112, 0.10)"];
+  const borderColors = ["#B8925A", "#5B6470"];
 
   return (
-    <div
-      ref={ref}
-      role="img"
-      aria-label="Struttura societaria: Diusa S.A. controlla al 100% Diusapet S.r.l., che controlla al 100% Diusapet USA LLC"
-      className="mt-12 mx-auto max-w-[600px]"
-    >
-      {levels.map((level, i) => (
-        <div key={level.id}>
-          <EntityBox
-            level={level}
-            index={i}
-            isLast={i === levels.length - 1}
-            inView={inView}
-            reduce={!!reduce}
-            newEntityLabel={tH("newEntityBadge")}
-          />
-          {i < levels.length - 1 && (
-            <ControlConnector
-              label={tH("controlLabel")}
-              inView={inView}
-              reduce={!!reduce}
-              delay={0.2 + i * 0.2 + 0.4}
-            />
-          )}
+    <>
+      <div className="mt-12 border border-hairline bg-white">
+        <div className="flex flex-col md:flex-row w-full">
+          {phases.map((p, i) => (
+            <motion.div
+              key={p.phaseKey}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 0.6, ease, delay: i * 0.15 }}
+              className={cn(
+                "p-8 md:p-10 border-t md:border-t-0 border-hairline first:border-t-0",
+                i === 0 ? "md:border-r md:border-hairline" : ""
+              )}
+              style={{
+                width: "100%",
+                flexBasis: widths[i],
+                backgroundColor: colors[i],
+                borderLeft: `3px solid ${borderColors[i]}`,
+              }}
+            >
+              <p className="eyebrow" style={{ color: borderColors[i] }}>
+                {t(p.phaseKey)}
+              </p>
+              <h3
+                className="mt-4 font-serif text-2xl leading-snug"
+                style={{ color: borderColors[i] }}
+              >
+                {t(p.policyKey)}
+              </h3>
+              <div className="mt-4 h-px w-10 bg-hairline" />
+              <p className="mt-4 text-sm text-carbon leading-relaxed max-w-md">
+                {t(p.noteKey)}
+              </p>
+              <p className="mt-6 eyebrow text-carbon-muted">
+                {tUi("dividendLabel")}
+              </p>
+              <p className="mt-1 font-serif text-navy text-xl num">
+                {i === 0 ? formatCurrency(0) : tUi("dividendToModel")}
+              </p>
+            </motion.div>
+          ))}
         </div>
-      ))}
-    </div>
-  );
-}
-
-function EntityBox({
-  level,
-  index,
-  isLast,
-  inView,
-  reduce,
-  newEntityLabel,
-}: {
-  level: Level;
-  index: number;
-  isLast: boolean;
-  inView: boolean;
-  reduce: boolean;
-  newEntityLabel: string;
-}) {
-  const Icon = ENTITY_ICON[level.icon] ?? Building2;
-  const textColor = level.color === "#B8925A" ? "#FFFFFF" : "#F5F3EE";
-
-  return (
-    <motion.div
-      initial={reduce ? false : { opacity: 0, y: 30 }}
-      animate={
-        inView || reduce
-          ? { opacity: 1, y: 0 }
-          : { opacity: 0, y: 30 }
-      }
-      transition={{
-        duration: 0.6,
-        ease,
-        delay: reduce ? 0 : index * 0.2,
-      }}
-      className="relative p-8 min-h-[160px]"
-      style={{
-        backgroundColor: level.color,
-        borderRadius: 2,
-      }}
-    >
-      <Icon
-        className="absolute top-6 right-6 h-6 w-6"
-        strokeWidth={1.4}
-        style={{ color: textColor, opacity: 0.75 }}
-      />
-
-      {isLast && (
-        <span
-          className="absolute top-6 left-6 inline-block px-2 py-1 text-[10px] uppercase tracking-micro bg-white"
-          style={{ color: level.color }}
-        >
-          {newEntityLabel}
-        </span>
-      )}
-
-      <div className={cn("flex flex-col justify-end h-full", isLast && "pt-8")}>
-        <h3
-          className="font-serif leading-tight"
-          style={{ fontSize: 32, color: textColor }}
-        >
-          {level.name}
-        </h3>
-        <p
-          className="mt-2 text-sm"
-          style={{ color: textColor, opacity: 0.8 }}
-        >
-          {level.jurisdiction} · {level.role}
-        </p>
-        <p
-          className="mt-3 text-xs leading-relaxed max-w-md"
-          style={{ color: textColor, opacity: 0.65 }}
-        >
-          {level.function}
-        </p>
       </div>
-    </motion.div>
-  );
-}
 
-function ControlConnector({
-  label,
-  inView,
-  reduce,
-  delay,
-}: {
-  label: string;
-  inView: boolean;
-  reduce: boolean;
-  delay: number;
-}) {
-  return (
-    <div className="relative h-20 flex items-center justify-center my-0">
-      <svg
-        className="absolute inset-0 h-full w-full pointer-events-none"
-        preserveAspectRatio="none"
-        aria-hidden="true"
+      <motion.blockquote
+        initial={{ opacity: 0, y: 12 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.55, ease }}
+        className="mt-8 border-l-[3px] border-gold bg-gold/[0.05] px-6 py-5 max-w-[820px]"
       >
-        <motion.line
-          x1="50%"
-          y1="0"
-          x2="50%"
-          y2="100%"
-          stroke="#B8925A"
-          strokeWidth={2}
-          strokeLinecap="round"
-          vectorEffect="non-scaling-stroke"
-          initial={reduce ? false : { pathLength: 0 }}
-          animate={
-            inView || reduce
-              ? { pathLength: 1 }
-              : { pathLength: 0 }
-          }
-          transition={{
-            duration: reduce ? 0 : 0.6,
-            ease,
-            delay: reduce ? 0 : delay,
-          }}
-        />
-      </svg>
-      <motion.span
-        initial={reduce ? false : { opacity: 0 }}
-        animate={inView || reduce ? { opacity: 1 } : { opacity: 0 }}
-        transition={{
-          duration: 0.4,
-          ease,
-          delay: reduce ? 0 : delay + 0.6,
-        }}
-        className="relative z-10 bg-white px-3 py-1 text-[10px] uppercase tracking-micro text-gold border border-gold"
+        <p className="text-sm text-carbon leading-relaxed">{t(taxNoteKey)}</p>
+      </motion.blockquote>
+
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.55, ease, delay: 0.1 }}
+        className="mt-8 max-w-[820px]"
       >
-        {label}
-      </motion.span>
-    </div>
+        <p className="eyebrow text-carbon-muted">{tUi("whyBulgariaTitle")}</p>
+        <p className="mt-3 text-sm text-carbon leading-relaxed">
+          {t(whyBulgariaKey)}
+        </p>
+      </motion.div>
+    </>
   );
 }
 
@@ -432,8 +465,8 @@ function ControlConnector({
 type Position = (typeof governance.roles.positions)[number];
 
 function RoleCard({ position, index }: { position: Position; index: number }) {
-  const tR = useTranslations("governance.roles");
-  const isCeo = position.id === "ceo";
+  const t = useTranslations();
+  const tUi = useTranslations("governance.ui");
   const accentColor = position.color;
   const isGoldAccent = accentColor === "#B8925A";
 
@@ -459,7 +492,9 @@ function RoleCard({ position, index }: { position: Position; index: number }) {
           >
             {position.id.toUpperCase()}
           </p>
-          <p className="mt-2 eyebrow text-carbon-muted">{position.title}</p>
+          <p className="mt-2 eyebrow text-carbon-muted">
+            {t(position.titleKey)}
+          </p>
           <p className="mt-3 font-serif text-xl text-navy">{position.holder}</p>
         </div>
         <span
@@ -471,7 +506,7 @@ function RoleCard({ position, index }: { position: Position; index: number }) {
             "border"
           )}
         >
-          {isCeo ? tR("groupExecPill") : tR("countryExecPill")}
+          {t(position.roleTypeKey)}
         </span>
       </div>
 
@@ -485,9 +520,9 @@ function RoleCard({ position, index }: { position: Position; index: number }) {
           />
           <div className="text-[13px] leading-snug">
             <span className="eyebrow text-carbon-muted mr-2">
-              {tR("basedLabel")}:
+              {tUi("residence")}:
             </span>
-            <span className="text-carbon">{position.based}</span>
+            <span className="text-carbon">{t(position.basedKey)}</span>
           </div>
         </div>
         <div className="flex items-start gap-3">
@@ -497,27 +532,27 @@ function RoleCard({ position, index }: { position: Position; index: number }) {
           />
           <div className="text-[13px] leading-snug">
             <span className="eyebrow text-carbon-muted mr-2">
-              {tR("commitmentLabel")}:
+              {tUi("commitment")}:
             </span>
-            <span className="text-carbon">{position.time_commitment}</span>
+            <span className="text-carbon">{t(position.timeCommitmentKey)}</span>
           </div>
         </div>
       </div>
 
-      <p className="mt-6 eyebrow text-gold">{tR("scopeLabel")}</p>
+      <p className="mt-6 eyebrow text-gold">{tUi("scope")}</p>
       <p className="mt-2 text-sm text-carbon leading-relaxed">
-        {position.scope}
+        {t(position.scopeKey)}
       </p>
 
-      <p className="mt-5 eyebrow text-gold">{tR("responsibilitiesLabel")}</p>
+      <p className="mt-5 eyebrow text-gold">{tUi("responsibilities")}</p>
       <ul className="mt-2 space-y-1.5">
-        {position.responsibilities.map((r, i) => (
+        {position.responsibilitiesKeys.map((r) => (
           <li
-            key={i}
+            key={r}
             className="flex items-start gap-2 text-[13px] text-carbon leading-snug"
           >
             <span className="mt-1.5 inline-block h-1 w-1 rounded-full bg-gold shrink-0" />
-            <span>{r}</span>
+            <span>{t(r)}</span>
           </li>
         ))}
       </ul>
@@ -528,9 +563,17 @@ function RoleCard({ position, index }: { position: Position; index: number }) {
 /* ---------------- DECISION MATRIX ---------------- */
 
 type MatrixRow = (typeof governance.decision_matrix.matrix)[number];
+type LegendKeys = typeof governance.decision_matrix.legendKeys;
 
-function DecisionMatrix({ rows }: { rows: MatrixRow[] }) {
-  const t = useTranslations("governance.decision");
+function DecisionMatrix({
+  rows,
+  legendKeys,
+}: {
+  rows: MatrixRow[];
+  legendKeys: LegendKeys;
+}) {
+  const t = useTranslations();
+  const tUi = useTranslations("governance.ui");
 
   return (
     <>
@@ -538,16 +581,16 @@ function DecisionMatrix({ rows }: { rows: MatrixRow[] }) {
         <table className="w-full text-left min-w-[720px]">
           <thead>
             <tr className="border-b border-hairline bg-white">
-              <Th className="w-[40%]">{t("headers.decision")}</Th>
-              <Th className="w-[20%]">{t("headers.md")}</Th>
-              <Th className="w-[20%]">{t("headers.ceo")}</Th>
-              <Th className="w-[20%]">{t("headers.board")}</Th>
+              <Th className="w-[40%]">{tUi("decisionHeader")}</Th>
+              <Th className="w-[20%]">{tUi("mdHeader")}</Th>
+              <Th className="w-[20%]">{tUi("ceoHeader")}</Th>
+              <Th className="w-[20%]">{tUi("boardHeader")}</Th>
             </tr>
           </thead>
           <tbody>
             {rows.map((r, i) => (
               <motion.tr
-                key={r.decision}
+                key={r.decisionKey}
                 initial={{ opacity: 0, y: 8 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.15 }}
@@ -559,17 +602,17 @@ function DecisionMatrix({ rows }: { rows: MatrixRow[] }) {
               >
                 <Td>
                   <span className="font-serif text-navy text-[14px]">
-                    {r.decision}
+                    {t(r.decisionKey)}
                   </span>
                 </Td>
                 <Td>
-                  <MatrixBadge value={r.md} />
+                  <MatrixBadge valueKey={r.mdKey} />
                 </Td>
                 <Td>
-                  <MatrixBadge value={r.ceo} />
+                  <MatrixBadge valueKey={r.ceoKey} />
                 </Td>
                 <Td>
-                  <MatrixBadge value={r.board} />
+                  <MatrixBadge valueKey={r.boardKey} />
                 </Td>
               </motion.tr>
             ))}
@@ -579,19 +622,17 @@ function DecisionMatrix({ rows }: { rows: MatrixRow[] }) {
 
       {/* Legend */}
       <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2">
-        <p className="eyebrow text-carbon-muted">
-          {t("legendLabel")}
-        </p>
-        {(["decide", "propone", "approva", "firma", "informato", "trattativa"] as const).map(
-          (k) => (
-            <div key={k} className="flex items-center gap-1.5">
+        <p className="eyebrow text-carbon-muted">{tUi("legendLabel")}</p>
+        {(Object.entries(legendKeys) as Array<[keyof LegendKeys, string]>).map(
+          ([kind, key]) => (
+            <div key={kind} className="flex items-center gap-1.5">
               <span
                 className={cn(
                   "inline-block px-1.5 py-0.5 text-[9px] uppercase tracking-micro border",
-                  badgeStyleForKey(k)
+                  badgeStyleForKind(kind)
                 )}
               >
-                {t(`badges.${k}`)}
+                {t(key)}
               </span>
             </div>
           )
@@ -601,37 +642,20 @@ function DecisionMatrix({ rows }: { rows: MatrixRow[] }) {
   );
 }
 
-function badgeStyleForKey(key: string): string {
-  switch (key) {
-    case "decide":
-      return "bg-gold text-white border-gold";
-    case "approva":
-    case "firma":
-      return "bg-navy text-white border-navy";
-    case "propone":
-    case "trattativa":
-      return "text-navy border-navy bg-white";
-    case "informato":
-      return "text-carbon-muted border-hairline bg-hairline/40";
-    default:
-      return "";
-  }
-}
-
-function MatrixBadge({ value }: { value: string }) {
-  const t = useTranslations("governance.decision.badges");
-  if (value === "—" || !value) {
+function MatrixBadge({ valueKey }: { valueKey: string }) {
+  const t = useTranslations();
+  const kind = tailKey(valueKey);
+  if (kind === "dash") {
     return <span className="text-carbon-muted/60 text-center block">—</span>;
   }
-  const key = MATRIX_BADGE_KEY[value];
   return (
     <span
       className={cn(
         "inline-block px-2 py-0.5 text-[10px] uppercase tracking-micro border",
-        badgeStyle(value)
+        badgeStyleForKind(kind)
       )}
     >
-      {key ? t(key) : value}
+      {t(valueKey)}
     </span>
   );
 }
@@ -641,8 +665,9 @@ function MatrixBadge({ value }: { value: string }) {
 type Flow = (typeof governance.contractual_flows.flows)[number];
 
 function FlowCard({ flow, index }: { flow: Flow; index: number }) {
-  const tF = useTranslations("governance.flows");
-  const Icon = FLOW_ICON[flow.icon] ?? BookLock;
+  const t = useTranslations();
+  const tUi = useTranslations("governance.ui");
+  const Icon = CONTRACT_ICON[flow.icon] ?? BookLock;
 
   return (
     <motion.div
@@ -666,20 +691,22 @@ function FlowCard({ flow, index }: { flow: Flow; index: number }) {
 
       <div className="mt-4">
         <span className="inline-block px-2 py-0.5 text-[10px] uppercase tracking-micro bg-gold/10 text-gold border border-gold/40">
-          {flow.type}
+          {t(flow.typeKey)}
         </span>
       </div>
 
-      <p className="mt-5 eyebrow">{tF("objectLabel")}</p>
-      <p className="mt-2 text-sm text-carbon leading-relaxed">{flow.what}</p>
+      <p className="mt-5 eyebrow">{tUi("objectLabel")}</p>
+      <p className="mt-2 text-sm text-carbon leading-relaxed">
+        {t(flow.whatKey)}
+      </p>
 
-      <p className="mt-5 eyebrow">{tF("considerationLabel")}</p>
+      <p className="mt-5 eyebrow">{tUi("considerationLabel")}</p>
       <p className="mt-2 font-serif text-base text-navy">
-        {flow.consideration}
+        {t(flow.considerationKey)}
       </p>
 
       <p className="mt-auto pt-5 text-[11px] italic text-carbon-muted leading-relaxed">
-        {flow.note}
+        {t(flow.noteKey)}
       </p>
     </motion.div>
   );
@@ -690,7 +717,8 @@ function FlowCard({ flow, index }: { flow: Flow; index: number }) {
 type CapItem = (typeof governance.capital_structure.items)[number];
 
 function CapitalBreakdown({ items }: { items: CapItem[] }) {
-  const tC = useTranslations("governance.capital");
+  const t = useTranslations();
+  const tUi = useTranslations("governance.ui");
   const rows = items.filter((x) => !x.is_total);
   const total =
     items.find((x) => x.is_total)?.amount ??
@@ -703,7 +731,7 @@ function CapitalBreakdown({ items }: { items: CapItem[] }) {
         const isEquity = i === 0;
         return (
           <motion.div
-            key={row.component}
+            key={row.componentKey}
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -712,7 +740,7 @@ function CapitalBreakdown({ items }: { items: CapItem[] }) {
           >
             <div className="col-span-4 md:col-span-3">
               <p className="font-serif text-navy text-[15px]">
-                {row.component}
+                {t(row.componentKey)}
               </p>
               <p className="mt-1 text-[11px] text-carbon-muted num">
                 {pct.toFixed(0)}%
@@ -736,7 +764,7 @@ function CapitalBreakdown({ items }: { items: CapItem[] }) {
                 />
               </div>
               <p className="mt-2 text-[11px] text-carbon-muted leading-relaxed max-w-md">
-                {row.note}
+                {t(row.noteKey)}
               </p>
             </div>
             <div className="col-span-3 md:col-span-2 text-right font-serif text-navy text-xl num">
@@ -747,7 +775,7 @@ function CapitalBreakdown({ items }: { items: CapItem[] }) {
       })}
       <div className="grid grid-cols-12 items-center gap-4 p-5 bg-gold/[0.08]">
         <div className="col-span-9 eyebrow text-gold">
-          {tC("totalLabel")}
+          {tUi("capitalTotal")}
         </div>
         <div className="col-span-3 text-right font-serif text-navy text-2xl num">
           {formatCurrency(total)}

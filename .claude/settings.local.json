@@ -45,7 +45,11 @@
       "Bash(/usr/bin/perl -i -pe 's/\"distance_ceo_home\"/\"distance_md_home\"/g' /Users/danielefranceschini/diusapet-usa/data/warehouse.json)",
       "Bash(/usr/bin/perl -i -pe 's/\"workstream\":\\\\s*\"ceo\"/\"workstream\": \"md\"/g; s/\"id\":\\\\s*\"ceo\",/\"id\": \"md\",/g' /Users/danielefranceschini/diusapet-usa/data/roadmap.json)",
       "Bash(/usr/bin/perl -i -pe 's/ceoWeek/mdWeek/g; s/ceo-week/md-week/g; s/tCeo/tMd/g' /Users/danielefranceschini/diusapet-usa/app/\\\\[locale\\\\]/operativo/page.tsx /Users/danielefranceschini/diusapet-usa/components/weekly-timeline.tsx)",
-      "Bash(/usr/bin/perl -i -pe 's/Compenso CEO/Compenso MD/g; s/\"ceoSalary\"/\"mdSalary\"/g' /Users/danielefranceschini/diusapet-usa/app/\\\\[locale\\\\]/rischi/page.tsx)"
+      "Bash(/usr/bin/perl -i -pe 's/Compenso CEO/Compenso MD/g; s/\"ceoSalary\"/\"mdSalary\"/g' /Users/danielefranceschini/diusapet-usa/app/\\\\[locale\\\\]/rischi/page.tsx)",
+      "Bash(curl -s -o /tmp/gov-it.html -w \"%{http_code}\\\\n\" http://localhost:3000/it/governance)",
+      "Bash(curl -s -o /tmp/gov-en.html -w \"%{http_code}\\\\n\" http://localhost:3000/en/governance)",
+      "Read(//private/tmp/**)",
+      "Bash(git config *)"
     ]
   }
 }
