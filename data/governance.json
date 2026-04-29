@@ -81,7 +81,6 @@
       {
         "id": "ceo",
         "titleKey": "governance.roles.ceo.title",
-        "holder": "Gael Lelong",
         "entity": "Diusapet USA LLC",
         "basedKey": "governance.roles.ceo.based",
         "scopeKey": "governance.roles.ceo.scope",
@@ -98,7 +97,6 @@
       {
         "id": "md",
         "titleKey": "governance.roles.md.title",
-        "holder": "Daniele Franceschini",
         "entity": "Diusapet USA LLC",
         "basedKey": "governance.roles.md.based",
         "scopeKey": "governance.roles.md.scope",

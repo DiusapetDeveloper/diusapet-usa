@@ -33,8 +33,8 @@
   "footer": {
     "confidential": "Documento riservato · Uso interno Diusapet S.r.l.",
     "version": "Versione Aprile 2026",
-    "prepared": "Preparato da Daniele Franceschini",
-    "contact": "Per domande: daniele.franceschini@diusapet.it"
+    "prepared": "Documento strategico interno",
+    "contact": "Per domande: info@diusapet.it"
   },
   "home": {
     "hero": {
@@ -1171,8 +1171,8 @@
       "responsibilities": "Responsabilità",
       "commitment": "Commitment",
       "decisionHeader": "Decisione",
-      "mdHeader": "MD · Daniele",
-      "ceoHeader": "CEO · Gael",
+      "mdHeader": "MD",
+      "ceoHeader": "CEO",
       "boardHeader": "Board Diusa SA",
       "objectLabel": "Oggetto",
       "considerationLabel": "Corrispettivo",

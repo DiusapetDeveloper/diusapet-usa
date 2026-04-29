@@ -4,7 +4,7 @@ Internal business case document for U.S. market expansion.
 
 **Confidential** — Diusapet S.r.l. / Diusa SA
 
-Prepared by Daniele Franceschini, Managing Director Diusapet USA LLC.
+Internal strategic document — Diusapet USA LLC.
 
 ---
 

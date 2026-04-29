@@ -495,7 +495,6 @@ function RoleCard({ position, index }: { position: Position; index: number }) {
           <p className="mt-2 eyebrow text-carbon-muted">
             {t(position.titleKey)}
           </p>
-          <p className="mt-3 font-serif text-xl text-navy">{position.holder}</p>
         </div>
         <span
           className={cn(
